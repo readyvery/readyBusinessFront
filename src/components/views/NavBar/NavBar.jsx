@@ -76,12 +76,22 @@ const NavBar = () => {
       <Nav.Link className="navbarStore">
         {Store ? (
           <div className="icon-group">
-            <img className="icon" src={StoreOn} alt="Open" />
+            <img
+              className="icon"
+              onClick={setStore(0)}
+              src={StoreOn}
+              alt="Open"
+            />
             <div className="font">영업중</div>
           </div>
         ) : (
           <div className="icon-off">
-            <img className="icon" src={StoreOn} alt="Close" />
+            <img
+              className="icon"
+              onClick={setStore(1)}
+              src={StoreOn}
+              alt="Close"
+            />
             <div className="font">영업종료</div>
           </div>
         )}
