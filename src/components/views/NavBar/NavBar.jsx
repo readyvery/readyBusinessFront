@@ -12,6 +12,11 @@ const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
 
   const [Store, setStore] = useState(1); // 영업여부
+  const onClickHandler = (e) => {
+    setStore((prevStore) => {
+      setStore(!prevStore);
+    });
+  };
 
   return (
     <div className="navbar">
@@ -73,12 +78,12 @@ const NavBar = () => {
         </Nav.Link>
       </div>
 
-      <Nav.Link className="navbarStore">
+      <Nav.Link>
         {Store ? (
           <div className="icon-group">
             <img
               className="icon"
-              onClick={setStore(0)}
+              onClick={onClickHandler}
               src={StoreOn}
               alt="Open"
             />
@@ -88,7 +93,7 @@ const NavBar = () => {
           <div className="icon-off">
             <img
               className="icon"
-              onClick={setStore(1)}
+              onClick={onClickHandler}
               src={StoreOn}
               alt="Close"
             />
