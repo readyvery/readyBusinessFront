@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import Footer from "../src/components/views/Footer/Footer";
 import Header from "../src/components/views/Header/Header";
 import Inventory from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
@@ -18,7 +17,7 @@ function App() {
         <Route path="/Mypage" element={<Mypage />} />
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

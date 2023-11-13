@@ -1,7 +1,7 @@
 const theme = {
   colors: {
     MainColor: "#D82356",
-    HoverColor: "#3CB371",
+    SubColor: "#3CB371",
     accent: "#e0234e",
   },
   fontSize: {
