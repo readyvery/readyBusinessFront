@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import Header from "../src/components/views/Header/Header";
 import Inventory from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
@@ -9,15 +10,18 @@ import Home from "./pages/Home/Home";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Inventory" element={<Inventory />} />
-        <Route path="/Sales" element={<Sales />} />
-        <Route path="/Mypage" element={<Mypage />} />
-      </Routes>
+      <RecoilRoot>
+        <Header />
 
-      {/* <Footer /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Inventory" element={<Inventory />} />
+          <Route path="/Sales" element={<Sales />} />
+          <Route path="/Mypage" element={<Mypage />} />
+        </Routes>
+
+        {/* <Footer /> */}
+      </RecoilRoot>
     </div>
   );
 }
