@@ -39,35 +39,35 @@
 
 @font-face {
   font-family: "Bold";
-  src: url("./assets/font/Pretendard-Bold.otf");
+  src: url("/src/assets/font/Pretendard-Bold.woff2");
 }
 
 @font-face {
   font-family: "ExtraBold";
-  src: url("./assets/font/Pretendard-ExtraBold.otf");
+  src: url("/src/assets/font/Pretendard-ExtraBold.woff2");
 }
 
 @font-face {
   font-family: "ExtraLight";
-  src: url("./assets/font/Pretendard-ExtraLight.otf");
+  src: url("/src/assets/font/Pretendard-ExtraLight.woff2");
 }
 
 @font-face {
   font-family: "Light";
-  src: url("./assets/font/Pretendard-Light.otf");
+  src: url("/src/assets/font/Pretendard-Light.woff2");
 }
 
 @font-face {
   font-family: "Medium";
-  src: url("./assets/font/Pretendard-Medium.otf");
+  src: url("/src/assets/font/Pretendard-Medium.woff2");
 }
 
 @font-face {
   font-family: "Regular";
-  src: url("./assets/font/Pretendard-Regular.otf");
+  src: url("/src/assets/font/Pretendard-Regular.woff2");
 }
 
 @font-face {
   font-family: "SemiBold";
-  src: url("./assets/font/Pretendard-SemiBold.otf");
+  src: url("/src/assets/font/Pretendard-SemiBold.woff2");
 }

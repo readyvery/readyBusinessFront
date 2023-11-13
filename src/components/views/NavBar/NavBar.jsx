@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React from "react";
 import { Nav } from "react-bootstrap";
+import { useRecoilCallback, useRecoilState } from "recoil";
+import { storeState } from "../../../Atom/status";
 import Home from "../../../assets/icons/Navbar/Home.svg"; //홈
 import Inven from "../../../assets/icons/Navbar/Inven.svg"; //재고관리
 import Mypage from "../../../assets/icons/Navbar/Mypage.svg"; //마이페이지
@@ -11,11 +13,12 @@ import "../NavBar/NavBar.css";
 const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
 
-  const [Store, setStore] = useState(1); // 영업여부
+  const [Store] = useRecoilState(storeState); // 영업여부
+  const setStoreState = useRecoilCallback(({ set }) => async () => {
+    set(storeState, !Store);
+  });
   const onClickHandler = (e) => {
-    setStore((prevStore) => {
-      setStore(!prevStore);
-    });
+    setStoreState();
   };
 
   return (

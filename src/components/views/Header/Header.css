@@ -11,3 +11,26 @@
   margin-top: 1.25rem;
   float: left;
 }
+
+.store-group {
+  display: flex;
+  flex-direction: row;
+  object-fit: contain;
+  align-items: center;
+}
+
+.font {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 1.875rem */
+}
+
+.head-container {
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
