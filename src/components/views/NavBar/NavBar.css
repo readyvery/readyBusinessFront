@@ -29,7 +29,7 @@
   object-fit: contain;
 }
 
-.font {
+.menu-font {
   color: #fff;
   font-family: Pretendard;
   font-size: 1.25rem;
@@ -40,5 +40,9 @@
 }
 
 .icon-off {
+  display: flex;
+  flex-direction: column;
+  object-fit: contain;
+  align-items: center;
   opacity: 0.5;
 }

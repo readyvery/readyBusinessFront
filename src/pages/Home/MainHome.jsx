@@ -87,19 +87,16 @@ const MainHome = () => {
           </Button>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          {status.Wait ? (
-            <Wait />
-          ) : status.Progress ? (
-            <Progress />
-          ) : status.Complete ? (
-            <Complete />
-          ) : (
-            <div>ERROR</div>
-          )}
-        </Col>
-      </Row>
+
+      {status.Wait ? (
+        <Wait />
+      ) : status.Progress ? (
+        <Progress />
+      ) : status.Complete ? (
+        <Complete />
+      ) : (
+        <div>ERROR</div>
+      )}
     </Container>
   );
 };
