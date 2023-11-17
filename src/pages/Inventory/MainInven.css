@@ -170,7 +170,7 @@
 
 .modal-close__wrapper{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .modal-box-img__wrapper{
