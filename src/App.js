@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import Header from "../src/components/views/Header/Header";
 import Inventory from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
 import Sales from "../src/pages/Sales/Sales";
@@ -11,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <RecoilRoot>
-        <Header />
+        {/* <Header /> */}
 
         <Routes>
           <Route path="/" element={<Home />} />

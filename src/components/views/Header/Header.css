@@ -25,8 +25,7 @@
   margin: 0 0.5625rem;
 }
 
-.font {
-  /* line-height: 100%; 1.875rem */
+.header-font {
   color: #fff;
   font-size: 1.875rem;
   font-family: "SemiBold";

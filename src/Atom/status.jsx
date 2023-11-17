@@ -4,3 +4,12 @@ export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
   default: false, // 초깃값
 });
+
+export const orderState = atom({
+  key: "orderState",
+  default: {
+    wait: 1,
+    progress: 0,
+    complete: 0,
+  },
+});

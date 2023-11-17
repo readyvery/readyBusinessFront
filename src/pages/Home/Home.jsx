@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt";
@@ -7,6 +8,7 @@ import Receipt from "./Receipt";
 const Home = () => {
   return (
     <div>
+      <Header />
       <Row>
         <Col
           xs={1}
