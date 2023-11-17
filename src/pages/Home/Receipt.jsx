@@ -78,6 +78,36 @@ const Receipt = () => {
             <span className="receipt-text">{order.phone}</span>
           </div>
           <div className="receipt-divider" />
+          <div className="receiptTextBox">
+            <span className="receipt-text">주문내역</span>
+          </div>
+          <div className="receiptTextBox">
+            <span className="receipt-text">(ICE)아메리카노</span>
+            <span className="receipt-text">1</span>
+          </div>
+          <div className="receiptTextBox">
+            <span className="receipt-text">└ 샷추가</span>
+            <span className="receipt-text">1</span>
+          </div>
+          <div className="receiptTextBox">
+            <span className="receipt-text">(ICE)휘핑모카</span>
+            <span className="receipt-text">2</span>
+          </div>
+          <div className="receiptTextBox">
+            <span className="receipt-text">└ 휘핑 </span>
+            <span className="receipt-text">1</span>
+          </div>
+          <div className="receipt-divider" />
+          <div className="receiptTextBox">
+            <span className="receipt-text">결제수단</span>
+
+            <span className="receipt-text">{order.payment}</span>
+          </div>
+          <div className="receiptTextBox">
+            <span className="receipt-text">결제금액</span>
+
+            <span className="receipt-text">{order.price}원</span>
+          </div>
         </div>
       ))}
     </Container>

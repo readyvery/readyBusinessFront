@@ -2,12 +2,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Nav } from "react-bootstrap";
 import { useRecoilCallback, useRecoilState } from "recoil";
+import { storeState } from "../../../Atom/status";
 import Home from "../../../assets/icons/Navbar/Home.svg"; //홈
 import Inven from "../../../assets/icons/Navbar/Inven.svg"; //재고관리
 import Mypage from "../../../assets/icons/Navbar/Mypage.svg"; //마이페이지
 import Sales from "../../../assets/icons/Navbar/Sales.svg"; //매출관리
 import StoreOn from "../../../assets/icons/Navbar/Store.svg"; //영업중
-import { storeState } from "../../../atom/status";
 import "../NavBar/NavBar.css";
 
 const NavBar = () => {

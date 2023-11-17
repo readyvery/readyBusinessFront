@@ -1,7 +1,7 @@
 .orderWait {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
 
   width: 100%;
   height: 100%;
@@ -10,12 +10,30 @@
 .listTable {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
+
+  width: 100%;
 
   margin: auto;
 }
 
 .indexTable {
+  color: #4f4f4f;
+  font-family: "Light";
+  font-size: 1.375rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 1.375rem */
+}
+
+.Wait-Row {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+
+  width: 100%;
+  height: 3.125rem;
+  margin: auto;
   color: #4f4f4f;
   font-family: "Light";
   font-size: 1.375rem;

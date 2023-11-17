@@ -49,7 +49,7 @@ const MainHome = () => {
               border: "none",
             }}
           >
-            대기 4
+            대기 1
           </Button>
         </Col>
         <Col>
@@ -66,7 +66,7 @@ const MainHome = () => {
               border: "none",
             }}
           >
-            제조중 2
+            제조중 0
           </Button>
         </Col>
         <Col>
@@ -83,7 +83,7 @@ const MainHome = () => {
               border: "none",
             }}
           >
-            제조•픽업완료 3
+            제조•픽업완료 0
           </Button>
         </Col>
       </Row>
