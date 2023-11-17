@@ -1,5 +1,7 @@
 .header {
-  width: 100%;
+  /* width: 100%; */
+  min-width: 73.75rem;
+  /* min-width: 64rem; */
   height: 5.5rem;
   background-color: #2e2d2d;
 }
@@ -19,13 +21,14 @@
   align-items: center;
 }
 
+.store-img__wrapper{
+  margin: 0 0.5625rem;
+}
+
 .header-font {
   color: #fff;
-  font-family: Pretendard;
   font-size: 1.875rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 1.875rem */
+  font-family: "SemiBold";
 }
 
 .head-container {
