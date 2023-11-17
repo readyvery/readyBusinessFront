@@ -32,6 +32,7 @@ const Receipt = () => {
           </div>
           <Row className="receiptButton">
             <Col>
+            <div className="receipt-btn__wrapper">
               <Button
                 name="Reject"
                 style={{
@@ -44,12 +45,15 @@ const Receipt = () => {
                   fontFamily: "SemiBold",
                   fontSize: "1.375rem",
                   color: "#838383",
+                  justifyContent: "center"
                 }}
               >
                 거부
               </Button>
+              </div>
             </Col>
             <Col>
+            <div className="receipt-btn__wrapper">
               <Button
                 name="Accept"
                 style={{
@@ -65,6 +69,7 @@ const Receipt = () => {
               >
                 접수
               </Button>
+            </div>
             </Col>
           </Row>
           <div className="receiptTextBox">

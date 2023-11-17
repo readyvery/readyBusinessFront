@@ -1,20 +1,18 @@
 .rounded-rectangle {
   width: 100%; /* 너비 설정 */
   height: 97%; /* 높이 설정 */
-  background-color: #f5f5f5; /* 배경색 설정 */
-  border-radius: 20px; /* 모서리를 둥글게 만드는 값 */
-  text-align: center; /* 가운데 정렬 */
+  background-color: #F5F5F5; /* 배경색 설정 */
+  border-radius: 1.875rem; /* 모서리를 둥글게 만드는 값 */
   color: #000; /* 텍스트 색상 설정 */
-  font-size: 18px; /* 폰트 크기 설정 */
-  line-height: 100px; /* 수직 가운데 정렬을 위한 높이 설정 */
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0.25rem 0.375rem rgba(0, 0, 0, 0.25);
 }
 
 .Box {
   width: 100%; /* 너비 설정 */
   height: 100%; /* 높이 설정 */
-  padding-top: 5%;
-  padding-left: 0;
+  /* height: 42.5rem; */
+  /* padding-top: 5%; */
+  /* padding-left: 0; */
 }
 
 .receiptHeader {
@@ -33,6 +31,15 @@
   letter-spacing: -0.0175rem;
 }
 
+.receipt-btn__wrapper{
+  /* width: 80%;
+  margin: 0 auto; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .receiptButton {
   display: flex;
   height: 5.5rem;
@@ -44,12 +51,16 @@
 
   padding: 3% 7% 1% 7%;
 }
+
+
 .receipt-text {
   color: #4f4f4f;
   font-family: "Light";
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 130%; /* 1.625rem */
+  font-size: 1.25rem;
+  font-family: "SemiBold";
   letter-spacing: -0.0125rem;
 }
 
