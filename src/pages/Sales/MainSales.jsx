@@ -1,9 +1,8 @@
 import React from "react";
-import "./MainSales.css";
 
 const MainSales = () => {
   return (
-    <div className="sales-main__wrapper">
+    <div>
       <h1>Sales</h1>
     </div>
   );
