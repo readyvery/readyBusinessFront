@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
 import { useRecoilValue } from "recoil";
 import { storeState } from "../../../Atom/status";
 import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
@@ -18,13 +17,12 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <Row>
-        <Col>
+    <div className="header2">
+      <div className="header2-wrapper">
+        <div>
           <img src={LOGO} className="LOGO" alt="LOGO" />
-        </Col>
-        <Col />
-        <Col className="head-container">
+        </div>
+        <div className="head-container2">
           {!Store ? (
             <div className="store-group">
               <div className="store-img__wrapper"><img src={StoreOn} alt="Open" /></div>
@@ -37,12 +35,16 @@ const Header = () => {
             </div>
           )}
           {Sound ? (
-            <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
+            <div className="header-img-wrapper">
+                <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
+            </div>
           ) : (
-            <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
+            <div className="header-img-wrapper">
+                <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
+            </div>
           )}
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 };
