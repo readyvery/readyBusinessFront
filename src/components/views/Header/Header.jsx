@@ -27,13 +27,13 @@ const Header = () => {
         <Col className="head-container">
           {!Store ? (
             <div className="store-group">
-              <div className="store-img__wrapper"><img src={StoreOn} alt="Open" /></div>
-              <div className="font">영업중</div>
+              <img src={StoreOn} alt="Open" />
+              <span className="header-font">영업중</span>
             </div>
           ) : (
             <div className="store-group">
-              <div className="store-img__wrapper"><img src={StoreOff} alt="Close" /></div>
-              <div className="font">영업종료 </div>
+              <img src={StoreOff} alt="Close" />
+              <span className="header-font">영업종료 </span>
             </div>
           )}
           {Sound ? (

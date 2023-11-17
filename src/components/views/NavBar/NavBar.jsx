@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 import { useRecoilCallback, useRecoilState } from "recoil";
 import { storeState } from "../../../Atom/status";
 import Home from "../../../assets/icons/Navbar/Home.svg"; //홈
@@ -24,7 +24,7 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbarMenu">
-        <Link to="/">
+        <Nav.Link href="/">
           {currentPath === "/" ? (
             <div className="icon-group">
               <img className="icon" src={Home} alt="HomeOn" />
@@ -36,9 +36,9 @@ const NavBar = () => {
               <span className="menu-font">홈</span>
             </div>
           )}
-        </Link>
+        </Nav.Link>
 
-        <Link to="/Inventory">
+        <Nav.Link href="/Inventory">
           {currentPath === "/Inventory" ? (
             <div className="icon-group">
               <img className="icon" src={Inven} alt="InvenOn" />
@@ -50,9 +50,9 @@ const NavBar = () => {
               <span className="menu-font">재고관리</span>
             </div>
           )}
-        </Link>
+        </Nav.Link>
 
-        <Link to="/Sales">
+        <Nav.Link href="/Sales">
           {currentPath === "/Sales" ? (
             <div className="icon-group">
               <img className="icon" src={Sales} alt="SalesOn" />
@@ -64,9 +64,9 @@ const NavBar = () => {
               <span className="menu-font">매출관리</span>
             </div>
           )}
-        </Link>
+        </Nav.Link>
 
-        <Link to="/Mypage">
+        <Nav.Link href="/Mypage">
           {currentPath === "/Mypage" ? (
             <div className="icon-group">
               <img className="icon" src={Mypage} alt="MypageOn" />
@@ -78,10 +78,10 @@ const NavBar = () => {
               <span className="menu-font">마이페이지</span>
             </div>
           )}
-        </Link>
+        </Nav.Link>
       </div>
 
-      <Link>
+      <Nav.Link>
         {Store ? (
           <div className="icon-group">
             <img
@@ -103,7 +103,7 @@ const NavBar = () => {
             <span className="menu-font">영업종료</span>
           </div>
         )}
-      </Link>
+      </Nav.Link>
     </div>
   );
 };

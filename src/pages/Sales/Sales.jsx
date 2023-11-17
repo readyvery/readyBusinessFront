@@ -1,16 +1,19 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 import NavBar from "../../components/views/NavBar/NavBar";
-import MainSales from "./MainSales";
+import MainMypage from "../Mypage/MainMypage";
 
 const Sales = () => {
   return (
-    <div className="sales-wrapper">
-      <nav>
-        <NavBar />
-      </nav>
-      <main>
-        <MainSales />
-      </main>
+    <div>
+      <Row>
+        <Col>
+          <NavBar />
+        </Col>
+        <Col>
+          <MainMypage />
+        </Col>
+      </Row>
     </div>
   );
 };
