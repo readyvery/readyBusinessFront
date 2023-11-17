@@ -1,8 +1,20 @@
-import React from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
+import X from "../../../assets/icons/X.svg";
 import "./Receipt.css";
 
 const Receipt = () => {
+  const [ReceiveModal, setReceiveModal] = useState(false);
+  const [RefuseModal, setRefuseModal] = useState(false);
+
+  const handleReceiveModal = () => {
+    setReceiveModal((prev) => !prev);
+  };
+
+  const handleRefuseModal = () => {
+    setRefuseModal((prev) => !prev);
+  };
+
   const orderInfo = {
     orders: [
       {
@@ -24,7 +36,7 @@ const Receipt = () => {
     ],
   };
   return (
-    <Container className="Box">
+    <div className="Box">
       {orderInfo.orders.map((order) => (
         <div className="rounded-rectangle">
           <div className="receiptHeader">
@@ -34,6 +46,7 @@ const Receipt = () => {
             <Col>
               <Button
                 name="Reject"
+                onClick={handleRefuseModal}
                 style={{
                   width: "8.75rem",
                   height: "2.8125rem",
@@ -52,6 +65,7 @@ const Receipt = () => {
             <Col>
               <Button
                 name="Accept"
+                onClick={handleReceiveModal}
                 style={{
                   width: "8.75rem",
                   height: "2.8125rem",
@@ -69,12 +83,10 @@ const Receipt = () => {
           </Row>
           <div className="receiptTextBox">
             <span className="receipt-text">주문시간</span>
-
             <span className="receipt-text">{order.time}</span>
           </div>
           <div className="receiptTextBox">
             <span className="receipt-text">고객연락처</span>
-
             <span className="receipt-text">{order.phone}</span>
           </div>
           <div className="receipt-divider" />
@@ -82,35 +94,82 @@ const Receipt = () => {
             <span className="receipt-text">주문내역</span>
           </div>
           <div className="receiptTextBox">
-            <span className="receipt-text">(ICE)아메리카노</span>
-            <span className="receipt-text">1</span>
+            <span className="receipt-FoodName">{order.foodies[0].name}</span>
+            <span className="receipt-text">{order.foodies[0].count}</span>
           </div>
-          <div className="receiptTextBox">
-            <span className="receipt-text">└ 샷추가</span>
-            <span className="receipt-text">1</span>
-          </div>
-          <div className="receiptTextBox">
-            <span className="receipt-text">(ICE)휘핑모카</span>
-            <span className="receipt-text">2</span>
-          </div>
-          <div className="receiptTextBox">
-            <span className="receipt-text">└ 휘핑 </span>
-            <span className="receipt-text">1</span>
+          <div className="receiptOption">
+            {order.foodies[0].options.map((option) => (
+              <span className="receipt-text">└ {option}</span>
+            ))}
           </div>
           <div className="receipt-divider" />
           <div className="receiptTextBox">
             <span className="receipt-text">결제수단</span>
-
             <span className="receipt-text">{order.payment}</span>
           </div>
           <div className="receiptTextBox">
             <span className="receipt-text">결제금액</span>
-
+            {/* 100원 단위 ,처리 여유로우면 하기 */}
             <span className="receipt-text">{order.price}원</span>
           </div>
         </div>
       ))}
-    </Container>
+      {RefuseModal && (
+        <div className="modal-wrapper">
+          <div className="modal-box">
+            <div className="modal-close__wrapper" onClick={handleRefuseModal}>
+              <img src={X} alt="close" />
+            </div>
+            <div className="modal-box-txt__wrapper">
+              <div className="modal-box-txt">접수 거부 사유를 선택해주세요</div>
+            </div>
+            <div className="modal-box-choose-btn__wrapper">
+              <div className="modal-box-choose-btn">재료소진</div>
+              <div className="modal-box-choose-btn">가게사정</div>
+              <div className="modal-box-choose-btn">기타</div>
+            </div>
+          </div>
+        </div>
+      )}
+      {ReceiveModal && (
+        <div className="modal-wrapper">
+          <div className="modal-box">
+            <div className="modal-close__wrapper" onClick={handleReceiveModal}>
+              <img src={X} alt="close" />
+            </div>
+            <div className="modal-box-txt__wrapper">
+              <div className="modal-box-txt">제조 시간을 선택해주세요</div>
+            </div>
+            <div className="modal-box-choose-btn__wrapper">
+              <Row>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">5분</div>
+                </Col>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">10분</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">15분</div>
+                </Col>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">20분</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">25분</div>
+                </Col>
+                <Col>
+                  <div className="modal-box-chooseTime-btn">30분</div>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

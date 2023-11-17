@@ -1,0 +1,174 @@
+.rounded-rectangle {
+  width: 23.75rem;
+  height: 44.875rem;
+  background-color: #f5f5f5; /* 배경색 설정 */
+  border-radius: 1.875rem; /* 모서리를 둥글게 만드는 값 */
+  text-align: center; /* 가운데 정렬 */
+  color: #000; /* 텍스트 색상 설정 */
+  font-size: 18px; /* 폰트 크기 설정 */
+  line-height: 100px; /* 수직 가운데 정렬을 위한 높이 설정 */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.Box {
+  width: 100%; /* 너비 설정 */
+  height: 100%; /* 높이 설정 */
+  padding-top: 5%;
+  padding-left: 0;
+}
+
+.receiptHeader {
+  padding-top: 10%;
+  padding-left: 10%;
+  display: flex;
+}
+
+.receipt-header {
+  color: #000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Bold";
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 130%; /* 2.275rem */
+  letter-spacing: -0.0175rem;
+}
+
+.receiptButton {
+  display: flex;
+  height: 5.5rem;
+}
+
+.receiptTextBox {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 3% 7% 1% 7%;
+}
+.receipt-FoodName {
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  color: #4f4f4f;
+  font-family: "Light";
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
+.receiptOption {
+  padding-left: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.receipt-text {
+  color: #4f4f4f;
+  font-family: "Light";
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
+
+.receipt-divider {
+  width: 19.4375rem;
+  height: 0rem;
+
+  border-top: 1px solid #838383; /* 색상과 굵기를 조절할 수 있습니다. */
+  margin: 20px 0; /* 위아래 여백을 조절할 수 있습니다. */
+
+  transform: translate(10%, -50%);
+}
+
+/* 모달 */
+.modal-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 23.75rem;
+  height: 44.875rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 1.875rem;
+
+  display: flex;
+}
+
+.modal-box {
+  position: absolute;
+  bottom: calc(68% - 30.9375rem);
+
+  width: 23.75rem;
+  height: 30.9375rem;
+  background-color: #fff;
+  border-radius: 1.875rem;
+  z-index: 101;
+  padding: 2.0625rem 3.25rem;
+}
+
+.modal-close__wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-box-txt__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30%;
+}
+
+.modal-box-txt {
+  color: #4f4f4f;
+  font-family: "Regular";
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
+
+.modal-box-choose-btn__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 10.9375rem;
+}
+
+.modal-box-choose-btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 16.8125rem;
+  height: 3.125rem;
+  margin: 0 auto;
+  border-radius: 0.625rem;
+  border: 2px solid #dadada;
+
+  color: #838383;
+  text-align: center;
+  font-family: "Light";
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 100%; /* 1.375rem */
+}
+
+.modal-box-chooseTime-btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 7.625rem;
+  height: 3.125rem;
+  margin: 0 auto;
+  border-radius: 0.625rem;
+  border: 2px solid #dadada;
+
+  color: #838383;
+  text-align: center;
+  font-family: "Light";
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 100%; /* 1.375rem */
+}
