@@ -17,12 +17,48 @@
   padding-left: 0;
 }
 
-.top-font {
+.receiptHeader {
+  padding-top: 10%;
+  padding-left: 10%;
+  display: flex;
+}
+
+.receipt-header {
   color: #000;
-  font-family: Pretendard;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: "Bold";
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 130%; /* 2.275rem */
+  letter-spacing: -0.0175rem;
+}
+
+.receiptButton {
+  display: flex;
+  height: 5.5rem;
+}
+
+.receiptTextBox {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 3% 7% 1% 7%;
+}
+.receipt-text {
+  color: #4f4f4f;
+  font-family: "Light";
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
+}
+
+.receipt-divider {
+  width: 19.4375rem;
+  height: 0rem;
+
+  border-top: 1px solid #838383; /* 색상과 굵기를 조절할 수 있습니다. */
+  margin: 20px 0; /* 위아래 여백을 조절할 수 있습니다. */
+
+  transform: translate(10%, -50%);
 }

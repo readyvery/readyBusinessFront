@@ -28,12 +28,12 @@ const Header = () => {
           {!Store ? (
             <div className="store-group">
               <img src={StoreOn} alt="Open" />
-              <div className="font">영업중</div>
+              <span className="header-font">영업중</span>
             </div>
           ) : (
             <div className="store-group">
               <img src={StoreOff} alt="Close" />
-              <div className="font">영업종료 </div>
+              <span className="header-font">영업종료 </span>
             </div>
           )}
           {Sound ? (

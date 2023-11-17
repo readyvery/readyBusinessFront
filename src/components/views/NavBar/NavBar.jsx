@@ -28,12 +28,12 @@ const NavBar = () => {
           {currentPath === "/" ? (
             <div className="icon-group">
               <img className="icon" src={Home} alt="HomeOn" />
-              <span className="font">홈</span>
+              <span className="menu-font">홈</span>
             </div>
           ) : (
             <div className="icon-off">
               <img className="icon" src={Home} alt="HomeOff" />
-              <div className="font">홈</div>
+              <span className="menu-font">홈</span>
             </div>
           )}
         </Nav.Link>
@@ -42,12 +42,12 @@ const NavBar = () => {
           {currentPath === "/Inventory" ? (
             <div className="icon-group">
               <img className="icon" src={Inven} alt="InvenOn" />
-              <div className="font">재고관리</div>
+              <span className="menu-font">재고관리</span>
             </div>
           ) : (
             <div className="icon-off">
               <img className="icon" src={Inven} alt="InvenOff" />
-              <div className="font">재고관리</div>
+              <span className="menu-font">재고관리</span>
             </div>
           )}
         </Nav.Link>
@@ -56,12 +56,12 @@ const NavBar = () => {
           {currentPath === "/Sales" ? (
             <div className="icon-group">
               <img className="icon" src={Sales} alt="SalesOn" />
-              <div className="font">매출관리</div>
+              <span className="menu-font">매출관리</span>
             </div>
           ) : (
             <div className="icon-off">
               <img className="icon" src={Sales} alt="SalesOff" />
-              <div className="font">매출관리</div>
+              <span className="menu-font">매출관리</span>
             </div>
           )}
         </Nav.Link>
@@ -70,12 +70,12 @@ const NavBar = () => {
           {currentPath === "/Mypage" ? (
             <div className="icon-group">
               <img className="icon" src={Mypage} alt="MypageOn" />
-              <div className="font">마이페이지</div>
+              <span className="menu-font">마이페이지</span>
             </div>
           ) : (
             <div className="icon-off">
               <img className="icon" src={Mypage} alt="MypageOff" />
-              <div className="font">마이페이지</div>
+              <span className="menu-font">마이페이지</span>
             </div>
           )}
         </Nav.Link>
@@ -90,7 +90,7 @@ const NavBar = () => {
               src={StoreOn}
               alt="Open"
             />
-            <div className="font">영업중</div>
+            <span className="menu-font">영업중</span>
           </div>
         ) : (
           <div className="icon-off">
@@ -100,7 +100,7 @@ const NavBar = () => {
               src={StoreOn}
               alt="Close"
             />
-            <div className="font">영업종료</div>
+            <span className="menu-font">영업종료</span>
           </div>
         )}
       </Nav.Link>
