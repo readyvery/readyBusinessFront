@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import kakao from "../../assets/icons/icon_kakao.svg";
 import readyvery from "../../assets/icons/img_readyVery.svg";
 import "./MainMypage.css";
 
 const MainMypage = () => {
+  const fetchData = async () => {
+    // const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/info`);
+    // console.log(response);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="mypage-main__wrapper">
       <div className="mypage-top__wrapper">
