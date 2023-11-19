@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/views/Header/Header2";
 import NavBar from "../../components/views/NavBar/NavBar";
 import MainSales from "./MainSales";
+import "./Sales.css";
 
 const Sales = () => {
   return (
