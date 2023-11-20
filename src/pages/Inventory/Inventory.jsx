@@ -1,19 +1,19 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import Header from "../../components/views/Header/Header2";
 import NavBar from "../../components/views/NavBar/NavBar";
+import "./Inventory.css";
 import MainInven from "./MainInven";
 
 const Inventory = () => {
   return (
-    <div>
-      <Row>
-        <Col>
+    <div className="inven-wrapper">
+      <Header />
+        <nav>
           <NavBar />
-        </Col>
-        <Col>
+        </nav>
+        <main>
           <MainInven />
-        </Col>
-      </Row>
+        </main>
     </div>
   );
 };
