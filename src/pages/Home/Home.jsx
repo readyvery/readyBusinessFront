@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import Header from "../../components/views/Header/Header";
 import NavBar from "../../components/views/NavBar/NavBar";
 import MainHome from "./MainHome";
-import Receipt from "./Receipt";
+import Receipt from "./Receipt/Receipt";
 
 const Home = () => {
   return (

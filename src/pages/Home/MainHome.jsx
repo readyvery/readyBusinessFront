@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import Complete from "./Complete";
 import "./MainHome.css";
-import Progress from "./Progress";
-import Wait from "./Wait";
+import Complete from "./StatusHome/Complete";
+import Progress from "./StatusHome/Progress";
+import Wait from "./StatusHome/Wait";
 
 const MainHome = () => {
   const [status, setStatus] = useState({
