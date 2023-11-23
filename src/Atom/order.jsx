@@ -1,5 +1,14 @@
 import { atom } from "recoil";
 
+export const ordercnt = atom({
+  key: "ordercnt",
+  default: {
+    pending: 0,
+    progress: 0,
+    complete: 0,
+  },
+});
+
 export const orders = atom(
   {
     key: "orders", // 전역적으로 고유한 값

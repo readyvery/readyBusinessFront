@@ -16,7 +16,7 @@ const Home = () => {
         >
           <NavBar />
         </Col>
-        <Col style={{ padding: "0" }}>
+        <Col style={{ width: "31.375rem", padding: "0" }}>
           <MainHome />
         </Col>
         <Col

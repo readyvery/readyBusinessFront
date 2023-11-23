@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useRecoilValue } from "recoil";
+import { ordercnt } from "../../Atom/order";
 import "./MainHome.css";
 import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
 const MainHome = () => {
+  const { pending, progress, complete } = useRecoilValue(ordercnt);
+
   const [status, setStatus] = useState({
     Wait: true,
     Progress: false,
@@ -44,12 +48,12 @@ const MainHome = () => {
               borderRadius: "0.875rem",
               backgroundColor: status.Wait ? "#d82356" : "#FFFFFF",
               fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.5625rem",
+              fontSize: "1.1rem",
               color: status.Wait ? "#FFFFFF" : "#838383",
               border: "none",
             }}
           >
-            대기 1
+            대기 {pending}
           </Button>
         </Col>
         <Col>
@@ -61,12 +65,12 @@ const MainHome = () => {
               borderRadius: "0.875rem",
               backgroundColor: status.Progress ? "#d82356" : "#FFFFFF",
               fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.5625rem",
+              fontSize: "1.1rem",
               color: status.Progress ? "#FFFFFF" : "#838383",
               border: "none",
             }}
           >
-            제조중 0
+            제조중 {progress}
           </Button>
         </Col>
         <Col>
@@ -78,12 +82,12 @@ const MainHome = () => {
               borderRadius: "0.875rem",
               backgroundColor: status.Complete ? "#d82356" : "#FFFFFF",
               fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.5625rem",
+              fontSize: "1.1rem",
               color: status.Complete ? "#FFFFFF" : "#838383",
               border: "none",
             }}
           >
-            제조•픽업완료 0
+            제조•픽업완료 {complete}
           </Button>
         </Col>
       </Row>
