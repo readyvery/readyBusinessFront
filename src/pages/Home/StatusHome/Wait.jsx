@@ -83,6 +83,7 @@ const Wait = () => {
   };
 
   const onClickHandler = (orderid) => {
+    console.log(orderCount);
     setOrderSelect({
       orderId: orderid,
       isSelected: !orderSelect.isSelected,
@@ -90,7 +91,6 @@ const Wait = () => {
   };
 
   useEffect(() => {
-    console.log(orderCount);
     // OrderBox가 생성될 때마다 개수 증가
     setOrderCount((prev) => ({ ...prev, pending: prev.pending + 1 }));
   }, [setOrderCount]); // useEffect의 의존성 배열에 setOrderCount 추가
@@ -103,7 +103,7 @@ const Wait = () => {
         <span className="Order-title__span">픽업유무</span>
         <span className="Order-title__span">주문금액</span>
         <span className="Order-title__span">
-          <img className="Arrowicon" src={upArrow} />
+          <img alt="new" className="Arrowicon" src={upArrow} />
           최신순
         </span>
       </div>
