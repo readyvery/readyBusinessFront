@@ -40,7 +40,7 @@
 
 .mainInven-title__span3{
     width: 60%;
-    min-width: 39.625rem;
+    /* min-width: 39.625rem; */
 }
 
 .mainInven-category__modal{
@@ -72,9 +72,11 @@
 
 .mainInven-category-content__wrapper{
     width: 100%;
-    height: calc(46.25rem - 5.0625rem);
+    height: calc(45.75rem - 5.0625rem);
+    /* height: calc(46.25rem - 5.0625rem); */
     /* height: calc(42.5rem - 5.0625rem); */
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .mainInven-category-content__wrapper::-webkit-scrollbar {

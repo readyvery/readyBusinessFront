@@ -1,6 +1,72 @@
-import { atom } from "recoil";
+import axios from "axios";
+import { atom, selector } from "recoil";
 
 export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
   default: false, // 초깃값
 });
+
+
+export const orderState = atom({
+  key: "orderState",
+  default: {
+    wait: 1,
+    progress: 0,
+    complete: 0,
+  },
+});
+
+export const isAuthenticatedState = atom({
+  key: 'isAuthenticatedState',
+  default: false,
+});
+
+export const getAuthenticatedSelector = selector({
+  key: 'auth/get',
+  get: async ({get}) => {
+    return get(isAuthenticatedState);
+  },
+
+  set: ({set}) => {
+    set(isAuthenticatedState, (currentValue) => !currentValue);
+  }
+})
+
+export const loginState = atom({
+  key: 'loginState',
+  default: {
+    accessToken: null,
+    expiredTime: null
+  },
+});
+
+export const userState = atom({
+  key: 'userState',
+  dafault: null,
+})
+
+export const getUserSelector = selector({
+  key: 'user/get',
+  get: async ({get, set}) => {
+    try{
+      const apiUrl = process.env.REACT_APP_API_ROOT;
+      const config = {
+        withCredentials: true
+      };
+      const response = await axios.get(`${apiUrl}/api/v1/auth`, config)
+      const userData = response.data;
+      // if (JSON.stringify(userState) !== JSON.stringify(userData)) {
+      //   // 다르면 userInfo 업데이트
+      //   // set(userState, userData);
+      // }
+      return userData;
+    } catch (err){
+        // 에러처리
+        return "404";
+    }
+  },
+
+  set: ({set}, newValue) => {
+    set(userState, newValue)
+  }
+})
