@@ -90,6 +90,7 @@ const Wait = () => {
   };
 
   useEffect(() => {
+    console.log(orderCount);
     // OrderBox가 생성될 때마다 개수 증가
     setOrderCount((prev) => ({ ...prev, pending: prev.pending + 1 }));
   }, [setOrderCount]); // useEffect의 의존성 배열에 setOrderCount 추가
