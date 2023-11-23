@@ -4,7 +4,7 @@ import NavBar from "../../components/views/NavBar/NavBar";
 import MainSales from "./MainSales";
 import "./Sales.css";
 
-const Sales = () => {
+function Sales (props) {
   return (
     <div className="sales-wrapper">
       <Header />
