@@ -5,7 +5,7 @@ import "./MainHome.css";
 import Progress from "./Progress";
 import Wait from "./Wait";
 
-const MainHome = () => {
+function MainHome (props) {
   const [status, setStatus] = useState({
     Wait: true,
     Progress: false,

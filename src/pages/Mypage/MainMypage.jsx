@@ -1,9 +1,22 @@
+import axios from "axios";
 import React, { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from 'recoil';
+import { isAuthenticatedState, loginState } from '../../Atom/status';
 import kakao from "../../assets/icons/icon_kakao.svg";
 import readyvery from "../../assets/icons/img_readyVery.svg";
+
+
 import "./MainMypage.css";
 
 const MainMypage = () => {
+  const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_ROOT;
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const setIsLoggedIn = useSetRecoilState(loginState);
+  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+
   const fetchData = async () => {
     // const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/info`);
     // console.log(response);
@@ -12,6 +25,32 @@ const MainMypage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleLogout = () => {
+    const config = {
+      withCredentials: true,
+    };
+    console.log("!");
+
+    axios.get(apiUrl + "/api/v1/user/logout", config)
+    .then((response) => {
+      console.log(response);
+      setIsAuthenticated(false);
+      setIsLoggedIn({
+        accessToken: null,
+          expiredTime: null
+        })
+        navigate("/");
+        removeCookies("accessToken");
+        removeCookies("JSESSIONID");
+        window.localStorage.setItem("isAuthenticated", false);
+      })
+      .catch((error) => {
+        alert("관리자에게 문의하세요.");
+        navigate("/");
+        
+      });
+  }
 
   return (
     <div className="mypage-main__wrapper">
@@ -64,7 +103,7 @@ const MainMypage = () => {
         </div>
       </div>
 
-      <div className="mypage-logout__wrapper"><span>로그아웃</span></div>
+      <div className="mypage-logout__wrapper" onClick={handleLogout}><span>로그아웃</span></div>
     </div>
   );
 };

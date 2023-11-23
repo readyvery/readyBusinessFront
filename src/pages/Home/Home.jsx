@@ -5,7 +5,8 @@ import NavBar from "../../components/views/NavBar/NavBar";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt";
 
-const Home = () => {
+function Home () {
+
   return (
     <div>
       <Header />

@@ -5,7 +5,7 @@ import NavBar from "../../components/views/NavBar/NavBar";
 import MainMypage from "./MainMypage";
 import "./Mypage.css";
 
-const Mypage = () => {
+function Mypage (props) {
   return (
     <div className="mypage-wrapper">
       <Header />
