@@ -5,7 +5,7 @@ import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
-const MainHome = () => {
+function MainHome (props) {
   const [status, setStatus] = useState({
     Wait: true,
     Progress: false,
