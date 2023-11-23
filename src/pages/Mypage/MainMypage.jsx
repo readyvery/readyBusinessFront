@@ -13,7 +13,7 @@ import "./MainMypage.css";
 const MainMypage = () => {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [cookies, setCookies, removeCookies] = useCookies();
+  const [, ,removeCookies] = useCookies();
   const setIsLoggedIn = useSetRecoilState(loginState);
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
 
@@ -30,7 +30,6 @@ const MainMypage = () => {
     const config = {
       withCredentials: true,
     };
-    console.log("!");
 
     axios.get(apiUrl + "/api/v1/user/logout", config)
     .then((response) => {

@@ -13,7 +13,7 @@ import HomePage from "./pages/Home/Home";
 import MainPage from "./pages/Main/MainPage.jsx";
 
 function App() {
-  const [cookies, setCookie, removeCookies] = useCookies();
+  const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
@@ -25,7 +25,6 @@ function App() {
   
   const expiredTime = 1000 * 60 * 60 * 24;
   useInterval(() => {
-    console.log("!");
     if(
       cookies.refreshToken !== 'undefined' &&
       cookies.refreshToken !== undefined && 
