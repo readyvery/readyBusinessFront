@@ -12,7 +12,7 @@ import "../NavBar/NavBar.css";
 
 const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
-  const apiUrl = process.env.REACT_APP_API_ROOT;
+  // const apiUrl = process.env.REACT_APP_API_ROOT;
   const [Store] = useRecoilState(storeState); // 영업여부
   const setStoreState = useRecoilCallback(({ set }) => async () => {
     console.log(Store, storeState);
