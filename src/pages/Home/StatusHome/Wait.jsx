@@ -93,6 +93,9 @@ const Wait = () => {
     } else {
       setStatusSelect("pending");
     }
+    console.log(orderCount);
+    console.log(orderSelect);
+    console.log(statusSelect);
     setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 

@@ -9,8 +9,8 @@ import PendingReceipt from "./StatusReceipt/PendingReceipt";
 import ProgressReceipt from "./StatusReceipt/ProgressReceipt";
 
 const Receipt = () => {
-  const [Status, setStatus] = useRecoilState(selectStatus);
-  const [Order, setOrder] = useRecoilState(selectOrder);
+  const Status = useRecoilState(selectStatus);
+  const Order = useRecoilState(selectOrder);
 
   const orderInfo = {
     orders: [

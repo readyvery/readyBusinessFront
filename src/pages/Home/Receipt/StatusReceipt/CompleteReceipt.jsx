@@ -1,40 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 const CompleteReceipt = ({
   orderProps: { orderNum, time, phone, foodies, payment, price },
 }) => {
-  const [ReceiveModal, setReceiveModal] = useState(false);
-  const [RefuseModal, setRefuseModal] = useState(false);
-
-  const handleReceiveModal = () => {
-    console.log(ReceiveModal);
-    setReceiveModal((prev) => !prev);
-  };
-
-  const handleRefuseModal = () => {
-    setRefuseModal((prev) => !prev);
-  };
-  const orderInfo = {
-    orders: [
-      {
-        id: 123, //db 인덱스
-        orderNum: 2, // 그날의 그가게의 주문번호
-        pickUp: "픽업",
-        foodies: [
-          {
-            name: "아메리카노",
-            count: 3,
-            options: ["샷 추가", "휘핑", "ICE", "그란데"],
-          },
-        ],
-        phone: "010-6439-3547", // 고객의 전화번호
-        time: "21/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 8500,
-      },
-    ],
-  };
-
   return (
     <div>
       <div className="receipt-btn__wrapper">

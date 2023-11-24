@@ -1,17 +1,17 @@
-import { useCookies } from "react-cookie";
+/*import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { getUserSelector, loginState } from "../Atom/status";
+import { getUserSelector, loginState } from "../Atom/status";*/
 
 function Auth(SpecificComponent, option) {
   function AuthenticationCheck(props) {
-    const navigate = useNavigate();
+    /*const navigate = useNavigate();
     const location = useLocation();
     const userInfo = useRecoilValue(getUserSelector);
     const setIsLoggedIn = useSetRecoilState(loginState);
     const [cookies] = useCookies(["accessToken"]);
 
-    /*
+    
     useEffect(() => {
       const isAuth = window.localStorage.getItem("isAuthenticated");
       if (userInfo === "404" && location.pathname !== "/") {

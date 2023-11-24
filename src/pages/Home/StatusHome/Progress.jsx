@@ -93,6 +93,9 @@ const Progress = () => {
     } else {
       setStatusSelect("progress");
     }
+    console.log(orderCount);
+    console.log(orderSelect);
+    console.log(statusSelect);
     setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 

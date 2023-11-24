@@ -93,7 +93,11 @@ const Complete = () => {
     } else {
       setStatusSelect("complete");
     }
+
     setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
+    console.log(orderCount);
+    console.log(orderSelect);
+    console.log(statusSelect);
   };
 
   useEffect(() => {
