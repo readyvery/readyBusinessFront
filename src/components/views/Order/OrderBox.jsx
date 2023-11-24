@@ -1,16 +1,19 @@
 import React from "react";
 
-const OrderBox = ({
-  selectOrder,
-  orderProps: { orderNum, time, pickUp, price, orderSelect },
-}) => {
+const OrderBox = ({ onSelect, order, selectedOrderId }) => {
+  const { id, orderNum, time, pickUp, price } = order;
+  const isSelected = id === selectedOrderId;
+
+  const onClickHandler = () => {
+    onSelect(isSelected ? null : order);
+  };
   return (
     <>
       <div
         className={"Order-content__box"}
+        onClick={onClickHandler}
         style={{
-          background: orderSelect.isSelected ? "#D82356" : "#fff",
-          opacity: orderSelect.isSelected ? 0.15 : 1,
+          background: isSelected ? "rgba(216, 35, 86, 0.15)" : "#fff",
         }}
       >
         <span className="Order-content__span">{orderNum} </span>

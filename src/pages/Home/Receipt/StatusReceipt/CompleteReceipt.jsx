@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-const CompleteReceipt = () => {
+const CompleteReceipt = ({
+  orderProps: { orderNum, time, phone, foodies, payment, price },
+}) => {
   const [ReceiveModal, setReceiveModal] = useState(false);
   const [RefuseModal, setRefuseModal] = useState(false);
 
@@ -35,49 +37,41 @@ const CompleteReceipt = () => {
 
   return (
     <div>
-      <div className="receiptHeader">
-        <span className="receipt-header">
-          {" "}
-          주문번호 {orderInfo.orders.orderNum}
-        </span>
-        <div className="receipt-btn__wrapper">
-          <button className="receipt-btn">완료</button>
-        </div>
+      <div className="receipt-btn__wrapper">
+        <span className="receipt-header"> 주문번호 {orderNum}</span>
+
+        <button className="receipt-btn">완료</button>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
-        <span className="receipt-text">{orderInfo.orders.time}</span>
+        <span className="receipt-text">{time}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">고객연락처</span>
-        <span className="receipt-text">{orderInfo.orders.phone}</span>
+        <span className="receipt-text">{phone}</span>
       </div>
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">주문내역</span>
       </div>
       <div className="receiptTextBox">
-        <span className="receipt-FoodName">
-          {orderInfo.orders.foodies[0].name}
-        </span>
-        <span className="receipt-text">
-          {orderInfo.orders.foodies[0].count}
-        </span>
+        <span className="receipt-FoodName">{foodies[0].name}</span>
+        <span className="receipt-text">{foodies[0].count}</span>
       </div>
       <div className="receiptOption">
-        {orderInfo.orders.foodies[0].options.map((option) => (
+        {foodies[0].options.map((option) => (
           <span className="receipt-text">└ {option}</span>
         ))}
       </div>
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">결제수단</span>
-        <span className="receipt-text">{orderInfo.orders.payment}</span>
+        <span className="receipt-text">{payment}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
         {/* 100원 단위 ,처리 여유로우면 하기 */}
-        <span className="receipt-text">{orderInfo.orders.price}원</span>
+        <span className="receipt-text">{price}원</span>
       </div>
     </div>
   );

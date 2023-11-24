@@ -9,24 +9,25 @@ import Mypage from "../../../assets/icons/Navbar/Mypage.svg"; //마이페이지
 import Sales from "../../../assets/icons/Navbar/Sales.svg"; //매출관리
 import StoreOn from "../../../assets/icons/Navbar/Store.svg"; //영업중
 import "../NavBar/NavBar.css";
-// import axios from "axios";
 
 const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
-
+  const apiUrl = process.env.REACT_APP_API_ROOT;
   const [Store] = useRecoilState(storeState); // 영업여부
   const setStoreState = useRecoilCallback(({ set }) => async () => {
     console.log(Store, storeState);
     set(storeState, !Store);
   });
-  const onClickHandler = (e: any) => {
+  const onClickHandler = (e) => {
     setStoreState();
-    // axios.post(SERVER.SERVER_API+"/api/v1/store/sales", )
-    //   .then((Store)=> {
+    // axios
+    //   .post(`${apiUrl}+/api/v1/store/sales`)
+    //   .then((Store) => {
     //     console.log(Store);
-    // }).catch((error)=> {
+    //   })
+    //   .catch((error) => {
     //     console.error(error);
-    // })
+    //   });
   };
 
   return (

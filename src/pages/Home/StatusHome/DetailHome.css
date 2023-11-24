@@ -1,6 +1,7 @@
 .Order-wrapper {
   width: 100%;
   /* height: 100%; */
+  padding: 0%;
 }
 
 .Order-title__wrapper {
@@ -37,7 +38,7 @@
 }
 
 .Order-content__box {
-  width: 31.375rem;
+  width: 33.375rem;
   padding: 2% 0% 2% 0%;
 
   border-top: 2px solid #838383;
@@ -45,7 +46,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -66,6 +67,4 @@
 .Arrowicon {
   width: 1.25rem;
   height: 1.25rem;
-
-  background-color: #000;
 }

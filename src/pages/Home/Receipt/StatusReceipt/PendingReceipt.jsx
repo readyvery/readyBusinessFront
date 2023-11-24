@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import X from "../../../../assets/icons/X.svg";
-import ReceiptButton from "../../../../components/views/Button/pendingButton";
 
-const PendingReceipt = ({
-  orderProps: { orderNum, time, phone, foodies, payment, price },
-}) => {
+const PendingReceipt = ({ orderProps }) => {
+  const { orderNum, time, phone, foodies, payment, price } = orderProps;
+
   const [ReceiveModal, setReceiveModal] = useState(false);
   const [RefuseModal, setRefuseModal] = useState(false);
 
@@ -26,10 +25,44 @@ const PendingReceipt = ({
       <Row className="receiptButton">
         <Col>
           <div className="receipt-btn__wrapper">
-            <ReceiptButton
-              handleRefuseModal={handleRefuseModal}
-              handleReceiveModal={handleReceiveModal}
-            />
+            <Button
+              name="Reject"
+              onClick={handleRefuseModal}
+              style={{
+                width: "8.75rem",
+                height: "2.8125rem",
+                border: "2px solid",
+                borderRadius: "1.5625rem",
+                bordercolor: "#DADADA",
+                backgroundColor: "#F5F5F5",
+                fontFamily: "SemiBold",
+                fontSize: "1.375rem",
+                color: "#838383",
+                justifyContent: "center",
+              }}
+            >
+              거부
+            </Button>
+          </div>
+        </Col>
+        <Col>
+          <div className="receipt-btn__wrapper">
+            <Button
+              name="Accept"
+              onClick={handleReceiveModal}
+              style={{
+                width: "8.75rem",
+                height: "2.8125rem",
+                border: "2px solid",
+                borderRadius: "1.5625rem",
+                backgroundColor: "#D82356",
+                fontFamily: "SemiBold",
+                fontSize: "1.375rem",
+                color: "#FFFFFF",
+              }}
+            >
+              접수
+            </Button>
           </div>
         </Col>
       </Row>

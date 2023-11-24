@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { ordercnt } from "../../../Atom/order";
-import upArrow from "../../../assets/icons/icon_upArrow.svg";
+import { ordercnt, selectOrder, selectStatus } from "../../../Atom/order";
+import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Wait = () => {
   const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
-
-  const [orderSelect, setOrderSelect] = useState({
-    orderId: null,
-    isSelected: false,
-  });
+  const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
+  const [statusSelect, setStatusSelect] = useRecoilState(selectStatus);
 
   const orderInfo = {
     orders: [
@@ -82,18 +79,32 @@ const Wait = () => {
     ],
   };
 
-  const onClickHandler = (orderid) => {
-    console.log(orderCount);
-    setOrderSelect({
-      orderId: orderid,
-      isSelected: !orderSelect.isSelected,
-    });
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [isRecentFirst, setIsRecentFirst] = useState(false);
+
+  const sortedOrders = isRecentFirst
+    ? [...orderInfo.orders].reverse()
+    : orderInfo.orders;
+
+  const onClickHandler = (selectedOrder) => {
+    setOrderSelect(selectedOrder);
+    if (selectedOrder === null) {
+      setStatusSelect("null");
+    } else {
+      setStatusSelect("pending");
+    }
+    setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 
   useEffect(() => {
+    /*
+    while (orderInfo.orders.length !== 0 && soundState) {
+      AudioPlayer();
+    }*/
+
     // OrderBox가 생성될 때마다 개수 증가
-    setOrderCount((prev) => ({ ...prev, pending: prev.pending + 1 }));
-  }, [setOrderCount]); // useEffect의 의존성 배열에 setOrderCount 추가
+    setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
+  }, [orderInfo.orders.length, setOrderCount]);
 
   return (
     <div className="Order-wrapper">
@@ -102,23 +113,31 @@ const Wait = () => {
         <span className="Order-title__span">주문일시</span>
         <span className="Order-title__span">픽업유무</span>
         <span className="Order-title__span">주문금액</span>
-        <span className="Order-title__span">
-          <img alt="new" className="Arrowicon" src={upArrow} />
-          최신순
-        </span>
+        {isRecentFirst ? (
+          <span
+            className="Order-title__span"
+            onClick={() => setIsRecentFirst(!isRecentFirst)}
+          >
+            과거순
+            <img alt="new" className="Arrowicon" src={downArrow} />
+          </span>
+        ) : (
+          <span
+            className="Order-title__span"
+            onClick={() => setIsRecentFirst(!isRecentFirst)}
+          >
+            최신순
+            <img alt="new" className="Arrowicon" src={downArrow} />
+          </span>
+        )}
       </div>
       <div className="Order-content__wrapper">
-        {orderInfo.orders.map((order) => (
+        {sortedOrders.map((order) => (
           <OrderBox
             key={order.id}
-            selectOrder={onClickHandler}
-            orderProps={{
-              orderNum: order.orderNum,
-              time: order.time,
-              pickUp: order.pickUp,
-              price: order.price,
-              orderSelect: orderSelect.isSelected,
-            }}
+            onSelect={onClickHandler}
+            order={order}
+            selectedOrderId={selectedOrderId}
           />
         ))}
       </div>

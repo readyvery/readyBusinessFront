@@ -7,7 +7,6 @@ import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
-
 const MainHome = () => {
   const { pending, progress, complete } = useRecoilValue(ordercnt);
 
@@ -38,7 +37,7 @@ const MainHome = () => {
   };
 
   return (
-    <Container className="Box">
+    <Container className="Main-Box">
       <Row className="status-header">
         <Col>
           <Button
