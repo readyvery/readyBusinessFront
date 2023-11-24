@@ -1,12 +1,12 @@
 .header {
   /* width: 100%; */
-  min-width: 73.75rem;
+  min-width: 64rem;
   /* min-width: 64rem; */
   height: 5.5rem;
   background-color: #2e2d2d;
 }
 
-.header2{
+.header2 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -19,18 +19,18 @@
   z-index: 101;
 }
 
-.header2-wrapper{
+.header2-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.head-container2{
+.head-container2 {
   width: 23.6rem;
   display: flex;
   justify-content: space-evenly;
 }
 
-.header-img-wrapper{
+.header-img-wrapper {
   display: flex;
 }
 
@@ -49,7 +49,7 @@
   align-items: center;
 }
 
-.store-img__wrapper{
+.store-img__wrapper {
   margin: 0 0.5625rem;
 }
 

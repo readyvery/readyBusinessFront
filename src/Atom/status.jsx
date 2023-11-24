@@ -6,66 +6,62 @@ export const storeState = atom({
   default: false, // 초깃값
 });
 
-export const orderState = atom({
-  key: "orderState",
-  default: {
-    wait: 1,
-    progress: 0,
-    complete: 0,
-  },
+export const soundState = atom({
+  key: "soundState",
+  default: true,
 });
 
 export const isAuthenticatedState = atom({
-  key: 'isAuthenticatedState',
+  key: "isAuthenticatedState",
   default: false,
 });
 
 export const getAuthenticatedSelector = selector({
-  key: 'auth/get',
-  get: async ({get}) => {
+  key: "auth/get",
+  get: async ({ get }) => {
     return get(isAuthenticatedState);
   },
 
-  set: ({set}) => {
+  set: ({ set }) => {
     set(isAuthenticatedState, (currentValue) => !currentValue);
-  }
-})
+  },
+});
 
 export const loginState = atom({
-  key: 'loginState',
+  key: "loginState",
   default: {
     accessToken: null,
-    expiredTime: null
+    expiredTime: null,
   },
 });
 
 export const userState = atom({
-  key: 'userState',
+  key: "userState",
   dafault: null,
-})
+});
 
 export const getUserSelector = selector({
-  key: 'user/get',
-  get: async ({get, set}) => {
-    try{
+  key: "user/get",
+  get: async ({ get, set }) => {
+    try {
       const apiUrl = process.env.REACT_APP_API_ROOT;
       const config = {
-        withCredentials: true
+        withCredentials: true,
       };
-      const response = await axios.get(`${apiUrl}/api/v1/auth`, config)
+      const response = await axios.get(`${apiUrl}/api/v1/auth`, config);
       const userData = response.data;
       // if (JSON.stringify(userState) !== JSON.stringify(userData)) {
       //   // 다르면 userInfo 업데이트
       //   // set(userState, userData);
       // }
       return userData;
-    } catch (err){
-        // 에러처리
-        return "404";
+    } catch (err) {
+      // 에러처리
+      return "404";
     }
   },
 
-  set: ({set}, newValue) => {
-    set(userState, newValue)
-  }
-})
+  set: ({ set }, newValue) => {
+    set(userState, newValue);
+  },
+});
