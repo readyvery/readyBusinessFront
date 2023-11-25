@@ -1,47 +1,59 @@
-// /* eslint-disable import/no-anonymous-default-export */
-// import React, { useEffect } from "react";
-// import Axios from "axios";
-// import { useDispatch } from "react-redux";
-// import { auth } from "../_actions/user_action";
-// import { useNavigate } from "react-router-dom";
+/*import { useCookies } from "react-cookie";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { getUserSelector, loginState } from "../Atom/status";*/
 
-// export default function (SpecificComponent, option, adminRoute = null) {
-//     function AuthenticationCheck(props) {
-//         const navigate = useNavigate();
-//         const dispatch = useDispatch();
-//         useEffect(() => {
-//             dispatch(auth())
-//                 .then((response) => {
-//                     console.log(response.payload);
-//                     if (!response.payload.isAuth) {
-//                         if (option) {
-//                             navigate("/login", { replace: true });
-//                         }
-//                     } else {
-//                         //로그인한 상태
-//                         if (adminRoute === 3 && response.payload.role !== 3) {
-//                             navigate("/", { replace: true });
-//                         } else if (adminRoute === 1 && response.payload.role !== 1) {
-//                             navigate("/", { replace: true });
-//                         } else {
-//                             if (option === false) {
-//                                 navigate("/", { replace: true });
-//                             }
-//                         }
-//                     }
-//                 })
-//                 .catch((error) => {
-//                     if (error.response && error.response.status >= 400 && error.response.status < 500) {
-//                         // 클라이언트 오류 발생 (400번대 오류)
-//                         // 로그인 페이지로 되돌아가는 조건문 추가
-//                         navigate("/login");
-//                     } else {
-//                         // 서버 오류 또는 네트워크 오류 등의 다른 오류 처리
-//                     }
-//                 });
-//         }, []);
+function Auth(SpecificComponent, option) {
+  function AuthenticationCheck(props) {
+    /*const navigate = useNavigate();
+    const location = useLocation();
+    const userInfo = useRecoilValue(getUserSelector);
+    const setIsLoggedIn = useSetRecoilState(loginState);
+    const [cookies] = useCookies(["accessToken"]);
 
-//         return <SpecificComponent />;
-//     }
-//     return AuthenticationCheck;
-// }
+    
+    useEffect(() => {
+      const isAuth = window.localStorage.getItem("isAuthenticated");
+      if (userInfo === "404" && location.pathname !== "/") {
+        navigate("/");
+      } else {
+        if (!isAuth && cookies?.accessToken) {
+          // 첫 로그인 시
+          window.localStorage.setItem("isAuthenticated", true);
+          setIsLoggedIn({
+            accessToken: getAccessTokenFromCookie(),
+            expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+          });
+          navigate("/home");
+          alert("로그인에 성공하셨습니다.");
+        } else {
+          if (cookies?.accessToken && location.pathname === "/") {
+            // 로그인 상태에서 로그인 화면으로 갔을 경우
+            navigate("/home");
+          }
+        }
+      }
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);*/
+    return <SpecificComponent />;
+  }
+  return AuthenticationCheck;
+}
+
+export const getAccessTokenFromCookie = () => {
+  const cookieString = document.cookie;
+  if (cookieString) {
+    const cookies = cookieString.split("; ");
+
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split("=");
+      if (name === "accessToken") {
+        return value;
+      }
+    }
+  }
+  return null;
+};
+
+export default Auth;

@@ -1,0 +1,10 @@
+.Main-Box {
+  width: 100%; /* 너비 설정 */
+  height: 95%; /* 높이 설정 */
+  padding: 5% 0% 0% 0%;
+}
+
+.status-header {
+  padding-left: 1%;
+  border-bottom: 8px solid #d82356;
+}

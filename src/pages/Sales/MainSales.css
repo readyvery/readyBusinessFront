@@ -1,0 +1,76 @@
+.sales-main__wrapper{
+    width: 100%;
+}
+
+.sales-top__wrapper{
+    margin: 2rem 0 1.75rem 0;
+}
+
+.sales-total-revenue{
+    font-size: 2.1875rem;
+    font-family: "Bold";
+    color: #000;
+    white-space: nowrap;
+}
+
+.sales-total-txt__wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 56.25rem;
+    margin: 0 auto;
+}
+
+.sales-total-txt{
+    font-size: 0.875rem;
+    font-family: "Regular";
+    color: #838383;
+    line-height: 1.25rem;
+}
+
+.sales-total-date{
+    font-size: 1.25rem;
+    font-family: "Medium";
+    color: #4f4f4f;
+}
+
+.sales-revenue__wrapper{
+    width: 56.25rem; /* 900px */
+    height: 34.8125rem; /* 557px */
+    border-radius: 0.625rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    padding: 1.65625rem 2.625rem;
+}
+
+.sales-revenue-title{
+    font-size: 1.875rem;
+    font-family: "Bold";
+    color: #000;
+}
+
+.sales-revenue-week__wrapper{
+    display: flex;
+    justify-content: space-around;
+}
+
+.sales-revenue-img__wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.sales-revenue-week__title{
+    font-size: 1.25rem;
+    font-family: "SemiBold";
+    color: #4F4F4F;
+}
+
+.sales-revenue-week__date{
+    font-size: 1rem;
+    font-family: "SemiBold";
+    color: #4F4F4F;
+}
+
+.sales-chart__wrapper{
+    width: 100%;
+    height: 80%;
+}

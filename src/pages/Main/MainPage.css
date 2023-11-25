@@ -1,0 +1,24 @@
+.mainpage-wrapper{
+    width: 100%;
+    /* height: 100%; */
+    background-color: #fff;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.mainpage-btn__wrapper{
+    width: 37.5rem;
+    height: 5.625rem;
+    line-height: 5.625rem;
+    background-color: #ffe812;
+    border-radius: 0.875rem;
+}
+
+.mainpage-btn__wrapper span{
+    text-align: center;
+    font-family: "Regular";
+    font-size: 1.375rem;
+}

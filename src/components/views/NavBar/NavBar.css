@@ -1,0 +1,50 @@
+.navbar {
+  width: 8.875rem;
+  /* height: 46.25rem; */
+  height: 45.75rem;
+  /* height: 42.5rem; */
+  background-color: #2e2d2d;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbarMenu {
+  height: 25rem;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* 수직 가운데 정렬 */
+  flex-direction: column;
+}
+
+.icon-group {
+  display: flex;
+  flex-direction: column;
+  object-fit: contain;
+  align-items: center;
+}
+
+.icon {
+  width: 2.875rem;
+  height: 2.875rem;
+  object-fit: contain;
+}
+
+.menu-font {
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 1.625rem */
+  letter-spacing: -0.0125rem;
+}
+
+.icon-off {
+  display: flex;
+  flex-direction: column;
+  object-fit: contain;
+  align-items: center;
+  opacity: 0.5;
+}
