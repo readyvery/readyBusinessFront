@@ -62,7 +62,7 @@ jobs:
           AWS_REGION: us-east-1
           AWS_S3_BUCKET: ${{ secrets.CF_BUCKET_NAME }}
           SOURCE_DIR: 'build'
-          DEST_DIR: 'build'
+          DEST_DIR: 'build_ceo'
 
       - name: SSH and deploy
         uses: appleboy/ssh-action@v1.0.0
