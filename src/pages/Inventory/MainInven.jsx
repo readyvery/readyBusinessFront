@@ -32,6 +32,7 @@ function MainInven () {
         setCategoryList(["전체", ...res.data.categorys.map((e) => e.name)]);
       })
       .catch((err) => console.log(err));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
