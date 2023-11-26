@@ -18,14 +18,13 @@ const MainHome = () => {
 
   const onClickHandler = (e) => {
     const { name } = e.target;
-    // 현재 선택된 상태
+
     const currentStatus = status[name];
     if (!currentStatus) {
       setStatus((prevStatus) => {
         const updatedStatus = { ...prevStatus };
-        updatedStatus[name] = true; // 선택된 status를 true로 설정
+        updatedStatus[name] = true;
 
-        // 나머지 값들을 모두 false로 설정
         for (const key in updatedStatus) {
           if (key !== name) {
             updatedStatus[key] = false;

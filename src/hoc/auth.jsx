@@ -14,7 +14,6 @@ function Auth(SpecificComponent, option) {
     const setIsLoggedIn = useSetRecoilState(loginState);
     const [cookies] = useCookies(["accessToken"]);
 
-    
     useEffect(() => {
       console.log(userInfo);
       // console.log(tokenInfo);

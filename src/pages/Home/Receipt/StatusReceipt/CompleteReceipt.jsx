@@ -1,8 +1,28 @@
 import React from "react";
 
-const CompleteReceipt = ({
-  orderProps: { orderNum, time, phone, foodies, payment, price },
-}) => {
+const CompleteReceipt = ({ orderProps }) => {
+  const { orderNum, time, phone, foodies, payment, price } = orderProps;
+
+  //   api연결
+  //   const apiUrl = process.env.REACT_APP_API_ROOT;
+  //   const [storeOpen, setStoreOpen] = useState(false);
+  //   useEffect(() => {
+  //     const config = {
+  //       withCredentials: true,
+  //     }
+  //     axios
+  //     .get(`${apiUrl}/api/v1/store/sales`, config)
+  //     .then((response) => {
+  //       console.log(response);
+  //             setStoreOpen(response.data);
+  //             console.log(storeOpen);
+  //         })
+  //         .catch((error) => {
+  //             console.error(error);
+  //         }
+  //         // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   return (
     <div>
       <div className="receipt-btn__wrapper">
