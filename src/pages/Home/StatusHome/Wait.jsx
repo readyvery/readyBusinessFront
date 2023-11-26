@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ordercnt, selectOrder, selectStatus } from "../../../Atom/order";
+// import { soundState } from "../../../Atom/status";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
+// import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
@@ -99,12 +101,31 @@ const Wait = () => {
     setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 
-  useEffect(() => {
-    /*
-    while (orderInfo.orders.length !== 0 && soundState) {
-      AudioPlayer();
-    }*/
+  //api 연결
+  //   const apiUrl = process.env.REACT_APP_API_ROOT;
+  //   const [storeOpen, setStoreOpen] = useState(false);
+  //   useEffect(() => {
+  //     const config = {
+  //       withCredentials: true,
+  //     }
+  //     axios
+  //     .get(`${apiUrl}/api/v1/store/sales`, config)
+  //     .then((response) => {
+  //       console.log(response);
+  //             setStoreOpen(response.data);
+  //             console.log(storeOpen);
+  //         })
+  //         .catch((error) => {
+  //             console.error(error);
+  //         }
+  //         // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
+  // while (orderInfo.orders.length !== 0 && soundState) {
+  //   AudioPlayer();
+  // }
+
+  useEffect(() => {
     // OrderBox가 생성될 때마다 개수 증가
     setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
   }, [orderInfo.orders.length, setOrderCount]);

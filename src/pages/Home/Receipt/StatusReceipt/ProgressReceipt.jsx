@@ -1,11 +1,30 @@
 import React from "react";
 
-const ProgressReceipt = ({
-  orderProps: { orderNum, time, phone, foodies, payment, price },
-}) => {
+const ProgressReceipt = ({ orderProps }) => {
+  const { orderNum, time, phone, foodies, payment, price } = orderProps;
   const onClickBtn = () => {
     console.log("제조완료");
   };
+
+  //   api 연결
+  //   const apiUrl = process.env.REACT_APP_API_ROOT;
+  //   const [storeOpen, setStoreOpen] = useState(false);
+  //   useEffect(() => {
+  //     const config = {
+  //       withCredentials: true,
+  //     }
+  //     axios
+  //     .get(`${apiUrl}/api/v1/store/sales`, config)
+  //     .then((response) => {
+  //       console.log(response);
+  //             setStoreOpen(response.data);
+  //             console.log(storeOpen);
+  //         })
+  //         .catch((error) => {
+  //             console.error(error);
+  //         }
+  //         // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div>
