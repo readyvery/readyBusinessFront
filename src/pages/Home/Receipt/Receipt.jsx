@@ -16,6 +16,7 @@ const Receipt = () => {
     console.log(Status);
     console.log(Order);
   };
+
   return (
     <div className="Box">
       <div className="rounded-rectangle">
