@@ -1,8 +1,8 @@
 import React from "react";
 
 const OrderBox = ({ onSelect, order, selectedOrderId }) => {
-  const { id, orderNum, time, pickUp, price } = order;
-  const isSelected = id === selectedOrderId;
+  const { orderNum, time, pickUp, price } = order;
+  const isSelected = order.idx === selectedOrderId;
 
   const onClickHandler = () => {
     onSelect(isSelected ? null : order);
@@ -17,9 +17,12 @@ const OrderBox = ({ onSelect, order, selectedOrderId }) => {
         }}
       >
         <span className="Order-content__span">{orderNum} </span>
-        <span className="Order-content__span">{time}</span>
-        <span className="Order-content__span">{pickUp}</span>
-        <span className="Order-content__span">{price}원</span>
+        <span className="Order-content__span">
+          <div>{time.split("T")[0].replaceAll("-", ".")}</div>
+          <div>{time.split("T")[1].split(".")[0]}</div>
+        </span>
+        <span className="Order-content__span">{pickUp === 1 ? "픽업" : "매장"}</span>
+        <span className="Order-content__span">{price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
         <span className="Order-content__span"> </span>
       </div>
     </>

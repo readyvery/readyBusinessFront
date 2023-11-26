@@ -1,10 +1,37 @@
 .Main-Box {
-  width: 100%; /* 너비 설정 */
-  height: 95%; /* 높이 설정 */
-  /* padding: 5% 0% 0% 0%; */
+  width: 60%; /* 너비 설정 */
+  min-width: 33rem;
 }
 
 .status-header {
-  padding-left: 1%;
   border-bottom: 8px solid #d82356;
+  padding-top: 1.625rem;
+}
+
+.main-header__wrapper{
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.main-header-btn__wrapper{
+  width: 33%;
+}
+
+.main-header-btn{
+  width: 100%;
+  border-radius: 0.875rem;
+  background-color: #FFFFFF;
+  font-family: "SemiBold";
+  color: #838383;
+  font-size: 1.375rem;
+  border: none;
+  padding: 0.5rem 0;
+  white-space: nowrap;
+}
+
+.main-header-btn.selected{
+  background-color: #d82356;
+  font-family: "ExtraBold";
+  color: #fff;
 }

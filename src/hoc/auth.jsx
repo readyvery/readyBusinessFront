@@ -17,8 +17,6 @@ function Auth(SpecificComponent, option) {
     useEffect(() => {
       console.log(userInfo);
       // console.log(tokenInfo);
-      console.log(window.localStorage.getItem("isAuthenticated"));
-      console.log(cookies?.accessToken);
       // const isAuth = window.localStorage.getItem("isAuthenticated");
       if (userInfo === "404" && location.pathname !== "/") {
         navigate("/");

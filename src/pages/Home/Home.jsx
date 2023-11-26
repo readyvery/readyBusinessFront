@@ -1,32 +1,22 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
-import Header from "../../components/views/Header/Header";
+import Header from "../../components/views/Header/Header2";
 import NavBar from "../../components/views/NavBar/NavBar";
+import "./Home.css";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt/Receipt";
 
 function Home () {
 
   return (
-    <div>
+    <div className="home-wrapper">
       <Header />
-      <Row>
-        <Col
-          xs={1}
-          style={{ width: "8.875rem", height: "46.25rem", padding: "0" }}
-        >
+        <nav>
           <NavBar />
-        </Col>
-        <Col style={{ width: "31.375rem", padding: "0" }}>
+        </nav>
+        <main>
           <MainHome />
-        </Col>
-        <Col
-          xs={1}
-          style={{ width: "23.75rem", height: "44.875rem", padding: "0" }}
-        >
           <Receipt />
-        </Col>
-      </Row>
+        </main>
     </div>
   );
 };
