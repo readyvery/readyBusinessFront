@@ -43,7 +43,8 @@
     width: 90%;
     min-width: calc(55.125rem * 0.9);
     /* min-width: calc(64rem - 8.875rem); */
-    /*height: 34.8125rem;*/ /* 557px */
+    /* height: 34.8125rem; 557px */
+    height: 31.5rem;
     border-radius: 0.625rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
     margin: 0 auto;

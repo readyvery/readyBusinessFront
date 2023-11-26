@@ -14,7 +14,7 @@ function MainInven () {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const chnMenu = () => setIsCategoryOpen(!isCategoryOpen);
+  // const chnMenu = () => setIsCategoryOpen(!isCategoryOpen);
 
   const [categoryList, setCategoryList] = useState([]);
   const [invenList, setInvenList] = useState([]);
