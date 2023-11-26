@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { selectOrder, selectStatus } from "../../../Atom/order";
 import loading from "../../../assets/icons/loading.svg";
 import "./Receipt.css";
@@ -9,9 +9,13 @@ import PendingReceipt from "./StatusReceipt/PendingReceipt";
 import ProgressReceipt from "./StatusReceipt/ProgressReceipt";
 
 const Receipt = () => {
-  const Status = useRecoilState(selectStatus);
-  const Order = useRecoilState(selectOrder);
+  const Status = useRecoilValue(selectStatus);
+  const Order = useRecoilValue(selectOrder);
 
+  const onClickHandler = () => {
+    console.log(Status);
+    console.log(Order);
+  };
   const orderInfo = {
     orders: [
       {
@@ -39,32 +43,12 @@ const Receipt = () => {
         {Status === "pending" ? (
           <PendingReceipt orderProps={Order} />
         ) : Status === "progress" ? (
-          <ProgressReceipt
-            orderProps={{
-              orderNum: orderInfo.orders[0].orderNum,
-              time: orderInfo.orders[0].time,
-              phone: orderInfo.orders[0].phone,
-              foodies: orderInfo.orders[0].foodies,
-              payment: orderInfo.orders[0].payment,
-              price: orderInfo.orders[0].price,
-            }}
-          />
-        ) : // <div onClick={onClickHandler}>progress</div>
-        Status === "complete" ? (
-          <CompleteReceipt
-            orderProps={{
-              orderNum: orderInfo.orders[0].orderNum,
-              time: orderInfo.orders[0].time,
-              phone: orderInfo.orders[0].phone,
-              foodies: orderInfo.orders[0].foodies,
-              payment: orderInfo.orders[0].payment,
-              price: orderInfo.orders[0].price,
-            }}
-          />
+          <ProgressReceipt orderProps={Order} />
+        ) : Status === "complete" ? (
+          <CompleteReceipt orderProps={Order} />
         ) : (
-          // <div>complete</div>
           <div className="nullReceipt">
-            <img alt="loading" src={loading} />
+            <img onClick={onClickHandler} alt="loading" src={loading} />
             <span className="receipt-text">주문을 선택해주세요</span>
           </div>
         )}
