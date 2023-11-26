@@ -16,8 +16,12 @@
 .sales-total-txt__wrapper{
     display: flex;
     justify-content: space-between;
-    width: 56.25rem;
+    /* width: 56.25rem; */
+    /* width: 55.125rem; */
+    width: 90%;
+    min-width: calc(55.125rem * 0.9);
     margin: 0 auto;
+    white-space: nowrap;
 }
 
 .sales-total-txt{
@@ -34,12 +38,16 @@
 }
 
 .sales-revenue__wrapper{
-    width: 56.25rem; /* 900px */
-    height: 34.8125rem; /* 557px */
+    /*width: 56.25rem;*/ /* 900px */
+    /* width: 55.125rem; */
+    width: 90%;
+    min-width: calc(55.125rem * 0.9);
+    /* min-width: calc(64rem - 8.875rem); */
+    /*height: 34.8125rem;*/ /* 557px */
     border-radius: 0.625rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
-    padding: 1.65625rem 2.625rem;
+    padding: 1rem 2.625rem;
 }
 
 .sales-revenue-title{

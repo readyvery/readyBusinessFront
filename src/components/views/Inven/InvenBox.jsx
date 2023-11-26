@@ -6,7 +6,7 @@ const InvenBox = ({handleModal, invenProps: {category, name, soldOut}}) => {
             {!soldOut ? (
                 <div className="mainInven-category-checkbox" onClick={handleModal}></div>
             ) : (
-                <div className="mainInven-category-checkbox selected"></div>
+                <div className="mainInven-category-checkbox selected" onClick={handleModal}></div>
             )}
           </span>
           <span className="mainInven-category-content__span2">{category}</span>
