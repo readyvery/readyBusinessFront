@@ -56,7 +56,7 @@
     flex-direction: column;
     /* width: 17.1875rem; */
     width: 13.78125rem;
-    height: 37.4375rem;
+    max-height: 37.4375rem;
     border-radius: 0 0 0.625rem 0.625rem;
     background-color: #4F4F4F;
     z-index: 0;
