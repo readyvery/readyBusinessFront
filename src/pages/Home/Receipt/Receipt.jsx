@@ -16,27 +16,6 @@ const Receipt = () => {
     console.log(Status);
     console.log(Order);
   };
-  const orderInfo = {
-    orders: [
-      {
-        id: 123, //db 인덱스
-        orderNum: 2, // 그날의 그가게의 주문번호
-        pickUp: "픽업",
-        foodies: [
-          {
-            name: "아메리카노",
-            count: 3,
-            options: ["샷 추가", "휘핑", "ICE", "그란데"],
-          },
-        ],
-        phone: "010-6439-3547", // 고객의 전화번호
-        time: "21/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 8500,
-      },
-    ],
-  };
-
   return (
     <div className="Box">
       <div className="rounded-rectangle">
