@@ -10,7 +10,7 @@ export default function Chart ({ data }) {
         indexBy="day"
         margin={{ top: 20, right: 0, bottom: 30, left: 30 }}
         padding={0.5}
-        width={812}
+        width={710}
         height={390}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}

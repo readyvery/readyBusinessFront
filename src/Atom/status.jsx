@@ -1,5 +1,6 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
+import { Refresh } from "../hoc/handleRefresh";
 
 export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
@@ -19,7 +20,10 @@ export const isAuthenticatedState = atom({
 export const getAuthenticatedSelector = selector({
   key: "auth/get",
   get: async ({ get }) => {
-    return get(isAuthenticatedState);
+    const tokenResult = Refresh();
+    if(tokenResult){
+      return "재발급 성공";
+    } else { return "토큰 유효"; }
   },
 
   set: ({ set }) => {
