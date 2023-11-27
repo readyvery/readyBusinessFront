@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ordercnt, selectOrder, selectStatus } from "../../../Atom/order";
-// import { soundState } from "../../../Atom/status";
+import { soundState } from "../../../Atom/status";
+// import VeryMp3 from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
-// import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
+import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
@@ -11,6 +12,7 @@ const Wait = () => {
   const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
   const [statusSelect, setStatusSelect] = useRecoilState(selectStatus);
+  const playSound = useRecoilState(soundState);
 
   const orderInfo = {
     orders: [
@@ -101,6 +103,14 @@ const Wait = () => {
     setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 
+  // const Player = () => {
+  //   const audio = new Audio(VeryMp3);
+  //   if (playSound) {
+  //     console.log(soundState);
+  //     audio.play();
+  //   }
+  // };
+
   //api 연결
   //   const apiUrl = process.env.REACT_APP_API_ROOT;
   //   const [storeOpen, setStoreOpen] = useState(false);
@@ -121,14 +131,14 @@ const Wait = () => {
   //         // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  // while (orderInfo.orders.length !== 0 && soundState) {
-  //   AudioPlayer();
-  // }
-
   useEffect(() => {
     // OrderBox가 생성될 때마다 개수 증가
     setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
-  }, [orderInfo.orders.length, setOrderCount]);
+
+    if (playSound && orderInfo.orders.length !== 0) {
+      AudioPlayer(); // 소리 재생
+    }
+  }, [orderInfo.orders.length, setOrderCount, playSound]);
 
   return (
     <div className="Order-wrapper">
@@ -165,6 +175,7 @@ const Wait = () => {
           />
         ))}
       </div>
+      {/* <button onClick={Player}>Play Audio</button> */}
     </div>
   );
 };
