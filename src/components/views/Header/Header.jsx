@@ -13,13 +13,8 @@ const Header = () => {
   const Store = useRecoilValue(storeState);
   const [Sound, setSound] = useRecoilState(soundState);
 
-  const ClickTrue = () => {
-    setSound(true);
-    console.log(Sound);
-  };
-
-  const ClickFalse = () => {
-    setSound(false);
+  const onClickHandler = () => {
+    setSound((prev) => !prev);
     console.log(Sound);
   };
 
@@ -66,9 +61,9 @@ const Header = () => {
             </div>
           )}
           {Sound ? (
-            <img src={SoundOn} onClick={ClickFalse} alt="SoundOn" />
+            <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
           ) : (
-            <img src={SoundOff} onClick={ClickTrue} alt="SoundOff" />
+            <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
           )}
         </Col>
       </Row>
