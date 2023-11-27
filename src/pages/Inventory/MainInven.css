@@ -61,6 +61,16 @@
     background-color: #4F4F4F;
     z-index: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mainInven-category__modal::-webkit-scrollbar {
+    display: none;
+}
+
+.mainInven-category__modal {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
 }
 
 .mainInven-category__modal span{
@@ -165,7 +175,8 @@
     bottom: 0;
     left: 8.875rem;
     right: 0;
-    height: 46.25rem;
+    width: 55.125rem;
+    height: 42.5rem;
     background-color: rgba(0,0,0, 0.5);
     
     display: flex;
