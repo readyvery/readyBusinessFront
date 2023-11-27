@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
 
-const CompleteReceipt = ({ orderProps }) => {
+const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  // const { orderNum, time, phone, foodies, payment, price } = orderProps;
+  // const setOrderSelect = useSetRecoilState(selectOrder);
 
   const handleComplete = () => {
     const config = {
@@ -22,7 +22,10 @@ const CompleteReceipt = ({ orderProps }) => {
         if(res.data.success === true){
           alert("픽업완료 처리되었습니다.");
           // 데이터 다시 fetch
+          fetchData();
           // select된 데이터 변경
+          setStatus("null");
+          setOrder(null);
         }
       })
       .catch((err) => console.log(err))
@@ -38,7 +41,7 @@ const CompleteReceipt = ({ orderProps }) => {
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
-        <span className="receipt-text">{orderProps?.time.split("T")[0].replaceAll("-", "/")} {orderProps.time.split("T")[1].split(".")[0]}</span>
+        <span className="receipt-text">{orderProps?.time.split("T")[0].replaceAll("-", "/")} {orderProps?.time.split("T")[1].split(".")[0]}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">고객연락처</span>

@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import X from "../../../../assets/icons/X.svg";
 
-const PendingReceipt = ({ orderProps }) => {
+const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
+  // const setOrderSelect = useSetRecoilState(selectOrder);
 
   const [ReceiveModal, setReceiveModal] = useState(false);
   const [RefuseModal, setRefuseModal] = useState(false);
@@ -32,10 +33,21 @@ const PendingReceipt = ({ orderProps }) => {
           alert("취소되었습니다.");
           setRefuseModal((prev) => !prev);
           // 데이터 다시 fetch
+          fetchData();
           // select된 데이터 변경
+          setStatus("null");
+          setOrder(null);
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        setRefuseModal((prev) => !prev);
+          // 데이터 다시 fetch
+          fetchData();
+          // select된 데이터 변경
+          setStatus("null");
+          setOrder(null);
+      })
   }
 
   const handleMake = (e) => {
@@ -57,8 +69,11 @@ const PendingReceipt = ({ orderProps }) => {
           alert("접수되었습니다.");
           setReceiveModal((prev) => !prev);
           // 데이터 다시 fetch
+          fetchData();
           // select된 데이터 변경
           // 클릭 시 스타일 변화
+          setStatus("null");
+          setOrder(null);
         }
       })
       .catch((err) => console.log(err))

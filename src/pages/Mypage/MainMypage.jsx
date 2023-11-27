@@ -60,6 +60,10 @@ const MainMypage = () => {
       });
   };
 
+  const handleKaKao = () => {
+    window.location.href = "http://pf.kakao.com/_ZxiEjG/chat";
+  }
+
   return (
     <div className="mypage-main__wrapper">
       <div className="mypage-top__wrapper">
@@ -76,7 +80,7 @@ const MainMypage = () => {
               <span style={{ 'color': '#000' }}>레디베리 상담</span>
               <span>매일 09:00 ~ 18:00</span>
             </div>
-            <div className="mypage-kakao-img__box">
+            <div className="mypage-kakao-img__box" onClick={handleKaKao}>
               <img src={kakao} alt="kakao" />
             </div>
           </div>
