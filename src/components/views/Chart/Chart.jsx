@@ -8,7 +8,7 @@ export default function Chart ({ data }) {
             '매출',
         ]}
         indexBy="day"
-        margin={{ top: 20, right: 0, bottom: 30, left: 30 }}
+        margin={{ top: 20, right: 10, bottom: 30, left: 40 }}
         padding={0.5}
         width={710}
         height={390}
@@ -22,6 +22,8 @@ export default function Chart ({ data }) {
             legendPosition: 'middle',
             legendOffset: -40,
             truncateTickAt: 0,
+            // tickValues: [0, 2, 4, 6, 8, 10],
+            // format: (value) => `${value.toFixed(1)}`,
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}
