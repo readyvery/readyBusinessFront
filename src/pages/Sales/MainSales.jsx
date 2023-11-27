@@ -113,6 +113,7 @@ const MainSales = () => {
       .catch((err) => console.log(err));
 
     fetchSales(currentDate.monday.format("YYYY-MM-DD"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
