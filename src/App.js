@@ -24,12 +24,15 @@ function App() {
   const NewMyPage = Auth(Mypage, true);
 
   const expiredTime = 1000 * 60 * 60 * 24;
+  // const expiredTime = 65000;
   useInterval(() => {
-    if (
-      cookies.refreshToken !== "undefined" &&
-      cookies.refreshToken !== undefined &&
-      cookies.refreshToken
-    ) {
+    // console.log(cookies.refreshToken);
+    // if (
+    //   cookies.refreshToken !== "undefined" &&
+    //   cookies.refreshToken !== undefined &&
+    //   cookies.refreshToken
+    // ) {
+    if(cookies.accessToken){
       const config = {
         withCredentials: true,
       };
@@ -43,9 +46,12 @@ function App() {
           }
         })
         .catch((err) => {
+          console.log(err);
+          alert("토큰이 만료되었습니다. 로그인을 진행해주세요.");
           navigate("/");
         });
-    }
+      }
+    // }
   }, expiredTime - 60000);
   return (
     <div className="App">

@@ -10,15 +10,22 @@ function Auth(SpecificComponent, option) {
     const navigate = useNavigate();
     const location = useLocation();
     const userInfo = useRecoilValue(getUserSelector);
+    // const tokenInfo = useRecoilValue(getAuthenticatedSelector);
     const setIsLoggedIn = useSetRecoilState(loginState);
     const [cookies] = useCookies(["accessToken"]);
 
     useEffect(() => {
-      const isAuth = window.localStorage.getItem("isAuthenticated");
+      console.log(userInfo);
+      // console.log(tokenInfo);
+      // const isAuth = window.localStorage.getItem("isAuthenticated");
       if (userInfo === "404" && location.pathname !== "/") {
         navigate("/");
       } else {
-        if (!isAuth && cookies?.accessToken) {
+        // if(userInfo !== "404"){
+        //   const tokenInfo = useRecoilValue(getAuthenticatedSelector);
+        //   console.log(tokenInfo);
+        // }
+        if (!window.localStorage.getItem("isAuthenticated") && cookies?.accessToken) {
           // 첫 로그인 시
           window.localStorage.setItem("isAuthenticated", true);
           setIsLoggedIn({

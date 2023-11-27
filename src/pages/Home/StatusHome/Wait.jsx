@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ordercnt, selectOrder, selectStatus } from "../../../Atom/order";
@@ -82,27 +83,45 @@ const Wait = () => {
       },
     ],
   };
+=======
+import React, { useState } from "react";
+// import { soundState } from "../../../Atom/status";
+import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
+// import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
+import { useSetRecoilState } from "recoil";
+import { selectOrder, selectStatus } from "../../../Atom/order";
+import OrderBox from "../../../components/views/Order/OrderBox";
+import "./DetailHome.css";
+
+const Wait = ({orderInfo}) => {
+  // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
+  const setOrderSelect = useSetRecoilState(selectOrder);
+  const setStatusSelect = useSetRecoilState(selectStatus);
+>>>>>>> 9c7e616e0f43d6d2b695691e41d952484a7b9e17
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useState(false);
 
   const sortedOrders = isRecentFirst
-    ? [...orderInfo.orders].reverse()
-    : orderInfo.orders;
+    ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
+      if (prev?.price > cur?.price) return -1;
+      if (prev?.price < cur?.price) return 1;
+      return 0;
+    })
+    : orderInfo?.orders;
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
-    if (selectedOrder === null) {
+    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
+
+    if(selectedOrder === null){
       setStatusSelect("null");
     } else {
       setStatusSelect("pending");
     }
-    console.log(orderCount);
-    console.log(orderSelect);
-    console.log(statusSelect);
-    setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
   };
 
+<<<<<<< HEAD
   // const Player = () => {
   //   const audio = new Audio(VeryMp3);
   //   if (playSound) {
@@ -139,6 +158,12 @@ const Wait = () => {
       AudioPlayer(); // 소리 재생
     }
   }, [orderInfo.orders.length, setOrderCount, playSound]);
+=======
+  // useEffect(() => {
+  //   // OrderBox가 생성될 때마다 개수 증가
+  //   setOrderCount((prev) => ({ ...prev, pending: orderInfo?.orders?.length }));
+  // }, [orderInfo]);
+>>>>>>> 9c7e616e0f43d6d2b695691e41d952484a7b9e17
 
   return (
     <div className="Order-wrapper">
@@ -152,7 +177,7 @@ const Wait = () => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            과거순
+            가격순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
@@ -166,7 +191,7 @@ const Wait = () => {
         )}
       </div>
       <div className="Order-content__wrapper">
-        {sortedOrders.map((order) => (
+        {sortedOrders?.length && sortedOrders?.map((order) => (
           <OrderBox
             key={order.id}
             onSelect={onClickHandler}
