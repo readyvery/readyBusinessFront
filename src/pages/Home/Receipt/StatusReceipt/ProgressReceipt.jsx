@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
 
-const ProgressReceipt = ({ orderProps }) => {
+const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
+  // const setOrderSelect = useSetRecoilState(selectOrder);
   // const { orderNum, time, phone, foodies, payment, price } = orderProps;
 
   const handleComplete = () => {
@@ -22,10 +23,15 @@ const ProgressReceipt = ({ orderProps }) => {
         if(res.data.success === true){
           alert("제조완료 처리되었습니다.");
           // 데이터 다시 fetch
+          fetchData();
           // select된 데이터 변경
+          setStatus("null");
+          setOrder(null);
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+      })
   };
 
   return (

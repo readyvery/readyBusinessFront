@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { selectStatus } from "../../Atom/order";
 import "./MainHome.css";
@@ -7,8 +6,7 @@ import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
-const MainHome = () => {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
+const MainHome = ({ waitInfo, makeInfo, completeInfo}) => {
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [status, setStatus] = useState("Wait");
@@ -19,65 +17,15 @@ const MainHome = () => {
     setStatusSelect("null")
   };
 
-  const [waitInfo, setWaitInfo] = useState({});
-  const [makeInfo, setMakeInfo] = useState({});
-  const [completeInfo, setCompleteInfo] = useState({});
-
-  const waitData = () => {
-    const config = {
-      withCredentials: true
-    };
-    
-    axios.get(`${apiUrl}/api/v1/order?status=ORDER`, config)
-      .then((res) => {
-        console.log(res);
-        setWaitInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err)})
-  }
-
-  const makeData = () => {
-    const config = {
-      withCredentials: true
-    };
-    
-    axios.get(`${apiUrl}/api/v1/order?status=MAKE`, config)
-      .then((res) => {
-        console.log(res);
-        setMakeInfo(res.data);
-      })
-      .catch((err) => console.log(err))
-  }
-
-  const completeData = () => {
-    const config = {
-      withCredentials: true
-    };
-    
-    axios.get(`${apiUrl}/api/v1/order?status=COMPLETE`, config)
-      .then((res) => {
-        console.log(res);
-        setCompleteInfo(res.data);
-      })
-      .catch((err) => console.log(err))
-  }
-
-  const fetchData = () => {
-    waitData();
-    makeData();
-    completeData();
-  }
-
-  useEffect(() => {
-    fetchData();
+  // useEffect(() => {
+  //   fetchData();
 
   //   const intervalId = setInterval(fetchData, 5000); // 5초마다 실행
 
   //   return () => clearInterval(intervalId);
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="Main-Box">

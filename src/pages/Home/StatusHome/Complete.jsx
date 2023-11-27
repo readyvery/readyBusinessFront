@@ -64,7 +64,7 @@ const Complete = ({orderInfo}) => {
         )}
       </div>
       <div className="Order-content__wrapper">
-        {sortedOrders?.length && 
+        {
         sortedOrders?.map((order) => (
           <OrderBox
             key={order.id}

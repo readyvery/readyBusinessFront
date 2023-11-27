@@ -37,7 +37,8 @@ function MainInven () {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // const memoizedCategoryList = useMemo(() => {
   //   return categoryList;
@@ -80,6 +81,7 @@ function MainInven () {
       .then((res) => {
         console.log(res);
         setIsModalOpen(false);
+        fetchData();
       })
       .catch((err) => console.log(err));
   }

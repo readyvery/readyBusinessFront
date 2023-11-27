@@ -6,6 +6,7 @@
   background-color: #2e2d2d;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -33,10 +34,10 @@
 
 .menu-font {
   color: #fff;
-  font-family: Pretendard;
+  font-family: "Bold";
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
+  /* font-style: normal;
+  font-weight: 700; */
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
 }

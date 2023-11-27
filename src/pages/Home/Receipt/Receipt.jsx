@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { selectOrder, selectStatus } from "../../../Atom/order";
 import loading from "../../../assets/icons/loading.svg";
 import "./Receipt.css";
@@ -8,9 +8,9 @@ import CompleteReceipt from "./StatusReceipt/CompleteReceipt";
 import PendingReceipt from "./StatusReceipt/PendingReceipt";
 import ProgressReceipt from "./StatusReceipt/ProgressReceipt";
 
-const Receipt = () => {
-  const Status = useRecoilValue(selectStatus);
-  const Order = useRecoilValue(selectOrder);
+const Receipt = ({ fetchData }) => {
+  const [Status, setStatus] = useRecoilState(selectStatus);
+  const [Order, setOrder] = useRecoilState(selectOrder);
 
   const onClickHandler = () => {
     console.log(Status);
@@ -21,11 +21,11 @@ const Receipt = () => {
     <div className="Box">
       <div className="rounded-rectangle">
         {Status === "pending" ? (
-          <PendingReceipt orderProps={Order} />
+          <PendingReceipt orderProps={Order} setStatus={setStatus} setOrder={setOrder} fetchData={fetchData}/>
         ) : Status === "progress" ? (
-          <ProgressReceipt orderProps={Order} />
+          <ProgressReceipt orderProps={Order} setStatus={setStatus} setOrder={setOrder} fetchData={fetchData}/>
         ) : Status === "complete" ? (
-          <CompleteReceipt orderProps={Order} />
+          <CompleteReceipt orderProps={Order} setStatus={setStatus} setOrder={setOrder} fetchData={fetchData}/>
         ) : (
           <div className="nullReceipt">
             <img onClick={onClickHandler} alt="loading" src={loading} />

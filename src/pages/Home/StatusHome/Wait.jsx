@@ -71,15 +71,14 @@ const Wait = ({ orderInfo }) => {
         )}
       </div>
       <div className="Order-content__wrapper">
-        {sortedOrders?.length &&
-          sortedOrders?.map((order) => (
-            <OrderBox
-              key={order.id}
-              onSelect={onClickHandler}
-              order={order}
-              selectedOrderId={selectedOrderId}
-            />
-          ))}
+        {sortedOrders?.map((order) => (
+          <OrderBox
+            key={order.id}
+            onSelect={onClickHandler}
+            order={order}
+            selectedOrderId={selectedOrderId}
+          />
+        ))}
       </div>
       {/* <button onClick={Player}>Play Audio</button> */}
     </div>
