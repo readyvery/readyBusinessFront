@@ -77,9 +77,9 @@ function Home () {
   useEffect(() => {
     fetchData();
 
-    // const intervalId = setInterval(fetchData, 5000); // 5초마다 실행
+    const intervalId = setInterval(fetchData, 5000); // 5초마다 실행
 
-    // return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
