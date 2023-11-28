@@ -9,7 +9,6 @@ import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
   const playSound = useRecoilState(soundState);
@@ -40,8 +39,9 @@ const Wait = ({ orderInfo }) => {
     // OrderBox가 생성될 때마다 개수 증가
     // setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
 
-    if (playSound && orderInfo.orders.length !== 0) {
+    if (playSound && orderInfo?.orders?.length !== 0) {
       AudioPlayer(); // 소리 재생
+      console.log(playSound);
     }
   }, [orderInfo, playSound]);
 
