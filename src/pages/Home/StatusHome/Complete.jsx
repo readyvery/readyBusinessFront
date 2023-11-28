@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectOrder, selectStatus } from "../../../Atom/order";
+import { isRecentFirstState } from "../../../Atom/status";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
-const Complete = ({orderInfo}) => {
+const Complete = ({ orderInfo }) => {
   // const apiUrl = process.env.REACT_APP_API_ROOT;
   // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [isRecentFirst, setIsRecentFirst] = useState(false);
+  const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
 
+  /*
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
         if (prev?.price > cur?.price) return -1;
@@ -21,22 +23,35 @@ const Complete = ({orderInfo}) => {
         return 0;
       })
     : orderInfo?.orders;
+*/
+
+  const sortedOrders = isRecentFirst
+    ? [...(orderInfo?.orders || [])].reverse()
+    : orderInfo?.orders;
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
     setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
 
-    if(selectedOrder === null){
+    if (selectedOrder === null) {
       setStatusSelect("null");
     } else {
       setStatusSelect("complete");
     }
-  }
+  };
 
-  // useEffect(() => {
-  //   // OrderBox가 생성될 때마다 개수 증가
-  //   orderInfo.length && setOrderCount((prev) => ({ ...prev, complete: orderInfo?.orders?.length }));
-  // }, [orderInfo]);
+  useEffect(() => {
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    setOrderSelect(firstOrder);
+    setSelectedOrderId(firstOrder?.idx && firstOrder?.idx);
+
+    if (firstOrder !== null) {
+      setStatusSelect("complete");
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+    }
+  }, [orderInfo, setOrderSelect, setStatusSelect, sortedOrders]);
 
   return (
     <div className="Order-wrapper">
@@ -50,7 +65,7 @@ const Complete = ({orderInfo}) => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            가격순
+            최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
@@ -58,14 +73,13 @@ const Complete = ({orderInfo}) => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            최신순
+            과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         )}
       </div>
       <div className="Order-content__wrapper">
-        {
-        sortedOrders?.map((order) => (
+        {sortedOrders?.map((order) => (
           <OrderBox
             key={order.id}
             onSelect={onClickHandler}

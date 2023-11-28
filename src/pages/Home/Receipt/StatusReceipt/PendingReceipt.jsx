@@ -16,20 +16,21 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
 
   const cancelOrder = (e) => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
     const body = {
-      "orderId": orderProps.orderId,
-      "status": "CANCEL",
-      "rejectReason": e.target.innerText
+      orderId: orderProps.orderId,
+      status: "CANCEL",
+      rejectReason: e.target.innerText,
     };
     console.log(body);
-    
-    axios.post(`${apiUrl}/api/v1/order/cancel`, body, config)
+
+    axios
+      .post(`${apiUrl}/api/v1/order/cancel`, body, config)
       .then((res) => {
         console.log(res);
-        if(res.status === 200){
+        if (res.status === 200) {
           alert("취소되었습니다.");
           setRefuseModal((prev) => !prev);
           // 데이터 다시 fetch
@@ -42,30 +43,31 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       .catch((err) => {
         console.log(err);
         setRefuseModal((prev) => !prev);
-          // 데이터 다시 fetch
-          fetchData();
-          // select된 데이터 변경
-          setStatus("null");
-          setOrder(null);
-      })
-  }
+        // 데이터 다시 fetch
+        fetchData();
+        // select된 데이터 변경
+        setStatus("null");
+        setOrder(null);
+      });
+  };
 
   const handleMake = (e) => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
     const body = {
-      "orderId": orderProps.orderId,
-      "status": "MAKE",
-      "time": parseInt(e.target.innerText.split("분")[0])
+      orderId: orderProps.orderId,
+      status: "MAKE",
+      time: parseInt(e.target.innerText.split("분")[0]),
     };
     console.log(body);
-    
-    axios.post(`${apiUrl}/api/v1/order/complete`, body, config)
+
+    axios
+      .post(`${apiUrl}/api/v1/order/complete`, body, config)
       .then((res) => {
         console.log(res);
-        if(res.status === 200){
+        if (res.status === 200) {
           alert("접수되었습니다.");
           setReceiveModal((prev) => !prev);
           // 데이터 다시 fetch
@@ -76,8 +78,8 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           setOrder(null);
         }
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -91,7 +93,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               name="Reject"
               onClick={() => setRefuseModal((prev) => !prev)}
               style={{
-                width: "8.75rem",
+                width: "7.75rem",
                 height: "2.8125rem",
                 border: "2px solid #DADADA",
                 borderRadius: "1.5625rem",
@@ -113,7 +115,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               name="Accept"
               onClick={handleReceiveModal}
               style={{
-                width: "8.75rem",
+                width: "7.75rem",
                 height: "2.8125rem",
                 border: "2px solid #D82356",
                 borderRadius: "1.5625rem",
@@ -130,11 +132,16 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       </Row>
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
-        <span className="receipt-text">{orderProps?.time.split("T")[0].replaceAll("-", "/")} {orderProps?.time.split("T")[1].split(".")[0]}</span>
+        <span className="receipt-text">
+          {orderProps?.time.split("T")[0].replaceAll("-", "/")}{" "}
+          {orderProps?.time.split("T")[1].split(".")[0]}
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">고객연락처</span>
-        <span className="receipt-text">{orderProps?.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</span>
+        <span className="receipt-text">
+          {orderProps?.phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")}
+        </span>
       </div>
       <div className="receipt-divider" />
       <div className="receiptTextBox">
@@ -148,7 +155,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
-              <span className="receipt-text">└ {option}</span>
+              <span className="receipt-optiontext">└ {option}</span>
             ))}
           </div>
         </React.Fragment>
@@ -160,23 +167,46 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
-        <span className="receipt-text">{orderProps?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="receipt-text">
+          {orderProps?.price
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+          원
+        </span>
       </div>
 
       {/* 주문거부모달창 */}
       {!ReceiveModal && RefuseModal && (
         <div className="modal-wrapper">
           <div className="modal-box">
-            <div className="modal-close__wrapper" onClick={() => setRefuseModal((prev) => !prev)}>
+            <div
+              className="modal-close__wrapper"
+              onClick={() => setRefuseModal((prev) => !prev)}
+            >
               <img src={X} alt="close" />
             </div>
             <div className="modal-box-txt__wrapper">
               <div className="modal-box-txt">접수 거부 사유를 선택해주세요</div>
             </div>
             <div className="modal-box-choose-btn__wrapper">
-              <div className="modal-box-choose-btn" onClick={(e) => cancelOrder(e)}>재료소진</div>
-              <div className="modal-box-choose-btn" onClick={(e) => cancelOrder(e)}>가게사정</div>
-              <div className="modal-box-choose-btn" onClick={(e) => cancelOrder(e)}>기타</div>
+              <div
+                className="modal-box-choose-btn"
+                onClick={(e) => cancelOrder(e)}
+              >
+                재료소진
+              </div>
+              <div
+                className="modal-box-choose-btn"
+                onClick={(e) => cancelOrder(e)}
+              >
+                가게사정
+              </div>
+              <div
+                className="modal-box-choose-btn"
+                onClick={(e) => cancelOrder(e)}
+              >
+                기타
+              </div>
             </div>
           </div>
         </div>
@@ -195,26 +225,56 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
             <div className="modal-box-choose-btn__wrapper">
               <div className="modal-box-choose-btn__row">
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>5분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    5분
+                  </div>
                 </Col>
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>10분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    10분
+                  </div>
                 </Col>
               </div>
               <div className="modal-box-choose-btn__row">
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>15분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    15분
+                  </div>
                 </Col>
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>20분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    20분
+                  </div>
                 </Col>
               </div>
               <div className="modal-box-choose-btn__row">
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>25분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    25분
+                  </div>
                 </Col>
                 <Col className="modal-box-choose-btn__col">
-                  <div className="modal-box-chooseTime-btn" onClick={handleMake}>30분</div>
+                  <div
+                    className="modal-box-chooseTime-btn"
+                    onClick={handleMake}
+                  >
+                    30분
+                  </div>
                 </Col>
               </div>
             </div>
