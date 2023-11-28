@@ -40,7 +40,7 @@ const Wait = ({ orderInfo }) => {
     // OrderBox가 생성될 때마다 개수 증가
     // setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
 
-    if (playSound && orderInfo.orders.length !== 0) {
+    if (playSound && orderInfo?.orders?.length !== 0) {
       AudioPlayer(); // 소리 재생
     }
   }, [orderInfo, playSound]);
