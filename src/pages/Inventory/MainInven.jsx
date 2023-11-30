@@ -13,6 +13,7 @@ function MainInven () {
   const [category, setCategory] = useState("전체");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCancleModalOpen, setIsCancleModalOpen] = useState(false);
 
   // const chnMenu = () => setIsCategoryOpen(!isCategoryOpen);
 
@@ -26,8 +27,6 @@ function MainInven () {
   
     axios.get(`${apiUrl}/api/v1/inventory`, config)
       .then((res) => {
-        console.log(res);
-        console.log(res.data.categorys.map((e) => e.name));
         setInvenList(res.data);
         setCategoryList(["전체", ...res.data.categorys.map((e) => e.name)]);
       })
@@ -38,7 +37,7 @@ function MainInven () {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [apiUrl]);
 
   // const memoizedCategoryList = useMemo(() => {
   //   return categoryList;
@@ -62,7 +61,7 @@ function MainInven () {
 
   const handleModal = (idx, soldOut) => {
     console.log(idx, !soldOut);
-    setIsModalOpen((prev) => !prev);
+    soldOut ? setIsCancleModalOpen((prev) => !prev) : setIsModalOpen((prev) => !prev);
     
     setCurrentBox({
       "idx": idx,
@@ -72,7 +71,8 @@ function MainInven () {
     fetchData();
   }
 
-  const patchData = () => {
+  const patchData = (e) => {
+    // console.log(e.target.id);
     const config = {
       withCredentials: true
     };
@@ -80,7 +80,7 @@ function MainInven () {
     axios.patch(`${apiUrl}/api/v1/inventory`, currentBox, config)
       .then((res) => {
         console.log(res);
-        setIsModalOpen(false);
+        e.target.id === "cancle" ? setIsCancleModalOpen(false) : setIsModalOpen(false);
         fetchData();
       })
       .catch((err) => console.log(err));
@@ -154,7 +154,24 @@ function MainInven () {
               <div className="inven-modal-box-txt">고객님은 해당 메뉴를 주문할 수 없습니다.</div>
             </div>
             <div className="inven-modal-box-close-btn__wrapper">
-              <div className="inven-modal-box-close-btn" onClick={() => patchData()}>확인</div>
+              <div className="inven-modal-box-close-btn" id="accept" onClick={(e) => patchData(e)}>확인</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isCancleModalOpen && (
+        <div className="inven-modal-wrapper">
+          <div className="inven-modal-box">
+            <div className="inven-modal-close__wrapper" onClick={() => setIsCancleModalOpen((prev) => !prev)}>
+              <img src={close} alt="close"/>
+            </div>
+            <div className="inven-modal-box-img__wrapper"><img src={cherry} alt="cherry" /></div>
+            <div className="inven-modal-box-txt__wrapper">
+              <div className="inven-modal-box-txt">품절 처리를 취소하시겠습니까?</div>
+            </div>
+            <div className="inven-modal-box-close-btn__wrapper">
+              <div className="inven-modal-box-close-btn" id="cancle" onClick={(e) => patchData(e)}>확인</div>
             </div>
           </div>
         </div>

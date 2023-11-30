@@ -4,43 +4,12 @@ import axios from 'axios';
 import 'moment/locale/ko';
 import moment from 'moment/moment';
 import React, { useEffect, useState } from "react";
-import Chart from '../../components/views/Chart/Chart';
+import ApexChart from '../../components/views/Chart/ApexChart';
 import "./MainSales.css";
 
 const MainSales = () => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  // const chartData = 
-  // [
-  //   {
-  //     "day": "Mon",
-  //     "매출": 160,
-  //   },
-  //   {
-  //     "day": "Tue",
-  //     "매출": 84,
-  //   },
-  //   {
-  //     "day": "Wed",
-  //     "매출": 1,
-  //   },
-  //   {
-  //     "day": "Thu",
-  //     "매출": 159,
-  //   },
-  //   {
-  //     "day": "Fri",
-  //     "매출": 168,
-  //   },
-  //   {
-  //     "day": "Sat",
-  //     "매출": 118,
-  //   },
-  //   {
-  //     "day": "Sun",
-  //     "매출": 170,
-  //   }
-  // ];
-
+  
   const [currentDate, setCurrentDate] = useState({
     monday: moment(moment()).startOf('isoWeek'),
     sunday: moment(moment()).endOf('isoWeek')
@@ -82,18 +51,18 @@ const MainSales = () => {
     const body = {
       "monday": monday
     };
-    console.log(body);
 
     axios.post(`${apiUrl}/api/v1/sale/management`, body, config)
       .then((res) => {
         console.log(res);
         if(res.data.success){
-          setChartData(res.data.saleManagementList.map(item => {
-            console.log((item.sale / 1000).toFixed(1));
-            return {
-            "day": item.day.slice(0, 3),
-            "매출": (item.sale / 1000).toFixed(1)
-          }}));
+          // setChartData(res.data.saleManagementList.map(item => {
+          //   console.log((item.sale / 1000).toFixed(1));
+          //   return {
+          //   "day": item.day.slice(0, 3),
+          //   "매출": ((item.sale / 1000).toFixed(1)).toString()
+          // }}));
+          setChartData(res.data.saleManagementList);
         }
       })
       .catch((err) => console.log(err));
@@ -137,11 +106,12 @@ const MainSales = () => {
           <span className='sales-revenue-img__wrapper' onClick={handleNextWeek}><ArrowForwardIosIcon/></span>
         </div>
         <div className="sales-chart__wrapper">
-          <Chart data={chartData} />
+          {/* <Chart data={chartData} /> */}
+          <ApexChart data={chartData}/>
         </div>
       </div>
     </section>
   );
 };
 
-export default MainSales;
+export default React.memo(MainSales);

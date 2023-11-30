@@ -1,6 +1,7 @@
-import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { soundState, storeState } from "../../../Atom/status";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { soundState } from "../../../Atom/status";
 import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
 import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
@@ -9,7 +10,23 @@ import SoundOn from "../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
 
 const Header = () => {
-  const Store = useRecoilValue(storeState);
+  const baseUrl = process.env.REACT_APP_API_ROOT;
+  // const Store = useRecoilValue(storeState);
+  const [store, setStore] = useState(null);
+  useEffect(() => {
+    const config = {
+      withCredentials: true
+    };
+
+    axios.get(`${baseUrl}/api/v1/store/sales`, config)
+      .then((res) => {
+        console.log(res);
+        setStore(res.data.status);
+      })
+      .catch((err) => console.log(err))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [Sound, setSound] = useRecoilState(soundState);
 
   const onClickHandler = () => {
@@ -24,7 +41,7 @@ const Header = () => {
           <img src={LOGO} className="LOGO" alt="LOGO" />
         </div>
         <div className="head-container2">
-          {!Store ? (
+          {store && !store ? (
             <div className="store-group">
               <div className="store-img__wrapper">
                 <img src={StoreOn} alt="Open" />

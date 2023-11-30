@@ -34,6 +34,7 @@ function Auth(SpecificComponent, option) {
           });
           navigate("/home");
           alert("로그인에 성공하셨습니다.");
+
         } else {
           if (cookies?.accessToken && location.pathname === "/") {
             // 로그인 상태에서 로그인 화면으로 갔을 경우
