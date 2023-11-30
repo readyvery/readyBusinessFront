@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectOrder, selectStatus } from "../../../Atom/order";
+import { isRecentFirstState } from "../../../Atom/status";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
-const Progress = ({orderInfo}) => {
+const Progress = ({ orderInfo }) => {
   // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [isRecentFirst, setIsRecentFirst] = useState(false);
+  const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
 
+  /*
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
         if (prev?.price > cur?.price) return -1;
@@ -20,12 +22,30 @@ const Progress = ({orderInfo}) => {
         return 0;
       })
     : orderInfo?.orders;
+*/
+
+  const sortedOrders = isRecentFirst
+    ? [...(orderInfo?.orders || [])].reverse()
+    : orderInfo?.orders;
+
+  useEffect(() => {
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    setOrderSelect(firstOrder);
+    setSelectedOrderId(firstOrder?.idx && firstOrder?.idx);
+
+    if (firstOrder !== null) {
+      setStatusSelect("progress");
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+    }
+  }, [orderInfo, setOrderSelect, setStatusSelect, sortedOrders]);
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
     setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
 
-    if(selectedOrder === null){
+    if (selectedOrder === null) {
       setStatusSelect("null");
     } else {
       setStatusSelect("progress");
@@ -49,7 +69,7 @@ const Progress = ({orderInfo}) => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            가격순
+            최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
@@ -57,7 +77,7 @@ const Progress = ({orderInfo}) => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            최신순
+            과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         )}
