@@ -1,39 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilCallback, useRecoilState } from "recoil";
-import { storeState } from "../../../Atom/status";
 import Home from "../../../assets/icons/Navbar/Home.svg"; //홈
 import Inven from "../../../assets/icons/Navbar/Inven.svg"; //재고관리
 import Mypage from "../../../assets/icons/Navbar/Mypage.svg"; //마이페이지
 import Sales from "../../../assets/icons/Navbar/Sales.svg"; //매출관리
-import StoreOn from "../../../assets/icons/Navbar/Store.svg"; //영업중
 import "../NavBar/NavBar.css";
+import StoreBtn from "./StoreBtn";
 
 const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
-  // const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [Store] = useRecoilState(storeState); // 영업여부
-  const setStoreState = useRecoilCallback(({ set }) => async () => {
-    console.log(Store, storeState);
-    set(storeState, !Store);
-  });
-  const onClickHandler = (e) => {
-    setStoreState();
-    // axios
-    //   .post(`${apiUrl}+/api/v1/store/sales`)
-    //   .then((Store) => {
-    //     console.log(Store);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-  };
 
   return (
     <div className="navbar">
       <div className="navbarMenu">
-        <Link to="/home">
+        <Link to="/home" style={{'textDecoration': 'none'}}>
           {currentPath === "/home" ? (
             <div className="icon-group">
               <img className="icon" src={Home} alt="HomeOn" />
@@ -47,7 +28,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Inventory">
+        <Link to="/Inventory" style={{'textDecoration': 'none'}}>
           {currentPath === "/Inventory" ? (
             <div className="icon-group">
               <img className="icon" src={Inven} alt="InvenOn" />
@@ -61,7 +42,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Sales">
+        <Link to="/Sales" style={{'textDecoration': 'none'}}>
           {currentPath === "/Sales" ? (
             <div className="icon-group">
               <img className="icon" src={Sales} alt="SalesOn" />
@@ -75,7 +56,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Mypage">
+        <Link to="/Mypage" style={{'textDecoration': 'none'}}>
           {currentPath === "/Mypage" ? (
             <div className="icon-group">
               <img className="icon" src={Mypage} alt="MypageOn" />
@@ -90,31 +71,9 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <Link>
-        {Store ? (
-          <div className="icon-group">
-            <img
-              className="icon"
-              onClick={onClickHandler}
-              src={StoreOn}
-              alt="Open"
-            />
-            <span className="menu-font">영업중</span>
-          </div>
-        ) : (
-          <div className="icon-off">
-            <img
-              className="icon"
-              onClick={onClickHandler}
-              src={StoreOn}
-              alt="Close"
-            />
-            <span className="menu-font">영업종료</span>
-          </div>
-        )}
-      </Link>
+      <StoreBtn />
     </div>
   );
 };
 
-export default NavBar;
+export default React.memo(NavBar);

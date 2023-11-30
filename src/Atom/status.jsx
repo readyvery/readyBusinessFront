@@ -7,6 +7,17 @@ export const storeState = atom({
   default: false, // 초깃값
 });
 
+export const selectStoreState = selector({
+  key: "selectStoreState",
+  get: ({ get }) => {
+    return get(storeState);
+  },
+
+  set: ({ set }, newValue) => {
+    set(storeState, !newValue);
+  },
+})
+
 export const soundState = atom({
   key: "soundState",
   default: true,

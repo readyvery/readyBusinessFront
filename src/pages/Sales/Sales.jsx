@@ -18,4 +18,4 @@ function Sales (props) {
   );
 };
 
-export default Sales;
+export default React.memo(Sales);

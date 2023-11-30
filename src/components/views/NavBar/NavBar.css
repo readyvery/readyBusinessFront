@@ -40,6 +40,7 @@
   font-weight: 700; */
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
+  text-decoration: none;
 }
 
 .icon-off {

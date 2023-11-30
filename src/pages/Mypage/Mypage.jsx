@@ -19,4 +19,4 @@ function Mypage (props) {
   );
 };
 
-export default Mypage;
+export default React.memo(Mypage);

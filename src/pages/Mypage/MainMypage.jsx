@@ -9,7 +9,7 @@ import readyvery from "../../assets/icons/img_readyVery.svg";
 
 import "./MainMypage.css";
 
-const MainMypage = () => {
+const MainMypage = React.memo(() => {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookies] = useCookies();
@@ -126,6 +126,6 @@ const MainMypage = () => {
       </div>
     </div>
   );
-};
+});
 
 export default MainMypage;
