@@ -3,20 +3,17 @@ import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { RecoilRoot, useSetRecoilState } from "recoil";
+import { RecoilRoot } from "recoil";
 import InventoryPage from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
 import SalesPage from "../src/pages/Sales/Sales";
 import "./App.css";
-import { isAuthenticatedState, loginState } from "./Atom/status";
 import Auth from "./hoc/auth.jsx";
 import useInterval from "./hooks/useInterval.jsx";
 import HomePage from "./pages/Home/Home";
 import MainPage from "./pages/Main/MainPage.jsx";
 
 function App() {
-  const setIsLoggedIn = useSetRecoilState(loginState);
-  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;

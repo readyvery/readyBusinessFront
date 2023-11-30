@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import soundState from "../../../Atom/status";
+import { soundState } from "../../../Atom/status";
 import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
 import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
@@ -24,6 +24,7 @@ const Header = () => {
         setStore(res.data.status);
       })
       .catch((err) => console.log(err))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [Sound, setSound] = useRecoilState(soundState);

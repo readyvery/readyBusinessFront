@@ -48,7 +48,10 @@ const MainMypage = React.memo(() => {
       .catch((err) => console.log(err));
   };
 
-  const memoizedFetchData = useMemo(() => fetchData, []); // empty dependency array means the function doesn't depend on any external variable
+  const memoizedFetchData = useMemo(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // empty dependency array means the function doesn't depend on any external variable
 
   useEffect(() => {
     memoizedFetchData().then((data) => {
