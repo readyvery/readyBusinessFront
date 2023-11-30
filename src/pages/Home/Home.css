@@ -1,16 +1,19 @@
-.home-wrapper{
-    display: flex;
+.home-wrapper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 8.875rem;
 }
 
-nav{
-    width: 8.875rem;
-    /* height: 46.25rem; */
-    /* height: 42.5rem; */
-    height: 45.75rem;
-    z-index: 1;
+nav {
+  width: 8.875rem;
+  /* height: 46.25rem; */
+  /* height: 42.5rem; */
+  height: 45.75rem;
+  z-index: 1;
 }
 
-main{
-    width: calc(100vw - 8.875rem);
-    display: flex;
+main {
+  width: calc(100vw - 8.875rem);
+  display: flex;
 }

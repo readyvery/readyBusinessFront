@@ -1,9 +1,16 @@
-import { message } from 'antd';
+import { message } from "antd";
 import axios from "axios";
 import React, { Suspense } from "react";
 import { useCookies } from "react-cookie";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import Header2 from "../src/components/views/Header/Header2";
+import NavBar from "../src/components/views/NavBar/NavBar";
 import InventoryPage from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
 import SalesPage from "../src/pages/Sales/Sales";
@@ -17,6 +24,7 @@ function App() {
   const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
+  let location = useLocation();
 
   const NewLoginPage = Auth(MainPage, false);
   const NewHomePage = Auth(HomePage, true);
@@ -35,7 +43,7 @@ function App() {
     //   cookies.refreshToken
 
     // ) {
-    if(cookies.accessToken){
+    if (cookies.accessToken) {
       const config = {
         withCredentials: true,
       };
@@ -53,7 +61,7 @@ function App() {
           // const config = {
           //   withCredentials: true,
           // };
-      
+
           // axios
           //   .get(apiUrl + "/api/v1/user/logout", config)
           //   .then((response) => {
@@ -74,22 +82,37 @@ function App() {
           message.info("토큰이 만료되었습니다. 로그인을 진행해주세요.");
           navigate("/");
         });
-      }
+    }
     // }
   }, expiredTime);
-  return (
-    <div className="App">
-      <RecoilRoot>
-        <Suspense fallback={<div>Loading...</div>}>
+  if (location.pathname === "/") {
+    return (
+      <div>
+        <div className="App">
           <Routes>
             <Route path="/" element={<NewLoginPage />} />
-            <Route path="/home" element={<NewHomePage />} />
-            <Route path="/Inventory" element={<NewInventoryPage />} />
-            <Route path="/Sales" element={<NewSalesPage />} />
-            <Route path="/Mypage" element={<NewMyPage />} />
+            <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
           </Routes>
-        </Suspense>
-      </RecoilRoot>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="App">
+      <Header2 />
+      <nav>
+        <NavBar />
+      </nav>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/home" element={<NewHomePage />} />
+          <Route path="/Inventory" element={<NewInventoryPage />} />
+          <Route path="/Sales" element={<NewSalesPage />} />
+          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

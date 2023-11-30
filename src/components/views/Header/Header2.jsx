@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { soundState } from "../../../Atom/status";
+import React, { useEffect } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { selectStoreState, soundState } from "../../../Atom/status";
 import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
 import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
@@ -11,27 +11,26 @@ import "./Header.css";
 
 const Header = () => {
   const baseUrl = process.env.REACT_APP_API_ROOT;
-  // const Store = useRecoilValue(storeState);
-  const [store, setStore] = useState(null);
+  const storeValue = useRecoilValue(selectStoreState); // 가게 영업 여부를 가져옵니다
+  const setSelectStore = useSetRecoilState(selectStoreState); // 가게 영업 여부를 설정합니다
+  const [Sound, setSound] = useRecoilState(soundState); // 소리 여부를 가져옵니다
+
   useEffect(() => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
-    axios.get(`${baseUrl}/api/v1/store/sales`, config)
+    axios
+      .get(`${baseUrl}/api/v1/store/sales`, config)
       .then((res) => {
         console.log(res);
-        setStore(res.data.status);
+        setSelectStore(res.data.status);
       })
-      .catch((err) => console.log(err))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      .catch((err) => console.log(err));
   }, []);
 
-  const [Sound, setSound] = useRecoilState(soundState);
-
   const onClickHandler = () => {
-    setSound((prev) => !prev);
-    console.log(Sound);
+    setSound(!Sound);
   };
 
   return (
@@ -41,7 +40,7 @@ const Header = () => {
           <img src={LOGO} className="LOGO" alt="LOGO" />
         </div>
         <div className="head-container2">
-          {store && !store ? (
+          {storeValue ? (
             <div className="store-group">
               <div className="store-img__wrapper">
                 <img src={StoreOn} alt="Open" />

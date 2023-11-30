@@ -25,7 +25,10 @@ function Auth(SpecificComponent, option) {
         //   const tokenInfo = useRecoilValue(getAuthenticatedSelector);
         //   console.log(tokenInfo);
         // }
-        if (!window.localStorage.getItem("isAuthenticated") && cookies?.accessToken) {
+        if (
+          !window.localStorage.getItem("isAuthenticated") &&
+          cookies?.accessToken
+        ) {
           // 첫 로그인 시
           window.localStorage.setItem("isAuthenticated", true);
           setIsLoggedIn({
@@ -34,7 +37,6 @@ function Auth(SpecificComponent, option) {
           });
           navigate("/home");
           alert("로그인에 성공하셨습니다.");
-
         } else {
           if (cookies?.accessToken && location.pathname === "/") {
             // 로그인 상태에서 로그인 화면으로 갔을 경우

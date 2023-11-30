@@ -18,3 +18,8 @@ export const selectOrder = atom({
   key: "selectOrder",
   default: null,
 });
+
+export const selectTotal = atom({
+  key: "selectTotal",
+  default: [],
+});

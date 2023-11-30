@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { selectOrder, selectStatus } from "../../../Atom/order";
+import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
 import { isRecentFirstState, soundState } from "../../../Atom/status";
 // import VeryMp3 from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
@@ -11,19 +11,11 @@ import "./DetailHome.css";
 const Wait = ({ orderInfo }) => {
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
+  const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
   const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
 
-  /*
-  const sortedOrders = isRecentFirst
-    ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
-        if (prev?.price > cur?.price) return -1;
-        if (prev?.price < cur?.price) return 1;
-        return 0;
-      })
-    : orderInfo?.orders;
-*/
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
@@ -40,11 +32,13 @@ const Wait = ({ orderInfo }) => {
       setOrderSelect(null);
     }
 
-    if (playSound && orderInfo?.orders?.length !== null) {
+    if (playSound && orderInfo?.orders?.length >= orderTotal) {
       AudioPlayer(); // 소리 재생
       console.log("소리 재생");
+      setorderTotal(orderInfo?.orders?.length);
     }
-  }, [orderInfo, playSound, setOrderSelect, setStatusSelect, sortedOrders]);
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderInfo]);
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
@@ -95,7 +89,6 @@ const Wait = ({ orderInfo }) => {
           />
         ))}
       </div>
-      {/* <button onClick={Player}>Play Audio</button> */}
     </div>
   );
 };

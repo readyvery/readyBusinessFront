@@ -14,13 +14,24 @@ export const selectStoreState = selector({
   },
 
   set: ({ set }, newValue) => {
-    set(storeState, !newValue);
+    set(storeState, newValue);
   },
-})
+});
 
 export const soundState = atom({
   key: "soundState",
-  default: true,
+  default: false,
+});
+
+export const selectSoundState = selector({
+  key: "selectSoundState",
+  get: ({ get }) => {
+    return get(soundState);
+  },
+
+  set: ({ set }, newValue) => {
+    set(soundState, newValue);
+  },
 });
 
 export const isRecentFirstState = atom({
