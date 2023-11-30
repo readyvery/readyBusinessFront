@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 import React from "react";
 
@@ -22,7 +23,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       .then((res) => {
         console.log(res);
         if (res.data.success === true) {
-          alert("제조완료 처리되었습니다.");
+          message.info("제조완료 처리되었습니다.");
           // 데이터 다시 fetch
           fetchData();
           // select된 데이터 변경

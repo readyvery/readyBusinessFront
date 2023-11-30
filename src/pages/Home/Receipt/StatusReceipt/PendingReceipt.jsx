@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
@@ -31,7 +32,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("취소되었습니다.");
+          message.info("취소되었습니다.");
           setRefuseModal((prev) => !prev);
           // 데이터 다시 fetch
           fetchData();

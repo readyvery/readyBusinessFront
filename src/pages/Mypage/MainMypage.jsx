@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
@@ -17,47 +17,23 @@ const MainMypage = React.memo(() => {
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [cafeInfo, setCafeInfo] = useState({});
 
-  // const fetchData = () => {
-  //   const config = {
-  //     withCredentials: true
-  //   };
-
-  //   axios.get(`${apiUrl}/api/v1/user/info`, config)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setCafeInfo(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   const fetchData = () => {
     const config = {
       withCredentials: true
     };
 
-    return axios.get(`${apiUrl}/api/v1/user/info`, config)
+    axios.get(`${apiUrl}/api/v1/user/info`, config)
       .then((res) => {
         console.log(res);
-        return res.data;
+        setCafeInfo(res.data);
       })
       .catch((err) => console.log(err));
   };
 
-  const memoizedFetchData = useMemo(() => {
+  useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // empty dependency array means the function doesn't depend on any external variable
-
-  useEffect(() => {
-    memoizedFetchData().then((data) => {
-      setCafeInfo(data);
-    });
-  }, [memoizedFetchData]);
+  }, []);
 
   const handleLogout = () => {
     const config = {
