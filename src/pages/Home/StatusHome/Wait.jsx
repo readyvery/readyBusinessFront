@@ -15,7 +15,6 @@ const Wait = ({ orderInfo }) => {
   const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
-
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
@@ -53,6 +52,41 @@ const Wait = ({ orderInfo }) => {
       setplaySound((prev) => prev);
     }
   };
+
+  // useEffect(() => {
+  //   const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+
+  //   if (firstOrder !== null) {
+  //     setStatusSelect("pending");
+  //     setOrderSelect(firstOrder);
+  //     setSelectedOrderId(firstOrder.idx);
+  //   } else {
+  //     setStatusSelect("null");
+  //     setOrderSelect(null);
+  //     setSelectedOrderId(null);
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sortedOrders]);
+
+  useEffect(() => {
+    const sortedOrders = isRecentFirst
+      ? [...(orderInfo?.orders || [])].reverse()
+      : orderInfo?.orders;
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder.idx);
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+      setSelectedOrderId(null);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Order-wrapper">

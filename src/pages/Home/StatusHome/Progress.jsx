@@ -39,7 +39,8 @@ const Progress = ({ orderInfo }) => {
       setStatusSelect("null");
       setOrderSelect(null);
     }
-  }, [orderInfo, setOrderSelect, setStatusSelect, sortedOrders]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);

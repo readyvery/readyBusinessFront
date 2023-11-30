@@ -33,15 +33,13 @@ function App() {
   const NewMyPage = Auth(Mypage, true);
 
   const expiredTime = 1000 * 60 * 60 * 24;
-  // const expiredTime = 60000
   // const expiredTime = 65000;
   useInterval(() => {
-    console.log(cookies);
+    // console.log(cookies.refreshToken);
     // if (
     //   cookies.refreshToken !== "undefined" &&
     //   cookies.refreshToken !== undefined &&
     //   cookies.refreshToken
-
     // ) {
     if (cookies.accessToken) {
       const config = {
@@ -57,28 +55,6 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err);
-          // const config = {
-          //   withCredentials: true,
-          // };
-
-          // axios
-          //   .get(apiUrl + "/api/v1/user/logout", config)
-          //   .then((response) => {
-          //     console.log(response);
-          //     setIsAuthenticated(false);
-          //     setIsLoggedIn({
-          //       accessToken: null,
-          //       expiredTime: null,
-          //     });
-          //     removeCookies("accessToken");
-          //     removeCookies("JSESSIONID");
-          //     window.localStorage.setItem("isAuthenticated", false);
-          //   })
-          //   .catch((error) => {
-          //     message.info("관리자에게 문의하세요.");
-          //     navigate("/");
-          //   });
           message.info("토큰이 만료되었습니다. 로그인을 진행해주세요.");
           navigate("/");
         });

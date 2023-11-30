@@ -26,7 +26,7 @@ const Header = () => {
         console.log(res);
         setSelectStore(res.data.status);
       })
-      .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onClickHandler = () => {
@@ -55,7 +55,7 @@ const Header = () => {
               <div className="header-font">영업종료 </div>
             </div>
           )}
-          {Sound ? (
+          {Sound && Sound ? (
             <div className="header-img-wrapper">
               <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
             </div>

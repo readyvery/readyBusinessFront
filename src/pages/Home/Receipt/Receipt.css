@@ -77,12 +77,13 @@
 
   padding: 3% 7% 1% 7%;
 }
+
 .receipt-FoodName {
-  padding-left: 10%;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
 
+  display: block; /* 블록 요소로 설정하여 각각 새로운 라인에 표시 */
+  text-align: left; /* 왼쪽 정렬 */
   color: #4f4f4f;
   font-family: "SemiBold";
   font-size: 1.4375rem;
@@ -90,8 +91,9 @@
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
 }
+
 .receiptOption {
-  padding-left: 20%;
+  padding-left: 10%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
