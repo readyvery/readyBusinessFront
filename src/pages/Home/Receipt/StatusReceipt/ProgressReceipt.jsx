@@ -8,19 +8,20 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
 
   const handleComplete = () => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
     const body = {
-      "orderId": orderProps.orderId,
-      "status": "COMPLETE",
+      orderId: orderProps.orderId,
+      status: "COMPLETE",
     };
     console.log(body);
-    
-    axios.post(`${apiUrl}/api/v1/order/complete`, body, config)
+
+    axios
+      .post(`${apiUrl}/api/v1/order/complete`, body, config)
       .then((res) => {
         console.log(res);
-        if(res.data.success === true){
+        if (res.data.success === true) {
           alert("제조완료 처리되었습니다.");
           // 데이터 다시 fetch
           fetchData();
@@ -31,7 +32,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   return (
@@ -45,11 +46,16 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
-        <span className="receipt-text">{orderProps?.time.split("T")[0].replaceAll("-", "/")} {orderProps?.time.split("T")[1].split(".")[0]}</span>
+        <span className="receipt-text">
+          {orderProps?.time.split("T")[0].replaceAll("-", "/")}{" "}
+          {orderProps?.time.split("T")[1].split(".")[0]}
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">고객연락처</span>
-        <span className="receipt-text">{orderProps?.phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</span>
+        <span className="receipt-text">
+          {orderProps?.phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")}
+        </span>
       </div>
       <div className="receipt-divider" />
       <div className="receiptTextBox">
@@ -63,7 +69,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
-              <span className="receipt-text">└ {option}</span>
+              <span className="receipt-optiontext">└ {option}</span>
             ))}
           </div>
         </React.Fragment>
@@ -75,7 +81,12 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
-        <span className="receipt-text">{orderProps?.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="receipt-text">
+          {orderProps?.price
+            .toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+          원
+        </span>
       </div>
     </div>
   );

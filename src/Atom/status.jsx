@@ -23,6 +23,11 @@ export const soundState = atom({
   default: true,
 });
 
+export const isRecentFirstState = atom({
+  key: "isRecentFirstState",
+  default: true,
+});
+
 export const isAuthenticatedState = atom({
   key: "isAuthenticatedState",
   default: false,
@@ -32,9 +37,11 @@ export const getAuthenticatedSelector = selector({
   key: "auth/get",
   get: async ({ get }) => {
     const tokenResult = Refresh();
-    if(tokenResult){
+    if (tokenResult) {
       return "재발급 성공";
-    } else { return "토큰 유효"; }
+    } else {
+      return "토큰 유효";
+    }
   },
 
   set: ({ set }) => {

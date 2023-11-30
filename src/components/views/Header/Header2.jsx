@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import soundState from "../../../Atom/status";
 import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
 import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
@@ -24,11 +26,11 @@ const Header = () => {
       .catch((err) => console.log(err))
   }, []);
 
+  const [Sound, setSound] = useRecoilState(soundState);
 
-  const [Sound, setSound] = useState(1);
-
-  const onClickHandler = (e) => {
-    setSound(!Sound);
+  const onClickHandler = () => {
+    setSound((prev) => !prev);
+    console.log(Sound);
   };
 
   return (
@@ -40,22 +42,26 @@ const Header = () => {
         <div className="head-container2">
           {store && !store ? (
             <div className="store-group">
-              <div className="store-img__wrapper"><img src={StoreOn} alt="Open" /></div>
+              <div className="store-img__wrapper">
+                <img src={StoreOn} alt="Open" />
+              </div>
               <div className="header-font">영업중</div>
             </div>
           ) : (
             <div className="store-group">
-              <div className="store-img__wrapper"><img src={StoreOff} alt="Close" /></div>
+              <div className="store-img__wrapper">
+                <img src={StoreOff} alt="Close" />
+              </div>
               <div className="header-font">영업종료 </div>
             </div>
           )}
           {Sound ? (
             <div className="header-img-wrapper">
-                <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
+              <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
             </div>
           ) : (
             <div className="header-img-wrapper">
-                <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
+              <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
             </div>
           )}
         </div>
