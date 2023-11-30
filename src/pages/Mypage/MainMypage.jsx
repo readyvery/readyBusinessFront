@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import readyvery from "../../assets/icons/img_readyVery.svg";
 
 import "./MainMypage.css";
 
-const MainMypage = () => {
+const MainMypage = React.memo(() => {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const [, , removeCookies] = useCookies();
@@ -17,23 +17,44 @@ const MainMypage = () => {
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [cafeInfo, setCafeInfo] = useState({});
 
+  // const fetchData = () => {
+  //   const config = {
+  //     withCredentials: true
+  //   };
+
+  //   axios.get(`${apiUrl}/api/v1/user/info`, config)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setCafeInfo(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   const fetchData = () => {
     const config = {
       withCredentials: true
     };
 
-    axios.get(`${apiUrl}/api/v1/user/info`, config)
+    return axios.get(`${apiUrl}/api/v1/user/info`, config)
       .then((res) => {
         console.log(res);
-        setCafeInfo(res.data);
+        return res.data;
       })
       .catch((err) => console.log(err));
   };
 
+  const memoizedFetchData = useMemo(() => fetchData, []); // empty dependency array means the function doesn't depend on any external variable
+
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    memoizedFetchData().then((data) => {
+      setCafeInfo(data);
+    });
+  }, [memoizedFetchData]);
 
   const handleLogout = () => {
     const config = {
@@ -126,6 +147,6 @@ const MainMypage = () => {
       </div>
     </div>
   );
-};
+});
 
 export default MainMypage;

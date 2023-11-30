@@ -14,7 +14,7 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo}) => {
   const onClickHandler = (e) => {
     const name = e.target.id;
     setStatus(name);
-    setStatusSelect("null")
+    setStatusSelect("null");
   };
 
   // useEffect(() => {

@@ -77,7 +77,7 @@ function Home () {
   useEffect(() => {
     fetchData();
 
-    const intervalId = setInterval(fetchData, 5000); // 5초마다 실행
+    const intervalId = setInterval(waitData, 5000); // 5초마다 실행
 
     return () => clearInterval(intervalId);
 

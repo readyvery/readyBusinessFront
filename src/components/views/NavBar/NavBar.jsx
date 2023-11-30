@@ -7,8 +7,8 @@ import Home from "../../../assets/icons/Navbar/Home.svg"; //홈
 import Inven from "../../../assets/icons/Navbar/Inven.svg"; //재고관리
 import Mypage from "../../../assets/icons/Navbar/Mypage.svg"; //마이페이지
 import Sales from "../../../assets/icons/Navbar/Sales.svg"; //매출관리
-import StoreOn from "../../../assets/icons/Navbar/Store.svg"; //영업중
 import "../NavBar/NavBar.css";
+import StoreBtn from "./StoreBtn";
 
 const NavBar = () => {
   const currentPath = window.location.pathname; // 현재 경로 가져오기
@@ -33,7 +33,7 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbarMenu">
-        <Link to="/home">
+        <Link to="/home" style={{'textDecoration': 'none'}}>
           {currentPath === "/home" ? (
             <div className="icon-group">
               <img className="icon" src={Home} alt="HomeOn" />
@@ -47,7 +47,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Inventory">
+        <Link to="/Inventory" style={{'textDecoration': 'none'}}>
           {currentPath === "/Inventory" ? (
             <div className="icon-group">
               <img className="icon" src={Inven} alt="InvenOn" />
@@ -61,7 +61,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Sales">
+        <Link to="/Sales" style={{'textDecoration': 'none'}}>
           {currentPath === "/Sales" ? (
             <div className="icon-group">
               <img className="icon" src={Sales} alt="SalesOn" />
@@ -75,7 +75,7 @@ const NavBar = () => {
           )}
         </Link>
 
-        <Link to="/Mypage">
+        <Link to="/Mypage" style={{'textDecoration': 'none'}}>
           {currentPath === "/Mypage" ? (
             <div className="icon-group">
               <img className="icon" src={Mypage} alt="MypageOn" />
@@ -90,7 +90,7 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <Link>
+      {/* <Link style={{'textDecoration': 'none'}}>
         {Store ? (
           <div className="icon-group">
             <img
@@ -112,9 +112,10 @@ const NavBar = () => {
             <span className="menu-font">영업종료</span>
           </div>
         )}
-      </Link>
+      </Link> */}
+      <StoreBtn />
     </div>
   );
 };
 
-export default NavBar;
+export default React.memo(NavBar);
