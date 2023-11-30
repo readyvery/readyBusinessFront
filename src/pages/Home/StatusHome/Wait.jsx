@@ -15,6 +15,17 @@ const Wait = ({ orderInfo }) => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
 
+  useEffect(() => {
+    const isAudioPlay = () => {
+      if (playSound && orderInfo?.orders?.length !== null) {
+        AudioPlayer(); // 소리 재생
+        console.log("소리 재생");
+      }
+    };
+    isAudioPlay();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   /*
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
@@ -27,24 +38,6 @@ const Wait = ({ orderInfo }) => {
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
-
-  useEffect(() => {
-    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
-    setOrderSelect(firstOrder);
-    setSelectedOrderId(firstOrder?.idx || null);
-
-    if (firstOrder !== null) {
-      setStatusSelect("pending");
-    } else {
-      setStatusSelect("null");
-      setOrderSelect(null);
-    }
-
-    if (playSound && orderInfo?.orders?.length !== null) {
-      AudioPlayer(); // 소리 재생
-      console.log("소리 재생");
-    }
-  }, [orderInfo, playSound, setOrderSelect, setStatusSelect, sortedOrders]);
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
@@ -59,6 +52,41 @@ const Wait = ({ orderInfo }) => {
       setplaySound((prev) => prev);
     }
   };
+
+  // useEffect(() => {
+  //   const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+
+  //   if (firstOrder !== null) {
+  //     setStatusSelect("pending");
+  //     setOrderSelect(firstOrder);
+  //     setSelectedOrderId(firstOrder.idx);
+  //   } else {
+  //     setStatusSelect("null");
+  //     setOrderSelect(null);
+  //     setSelectedOrderId(null);
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sortedOrders]);
+
+  useEffect(() => {
+    const sortedOrders = isRecentFirst
+      ? [...(orderInfo?.orders || [])].reverse()
+      : orderInfo?.orders;
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder.idx);
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+      setSelectedOrderId(null);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Order-wrapper">
@@ -95,7 +123,6 @@ const Wait = ({ orderInfo }) => {
           />
         ))}
       </div>
-      {/* <button onClick={Player}>Play Audio</button> */}
     </div>
   );
 };

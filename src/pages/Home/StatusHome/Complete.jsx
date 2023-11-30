@@ -51,7 +51,8 @@ const Complete = ({ orderInfo }) => {
       setStatusSelect("null");
       setOrderSelect(null);
     }
-  }, [orderInfo, setOrderSelect, setStatusSelect, sortedOrders]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Order-wrapper">

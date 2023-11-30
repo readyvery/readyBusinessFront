@@ -15,16 +15,17 @@ const Header = () => {
   const [store, setStore] = useState(null);
   useEffect(() => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
-    axios.get(`${baseUrl}/api/v1/store/sales`, config)
+    axios
+      .get(`${baseUrl}/api/v1/store/sales`, config)
       .then((res) => {
         console.log(res);
         setStore(res.data.status);
       })
-      .catch((err) => console.log(err))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [Sound, setSound] = useRecoilState(soundState);
@@ -56,7 +57,7 @@ const Header = () => {
               <div className="header-font">영업종료 </div>
             </div>
           )}
-          {Sound ? (
+          {Sound && Sound ? (
             <div className="header-img-wrapper">
               <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
             </div>
