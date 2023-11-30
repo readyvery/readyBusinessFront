@@ -150,8 +150,8 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       {orderProps?.foodies?.map((e, i) => (
         <React.Fragment key={i}>
           <div className="receiptTextBox">
-            <span className="receipt-FoodName">{e.name}</span>
-            <span className="receipt-text">{e.count}</span>
+            <span className="receipt-FoodName">• {e.name}</span>
+            <span className="receipt-FoodName">{e.count}</span>
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
