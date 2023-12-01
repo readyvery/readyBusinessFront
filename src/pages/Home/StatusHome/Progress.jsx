@@ -39,7 +39,6 @@ const Progress = ({ orderInfo }) => {
     }
   };
 
-  // const defaultOrder = () => {
   //   console.log("defaultOrder");
   //   const sortedOrdersArray = isRecentFirst
   //     ? orderInfo?.orders
