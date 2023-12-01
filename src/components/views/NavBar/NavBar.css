@@ -1,4 +1,7 @@
 .navbar {
+  position: relative;
+  top: 0;
+  left: 0;
   width: 8.875rem;
   /* height: 46.25rem; */
   /* height: 45.75rem; */

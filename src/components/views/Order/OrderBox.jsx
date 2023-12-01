@@ -22,7 +22,7 @@ const OrderBox = ({ onSelect, order, selectedOrderId }) => {
           <div>{time.split("T")[1].split(".")[0]}</div>
         </span>
         <span className="Order-content__span">{pickUp === 1 ? "픽업" : "매장"}</span>
-        <span className="Order-content__span">{price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="Order-content__span">{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
         <span className="Order-content__span"> </span>
       </div>
     </>
