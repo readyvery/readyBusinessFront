@@ -9,6 +9,7 @@ import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
+  console.log("페이지 로딩");
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
   const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
@@ -53,27 +54,13 @@ const Wait = ({ orderInfo }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+  const defaultOrder = () => {
+    const sortedOrdersArray = isRecentFirst
+      ? orderInfo?.orders
+      : [...(orderInfo?.orders || [])].reverse();
 
-  //   if (firstOrder !== null) {
-  //     setStatusSelect("pending");
-  //     setOrderSelect(firstOrder);
-  //     setSelectedOrderId(firstOrder.idx);
-  //   } else {
-  //     setStatusSelect("null");
-  //     setOrderSelect(null);
-  //     setSelectedOrderId(null);
-  //   }
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [sortedOrders]);
-
-  useEffect(() => {
-    const sortedOrders = isRecentFirst
-      ? [...(orderInfo?.orders || [])].reverse()
-      : orderInfo?.orders;
-    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    const firstOrder =
+      sortedOrdersArray?.length > 0 ? sortedOrdersArray[0] : null;
 
     if (firstOrder !== null) {
       setStatusSelect("pending");
@@ -84,7 +71,24 @@ const Wait = ({ orderInfo }) => {
       setOrderSelect(null);
       setSelectedOrderId(null);
     }
+  };
 
+  const onClickSorter = () => {
+    setIsRecentFirst(!isRecentFirst);
+    defaultOrder();
+  };
+
+  useEffect(() => {
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    setOrderSelect(firstOrder);
+    setSelectedOrderId(firstOrder?.idx && firstOrder?.idx);
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -96,18 +100,12 @@ const Wait = ({ orderInfo }) => {
         <span className="Order-title__span">픽업유무</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>

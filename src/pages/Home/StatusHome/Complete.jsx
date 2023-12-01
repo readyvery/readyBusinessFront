@@ -52,7 +52,7 @@ const Complete = ({ orderInfo }) => {
       setOrderSelect(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isRecentFirst]);
 
   return (
     <div className="Order-wrapper">
