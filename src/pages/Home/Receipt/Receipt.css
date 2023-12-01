@@ -147,7 +147,7 @@
 .modal-wrapper {
   position: absolute;
   top: calc(5.5rem + 0.625rem);
-  left: calc(8.875rem + 33rem);
+  left: calc(33rem);
 
   /* width: 23.75rem;
   height: 43rem; */
