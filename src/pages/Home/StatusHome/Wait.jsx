@@ -32,7 +32,7 @@ const Wait = ({ orderInfo }) => {
       setOrderSelect(null);
     }
 
-    if (playSound && orderInfo?.orders?.length > orderTotal) {
+    if (playSound && orderInfo?.orders?.length >= orderTotal) {
       console.log("소리 재생");
       Mp.play();
       setorderTotal(orderInfo?.orders?.length);
