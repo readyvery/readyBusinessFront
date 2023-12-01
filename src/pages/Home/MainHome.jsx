@@ -1,107 +1,90 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { useRecoilValue } from "recoil";
-import { ordercnt } from "../../Atom/order";
+import { useSetRecoilState } from "recoil";
+import { selectStatus } from "../../Atom/order";
 import "./MainHome.css";
 import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
-const MainHome = () => {
-  const { pending, progress, complete } = useRecoilValue(ordercnt);
+const MainHome = ({ waitInfo, makeInfo, completeInfo }) => {
+  const setStatusSelect = useSetRecoilState(selectStatus);
 
-  const [status, setStatus] = useState({
-    Wait: true,
-    Progress: false,
-    Complete: false,
-  });
+  const [status, setStatus] = useState("Wait");
 
   const onClickHandler = (e) => {
-    const { name } = e.target;
-    // 현재 선택된 상태
-    const currentStatus = status[name];
-    if (!currentStatus) {
-      setStatus((prevStatus) => {
-        const updatedStatus = { ...prevStatus };
-        updatedStatus[name] = true; // 선택된 status를 true로 설정
+    const name = e.target.id;
+    if (name === status) return;
 
-        // 나머지 값들을 모두 false로 설정
-        for (const key in updatedStatus) {
-          if (key !== name) {
-            updatedStatus[key] = false;
-          }
-        }
-        return updatedStatus;
-      });
-    }
+    setStatus(name);
+
+    if (name === "Wait") setStatusSelect("pending");
+    else if (name === "Progress") setStatusSelect("progress");
+    else if (name === "Complete") setStatusSelect("complete");
+    else setStatusSelect("null");
   };
 
-  return (
-    <Container className="Main-Box">
-      <Row className="status-header">
-        <Col>
-          <Button
-            name="Wait"
-            onClick={onClickHandler}
-            style={{
-              width: "100%",
-              borderRadius: "0.875rem",
-              backgroundColor: status.Wait ? "#d82356" : "#FFFFFF",
-              fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.1rem",
-              color: status.Wait ? "#FFFFFF" : "#838383",
-              border: "none",
-            }}
-          >
-            대기 {pending}
-          </Button>
-        </Col>
-        <Col>
-          <Button
-            name="Progress"
-            onClick={onClickHandler}
-            style={{
-              width: "100%",
-              borderRadius: "0.875rem",
-              backgroundColor: status.Progress ? "#d82356" : "#FFFFFF",
-              fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.1rem",
-              color: status.Progress ? "#FFFFFF" : "#838383",
-              border: "none",
-            }}
-          >
-            제조중 {progress}
-          </Button>
-        </Col>
-        <Col>
-          <Button
-            name="Complete"
-            onClick={onClickHandler}
-            style={{
-              width: "100%",
-              borderRadius: "0.875rem",
-              backgroundColor: status.Complete ? "#d82356" : "#FFFFFF",
-              fontFamily: status.Wait ? "ExtraBold" : "SemiBold",
-              fontSize: "1.1rem",
-              color: status.Complete ? "#FFFFFF" : "#838383",
-              border: "none",
-            }}
-          >
-            제조•픽업완료 {complete}
-          </Button>
-        </Col>
-      </Row>
+  // useEffect(() => {
+  //   fetchData();
 
-      {status.Wait ? (
-        <Wait />
-      ) : status.Progress ? (
-        <Progress />
-      ) : status.Complete ? (
-        <Complete />
+  //   const intervalId = setInterval(fetchData, 5000); // 5초마다 실행
+
+  //   return () => clearInterval(intervalId);
+
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  return (
+    <div className="Main-Box">
+      <div className="status-header">
+        <div className="main-header__wrapper">
+          <div className="main-header-btn__wrapper">
+            <div
+              id="Wait"
+              className={`main-header-btn ${status === "Wait" && "selected"}`}
+              onClick={onClickHandler}
+            >
+              대기 {waitInfo?.orders?.length > 0 ? waitInfo.orders?.length : 0}
+            </div>
+          </div>
+          <div className="main-header-btn__wrapper">
+            <div
+              id="Progress"
+              className={`main-header-btn ${
+                status === "Progress" && "selected"
+              }`}
+              onClick={onClickHandler}
+            >
+              제조중{" "}
+              {makeInfo?.orders?.length > 0 ? makeInfo.orders?.length : 0}
+            </div>
+          </div>
+          <div className="main-header-btn__wrapper">
+            <div
+              id="Complete"
+              className={`main-header-btn ${
+                status === "Complete" && "selected"
+              }`}
+              onClick={onClickHandler}
+            >
+              제조완료{" "}
+              {completeInfo?.orders?.length > 0
+                ? completeInfo?.orders?.length
+                : 0}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {status === "Wait" ? (
+        <Wait orderInfo={waitInfo} />
+      ) : status === "Progress" ? (
+        <Progress orderInfo={makeInfo} />
+      ) : status === "Complete" ? (
+        <Complete orderInfo={completeInfo} />
       ) : (
         <div>ERROR</div>
       )}
-    </Container>
+    </div>
   );
 };
 

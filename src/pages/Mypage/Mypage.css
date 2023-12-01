@@ -1,16 +1,19 @@
-.mypage-wrapper{
-    display: flex;
+.mypage-wrapper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 8.875rem;
 }
 
-nav{
-    width: 8.875rem;
-    /* height: 46.25rem; */
-    /* height: 42.5rem; */
-    height: 45.75rem;
-    padding-top: 5.5rem;
+nav {
+  width: 8.875rem;
+  /* height: 46.25rem; */
+  /* height: 42.5rem; */
+  height: 45.75rem;
+  padding-top: 5.5rem;
 }
 
-main{
-    width: calc(100vw - 8.875rem);
-    margin-top: 5.5rem;
+main {
+  width: calc(100vw - 8.875rem);
+  margin-top: 5.5rem;
 }

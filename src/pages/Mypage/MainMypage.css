@@ -3,8 +3,11 @@
     flex-direction: column;
 
     padding: 4.3125rem 4rem 2rem 4rem;
-    width: 100%;
-    height: calc(100% + 5.5rem);
+    /* width: 100%; */
+    /* height: calc(100% + 5.5rem); */
+    width: calc(64rem - 8.875rem);
+    min-width: calc(64rem - 8.875rem);
+    height: calc(48rem - 5.5rem);
 
     justify-content: space-between;
 }
@@ -26,16 +29,19 @@
 
 .mypage-top-txt__wrapper{
     text-align: start;
+    white-space: nowrap;
 }
 
 .mypage-top-cafe__txt{
+    max-width: 28.375rem;
     font-size: 1.875rem;
     font-family: "Bold";
-    white-space: nowrap;
+    white-space: pre-line;
 }
 
 .mypage-top-cafe__txt span{
     font-size: 3.125rem;
+    max-width: 18.75rem;
 }
 
 .mypage-kakao__wrapper{
@@ -49,6 +55,7 @@
     flex-direction: column;
     text-align: start;
     margin: 0 3.4375rem 0 0.6875rem;
+    white-space: nowrap;
 }
 
 .mypage-kakao__txt span{
@@ -62,7 +69,11 @@
     height: 2.5rem;
     border-radius: 0.625rem;
     background-color: #d9d9d9;
-    padding: 0.59375rem 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0.59375rem 0; */
 }
 
 .mypage__line{

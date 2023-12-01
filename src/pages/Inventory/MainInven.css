@@ -6,8 +6,10 @@
 .mainInven-title__wrapper{
     display: flex;
     height: 5.0625rem;
-    width: 100%;
-    min-width: calc(73.75rem - 8.875rem);
+    /* width: 100%; */
+    width: 55.125rem;
+    /* min-width: calc(73.75rem - 8.875rem); */
+    min-width: calc(64rem - 8.875rem);
     background-color: #4F4F4F;
     border-bottom: 0.5rem solid #d82356;
     position: relative;
@@ -24,38 +26,55 @@
 
 .mainInven-title__span1{
     width: 15%;
-    min-width: 8.3125rem;
+    /* min-width: 8.3125rem; */
+    min-width: 8.26875rem;
 }
 
 .mainInven-title__span2__wrapper{
     width: 25%;
-    min-width: 17.8125rem;
+    /* min-width: 17.8125rem; */
+    min-width: 13.78125rem;
     display: flex;
     justify-content: space-between;
-}
-
-.mainInven-title__span2{
-    /* width: 25%; */
 }
 
 .mainInven-title__span3{
     width: 60%;
     /* min-width: 39.625rem; */
+    min-width: 33.075rem;
+
+    white-space: nowrap;
 }
 
 .mainInven-category__modal{
     position: absolute;
-    left: calc((100vw - 8.875rem) * 0.275);
+    /* left: calc((100vw - 8.875rem) * 0.275); */
+    top: 10rem;
+    left: 17.14375rem;
+    /* left: 0; */
     display: flex;
     flex-direction: column;
-    width: 17.1875rem;
+    /* width: 17.1875rem; */
+    width: 13.78125rem;
+    max-height: 37.4375rem;
     border-radius: 0 0 0.625rem 0.625rem;
     background-color: #4F4F4F;
     z-index: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mainInven-category__modal::-webkit-scrollbar {
+    display: none;
+}
+
+.mainInven-category__modal {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
 }
 
 .mainInven-category__modal span{
-    width: 17.1875rem;
+    width: 13.78125rem;
     height: 3.0625rem;
     line-height: 3.0625rem;
     font-size: 1.5625rem;
@@ -71,8 +90,11 @@
 }
 
 .mainInven-category-content__wrapper{
-    width: 100%;
-    height: calc(45.75rem - 5.0625rem);
+    /* width: 100%; */
+    width: calc(64rem - 8.875rem);
+    /* height: calc(48rem - 5.5rem); */
+    /* height: calc(45.75rem - 5.0625rem); */
+    height: 37.4375rem;
     /* height: calc(46.25rem - 5.0625rem); */
     /* height: calc(42.5rem - 5.0625rem); */
     overflow-y: auto;
@@ -92,7 +114,8 @@
     display: flex;
     
     width: 100%;
-    min-width: calc(73.75rem - 8.875rem);
+    /* min-width: calc(73.75rem - 8.875rem); */
+    min-width: calc(64rem - 8.875rem);
     height: 3.6875rem;
     border-bottom: #dadada solid 0.125rem;
 }
@@ -123,7 +146,7 @@
 
 .mainInven-category-content__span1{
     width: 15%;
-    min-width: 8.3125rem;
+    min-width: 8.26875rem;
 
     display: flex;
     justify-content: center;
@@ -132,32 +155,34 @@
 
 .mainInven-category-content__span2{
     width: 25%;
-    min-width: 17.8125rem;
+    min-width: 13.78125rem;
 
     white-space: nowrap;
 }
 
 .mainInven-category-content__span3{
     width: 60%;
-    min-width: 39.625rem;
+    /* min-width: 39.625rem; */
+    min-width: 33.075rem;
 
     white-space: nowrap;
 }
 
 /* 모달 */
-.modal-wrapper{
+.inven-modal-wrapper{
     position: absolute;
     top: 5.5rem;
     bottom: 0;
     left: 8.875rem;
     right: 0;
-    height: 46.25rem;
+    width: 55.125rem;
+    height: 42.5rem;
     background-color: rgba(0,0,0, 0.5);
     
     display: flex;
 }
 
-.modal-box{
+.inven-modal-box{
     position: absolute;
     top: calc(50% - 12.15625rem);
     left: calc(50% - 17.1875rem);
@@ -170,32 +195,32 @@
     padding: 2.0625rem 3.25rem;
 }
 
-.modal-close__wrapper{
+.inven-modal-close__wrapper{
     display: flex;
     justify-content: flex-end;
 }
 
-.modal-box-img__wrapper{
+.inven-modal-box-img__wrapper{
     height: 30%;
 }
 
-.modal-box-txt__wrapper{
+.inven-modal-box-txt__wrapper{
     height: 30%;
 }
 
-.modal-box-txt{
+.inven-modal-box-txt{
     font-size: 1.5625rem;
     font-family: "SemiBold";
 }
 
-.modal-box-close-btn__wrapper{
+.inven-modal-box-close-btn__wrapper{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 30%;
 }
 
-.modal-box-close-btn{
+.inven-modal-box-close-btn{
     width: 19.375rem;
     height: 3.125rem;
     margin: 0 auto;

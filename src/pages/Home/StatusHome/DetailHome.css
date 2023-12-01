@@ -29,7 +29,7 @@
 .Order-content__wrapper {
   padding: 0%;
 
-  height: calc(46.25rem - 5.0625rem);
+  /* height: calc(46.25rem - 5.0625rem); */
   /* height: calc(42.5rem - 5.0625rem); */
   overflow-y: auto;
 
@@ -38,15 +38,15 @@
 }
 
 .Order-content__box {
-  width: 33.375rem;
+  /* width: 33.375rem; */
+  width: 100%;
   padding: 2% 0% 2% 0%;
 
-  border-top: 2px solid #838383;
+  border-bottom: 1px solid #838383;
 
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -54,6 +54,7 @@
   width: 6.275rem;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -62,6 +63,11 @@
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 100%; /* 1.25rem */
+}
+
+.Order-content__span div{
+  white-space: nowrap;
+  font-size: 1.125rem;
 }
 
 .Arrowicon {

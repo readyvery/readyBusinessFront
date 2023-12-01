@@ -10,7 +10,7 @@ const pendingButton = ({ handleRefuseModal, handleReceiveModal }) => {
             name="Reject"
             onClick={handleRefuseModal}
             style={{
-              width: "8.75rem",
+              width: "6.75rem",
               height: "2.8125rem",
               border: "2px solid",
               borderRadius: "1.5625rem",
@@ -32,7 +32,7 @@ const pendingButton = ({ handleRefuseModal, handleReceiveModal }) => {
             name="Accept"
             onClick={handleReceiveModal}
             style={{
-              width: "8.75rem",
+              width: "6.75rem",
               height: "2.8125rem",
               border: "2px solid",
               borderRadius: "1.5625rem",

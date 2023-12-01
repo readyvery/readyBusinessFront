@@ -1,113 +1,92 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { ordercnt, selectOrder, selectStatus } from "../../../Atom/order";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
+import { isRecentFirstState, soundState } from "../../../Atom/status";
+// import VeryMp3 from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
+import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
-const Wait = () => {
-  const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
-  const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
-  const [statusSelect, setStatusSelect] = useRecoilState(selectStatus);
-
-  const orderInfo = {
-    orders: [
-      {
-        id: 123, //db 인덱스
-        orderNum: 2, // 그날의 그가게의 주문번호
-        pickUp: "픽업",
-        foodies: [
-          {
-            name: "아메리카노",
-            count: 3,
-            options: ["샷 추가", "휘핑", "ICE", "그란데"],
-          },
-        ],
-        phone: "010-6439-3547", // 고객의 전화번호
-        time: "21/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 8500,
-      },
-      {
-        id: 124, //db 인덱스
-        orderNum: 3, // 그날의 그가게의 주문번호
-        pickUp: "매장",
-        foodies: [
-          {
-            name: "아메리카누",
-            count: 3,
-            options: ["샷 추가 *100 ", "휘핑 *1000", "HOT", "그란데"],
-          },
-        ],
-        phone: "010-7679-3547", // 고객의 전화번호
-        time: "23/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 78500,
-      },
-      {
-        id: 125,
-        orderNum: 4,
-        pickUp: "픽업",
-        foodies: [
-          {
-            name: "아메리카노",
-            count: 3,
-            options: ["샷 추가", "휘핑", "ICE", "그란데"],
-          },
-        ],
-        phone: "010-6439-3547", // 고객의 전화번호
-        time: "21/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 8500,
-      },
-      {
-        id: 126,
-        orderNum: 5,
-        pickUp: "매장",
-        foodies: [
-          {
-            name: "아메리카노",
-            count: 3,
-            options: ["샷 추가", "휘핑", "ICE", "그란데"],
-          },
-        ],
-        phone: "010-6439-3547", // 고객의 전화번호
-        time: "21/11/08 11:44:30", // 주문시간
-        payment: "현대카드",
-        price: 8500,
-      },
-    ],
-  };
-
+const Wait = ({ orderInfo }) => {
+  const setOrderSelect = useSetRecoilState(selectOrder);
+  const setStatusSelect = useSetRecoilState(selectStatus);
+  const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
+  const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
-  const [isRecentFirst, setIsRecentFirst] = useState(false);
-
+  const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
   const sortedOrders = isRecentFirst
-    ? [...orderInfo.orders].reverse()
-    : orderInfo.orders;
+    ? [...(orderInfo?.orders || [])].reverse()
+    : orderInfo?.orders;
+
+  useEffect(() => {
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    setOrderSelect(firstOrder);
+    setSelectedOrderId(firstOrder?.idx || null);
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+    }
+
+    if (playSound && orderInfo?.orders?.length >= orderTotal) {
+      AudioPlayer(); // 소리 재생
+      console.log("소리 재생");
+      setorderTotal(orderInfo?.orders?.length);
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderInfo]);
 
   const onClickHandler = (selectedOrder) => {
     setOrderSelect(selectedOrder);
+    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
+
     if (selectedOrder === null) {
       setStatusSelect("null");
     } else {
       setStatusSelect("pending");
     }
-    console.log(orderCount);
-    console.log(orderSelect);
-    console.log(statusSelect);
-    setSelectedOrderId(selectedOrder ? selectedOrder.id : null);
+    if (orderInfo?.orders?.length === null) {
+      setplaySound((prev) => prev);
+    }
   };
 
-  useEffect(() => {
-    /*
-    while (orderInfo.orders.length !== 0 && soundState) {
-      AudioPlayer();
-    }*/
+  // useEffect(() => {
+  //   const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
 
-    // OrderBox가 생성될 때마다 개수 증가
-    setOrderCount((prev) => ({ ...prev, pending: orderInfo.orders.length }));
-  }, [orderInfo.orders.length, setOrderCount]);
+  //   if (firstOrder !== null) {
+  //     setStatusSelect("pending");
+  //     setOrderSelect(firstOrder);
+  //     setSelectedOrderId(firstOrder.idx);
+  //   } else {
+  //     setStatusSelect("null");
+  //     setOrderSelect(null);
+  //     setSelectedOrderId(null);
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sortedOrders]);
+
+  useEffect(() => {
+    const sortedOrders = isRecentFirst
+      ? [...(orderInfo?.orders || [])].reverse()
+      : orderInfo?.orders;
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder.idx);
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+      setSelectedOrderId(null);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="Order-wrapper">
@@ -121,7 +100,7 @@ const Wait = () => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            과거순
+            최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
@@ -129,13 +108,13 @@ const Wait = () => {
             className="Order-title__span"
             onClick={() => setIsRecentFirst(!isRecentFirst)}
           >
-            최신순
+            과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         )}
       </div>
       <div className="Order-content__wrapper">
-        {sortedOrders.map((order) => (
+        {sortedOrders?.map((order) => (
           <OrderBox
             key={order.id}
             onSelect={onClickHandler}

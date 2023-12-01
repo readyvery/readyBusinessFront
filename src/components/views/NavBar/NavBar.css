@@ -1,11 +1,15 @@
 .navbar {
+  position: relative;
+  top: 0;
+  left: 0;
   width: 8.875rem;
   /* height: 46.25rem; */
-  height: 45.75rem;
-  /* height: 42.5rem; */
+  /* height: 45.75rem; */
+  height: 42.5rem;
   background-color: #2e2d2d;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -33,12 +37,13 @@
 
 .menu-font {
   color: #fff;
-  font-family: Pretendard;
+  font-family: "Bold";
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
+  /* font-style: normal;
+  font-weight: 700; */
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
+  text-decoration: none;
 }
 
 .icon-off {

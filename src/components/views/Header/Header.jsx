@@ -13,15 +13,29 @@ const Header = () => {
   const Store = useRecoilValue(storeState);
   const [Sound, setSound] = useRecoilState(soundState);
 
-  const ClickTrue = () => {
-    setSound(true);
+  const onClickHandler = () => {
+    setSound((prev) => !prev);
     console.log(Sound);
   };
 
-  const ClickFalse = () => {
-    setSound(false);
-    console.log(Sound);
-  };
+  // const apiUrl = process.env.REACT_APP_API_ROOT;
+  //   const [storeOpen, setStoreOpen] = useState(false);
+  //   useEffect(() => {
+  //     const config = {
+  //       withCredentials: true,
+  //     }
+  //     axios
+  //     .get(`${apiUrl}/api/v1/store/sales`, config)
+  //     .then((response) => {
+  //       console.log(response);
+  //             setStoreOpen(response.data);
+  //             console.log(storeOpen);
+  //         })
+  //         .catch((error) => {
+  //             console.error(error);
+  //         }
+  //         // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="header">
@@ -47,9 +61,9 @@ const Header = () => {
             </div>
           )}
           {Sound ? (
-            <img src={SoundOn} onClick={ClickFalse} alt="SoundOn" />
+            <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
           ) : (
-            <img src={SoundOff} onClick={ClickTrue} alt="SoundOff" />
+            <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
           )}
         </Col>
       </Row>

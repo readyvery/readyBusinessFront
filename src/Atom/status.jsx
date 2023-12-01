@@ -1,13 +1,41 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
+import { Refresh } from "../hoc/handleRefresh";
 
 export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
   default: false, // 초깃값
 });
 
+export const selectStoreState = selector({
+  key: "selectStoreState",
+  get: ({ get }) => {
+    return get(storeState);
+  },
+
+  set: ({ set }, newValue) => {
+    set(storeState, newValue);
+  },
+});
+
 export const soundState = atom({
   key: "soundState",
+  default: false,
+});
+
+export const selectSoundState = selector({
+  key: "selectSoundState",
+  get: ({ get }) => {
+    return get(soundState);
+  },
+
+  set: ({ set }, newValue) => {
+    set(soundState, newValue);
+  },
+});
+
+export const isRecentFirstState = atom({
+  key: "isRecentFirstState",
   default: true,
 });
 
@@ -19,7 +47,12 @@ export const isAuthenticatedState = atom({
 export const getAuthenticatedSelector = selector({
   key: "auth/get",
   get: async ({ get }) => {
-    return get(isAuthenticatedState);
+    const tokenResult = Refresh();
+    if (tokenResult) {
+      return "재발급 성공";
+    } else {
+      return "토큰 유효";
+    }
   },
 
   set: ({ set }) => {
