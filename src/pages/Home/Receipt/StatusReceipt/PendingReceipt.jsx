@@ -171,7 +171,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
         <span className="receipt-text">
           {orderProps?.price
             .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           원
         </span>
       </div>
