@@ -28,6 +28,43 @@ const Progress = ({ orderInfo }) => {
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
 
+  const onClickHandler = (selectedOrder) => {
+    setOrderSelect(selectedOrder);
+    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
+
+    if (selectedOrder === null) {
+      setStatusSelect("null");
+    } else {
+      setStatusSelect("progress");
+    }
+  };
+
+  const defaultOrder = () => {
+    console.log("defaultOrder");
+    const sortedOrdersArray = isRecentFirst
+      ? orderInfo?.orders
+      : [...(orderInfo?.orders || [])].reverse();
+
+    const firstOrder =
+      sortedOrdersArray?.length > 0 ? sortedOrdersArray[0] : null;
+
+    if (firstOrder !== null) {
+      console.log("firstOrder defaultOrder");
+      setStatusSelect("pregress");
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder.idx);
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+      setSelectedOrderId(null);
+    }
+  };
+
+  const onClickSorter = () => {
+    setIsRecentFirst(!isRecentFirst);
+    defaultOrder();
+  };
+
   useEffect(() => {
     const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
     setOrderSelect(firstOrder);
@@ -42,22 +79,6 @@ const Progress = ({ orderInfo }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onClickHandler = (selectedOrder) => {
-    setOrderSelect(selectedOrder);
-    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
-
-    if (selectedOrder === null) {
-      setStatusSelect("null");
-    } else {
-      setStatusSelect("progress");
-    }
-  };
-
-  // useEffect(() => {
-  //   // OrderBox가 생성될 때마다 개수 증가
-  //   setOrderCount((prev) => ({ ...prev, progress: orderInfo?.orders?.length }));
-  // }, [orderInfo, setOrderCount]);
-
   return (
     <div className="Order-wrapper">
       <div className="Order-title__wrapper">
@@ -66,18 +87,12 @@ const Progress = ({ orderInfo }) => {
         <span className="Order-title__span">픽업유무</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
