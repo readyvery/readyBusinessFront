@@ -34,7 +34,7 @@ export default function UserPowerChart({data}) {
                 enabled: true,
                 formatter: function (val) {
                   const newVal = (val / 10000);
-                  return `${newVal.toFixed(1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}만원`;
+                  return `${newVal.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}만원`;
                 },
                 offsetY: -20,
                 style: {
@@ -78,7 +78,7 @@ export default function UserPowerChart({data}) {
                   // show: false,
                   formatter: function (val) {
                     const newVal = (val / 10000);
-                    return `${newVal.toFixed(1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}만원`;
+                    return `${newVal.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}만원`;
                   }
                 }
               
@@ -87,7 +87,7 @@ export default function UserPowerChart({data}) {
                 show: false,
                 formatter: function (val) {
                   const newVal = (val / 10000);
-                  return `${newVal.toFixed(1).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}만원`;                }
+                  return `${newVal.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}만원`;                }
               },
               fill: {
                 colors: ['#D82356']
