@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
 import { isRecentFirstState, soundState } from "../../../Atom/status";
-// import VeryMp3 from "../../../assets/Very.mp3";
+import MP from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
-import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
+import EffectSound from "../../../utils/EffectSound";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  console.log("페이지 로딩");
+  const Mp = EffectSound(MP, 1);
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
   const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
@@ -33,8 +33,8 @@ const Wait = ({ orderInfo }) => {
     }
 
     if (playSound && orderInfo?.orders?.length >= orderTotal) {
-      AudioPlayer(); // 소리 재생
       console.log("소리 재생");
+      Mp.play();
       setorderTotal(orderInfo?.orders?.length);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
