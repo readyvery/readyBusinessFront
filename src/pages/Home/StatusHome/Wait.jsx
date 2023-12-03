@@ -8,9 +8,11 @@ import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  console.log("페이지 로딩");
-  const setOrderSelect = useSetRecoilState(selectOrder);
+const Mp = EffectSound(MP, 1);
+
+
   const setStatusSelect = useSetRecoilState(selectStatus);
+  const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
   const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
   const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
@@ -20,19 +22,19 @@ const Wait = ({ orderInfo }) => {
     : orderInfo?.orders;
 
   useEffect(() => {
-    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
-    setOrderSelect(firstOrder);
-    setSelectedOrderId(firstOrder?.idx || null);
+    if (orderSelect === null) {
+      const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder?.idx || null);
 
-    if (firstOrder !== null) {
-      setStatusSelect("pending");
-    } else {
-      setStatusSelect("null");
-      setOrderSelect(null);
+      if (firstOrder !== null) {
+        setStatusSelect("pending");
+      } else {
+        setStatusSelect("null");
+        setOrderSelect(null);
+      }
     }
-
-    if (playSound && orderInfo?.orders?.length >= orderTotal) {
-      AudioPlayer(); // 소리 재생
+    if (playSound && orderInfo?.orders?.length > orderTotal) {
       console.log("소리 재생");
       setorderTotal(orderInfo?.orders?.length);
     }

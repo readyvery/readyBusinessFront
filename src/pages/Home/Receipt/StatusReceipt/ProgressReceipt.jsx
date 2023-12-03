@@ -7,7 +7,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   // const setOrderSelect = useSetRecoilState(selectOrder);
   // const { orderNum, time, phone, foodies, payment, price } = orderProps;
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     const config = {
       withCredentials: true,
     };
@@ -16,24 +16,26 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       orderId: orderProps.orderId,
       status: "COMPLETE",
     };
-    console.log(body);
+    try {
+      const res = await axios.post(
+        `${apiUrl}/api/v1/order/complete`,
+        body,
+        config
+      );
+      console.log(res);
+      if (res.data.success === true) {
+        message.success("제조완료 처리되었습니다.");
 
-    axios
-      .post(`${apiUrl}/api/v1/order/complete`, body, config)
-      .then((res) => {
-        console.log(res);
-        if (res.data.success === true) {
-          message.info("제조완료 처리되었습니다.");
-          // 데이터 다시 fetch
-          fetchData();
-          // select된 데이터 변경
-          setStatus("null");
-          setOrder(null);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        // fetchData가 완료될 때까지 기다립니다.
+        await fetchData();
+
+        // fetchData가 완료된 후에 실행됩니다.
+        setStatus("null");
+        setOrder(null);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -70,7 +72,15 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
-              <span className="receipt-optiontext">└ {option}</span>
+              <span
+                className="receipt-optiontext"
+                style={{
+                  color: option?.price !== 0 ? "#D82356" : undefined,
+                  fontWeight: "500",
+                }}
+              >
+                └ ({option.category}) {option.name}
+              </span>
             ))}
           </div>
         </React.Fragment>
@@ -78,15 +88,12 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">결제수단</span>
-        <span className="receipt-text">{orderProps?.payment}</span>
+        <span className="receipt-text">{orderProps?.method}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
         <span className="receipt-text">
-          {orderProps?.price
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          원
+          {orderProps?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
         </span>
       </div>
     </div>
