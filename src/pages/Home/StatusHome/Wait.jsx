@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
 import { isRecentFirstState, soundState } from "../../../Atom/status";
-// import VeryMp3 from "../../../assets/Very.mp3";
+import MP from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
-import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
+import EffectSound from "../../../utils/EffectSound";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  const setOrderSelect = useSetRecoilState(selectOrder);
+  const Mp = EffectSound(MP, 1);
+
   const setStatusSelect = useSetRecoilState(selectStatus);
+  const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
   const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
   const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
@@ -20,20 +22,25 @@ const Wait = ({ orderInfo }) => {
     : orderInfo?.orders;
 
   useEffect(() => {
-    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
-    setOrderSelect(firstOrder);
-    setSelectedOrderId(firstOrder?.idx || null);
+    if (orderSelect === null) {
+      const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+      setOrderSelect(firstOrder);
+      setSelectedOrderId(firstOrder?.idx || null);
 
-    if (firstOrder !== null) {
-      setStatusSelect("pending");
-    } else {
-      setStatusSelect("null");
-      setOrderSelect(null);
+      if (firstOrder !== null) {
+        setStatusSelect("pending");
+      } else {
+        setStatusSelect("null");
+        setOrderSelect(null);
+      }
     }
 
-    if (playSound && orderInfo?.orders?.length >= orderTotal) {
-      AudioPlayer(); // 소리 재생
+    /**
+     * 주문 들어올 시 소리 재생
+     */
+    if (playSound && orderInfo?.orders?.length > orderTotal) {
       console.log("소리 재생");
+      Mp.play();
       setorderTotal(orderInfo?.orders?.length);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,27 +60,13 @@ const Wait = ({ orderInfo }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+  const defaultOrder = () => {
+    const sortedOrdersArray = isRecentFirst
+      ? orderInfo?.orders
+      : [...(orderInfo?.orders || [])].reverse();
 
-  //   if (firstOrder !== null) {
-  //     setStatusSelect("pending");
-  //     setOrderSelect(firstOrder);
-  //     setSelectedOrderId(firstOrder.idx);
-  //   } else {
-  //     setStatusSelect("null");
-  //     setOrderSelect(null);
-  //     setSelectedOrderId(null);
-  //   }
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [sortedOrders]);
-
-  useEffect(() => {
-    const sortedOrders = isRecentFirst
-      ? [...(orderInfo?.orders || [])].reverse()
-      : orderInfo?.orders;
-    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    const firstOrder =
+      sortedOrdersArray?.length > 0 ? sortedOrdersArray[0] : null;
 
     if (firstOrder !== null) {
       setStatusSelect("pending");
@@ -84,7 +77,24 @@ const Wait = ({ orderInfo }) => {
       setOrderSelect(null);
       setSelectedOrderId(null);
     }
+  };
 
+  const onClickSorter = () => {
+    setIsRecentFirst(!isRecentFirst);
+    defaultOrder();
+  };
+
+  useEffect(() => {
+    const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
+    setOrderSelect(firstOrder);
+    setSelectedOrderId(firstOrder?.idx && firstOrder?.idx);
+
+    if (firstOrder !== null) {
+      setStatusSelect("pending");
+    } else {
+      setStatusSelect("null");
+      setOrderSelect(null);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -93,21 +103,15 @@ const Wait = ({ orderInfo }) => {
       <div className="Order-title__wrapper">
         <span className="Order-title__span">주문번호</span>
         <span className="Order-title__span">주문일시</span>
-        <span className="Order-title__span">픽업유무</span>
+        <span className="Order-title__span">수령방식</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             최신순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>
         ) : (
-          <span
-            className="Order-title__span"
-            onClick={() => setIsRecentFirst(!isRecentFirst)}
-          >
+          <span className="Order-title__span" onClick={onClickSorter}>
             과거순
             <img alt="new" className="Arrowicon" src={downArrow} />
           </span>

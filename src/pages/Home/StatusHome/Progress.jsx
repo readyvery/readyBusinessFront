@@ -7,26 +7,50 @@ import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Progress = ({ orderInfo }) => {
-  // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
-
-  /*
-  const sortedOrders = isRecentFirst
-    ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
-        if (prev?.price > cur?.price) return -1;
-        if (prev?.price < cur?.price) return 1;
-        return 0;
-      })
-    : orderInfo?.orders;
-*/
-
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
+
+  const onClickHandler = (selectedOrder) => {
+    setOrderSelect(selectedOrder);
+    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
+
+    if (selectedOrder === null) {
+      setStatusSelect("null");
+    } else {
+      setStatusSelect("progress");
+    }
+  };
+
+  //   console.log("defaultOrder");
+  //   const sortedOrdersArray = isRecentFirst
+  //     ? orderInfo?.orders
+  //     : [...(orderInfo?.orders || [])].reverse();
+
+  //   const firstOrder =
+  //     sortedOrdersArray?.length > 0 ? sortedOrdersArray[0] : null;
+
+  //   if (firstOrder !== null) {
+  //     console.log("firstOrder defaultOrder");
+  //     setStatusSelect("pregress");
+  //     setOrderSelect(firstOrder);
+  //     setSelectedOrderId(firstOrder.idx);
+  //   } else {
+  //     setStatusSelect("null");
+  //     setOrderSelect(null);
+  //     setSelectedOrderId(null);
+  //   }
+  // };
+
+  // const onClickSorter = () => {
+  //   setIsRecentFirst(!isRecentFirst);
+  //   defaultOrder();
+  // };
 
   useEffect(() => {
     const firstOrder = sortedOrders?.length > 0 ? sortedOrders[0] : null;
@@ -40,30 +64,14 @@ const Progress = ({ orderInfo }) => {
       setOrderSelect(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onClickHandler = (selectedOrder) => {
-    setOrderSelect(selectedOrder);
-    setSelectedOrderId(selectedOrder?.idx && selectedOrder?.idx);
-
-    if (selectedOrder === null) {
-      setStatusSelect("null");
-    } else {
-      setStatusSelect("progress");
-    }
-  };
-
-  // useEffect(() => {
-  //   // OrderBox가 생성될 때마다 개수 증가
-  //   setOrderCount((prev) => ({ ...prev, progress: orderInfo?.orders?.length }));
-  // }, [orderInfo, setOrderCount]);
+  }, [isRecentFirst]);
 
   return (
     <div className="Order-wrapper">
       <div className="Order-title__wrapper">
         <span className="Order-title__span">주문번호</span>
         <span className="Order-title__span">주문일시</span>
-        <span className="Order-title__span">픽업유무</span>
+        <span className="Order-title__span">수령방식</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
           <span

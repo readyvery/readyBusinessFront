@@ -1,0 +1,23 @@
+.Dropdown {
+  color: #4f4f4f;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 1.125rem */
+
+  position: absolute;
+  /* left: calc((100vw - 8.875rem) * 0.275); */
+  top: 10rem;
+  left: 17.14375rem;
+  /* left: 0; */
+  display: flex;
+  flex-direction: column;
+  /* width: 17.1875rem; */
+  width: 8.0625rem;
+  height: 3.41669rem;
+  border-radius: 0 0 0.625rem 0.625rem;
+  z-index: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
