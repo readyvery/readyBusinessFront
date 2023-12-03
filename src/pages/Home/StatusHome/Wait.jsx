@@ -103,7 +103,7 @@ const Wait = ({ orderInfo }) => {
       <div className="Order-title__wrapper">
         <span className="Order-title__span">주문번호</span>
         <span className="Order-title__span">주문일시</span>
-        <span className="Order-title__span">픽업유무</span>
+        <span className="Order-title__span">수령방식</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
           <span className="Order-title__span" onClick={onClickSorter}>
