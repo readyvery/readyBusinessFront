@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
 import { isRecentFirstState, soundState } from "../../../Atom/status";
-import MP from "../../../assets/Very.mp3";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
+import AudioPlayer from "../../../components/views/Audio/AudioPlayer";
 import OrderBox from "../../../components/views/Order/OrderBox";
-import EffectSound from "../../../utils/EffectSound";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  const Mp = EffectSound(MP, 1);
+  console.log("페이지 로딩");
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
   const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
@@ -33,8 +32,8 @@ const Wait = ({ orderInfo }) => {
     }
 
     if (playSound && orderInfo?.orders?.length >= orderTotal) {
+      AudioPlayer(); // 소리 재생
       console.log("소리 재생");
-      Mp.play();
       setorderTotal(orderInfo?.orders?.length);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,7 +96,7 @@ const Wait = ({ orderInfo }) => {
       <div className="Order-title__wrapper">
         <span className="Order-title__span">주문번호</span>
         <span className="Order-title__span">주문일시</span>
-        <span className="Order-title__span">픽업유무</span>
+        <span className="Order-title__span">수령방식</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
           <span className="Order-title__span" onClick={onClickSorter}>

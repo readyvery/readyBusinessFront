@@ -7,23 +7,11 @@ import OrderBox from "../../../components/views/Order/OrderBox";
 import "./DetailHome.css";
 
 const Progress = ({ orderInfo }) => {
-  // const [orderCount, setOrderCount] = useRecoilState(ordercnt); // Recoil 상태 가져오기
   const setOrderSelect = useSetRecoilState(selectOrder);
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
-
-  /*
-  const sortedOrders = isRecentFirst
-    ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
-        if (prev?.price > cur?.price) return -1;
-        if (prev?.price < cur?.price) return 1;
-        return 0;
-      })
-    : orderInfo?.orders;
-*/
-
   const sortedOrders = isRecentFirst
     ? [...(orderInfo?.orders || [])].reverse()
     : orderInfo?.orders;
@@ -83,7 +71,7 @@ const Progress = ({ orderInfo }) => {
       <div className="Order-title__wrapper">
         <span className="Order-title__span">주문번호</span>
         <span className="Order-title__span">주문일시</span>
-        <span className="Order-title__span">픽업유무</span>
+        <span className="Order-title__span">수령방식</span>
         <span className="Order-title__span">주문금액</span>
         {isRecentFirst ? (
           <span

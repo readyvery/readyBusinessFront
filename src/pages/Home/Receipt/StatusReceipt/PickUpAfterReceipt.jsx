@@ -1,46 +1,12 @@
-import { message } from "antd";
-import axios from "axios";
 import React from "react";
 
-const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-  // const setOrderSelect = useSetRecoilState(selectOrder);
-
-  const handleComplete = () => {
-    const config = {
-      withCredentials: true,
-    };
-
-    const body = {
-      orderId: orderProps.orderId,
-      status: "PICKUP",
-    };
-    console.log(body);
-
-    axios
-      .post(`${apiUrl}/api/v1/order/complete`, body, config)
-      .then((res) => {
-        console.log(res);
-        if (res.data.success === true) {
-          message.info("픽업완료 처리되었습니다.");
-          // 데이터 다시 fetch
-          fetchData();
-          // select된 데이터 변경
-          setStatus("null");
-          setOrder(null);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
+const PickUpAfterReceipt = ({ orderProps, setStatus, setOrder }) => {
   return (
     <div>
       <div className="receiptHeader">
         <span className="receipt-header"> 주문번호 {orderProps?.orderNum}</span>
 
-        <button className="receipt-btn" onClick={handleComplete}>
-          완료처리
-        </button>
+        <button className="receipt-btn-pickUp">픽업완료</button>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
@@ -87,4 +53,4 @@ const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   );
 };
 
-export default CompleteReceipt;
+export default PickUpAfterReceipt;

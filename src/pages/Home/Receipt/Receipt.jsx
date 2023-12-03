@@ -5,6 +5,7 @@ import "./Receipt.css";
 
 import CompleteReceipt from "./StatusReceipt/CompleteReceipt";
 import PendingReceipt from "./StatusReceipt/PendingReceipt";
+import PickUpAfterReceipt from "./StatusReceipt/PickUpAfterReceipt";
 import ProgressReceipt from "./StatusReceipt/ProgressReceipt";
 
 const Receipt = ({ fetchData }) => {
@@ -30,6 +31,13 @@ const Receipt = ({ fetchData }) => {
           />
         ) : Status === "complete" ? (
           <CompleteReceipt
+            orderProps={Order}
+            setStatus={setStatus}
+            setOrder={setOrder}
+            fetchData={fetchData}
+          />
+        ) : Status === "pickUp" ? (
+          <PickUpAfterReceipt
             orderProps={Order}
             setStatus={setStatus}
             setOrder={setOrder}
