@@ -52,7 +52,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       });
   };
 
-  const handleMake = (e) => {
+  const handleMake = async (e) => {
     const config = {
       withCredentials: true,
     };
@@ -62,24 +62,27 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       status: "MAKE",
       time: parseInt(e.target.innerText.split("분")[0]),
     };
-    console.log(body);
 
-    axios
-      .post(`${apiUrl}/api/v1/order/complete`, body, config)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          alert("접수되었습니다.");
-          setReceiveModal((prev) => !prev);
-          // 데이터 다시 fetch
-          fetchData();
-          // select된 데이터 변경
-          // 클릭 시 스타일 변화
-          setStatus("null");
-          setOrder(null);
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      const res = await axios.post(
+        `${apiUrl}/api/v1/order/complete`,
+        body,
+        config
+      );
+      console.log(res);
+      if (res.status === 200) {
+        message.success("접수되었습니다.");
+        setReceiveModal((prev) => !prev);
+        // 데이터 다시 fetch
+        await fetchData();
+        // select된 데이터 변경
+        // 클릭 시 스타일 변화
+        setStatus("null");
+        setOrder(null);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -156,7 +159,15 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
-              <span className="receipt-optiontext">└ {option}</span>
+              <span
+                className="receipt-optiontext"
+                style={{
+                  color: option?.price !== 0 ? "#D82356" : undefined,
+                  fontWeight: "500",
+                }}
+              >
+                └ ({option.category}) {option.name}
+              </span>
             ))}
           </div>
         </React.Fragment>
@@ -164,15 +175,12 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">결제수단</span>
-        <span className="receipt-text">{orderProps?.payment}</span>
+        <span className="receipt-text">{orderProps?.method}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
         <span className="receipt-text">
-          {orderProps?.price
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          원
+          {orderProps?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
         </span>
       </div>
 
