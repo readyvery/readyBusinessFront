@@ -4,6 +4,13 @@
   padding: 0%;
 }
 
+.Order-wrapper-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0%;
+}
+
 .Order-title__wrapper {
   display: flex;
   padding-left: 1%;
@@ -14,7 +21,7 @@
   align-items: center;
   justify-content: center;
 
-  width: 8.25rem;
+  width: 6.25rem;
   height: 3.125rem;
   text-align: center;
 
@@ -40,7 +47,7 @@
 .Order-content__box {
   /* width: 33.375rem; */
   width: 100%;
-  padding: 2% 0% 2% 0%;
+  padding: 2% 2.7% 2% 0%;
 
   border-bottom: 1px solid #838383;
 
@@ -65,12 +72,37 @@
   line-height: 100%; /* 1.25rem */
 }
 
-.Order-content__span div{
+.Order-content__span div {
   white-space: nowrap;
   font-size: 1.125rem;
 }
 
 .Arrowicon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.Dropdown-box {
+  color: #4f4f4f;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 1.125rem */
+  position: absolute;
+  /* left: calc((100vw - 8.875rem) * 0.275); */
+  top: 14rem;
+  left: 24.7rem;
+  /* left: 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 17.1875rem; */
+  width: 8.0625rem;
+  height: 9rem;
+  border-radius: 0 0 0.625rem 0.625rem;
+  background-color: #fff;
+  z-index: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
