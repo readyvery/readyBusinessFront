@@ -1,6 +1,6 @@
 import React from "react";
 
-const PickUpAfterReceipt = ({ orderProps, setStatus, setOrder }) => {
+const PickUpAfterReceipt = ({ orderProps }) => {
   return (
     <div>
       <div className="receiptHeader">

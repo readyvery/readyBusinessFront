@@ -14,16 +14,6 @@ const Complete = ({ orderInfo, pickUpInfo }) => {
   const [viewStatus, setViewStatus] = useState("All");
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
-  /*
-  const sortedOrders = isRecentFirst
-    ? [...(orderInfo?.orders || [])].sort((prev, cur) => {
-        if (prev?.price > cur?.price) return -1;
-        if (prev?.price < cur?.price) return 1;
-        return 0;
-      })
-    : orderInfo?.orders;
-*/
-
   const onClickViewer = (viewStatus) => {
     setViewStatus(viewStatus);
   };

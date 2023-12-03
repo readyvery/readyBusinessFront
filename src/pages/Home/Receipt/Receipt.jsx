@@ -37,12 +37,7 @@ const Receipt = ({ fetchData }) => {
             fetchData={fetchData}
           />
         ) : Status === "pickUp" ? (
-          <PickUpAfterReceipt
-            orderProps={Order}
-            setStatus={setStatus}
-            setOrder={setOrder}
-            fetchData={fetchData}
-          />
+          <PickUpAfterReceipt orderProps={Order} />
         ) : (
           <div alt="nullReceipt" />
         )}
