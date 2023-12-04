@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -12,7 +13,7 @@ import "./MainMypage.css";
 const MainMypage = React.memo(() => {
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const [, , removeCookies] = useCookies();
+  const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
   const setIsLoggedIn = useSetRecoilState(loginState);
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [cafeInfo, setCafeInfo] = useState({});
@@ -49,13 +50,14 @@ const MainMypage = React.memo(() => {
           accessToken: null,
           expiredTime: null,
         });
+        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+        // window.localStorage.setItem("isAuthenticated", false);
+        message.success("로그아웃에 성공하셨습니다.");
         navigate("/");
-        removeCookies("accessToken");
-        removeCookies("JSESSIONID");
-        window.localStorage.setItem("isAuthenticated", false);
       })
       .catch((error) => {
-        alert("관리자에게 문의하세요.");
+        message.info("관리자에게 문의하세요.");
         navigate("/");
       });
   };
