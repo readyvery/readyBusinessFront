@@ -36,11 +36,11 @@ function App() {
   // const expiredTime = 65000;
   useInterval(() => {
     // console.log(cookies.refreshToken);
-    // if (
-    //   cookies.refreshToken !== "undefined" &&
-    //   cookies.refreshToken !== undefined &&
-    //   cookies.refreshToken
-    // ) {
+    if (
+      cookies.refreshToken !== "undefined" &&
+      cookies.refreshToken !== undefined &&
+      cookies.refreshToken
+    ) {
     if (cookies.accessToken) {
       const config = {
         withCredentials: true,
@@ -59,8 +59,8 @@ function App() {
           navigate("/");
         });
     }
-    // }
-  }, expiredTime);
+    }
+  }, expiredTime - 60000);
   if (location.pathname === "/") {
     return (
       <div>
