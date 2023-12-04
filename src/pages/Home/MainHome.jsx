@@ -6,7 +6,7 @@ import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
-const MainHome = ({ waitInfo, makeInfo, completeInfo }) => {
+const MainHome = ({ waitInfo, makeInfo, completeInfo, pickUpInfo }) => {
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [status, setStatus] = useState("Wait");
@@ -20,6 +20,7 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo }) => {
     if (name === "Wait") setStatusSelect("pending");
     else if (name === "Progress") setStatusSelect("progress");
     else if (name === "Complete") setStatusSelect("complete");
+    else if (name === "PickUp") setStatusSelect("pickup");
     else setStatusSelect("null");
   };
 
@@ -66,10 +67,7 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo }) => {
               }`}
               onClick={onClickHandler}
             >
-              제조완료{" "}
-              {completeInfo?.orders?.length > 0
-                ? completeInfo?.orders?.length
-                : 0}
+              픽업 관리{" "}
             </div>
           </div>
         </div>
@@ -80,7 +78,7 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo }) => {
       ) : status === "Progress" ? (
         <Progress orderInfo={makeInfo} />
       ) : status === "Complete" ? (
-        <Complete orderInfo={completeInfo} />
+        <Complete orderInfo={completeInfo} pickUpInfo={pickUpInfo} />
       ) : (
         <div>ERROR</div>
       )}

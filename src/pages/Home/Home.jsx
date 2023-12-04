@@ -10,6 +10,7 @@ function Home() {
   const [waitInfo, setWaitInfo] = useState({});
   const [makeInfo, setMakeInfo] = useState({});
   const [completeInfo, setCompleteInfo] = useState({});
+  const [pickUpInfo, setpickUpInfo] = useState({});
 
   const waitData = () => {
     const config = {
@@ -68,10 +69,30 @@ function Home() {
       });
   };
 
+  const pickUpData = () => {
+    const config = {
+      withCredentials: true,
+    };
+
+    axios
+      .get(`${apiUrl}/api/v1/order?status=PICKUP`, config)
+      .then((res) => {
+        console.log(res);
+        setpickUpInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.status === 404 && err.message === "Not found order.") {
+          setpickUpInfo({});
+        }
+      });
+  };
+
   const fetchData = () => {
     waitData();
     makeData();
     completeData();
+    pickUpData();
   };
 
   useEffect(() => {
@@ -93,6 +114,7 @@ function Home() {
           waitInfo={waitInfo}
           makeInfo={makeInfo}
           completeInfo={completeInfo}
+          pickUpInfo={pickUpInfo}
         />
         <Receipt fetchData={fetchData} />
       </main>
