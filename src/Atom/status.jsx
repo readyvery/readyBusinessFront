@@ -1,10 +1,14 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
+import { recoilPersist } from 'recoil-persist';
 import { Refresh } from "../hoc/handleRefresh";
+
+const { persistAtom } = recoilPersist();
 
 export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
   default: false, // 초깃값
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectStoreState = selector({
@@ -16,11 +20,13 @@ export const selectStoreState = selector({
   set: ({ set }, newValue) => {
     set(storeState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const soundState = atom({
   key: "soundState",
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectSoundState = selector({
@@ -32,16 +38,19 @@ export const selectSoundState = selector({
   set: ({ set }, newValue) => {
     set(soundState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const isRecentFirstState = atom({
   key: "isRecentFirstState",
   default: true,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const isAuthenticatedState = atom({
   key: "isAuthenticatedState",
   default: false,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const getAuthenticatedSelector = selector({
@@ -58,6 +67,7 @@ export const getAuthenticatedSelector = selector({
   set: ({ set }) => {
     set(isAuthenticatedState, (currentValue) => !currentValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const loginState = atom({
@@ -66,11 +76,13 @@ export const loginState = atom({
     accessToken: null,
     expiredTime: null,
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userState = atom({
   key: "userState",
   dafault: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const getUserSelector = selector({
@@ -97,6 +109,7 @@ export const getUserSelector = selector({
   set: ({ set }, newValue) => {
     set(userState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 // export const waitorderState = atom({

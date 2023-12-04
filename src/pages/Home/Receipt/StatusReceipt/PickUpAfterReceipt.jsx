@@ -32,8 +32,16 @@ const PickUpAfterReceipt = ({ orderProps }) => {
             <span className="receipt-text">{e.count}</span>
           </div>
           <div className="receiptOption">
-            {e.options.map((option) => (
-              <span className="receipt-optiontext">└ {option}</span>
+            {e.options?.map((option) => (
+              <span
+              className="receipt-optiontext"
+              style={{
+                color: option?.price !== 0 ? "#D82356" : undefined,
+                fontWeight: "500",
+              }}
+            >
+              └ ({option.category}) {option.name}
+            </span>
             ))}
           </div>
         </React.Fragment>
