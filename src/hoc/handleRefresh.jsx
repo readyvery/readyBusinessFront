@@ -10,11 +10,12 @@ const Refresh = async () => {
   const [loginInfo, setLoginInfo] = useRecoilState(loginState);
   const expireAt = loginInfo.expiredTime;
   const [cookies] = useCookies(["accessToken"]);
-  console.log("만료확인");
+  // console.log(moment(expireAt).diff(moment()));
+  // console.log(moment());
 
   // 토큰이 만료되었다면
 
-  if (moment(expireAt).diff(moment()) < 0) {
+  if (moment(expireAt).diff(moment()) <= 0) {
     const config = {
         withCredentials: true
     }
@@ -29,7 +30,7 @@ const Refresh = async () => {
     console.log("재발급 성공", res);
     setLoginInfo({
         accessToken: cookies,
-        expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss")
+        expiredTime: moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")
     });
 
     return true;

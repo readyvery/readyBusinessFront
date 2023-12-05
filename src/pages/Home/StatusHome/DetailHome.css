@@ -37,11 +37,17 @@
   padding: 0%;
 
   /* height: calc(46.25rem - 5.0625rem); */
-  /* height: calc(42.5rem - 5.0625rem); */
+  height: calc(48rem - 5.5rem - 9.3125rem);
   overflow-y: auto;
 
   display: flex;
   flex-direction: column;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.Order-content__wrapper::-webkit-scrollbar{
+  display: none;
 }
 
 .Order-content__box {

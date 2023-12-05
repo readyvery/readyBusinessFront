@@ -4,11 +4,14 @@ import axios from 'axios';
 import 'moment/locale/ko';
 import moment from 'moment/moment';
 import React, { useEffect, useState } from "react";
+import { useCookies } from 'react-cookie';
 import ApexChart from '../../components/views/Chart/ApexChart';
 import "./MainSales.css";
 
 const MainSales = () => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
+
+  const [cookies] = useCookies(["accessToken"]);
   
   const [currentDate, setCurrentDate] = useState({
     monday: moment(moment()).startOf('isoWeek'),
@@ -68,20 +71,22 @@ const MainSales = () => {
       .catch((err) => console.log(err));
   }
   useEffect(() => {
-    const config = {
-      withCredentials: true
-    };
-    
-    axios.get(`${apiUrl}/api/v1/sale/total`, config)
-      .then((res) => {
-        console.log(res);
-        if(res.data.success){
-          setTotalSale(res.data.totalSale);
-        }
-      })
-      .catch((err) => console.log(err));
+    if(cookies?.accessToken){
+      const config = {
+        withCredentials: true
+      };
+      
+      axios.get(`${apiUrl}/api/v1/sale/total`, config)
+        .then((res) => {
+          console.log(res);
+          if(res.data.success){
+            setTotalSale(res.data.totalSale);
+          }
+        })
+        .catch((err) => console.log(err));
 
-    fetchSales(currentDate.monday.format("YYYY-MM-DD"));
+      fetchSales(currentDate.monday.format("YYYY-MM-DD"));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
