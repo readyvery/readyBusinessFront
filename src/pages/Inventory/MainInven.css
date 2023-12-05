@@ -50,13 +50,13 @@
     position: absolute;
     /* left: calc((100vw - 8.875rem) * 0.275); */
     top: 10rem;
-    left: 17.14375rem;
+    left: 8.26875rem;
     /* left: 0; */
     display: flex;
     flex-direction: column;
     /* width: 17.1875rem; */
     width: 13.78125rem;
-    max-height: 37.4375rem;
+    /* max-height: 37.4375rem; */
     border-radius: 0 0 0.625rem 0.625rem;
     background-color: #4F4F4F;
     z-index: 0;
@@ -90,13 +90,8 @@
 }
 
 .mainInven-category-content__wrapper{
-    /* width: 100%; */
     width: calc(64rem - 8.875rem);
-    /* height: calc(48rem - 5.5rem); */
-    /* height: calc(45.75rem - 5.0625rem); */
-    height: 37.4375rem;
-    /* height: calc(46.25rem - 5.0625rem); */
-    /* height: calc(42.5rem - 5.0625rem); */
+    height: calc(48rem - 5.5rem - 5.0625rem);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -173,7 +168,6 @@
     position: absolute;
     top: 5.5rem;
     bottom: 0;
-    left: 8.875rem;
     right: 0;
     width: 55.125rem;
     height: 42.5rem;

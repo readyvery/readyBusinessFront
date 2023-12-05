@@ -1,6 +1,7 @@
 .Main-Box {
   width: 60%; /* 너비 설정 */
   min-width: 33rem;
+  height: 100%;
 }
 
 .status-header {
