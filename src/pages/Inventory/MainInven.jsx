@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import close from "../../assets/icons/icon_closeModal.svg";
 import downArrow from "../../assets/icons/icon_downArrow.svg";
 import upArrow from "../../assets/icons/icon_upArrow.svg";
@@ -20,6 +21,8 @@ function MainInven () {
   const [categoryList, setCategoryList] = useState([]);
   const [invenList, setInvenList] = useState([]);
 
+  const [cookies] = useCookies(["accessToken"]);
+
   const fetchData = useCallback(() => {
     const config = {
       withCredentials: true
@@ -35,7 +38,9 @@ function MainInven () {
   }, []);
 
   useEffect(() => {
-    fetchData();
+    if(cookies.accessToken){
+      fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiUrl]);
 

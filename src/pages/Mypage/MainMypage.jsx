@@ -18,6 +18,8 @@ const MainMypage = React.memo(() => {
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [cafeInfo, setCafeInfo] = useState({});
 
+  const [cookies] = useCookies(["accessToken"]);
+
   const fetchData = () => {
     const config = {
       withCredentials: true
@@ -32,7 +34,9 @@ const MainMypage = React.memo(() => {
   };
 
   useEffect(() => {
-    fetchData();
+    if(cookies?.accessToken){
+      fetchData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

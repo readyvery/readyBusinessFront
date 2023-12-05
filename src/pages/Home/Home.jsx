@@ -1,16 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+
 import "./Home.css";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt/Receipt";
 
-function Home() {
+function Home() { 
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
   const [waitInfo, setWaitInfo] = useState({});
   const [makeInfo, setMakeInfo] = useState({});
   const [completeInfo, setCompleteInfo] = useState({});
   const [pickUpInfo, setpickUpInfo] = useState({});
+  
+
+  const [cookies] = useCookies(["accessToken"]);
 
   const waitData = () => {
     const config = {
@@ -96,14 +101,16 @@ function Home() {
   };
 
   useEffect(() => {
-    const fetchDataAndSetInterval = async () => {
-      await fetchData();
-    };
+    console.log(cookies.accessToken);
+    if(cookies.accessToken){
+      const fetchDataAndSetInterval = async () => {
+        await fetchData();
+      };
 
-    fetchDataAndSetInterval();
-    const intervalId = setInterval(waitData, 5000); // 5초마다 실행
-    return () => clearInterval(intervalId);
-
+      fetchDataAndSetInterval();
+      const intervalId = setInterval(waitData, 3000); // 5초마다 실행
+      return () => clearInterval(intervalId);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
