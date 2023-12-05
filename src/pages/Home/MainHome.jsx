@@ -1,15 +1,30 @@
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { selectStatus } from "../../Atom/order";
+import { soundState } from "../../Atom/status";
+import MP from "../../assets/Very.mp3";
+import EffectSound from "../../utils/EffectSound";
 import "./MainHome.css";
 import Complete from "./StatusHome/Complete";
 import Progress from "./StatusHome/Progress";
 import Wait from "./StatusHome/Wait";
 
 const MainHome = ({ waitInfo, makeInfo, completeInfo, pickUpInfo }) => {
+  const Mp = EffectSound(MP, 1);
   const setStatusSelect = useSetRecoilState(selectStatus);
 
   const [status, setStatus] = useState("Wait");
+  const [sound] = useRecoilState(soundState);
+  
+  useEffect(() => {
+    console.log(sound);
+    console.log(waitInfo);
+    if (sound && waitInfo?.orders?.length > 0) {
+      console.log("소리 재생");
+      Mp.play();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [waitInfo])
 
   const onClickHandler = (e) => {
     const name = e.target.id;
