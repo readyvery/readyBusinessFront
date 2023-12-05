@@ -16,13 +16,16 @@ function Auth(SpecificComponent, option) {
     const setIsLoggedIn = useSetRecoilState(loginState);
     const [cookies] = useCookies(["accessToken"]);
 
+    // const refresh = async () => {
+    //   await Refresh();
+    // };
+    // refresh();
+
     useEffect(() => {
       console.log(userInfo);
-      // console.log(tokenInfo);
-      // const isAuth = window.localStorage.getItem("isAuthenticated");
-      if (userInfo === "404" && location.pathname !== "/") {
-        navigate("/");
-      } else {
+      if (option && userInfo === "404" && location.pathname !== "/") {
+        navigate('/');
+      } else{
 
         if (
           !isAuth &&
@@ -32,7 +35,7 @@ function Auth(SpecificComponent, option) {
           setIsAuth(true);
           setIsLoggedIn({
             accessToken: getAccessTokenFromCookie(),
-            expiredTime: moment().add(1, "hour").format("yyyy-MM-DD HH:mm:ss"),
+            expiredTime: moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss"),
           });
           navigate("/home");
           message.success("로그인에 성공하셨습니다.");
@@ -41,9 +44,8 @@ function Auth(SpecificComponent, option) {
             // 로그인 상태에서 로그인 화면으로 갔을 경우
             navigate("/home");
           }
-        }
       }
-
+    }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return <SpecificComponent />;
