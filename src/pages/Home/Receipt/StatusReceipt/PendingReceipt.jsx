@@ -60,8 +60,9 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
     const body = {
       orderId: orderProps.orderId,
       status: "MAKE",
-      time: parseInt(e.target.innerText.split("분")[0]),
+      time: e.target.innerText === "즉시완료" ? 0 : parseInt(e.target.innerText.split("분")[0]),
     };
+    console.log(body.time);
 
     try {
       const res = await axios.post(
@@ -232,6 +233,16 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               <div className="modal-box-txt">제조 시간을 선택해주세요</div>
             </div>
             <div className="modal-box-choose-btn__wrapper">
+              <div className="modal-box-choose-btn__row">
+                <Col className="modal-box-choose-btn__col">
+                  <div
+                    className="modal-box-chooseTime-btn now"
+                    onClick={handleMake}
+                  >
+                    즉시완료
+                  </div>
+                </Col>
+              </div>
               <div className="modal-box-choose-btn__row">
                 <Col className="modal-box-choose-btn__col">
                   <div

@@ -1,5 +1,8 @@
+import { message } from "antd";
 import axios from "axios";
 import React from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { selectStoreState } from "../../../Atom/status";
 import StoreOn from "../../../assets/icons/Navbar/Store.svg"; //영업중
@@ -11,6 +14,8 @@ function StoreBtn() {
   //     set(storeState, !Store);
   //   });
   const baseUrl = process.env.REACT_APP_API_ROOT;
+  const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
 
   // 값을 설정하기
   const storeValue = useRecoilValue(selectStoreState); // 가게 영업 여부를 가져옵니다
@@ -31,6 +36,23 @@ function StoreBtn() {
         setSelectStore(response.data.status);
       })
       .catch((err) => console.log(err));
+
+    axios
+      .get(`${baseUrl}/api/v1/refresh/token`, config)
+      .then((response) => {
+        console.log(response);
+        // if (!response.data) {
+        //   removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+        //   removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+        //   // navigate("/");
+        // }
+      })
+      .catch((err) => {
+        removeCookie("accessToken", { domain: process.env.REACT_APP_DOMAIN });
+        removeCookie("JSESSIONID", { domain: process.env.REACT_APP_DOMAIN });
+        message.info("토큰이 만료되었습니다. 로그인을 진행해주세요.");
+        navigate("/");
+      });
   };
   return (
     <div>

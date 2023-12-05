@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { selectOrder, selectStatus, selectTotal } from "../../../Atom/order";
-import { isRecentFirstState, soundState } from "../../../Atom/status";
-import MP from "../../../assets/Very.mp3";
+import { selectOrder, selectStatus } from "../../../Atom/order";
+import { isRecentFirstState } from "../../../Atom/status";
 import downArrow from "../../../assets/icons/icon_downArrow_black.svg";
 import OrderBox from "../../../components/views/Order/OrderBox";
-import EffectSound from "../../../utils/EffectSound";
 import "./DetailHome.css";
 
 const Wait = ({ orderInfo }) => {
-  const Mp = EffectSound(MP, 1);
 
   const setStatusSelect = useSetRecoilState(selectStatus);
   const [orderSelect, setOrderSelect] = useRecoilState(selectOrder);
-  const [orderTotal, setorderTotal] = useRecoilState(selectTotal);
-  const [playSound, setplaySound] = useRecoilState(soundState);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isRecentFirst, setIsRecentFirst] = useRecoilState(isRecentFirstState);
   const sortedOrders = isRecentFirst
@@ -38,11 +33,10 @@ const Wait = ({ orderInfo }) => {
     /**
      * 주문 들어올 시 소리 재생
      */
-    if (playSound && orderInfo?.orders?.length >= orderTotal) {
-      console.log("소리 재생");
-      Mp.play();
-      setorderTotal(orderInfo?.orders?.length);
-    }
+    // if (sound && orderInfo?.orders?.length > 0) {
+    //   console.log("소리 재생");
+    //   Mp.play();
+    // }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderInfo]);
 
@@ -54,9 +48,6 @@ const Wait = ({ orderInfo }) => {
       setStatusSelect("null");
     } else {
       setStatusSelect("pending");
-    }
-    if (orderInfo?.orders?.length === null) {
-      setplaySound((prev) => prev);
     }
   };
 
