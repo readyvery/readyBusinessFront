@@ -22,10 +22,11 @@ const MainMypage = React.memo(() => {
 
   const fetchData = () => {
     const config = {
-      withCredentials: true
+      withCredentials: true,
     };
 
-    axios.get(`${apiUrl}/api/v1/user/info`, config)
+    axios
+      .get(`${apiUrl}/api/v1/user/info`, config)
       .then((res) => {
         console.log(res);
         setCafeInfo(res.data);
@@ -68,7 +69,7 @@ const MainMypage = React.memo(() => {
 
   const handleKaKao = () => {
     window.location.href = "http://pf.kakao.com/_ZxiEjG/chat";
-  }
+  };
 
   return (
     <div className="mypage-main__wrapper">
@@ -76,14 +77,16 @@ const MainMypage = React.memo(() => {
         <div className="mypage-top__box">
           <div className="mypage-top-txt__wrapper">
             <span className="mypage-top__txt">오늘도 준비된</span>
-            <div className="mypage-top-cafe__txt"><span>{cafeInfo?.storeName}</span> 사장님</div>
+            <div className="mypage-top-cafe__txt">
+              <span>{cafeInfo?.storeName}</span> 사장님
+            </div>
           </div>
           <div className="mypage-kakao__wrapper">
             <div>
               <img src={readyvery} alt="readyvery" />
             </div>
             <div className="mypage-kakao__txt">
-              <span style={{ 'color': '#000' }}>레디베리 상담</span>
+              <span style={{ color: "#000" }}>레디베리 상담</span>
               <span>매일 09:00 ~ 18:00</span>
             </div>
             <div className="mypage-kakao-img__box" onClick={handleKaKao}>
@@ -99,7 +102,7 @@ const MainMypage = React.memo(() => {
           <div className="mypage-content__box">
             <div>
               <span className="mypage-content__title">가게명</span>
-              <span className="mypage-content__txt">{cafeInfo?.storeName}</span> 
+              <span className="mypage-content__txt">{cafeInfo?.storeName}</span>
             </div>
 
             <div>
@@ -109,7 +112,7 @@ const MainMypage = React.memo(() => {
 
             <div>
               <span className="mypage-content__title">매장 연락처</span>
-              <span className="mypage-content__txt">{cafeInfo?.phone}</span> 
+              <span className="mypage-content__txt">{cafeInfo?.phone}</span>
             </div>
 
             <div>
@@ -119,9 +122,7 @@ const MainMypage = React.memo(() => {
 
             <div>
               <span className="mypage-content__title">등록 계좌번호</span>
-              <span className="mypage-content__txt">
-                KB국민은행 22930104331825
-              </span>
+              <span className="mypage-content__txt">{cafeInfo?.account}</span>
             </div>
           </div>
         </div>
