@@ -38,7 +38,7 @@ const Wait = ({ orderInfo }) => {
     /**
      * 주문 들어올 시 소리 재생
      */
-    if (playSound && orderInfo?.orders?.length > orderTotal) {
+    if (playSound && orderInfo?.orders?.length >= orderTotal) {
       console.log("소리 재생");
       Mp.play();
       setorderTotal(orderInfo?.orders?.length);
