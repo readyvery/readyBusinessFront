@@ -50,14 +50,14 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receiptTextBox">
         <span className="receipt-text">주문시간</span>
         <span className="receipt-text">
-          {orderProps?.time.split("T")[0].replaceAll("-", "/")}{" "}
-          {orderProps?.time.split("T")[1].split(".")[0]}
+          {orderProps?.time?.split("T")[0].replaceAll("-", "/")}{" "}
+          {orderProps?.time?.split("T")[1].split(".")[0]}
         </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">고객연락처</span>
         <span className="receipt-text">
-          {orderProps?.phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")}
+          {orderProps?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")}
         </span>
       </div>
       <div className="receipt-divider" />
