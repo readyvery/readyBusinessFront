@@ -4,7 +4,7 @@
   height: 41.25rem;
 
   margin: 0.625rem auto;
-  padding: 0 0.875rem;
+  padding: 0 0.875rem 1rem 0.875rem;
 
   background-color: #f5f5f5; /* 배경색 설정 */
   border-radius: 1.875rem; /* 모서리를 둥글게 만드는 값 */
@@ -90,6 +90,12 @@
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
+}
+
+.receipt-FoodName.count{
+  color:#d82356;
+  font-family: "Bold";
+  font-size: 1.75rem;
 }
 
 .receiptOption {

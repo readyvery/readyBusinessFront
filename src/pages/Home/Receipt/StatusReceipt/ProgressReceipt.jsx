@@ -67,8 +67,8 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       {orderProps?.foodies?.map((e, i) => (
         <React.Fragment key={i}>
           <div className="receiptTextBox">
-            <span className="receipt-FoodName">{e.name}</span>
-            <span className="receipt-text">{e.count}</span>
+            <span className="receipt-FoodName">{e?.name}</span>
+            <span className="receipt-FoodName count">{e?.count}</span>
           </div>
           <div className="receiptOption">
             {e.options.map((option) => (
@@ -79,7 +79,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
                   fontWeight: "500",
                 }}
               >
-                └ ({option.category}) {option.name}
+                └ ({option?.category}) {option?.name}
               </span>
             ))}
           </div>
@@ -87,8 +87,12 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       ))}
       <div className="receipt-divider" />
       <div className="receiptTextBox">
-        <span className="receipt-text">결제수단</span>
-        <span className="receipt-text">{orderProps?.method}</span>
+        <span className="receipt-text">상품금액</span>
+        <span className="receipt-text">{orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+      </div>
+      <div className="receiptTextBox">
+        <span className="receipt-text">할인금액</span>
+        <span className="receipt-text">{orderProps?.couponUsed ? "(-) 500원" : "0원"}</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
