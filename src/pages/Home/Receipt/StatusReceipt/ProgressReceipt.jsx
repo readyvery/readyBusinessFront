@@ -88,7 +88,7 @@ const ProgressReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">상품금액</span>
-        <span className="receipt-text">{orderProps?.couponUsed ? (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : (orderProps?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="receipt-text">{orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">할인금액</span>
