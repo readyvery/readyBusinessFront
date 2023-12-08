@@ -2,18 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
+import { message } from "antd";
 import "./Home.css";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt/Receipt";
 
-function Home() { 
+function Home() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
   const [waitInfo, setWaitInfo] = useState({});
   const [makeInfo, setMakeInfo] = useState({});
   const [completeInfo, setCompleteInfo] = useState({});
   const [pickUpInfo, setpickUpInfo] = useState({});
-  
 
   const [cookies] = useCookies(["accessToken"]);
 
@@ -30,6 +30,9 @@ function Home() {
       })
       .catch((err) => {
         console.log(err);
+        message.error(
+          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
+        );
         if (err.status === 404 && err.message === "Not found order.") {
           setWaitInfo({});
         }
@@ -49,6 +52,9 @@ function Home() {
       })
       .catch((err) => {
         console.log(err);
+        message.error(
+          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
+        );
         if (err.status === 404 && err.message === "Not found order.") {
           setMakeInfo({});
         }
@@ -68,6 +74,9 @@ function Home() {
       })
       .catch((err) => {
         console.log(err);
+        message.error(
+          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
+        );
         if (err.status === 404 && err.message === "Not found order.") {
           setCompleteInfo({});
         }
@@ -87,6 +96,9 @@ function Home() {
       })
       .catch((err) => {
         console.log(err);
+        message.error(
+          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
+        );
         if (err.status === 404 && err.message === "Not found order.") {
           setpickUpInfo({});
         }
@@ -102,7 +114,7 @@ function Home() {
 
   useEffect(() => {
     console.log(cookies.accessToken);
-    if(cookies.accessToken){
+    if (cookies.accessToken) {
       const fetchDataAndSetInterval = async () => {
         await fetchData();
       };
