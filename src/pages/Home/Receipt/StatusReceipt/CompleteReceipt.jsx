@@ -74,7 +74,8 @@ const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               <span
                 className="receipt-optiontext"
                 style={{
-                  color: option?.price !== 0 ? "#D82356" : undefined,
+                  color: (option?.price !== 0 || option?.category === "HOT/ICE"
+                  || option?.category === "ICE/HOT") ? "#D82356" : undefined,
                   fontWeight: "500",
                 }}
               >
