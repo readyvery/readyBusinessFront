@@ -1,12 +1,15 @@
 import { message } from "antd";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import Loading from "../../../../components/views/Loading/Loading";
 
 const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   // const setOrderSelect = useSetRecoilState(selectOrder);
+  const [Load, setLoad] = useState(false);
 
   const handleComplete = async () => {
+    setLoad(true);
     const config = {
       withCredentials: true,
     };
@@ -32,13 +35,17 @@ const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
         // fetchData가 완료된 후에 실행됩니다.
         setStatus("null");
         setOrder(null);
+        setLoad(false);
       }
     } catch (err) {
       console.log(err);
+      setLoad(false);
+      message.error("픽업완료 처리에 실패하였습니다. 네트워크를 확인해주세요.");
     }
   };
   return (
     <div>
+      {Load && <Loading />}
       <div className="receiptHeader">
         <span className="receipt-header"> 주문번호 {orderProps?.orderNum}</span>
 
@@ -74,7 +81,12 @@ const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               <span
                 className="receipt-optiontext"
                 style={{
-                  color: option?.price !== 0 ? "#D82356" : undefined,
+                  color:
+                    option?.price !== 0 ||
+                    option?.category === "HOT/ICE" ||
+                    option?.category === "ICE/HOT"
+                      ? "#D82356"
+                      : undefined,
                   fontWeight: "500",
                 }}
               >
@@ -87,11 +99,23 @@ const CompleteReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">상품금액</span>
-        <span className="receipt-text">{orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="receipt-text">
+          {orderProps?.couponUsed
+            ? orderProps?.price &&
+              (orderProps?.price + 500)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : orderProps?.price
+                ?.toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          원
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">할인금액</span>
-        <span className="receipt-text">{orderProps?.couponUsed ? "(-) 500원" : "0원"}</span>
+        <span className="receipt-text">
+          {orderProps?.couponUsed ? "(-) 500원" : "0원"}
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>

@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import X from "../../../../assets/icons/X.svg";
+import Loading from "./../../../../components/views/Loading/Loading";
 
 const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
@@ -10,12 +11,14 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
 
   const [ReceiveModal, setReceiveModal] = useState(false);
   const [RefuseModal, setRefuseModal] = useState(false);
+  const [Load, setLoad] = useState(false);
 
   const handleReceiveModal = () => {
     setReceiveModal((prev) => !prev);
   };
 
   const cancelOrder = (e) => {
+    setLoad(true);
     const config = {
       withCredentials: true,
     };
@@ -39,6 +42,7 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
           // select된 데이터 변경
           setStatus("null");
           setOrder(null);
+          setLoad(false);
         }
       })
       .catch((err) => {
@@ -49,10 +53,12 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
         // select된 데이터 변경
         setStatus("null");
         setOrder(null);
+        setLoad(false);
       });
   };
 
   const handleMake = async (e) => {
+    setLoad(true);
     const config = {
       withCredentials: true,
     };
@@ -60,7 +66,10 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
     const body = {
       orderId: orderProps.orderId,
       status: "MAKE",
-      time: e.target.innerText === "즉시완료" ? 0 : parseInt(e.target.innerText.split("분")[0]),
+      time:
+        e.target.innerText === "즉시완료"
+          ? 0
+          : parseInt(e.target.innerText.split("분")[0]),
     };
     console.log(body.time);
 
@@ -80,14 +89,18 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
         // 클릭 시 스타일 변화
         setStatus("null");
         setOrder(null);
+        setLoad(false);
       }
     } catch (err) {
       console.log(err);
+      setLoad(false);
+      message.error("접수에 실패하였습니다. 네트워크를 확인해주세요.");
     }
   };
 
   return (
     <div>
+      {Load && <Loading />}
       <div className="receiptHeader">
         <span className="receipt-header"> 주문번호 {orderProps?.orderNum}</span>
       </div>
@@ -163,7 +176,12 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
               <span
                 className="receipt-optiontext"
                 style={{
-                  color: option?.price !== 0 ? "#D82356" : undefined,
+                  color:
+                    option?.price !== 0 ||
+                    option?.category === "HOT/ICE" ||
+                    option?.category === "ICE/HOT"
+                      ? "#D82356"
+                      : undefined,
                   fontWeight: "500",
                 }}
               >
@@ -176,16 +194,29 @@ const PendingReceipt = ({ orderProps, setStatus, setOrder, fetchData }) => {
       <div className="receipt-divider" />
       <div className="receiptTextBox">
         <span className="receipt-text">상품금액</span>
-        <span className="receipt-text">{orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</span>
+        <span className="receipt-text">
+          {orderProps?.couponUsed
+            ? orderProps?.price &&
+              (orderProps?.price + 500)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : orderProps?.price
+                ?.toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          원
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">할인금액</span>
-        <span className="receipt-text">{orderProps?.couponUsed ? "(-) 500원" : "0원"}</span>
+        <span className="receipt-text">
+          {orderProps?.couponUsed ? "(-) 500원" : "0원"}
+        </span>
       </div>
       <div className="receiptTextBox">
         <span className="receipt-text">결제금액</span>
         <span className="receipt-text">
-          {orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+          {orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          원
         </span>
       </div>
 
