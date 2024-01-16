@@ -1,0 +1,40 @@
+/* SignupPage */
+.terms-page-container{
+    margin-top: 2.24rem;
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    max-width: 22.4rem;
+}
+
+.terms-page-next-button{
+    margin-top: 6.2rem;
+}
+
+/* checkBox */
+.terms-page-check-box-wrapper{
+    font-family: "Pretendard";
+    font-weight: 500;
+    display: flex;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.terms-page-check-box-wrapper-inner{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.65rem;
+}
+
+.terms-page-check-box-font-style-1{
+    font-size: 1rem;
+    background-color: rgba(255, 234, 239, 1);
+}
+
+.terms-page-check-box-font-style-2{
+    font-size: 0.8rem;
+}
+

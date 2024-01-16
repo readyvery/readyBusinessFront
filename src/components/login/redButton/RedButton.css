@@ -1,0 +1,39 @@
+.red-button {
+    border-radius: 0.25rem;
+    background-color: #D82356;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-family: "Pretendard";
+    font-size: 1.2rem;
+    text-align: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1.432;
+    padding: 0 0.8rem 0 0.8rem;
+    min-width: 15rem;
+    min-height: 2.5rem;
+    cursor: pointer;
+}
+
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .red-button {
+        width: 17rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* w:1024, h:1024일 때 */
+@media screen and (min-width: 769px) {
+    .red-button {
+        width: 17rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .red-button {
+        max-width: 15rem;
+        font-size: 1rem;
+    }
+}
