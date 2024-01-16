@@ -1,0 +1,116 @@
+.loginpage-form{
+    line-height: 1.2rem;
+    min-height: 12.6rem;
+    min-width: 15rem;
+    position: relative;
+    justify-content: center;
+}
+
+.loginpage-user-id{
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    font-size: 0.8rem;
+    margin-bottom: 0.35rem;
+    min-width: 13rem;/*17rem-2rem*/
+    height: 1rem; /*2.5rem-1.5rem*/
+    padding: 0.8rem 1rem 0.7rem 1rem;
+    font-family: "Pretendard";
+}
+
+.loginpage-user-password{
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    font-size: 0.8rem;
+    min-width: 13rem;/*17rem-2rem*/
+    height: 1rem; /*2.5rem-1.5rem*/
+    margin-bottom: 0.35rem;
+    padding: 0.8rem 1rem 0.7rem 1rem;
+    font-family: "Pretendard";
+}
+
+.loginpage-find-user-id-and-password{
+    margin: 0.7rem 0;
+    color: rgba(131, 131, 131, 1);
+}
+
+.loginpage-form-remember-text{
+    font-size: 0.8rem;
+}
+
+.loginpage-form-find{
+    font-size: 0.8rem;
+    display: flex; 
+    align-items: center;
+    justify-content: end;
+}
+
+.loginpage-form-find-id{
+    text-decoration: none;
+    color: rgba(131, 131, 131, 1);
+    margin-right: 0.25rem;
+}
+
+.loginpage-form-find-password{
+    text-decoration: none;
+    color: rgba(131, 131, 131, 1);
+    margin-left: 0.25rem;
+}
+
+.loginpage-form-login-wrapper{
+    position: absolute;
+    top: 10.25rem;
+    transform: translateX(0%);
+}
+
+.loginpage-sign-button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-family: "Pretendard";
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 3.9rem; 
+}
+
+.loginpage-sign-link{
+    text-decoration: none;
+    color: rgba(131, 131, 131, 1);
+}
+
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .loginpage-form{
+        min-height: 12.6rem;
+        width: 17rem;
+    }
+    .loginpage-user-id{
+        width: 15rem;/*17rem-2rem*/
+    }
+    
+    .loginpage-user-password{
+        width: 15rem;/*17rem-2rem*/
+    }
+}
+
+/* w:1024, h:1024일 때 */
+@media screen and (min-width: 769px) {
+    .loginpage-form{
+        min-height: 12.6rem;
+        width: 17rem;
+    }
+    .loginpage-user-id{
+        width: 15rem;/*17rem-2rem*/
+    }
+    
+    .loginpage-user-password{
+        width: 15rem;/*17rem-2rem*/
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .loginpage-form{
+        height: 10.3rem;
+        width: 15rem;
+    }
+}
