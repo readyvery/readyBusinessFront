@@ -82,7 +82,9 @@ const InputStoreAddressWrapper = () => {
 const InputStoreInformationflie = ({ title, id, requiredname }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileSizeError, setFileSizeError] = useState(false);
-
+  if(fileSizeError){
+    console.log("사진 크기에러")
+  }
   const InputFilesss = () => {
     const handleFileChange = (event) => {
       const file = event.target.files[0];

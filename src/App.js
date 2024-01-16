@@ -18,7 +18,7 @@ import "./App.css";
 import Auth from "./hoc/auth.jsx";
 import useInterval from "./hooks/useInterval.jsx";
 import HomePage from "./pages/Home/Home";
-import MainPage from "./pages/Main/MainPage.jsx";
+// import MainPage from "./pages/Main/MainPage.jsx";
 import SignupPage from "./pages/Signup/SignupPage.jsx";
 import LoginPage from "./pages/Login/LoginPage.jsx";
 import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx";//아이디 찾기-전화번호 인증
