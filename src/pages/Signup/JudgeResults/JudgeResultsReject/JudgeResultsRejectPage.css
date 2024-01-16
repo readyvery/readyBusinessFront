@@ -1,0 +1,40 @@
+.judge-results-reject-page-content-container{
+    margin-top: 2.24rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 22.4rem;
+}
+
+.judge-results-reject-page-top-positon-icon{
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    position: absolute;
+    top: -2rem;
+    left: 43%;
+}
+
+.judge-results-reject-page-content-text-style{
+    margin-top: 2.9rem;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: "Pretendard";
+}
+.judge-results-reject-page-content-main-text-style{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-width: 22.4rem;
+    font-family: "Pretendard";
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.judge-results-reject-page-content-main-text-tab{
+    margin-top: 0.8rem;
+}
+
+.judge-results-reject-page-next-button{
+    margin-top: 5.45rem;
+}
