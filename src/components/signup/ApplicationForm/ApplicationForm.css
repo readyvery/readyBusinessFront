@@ -126,7 +126,7 @@
 
 .application-form-content-sub-text-style{
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
     margin-top: 1.4rem;
     max-width: 12rem;
@@ -152,7 +152,7 @@
     border: 0.05rem solid #838383;
     background: #FFF;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     justify-content:space-around;
     font-family: "Pretendard";
