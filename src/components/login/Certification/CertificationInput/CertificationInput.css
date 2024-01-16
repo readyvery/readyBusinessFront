@@ -1,0 +1,72 @@
+.loginpage-find-form{
+    height: 18.6rem;
+    min-width: 15rem;
+}
+.loginpage-find-form-input-div{
+    display: flex;
+    align-items: center;
+}
+
+.loginpage-findId-input{
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    font-size: 0.8rem;
+    min-width: 8.25rem;
+    height: 1rem;
+    padding: 0.8rem 1rem 0.7rem 1rem;
+    margin-right: 0.25rem;
+    font-family: "Pretendard";
+}
+
+.loginpage-findId-form-submit{
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    /* padding: 0.8rem 1.4rem 0.7rem 1.4rem; */
+    height: 2.5rem;
+    min-width: 3.7rem;
+    align-items: center;
+    justify-content: row;
+    background-color: white;
+    font-family: "Pretendard";
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.buttonClicked{
+    background-color: #FFEAEF;
+    /* padding: 0.8rem 1.4rem 0.7rem 1.2rem; */
+}
+
+.loginpage-form-submit-button-position{
+    position: absolute;
+    transform: translateX(0%);
+    bottom: 4.95rem;
+}
+
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .loginpage-findId-input {
+        width: 10.5rem;
+    }
+    .loginpage-findId-form-submit{
+        /* width: 5.25rem; */
+        width: 4.25rem;
+    }
+}
+
+/* w:1024, h:1024일 때 */
+@media screen and (min-width: 769px) {
+    .loginpage-findId-input {
+        width: 10.5rem;
+    }
+    .loginpage-findId-form-submit{
+        width: 4.25rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .loginpage-findId-form-submit{
+        max-width: 4.4rem;
+    }
+}
