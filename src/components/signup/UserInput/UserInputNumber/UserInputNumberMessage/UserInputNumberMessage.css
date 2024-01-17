@@ -9,8 +9,7 @@
     border: 0.05rem solid rgba(131, 131, 131, 1);
     font-size: 0.8rem;
     margin: 0.4375rem 0;
-    width: 21.3rem;
-    height: 1rem;
+    height: 2.5rem;
     padding: 0.8rem 0rem 0.7rem 1rem;
     font-family: "Pretendard";
 }
@@ -23,4 +22,17 @@
     font-family: "Pretendard";
     font-size: 0.8rem;
     color: #838383;
+}
+
+@media screen and (min-width: 481px){
+    .user-input-number-message-input{
+        width: 17rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .user-input-number-message-input{
+        width: 15rem;
+    }
 }

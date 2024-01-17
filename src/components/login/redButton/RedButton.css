@@ -16,17 +16,10 @@
 }
 
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 481px){
     .red-button {
         width: 17rem;
         font-size: 1.2rem;
-    }
-}
-
-/* w:1024, h:1024일 때 */
-@media screen and (min-width: 769px) {
-    .red-button {
-        width: 17rem;
     }
 }
 

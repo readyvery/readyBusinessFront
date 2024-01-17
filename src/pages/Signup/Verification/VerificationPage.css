@@ -1,4 +1,3 @@
-/* SignupPage */
 .signup-page-content-container{
     margin-top: 2.24rem;
     display: flex;
@@ -7,6 +6,16 @@
     max-width: 22.4rem;
 }
 
-.signup-page-next-button{
-    margin-top: 2.1rem;
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .signup-page-verification-next-button{
+        margin-top: 2.1rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .signup-page-verification-next-button{
+        margin-top: 0.4rem;
+    }
 }

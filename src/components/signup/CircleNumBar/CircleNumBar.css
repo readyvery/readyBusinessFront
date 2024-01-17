@@ -6,11 +6,6 @@
     align-items: center;
     position: relative;
 }
-/* .circle-num-ber-wrapper1{
-    display: flex;
-    width: 22.4rem;
-    justify-content: center;
-} */
 
 /* 원 */
 .circle-num-wapper{
@@ -21,7 +16,6 @@
     justify-content: center;
     align-items: center;
     font-family: "Pretendard";
-    /* font-size: 0.72rem; */
     font-weight: 800;
 }
 /* 원 색상 */
@@ -75,9 +69,8 @@
     color:rgba(217, 217, 217, 1);
 }
 
-
-/* w:768, h:1024일 때 */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
     .circle-num-wapper{
         width: 2rem;
         height: 2rem;
@@ -85,30 +78,7 @@
     }
     .bar-wapper{
         width: 6rem;
-        height: 0.2rem;
         margin: 0 0.33rem 0 0.33rem;
-        border-radius: 0.1rem;
-    }
-    .circle-num-bar-text-content{
-        font-size: 0.8rem;
-    }
-    .circle-num-ber-text-wrapper{
-        bottom: -1.35rem;
-    }
-}
-
-/* w:1024, h:1024일 때 */
-@media screen and (min-width: 769px) {
-    .circle-num-wapper{
-        width: 2rem;
-        height: 2rem;
-        font-size: 1.2rem;
-    }
-    .bar-wapper{
-        width: 6rem;
-        height: 0.2rem;
-        margin: 0 0.33rem 0 0.33rem;
-        border-radius: 0.1rem;
     }
     .circle-num-bar-text-content{
         font-size: 0.8rem;
@@ -121,6 +91,6 @@
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
     .circle-num-wapper{
-        font-size: 0.72rem;
+        font-size: 0.6rem;
     }
 }

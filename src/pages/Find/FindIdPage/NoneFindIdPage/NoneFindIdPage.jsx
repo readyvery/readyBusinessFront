@@ -4,8 +4,13 @@ import "./NoneFindIdPage.css";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import { Link } from "react-router-dom";
 function NoneFindIdPage () {
+    const is480 = window.innerWidth <= 480;
+    const containerSize = is480
+      ? ["20rem", "30rem", "3.3rem"]
+      : ["25rem", "30rem", "4.55rem"];
+  
     return(
-        <Container title={"아이디찾기"} containerWidth={"25rem"} containerHeight={"30rem"} logoMarginTop={"4.55rem"} logoMarginBottom={"2.55rem"}>
+    <Container title={"아이디 찾기"} containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom={"2.55rem"}>
             <div className="none-find-id-page-frame">
                 <div className="none-find-id-page-text">존재하지 않는 아이디입니다.</div>
                 <div className="none-find-id-page-link-wrapper">

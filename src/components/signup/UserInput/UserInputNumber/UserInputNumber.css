@@ -4,12 +4,11 @@
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+    font-family: "Pretendard";
 }
 
 .user-input-phone-number-content-number-label-style{
     color: #2E2D2D;
-    font-family: "Pretendard";
-    font-size: 1rem;
     font-weight: 600;
     margin-top: 4rem;
 }
@@ -17,31 +16,28 @@
 .user-input-phone-number-wrapper{
     display: flex;
     align-items: center;
-    width: 22.3rem;
+    font-family: "Pretendard";
+    justify-content: space-between;
+    width: 15rem;
 }
 
 .user-input-phone-number-input{
     margin-top: 0.3rem; /* 0.6 -0.3 = 0.3 */
     border-radius: 0.25rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 0.8rem;
     margin-bottom: 0.35rem;
-    width: 15rem;/*17.55rem-2.2rem*/
-    height: 1rem; /*2.5rem-1.5rem*/
-    padding: 0.8rem 1rem 0.7rem 1.2rem;
-    font-family: "Pretendard";
+    height: 2.5rem;
+    padding: 0.8rem 1rem 0.7rem 1rem;
+    font-size: 0.8rem;
 }
 
 .user-input-phone-number-button{
-    width: 5.2rem;/*4.3rem-2.2rem*/
-    height: 2.5rem; /*2.5rem-1.5rem*/
-    margin-left: 0.25rem;
+    height: 2.5rem;
     border-radius: 0.25rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
     background-color: white;
-    font-family: "Pretendard";
-    font-size: 0.8rem;
     font-weight: 500;
+    font-size: 0.8rem;
 }
 
 .user-input-phone-number-button-clicked{
@@ -49,10 +45,26 @@
 }
 
 .user-input-phone-number-auth-button{
-    width: 100%;
-    justify-items: center;
-    align-items: center;
-    /* margin-top: 2.1rem; */
     position: absolute;
-    bottom: -50%;
+    transform: translateX(0%);
+    bottom: -4.95rem;
+}
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){
+    .user-input-phone-number-wrapper{
+        width: 17rem;
+    }
+    .user-input-phone-number-input{
+        width: 12.5rem;
+    }
+    .user-input-phone-number-button{
+        width: 4.25rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .user-input-phone-number-button{
+        width: 3.5rem;
+    }
 }

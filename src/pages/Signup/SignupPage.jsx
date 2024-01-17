@@ -7,9 +7,13 @@ import RedButton from "../../components/login/redButton/RedButton"
 import Container from "../../components/login/Container/Container";
 
 function SignupPage () {
-
+    const is480 = window.innerWidth <= 480;
+    const containerSize = is480
+      ? ["20rem", "40rem", "3.15rem"]
+      : ["30rem", "50rem", "3.9rem"];
+    
     return(
-        <Container title="회원가입" containerWidth="30rem" containerHeight="50rem" logoMarginTop="3.9rem" logoMarginBottom="2.45rem" >
+        <Container title={"회원가입"} containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom="2.45rem">
                 <CircleNumBar step="1"/>
                 <div className="signup-page-content-container">
                     <UserInputId/>

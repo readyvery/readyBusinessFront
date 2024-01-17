@@ -12,36 +12,6 @@
     min-height: 30rem;
 }
 
-/* w:768, h:1024일 때 */
-@media screen and (min-width: 481px) and (max-width: 768px) {
-    .container-wrapper-inner {
-        max-width: 25rem;
-        max-height: 30rem;
-    }
-}
-
-/* w:1024, h:1024일 때 */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .container-wrapper-inner {
-        max-width: 25rem;
-        max-height: 30rem;
-    }
-}
-
-/* w:480, h:800일 때 */
-@media screen and (max-width: 480px) {
-    .container-wrapper-inner {
-        max-width: 20rem;
-        max-height: 30rem;
-    }
-    .container-wrapper-wrapper{
-        font-family: "Pretendard";
-        font-weight: 800;
-        font-size: 1.2rem;
-        color: #2E2D2D;
-    }
-}
-
 .container-wrapper-inner{
     background-color: #fff;
     display: flex;
@@ -68,18 +38,21 @@
     align-items: center;
     height: 100%;
 }
-
-/* .loginpage-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    -webkit-box-align: center;
-    justify-content: center;
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .container-wrapper-inner {
+        max-width: 30rem;
+        height: 100%;
+    }
 }
 
-.loginpage-text{
-    font-family: "Pretendard";
-    font-weight: 800;
-    font-size: 1.6rem;
-    text-align: center;
-  } */
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .container-wrapper-inner {
+        max-width: 20rem;
+        height: 100%;
+    }
+    .container-wrapper-wrapper{
+        font-size: 1.2rem;
+    }
+}

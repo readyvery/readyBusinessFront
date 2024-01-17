@@ -6,7 +6,6 @@
 
 .none-find-id-page-text{
     font-family: "Pretendard";
-    font-size: 1.2rem;
     font-weight: 500;
 }
 
@@ -30,4 +29,20 @@
     font-weight: 500;
     text-align: center;
     margin: 1.35rem 0;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){
+    .none-find-id-page-text{
+        font-size: 1.2rem;
+    }
+    
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .none-find-id-page-text{
+        font-size: 1rem;
+    }
+    
 }

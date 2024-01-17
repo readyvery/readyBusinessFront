@@ -1,14 +1,8 @@
-/* SignupPage */
 .terms-page-container{
-    margin-top: 2.24rem;
     display: flex;
     align-items:center;
     flex-direction: column;
-    max-width: 22.4rem;
-}
-
-.terms-page-next-button{
-    margin-top: 6.2rem;
+    margin-top: -0.2rem;
 }
 
 /* checkBox */
@@ -30,7 +24,6 @@
 }
 
 .terms-page-check-box-font-style-1{
-    font-size: 1rem;
     background-color: rgba(255, 234, 239, 1);
 }
 
@@ -38,3 +31,35 @@
     font-size: 0.8rem;
 }
 
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .terms-page-check-box-font-style-1{
+        font-size: 1rem;
+    }
+    .terms-page-check-box-font-style-2{
+        font-size: 0.8rem;
+    }
+    .terms-page-container{
+        width: 22.4rem;
+    }
+    .terms-page-next-button{
+        margin-top: 8.05rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .terms-page-container{
+        width: 15rem;
+    }
+    .terms-page-check-box-font-style-1{
+        font-size: 0.8rem;
+    }
+    
+    .terms-page-check-box-font-style-2{
+        font-size: 0.6rem;
+    }
+    .terms-page-next-button{
+        margin-top: 4.35rem;
+    }
+}
