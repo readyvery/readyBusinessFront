@@ -9,7 +9,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Header2 from "../src/components/views/Header/Header2";
+// import Header2 from "../src/components/views/Header/Header2";
 import NavBar from "../src/components/views/NavBar/NavBar";
 import InventoryPage from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
@@ -90,7 +90,7 @@ function App() {
   }
   return (
     <div className="App">
-      <Header2 />
+      {/* <Header2 /> */}
       <nav>
         <NavBar />
       </nav>
