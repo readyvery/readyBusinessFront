@@ -3,9 +3,13 @@ import Container from "../../../../components/login/Container/Container";
 // import deleteicon from "../../../../assets/icons/icon_delete.svg"; 크기 에러, 해결 후 업로드
 import "./JudgeResultsRejectPage.css";
 function JudgeResultsRejectPage () {
-
+    const is480 = window.innerWidth <= 480;
+    const containerSize = is480
+      ? ["20rem", "25rem", "3rem"]
+      : ["25rem", "25rem", "3.52rem"];
+    
     return(
-        <Container title="심사반려" containerWidth="25rem" containerHeight="25rem" logoMarginTop="3.52rem" logoMarginBottom="2.9rem" >
+        <Container title="심사반려" containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom="2.9rem">
             {/* <img src={deleteicon} alt="deleteicon" className="judge-results-reject-page-top-positon-icon" /> */}
                 <div className="">
                     <span className="judge-results-reject-page-content-text-style">심사가 반려되었습니다</span>
