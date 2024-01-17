@@ -5,6 +5,11 @@ import RedButton from "../../../../../components/login/redButton/RedButton";
 import "./ChangeNewPasswordPage.css";
 
 function ChangeNewPasswordPage() {
+  const is480 = window.innerWidth <= 480;
+  const containerSize = is480
+    ? ["20rem", "30rem", "3.3rem"]
+    : ["25rem", "30rem", "4.55rem"];
+  
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
@@ -51,7 +56,7 @@ function ChangeNewPasswordPage() {
   };
 
   return (
-    <Container title={"비밀번호 변경"} containerWidth={"25rem"} containerHeight={"30rem"} logoMarginTop={"4.55rem"} logoMarginBottom={"2.55rem"}>
+    <Container title={"비밀번호 변경"} containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom={"2.55rem"}>
       <div style={{ marginTop: "-1.05rem" }}>
         <div className="password-changepage-qualification-text">영문+숫자+특수문자 8자 이상</div>
         <form className="password-changepage-form" onSubmit={handleSubmit}>
