@@ -17,11 +17,16 @@ const LoginFindUserIdAndPassword=()=>{
     )
 }
 function LoginPage () {
+    const is480 = window.innerWidth <= 480;
+    const containerSize = is480
+      ? ["20rem", "30rem", "3.3rem"]
+      : ["25rem", "30rem", "4.55rem"];
+    
     // 로그인값 받아오기..
     // const [userData, setUserData] = useState(true);
     const userData = useState(true);
     return(
-        <Container title={"통합로그인"} containerWidth={"25rem"} containerHeight={"30rem"} logoMarginTop={"4.55rem"} logoMarginBottom={"2.55rem"}>
+        <Container title={"통합 로그인"} containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom={"2.55rem"}>
             <form className="loginpage-form">
                 <input id="username" type="text" placeholder="아이디" required name="username" className="loginpage-user-id"/>
                 <input id="password" type="password" placeholder="비밀번호" required name="usernamepassword" className="loginpage-user-password"/>
