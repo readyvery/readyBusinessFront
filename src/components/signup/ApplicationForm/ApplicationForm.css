@@ -4,8 +4,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: #F4F7FF;
     overflow-y: auto;
 }  
@@ -16,8 +16,8 @@
     flex-direction: column;
     align-items: center;
     border-radius: 0.25rem;
-    width: 20rem;
-    height: 30rem;
+    min-width: 20rem;
+    min-height: 30rem;
 
     position: absolute;
     top: 50%;
@@ -38,7 +38,7 @@
 .application-form-container-text{
     font-family: "Pretendard";
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 1.2rem;
     text-align: center;
   }
 
@@ -152,7 +152,6 @@
     border: 0.05rem solid #838383;
     background: #FFF;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     justify-content:space-around;
     font-family: "Pretendard";
@@ -163,4 +162,17 @@
 .application-form-redyvery-linked-message-for-kakao-time{
     color: #838383;
     margin-top: 0.092rem;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .application-form-container-wrapper-inner{
+        width: 30rem;
+        height: 40rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+
 }

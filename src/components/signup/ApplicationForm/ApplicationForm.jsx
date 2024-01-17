@@ -10,7 +10,7 @@ const ApplicationFormContainer = ({ children }) =>{
             <div className="application-form-container-wrapper-inner">
                 <div className="application-form-wrapper">
                     <span><img src={logo} alt="logo" style={{ 'width': '3rem', 'height': '0.7rem'}} /></span>
-                    <div className="application-form-container-text">입점 신청서</div>
+                    <div className="application-form-container-text">시작하기</div>
                 </div>
 
                 <div>
