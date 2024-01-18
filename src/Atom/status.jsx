@@ -70,6 +70,7 @@ export const getAuthenticatedSelector = selector({
   effects_UNSTABLE: [persistAtom],
 });
 
+// TODO: 여기 변경하기 
 export const loginState = atom({
   key: "loginState",
   default: {
