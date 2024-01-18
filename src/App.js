@@ -1,7 +1,6 @@
 import { message } from "antd";
 import axios from "axios";
 import React, { Suspense } from "react";
-import { useCookies } from "react-cookie";
 import {
   Navigate,
   Route,
@@ -17,32 +16,32 @@ import SalesPage from "../src/pages/Sales/Sales";
 import "./App.css";
 import Auth from "./hoc/auth.jsx";
 import useInterval from "./hooks/useInterval.jsx";
-// import HomePage from "./pages/Home/Home"; 카카오 로그인
+import HomePage from "./pages/Home/Home";
 // import MainPage from "./pages/Main/MainPage.jsx";
 // 추가 페이지
-import SignupPage from "./pages/Signup/SignupPage.jsx";
+import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
+import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx"; //아이디 찾기-전화번호 인증
+import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx"; //아이디 찾기 결과-회원 X
+import UserFindIdPage from "./pages/Find/FindIdPage/UserFindIdPage/UserFindIdPage.jsx"; //아이디 찾기 결과-아이디 반환
+import ChangeNewPasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangeNewPasswordPage/ChangeNewPasswordPage.jsx"; //비밀번호 변경 - 새 비밀번호 인증
+import ChangePasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangePasswordPage.jsx"; //비밀번호 변경 - 전화번호 인증
+import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx"; //비밀번호 찾기 - 아이디 조회
 import LoginPage from "./pages/Login/LoginPage.jsx";
-import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx";//아이디 찾기-전화번호 인증
-import UserFindIdPage from "./pages/Find/FindIdPage/UserFindIdPage/UserFindIdPage.jsx";//아이디 찾기 결과-아이디 반환
-import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx";//아이디 찾기 결과-회원 X
-import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx";//비밀번호 찾기 - 아이디 조회
-import ChangePasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangePasswordPage.jsx";//비밀번호 변경 - 전화번호 인증
-import ChangeNewPasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangeNewPasswordPage/ChangeNewPasswordPage.jsx";//비밀번호 변경 - 새 비밀번호 인증
-import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
-import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
-import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
-import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
+import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
+import SignupPage from "./pages/Signup/SignupPage.jsx";
+import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
+import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 
 function App() {
-  const [cookies, , removeCookies] = useCookies();
+  //const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   let location = useLocation();
 
-  // const NewLoginPage = Auth(MainPage, false);
-  // const NewHomePage = Auth(HomePage, true); 카카오 로그인 
+  const NewLoginPage = Auth(LoginPage, false);
+  const NewHomePage = Auth(HomePage, true); 
   const NewInventoryPage = Auth(InventoryPage, true);
   const NewSalesPage = Auth(SalesPage, true);
   const NewMyPage = Auth(Mypage, true);
@@ -52,11 +51,11 @@ function App() {
   useInterval(() => {
     // console.log(cookies.refreshToken);
     if (
-      cookies.refreshToken !== "undefined" &&
-      cookies.refreshToken !== undefined &&
-      cookies.refreshToken
+      localStorage.refreshToken !== "undefined" &&
+      localStorage.refreshToken !== undefined &&
+      localStorage.refreshToken
     ) {
-    if (cookies.accessToken) {
+    if (localStorage.accessToken) {
       const config = {
         withCredentials: true,
       };
@@ -65,7 +64,7 @@ function App() {
         .then((response) => {
           console.log(response);
           if (!response.data) {
-            removeCookies();
+            localStorage.clear()
             navigate("/");
           }
         })
@@ -97,7 +96,8 @@ function App() {
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/test1" element={<NewLoginPage />} />
+          <Route path="/home" element={<NewHomePage />} />
           <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
           <Route path="/Mypage" element={<NewMyPage />} />
