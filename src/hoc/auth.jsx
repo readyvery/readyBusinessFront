@@ -1,16 +1,17 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { getUserSelector, isAuthenticatedState, loginState } from "../Atom/status";
-
+//import { useLocation, useNavigate } from "react-router-dom";
+//import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+//import { getUserSelector, isAuthenticatedState, loginState } from "../Atom/status";
+import { useRecoilValue } from 'recoil';
+import { getUserSelector } from '../Atom/status';
 function Auth(SpecificComponent, option) {
   function AuthenticationCheck(props) {
-    const navigate = useNavigate();
-    const location = useLocation();
+    //const navigate = useNavigate();
+    //const location = useLocation();
     const userInfo = useRecoilValue(getUserSelector);
     // const tokenInfo = useRecoilValue(getAuthenticatedSelector);
-    const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
-    const setIsLoggedIn = useSetRecoilState(loginState);
+    //const [isAuth, setIsAuth] = useRecoilState(isAuthenticatedState);
+    //const setIsLoggedIn = useSetRecoilState(loginState);
     // const [cookies] = useCookies(["accessToken"]);
 
     // const refresh = async () => {
