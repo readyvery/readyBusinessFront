@@ -113,7 +113,7 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(cookies.accessToken);
+    console.log(localStorage.accessToken);
     if (cookies.accessToken) {
       const fetchDataAndSetInterval = async () => {
         await fetchData();
