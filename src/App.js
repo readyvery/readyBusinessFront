@@ -50,6 +50,7 @@ function App() {
   // const expiredTime = 65000;
   useInterval(() => {
     // console.log(cookies.refreshToken);
+    console.log(localStorage.accessToken)
     if (
       localStorage.refreshToken !== "undefined" &&
       localStorage.refreshToken !== undefined &&
@@ -80,7 +81,7 @@ function App() {
       <div>
         <div className="App">
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<NewLoginPage />} />
             <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
           </Routes>
         </div>
@@ -96,7 +97,7 @@ function App() {
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/test1" element={<NewLoginPage />} />
+          <Route path="/" element={<NewLoginPage />} />
           <Route path="/home" element={<NewHomePage />} />
           <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
