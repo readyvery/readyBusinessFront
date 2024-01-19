@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-
 import { message } from "antd";
 import "./Home.css";
 import MainHome from "./MainHome";
