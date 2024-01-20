@@ -1,7 +1,7 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
 import { recoilPersist } from 'recoil-persist';
-import { Refresh } from "../hoc/handleRefresh";
+import { Refresh } from "../util/handleRefresh";
 
 const { persistAtom } = recoilPersist();
 

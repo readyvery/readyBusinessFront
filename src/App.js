@@ -10,15 +10,16 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Header2 from "../src/components/views/Header/Header2";
-import NavBar from "../src/components/views/NavBar/NavBar";
+import "./App.css";
+
 import InventoryPage from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
 import SalesPage from "../src/pages/Sales/Sales";
-import "./App.css";
-import Auth from "./hoc/auth.jsx";
+// import Auth from "./hoc/auth.jsx";
 import useInterval from "./hooks/useInterval.jsx";
-import HomePage from "./pages/Home/Home";
+import OrderPage from "./pages/Home/Order.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
+// import HomePage from "./pages/Home/Home";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -26,11 +27,11 @@ function App() {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   let location = useLocation();
 
-  const NewLoginPage = Auth(MainPage, false);
-  const NewHomePage = Auth(HomePage, true);
-  const NewInventoryPage = Auth(InventoryPage, true);
-  const NewSalesPage = Auth(SalesPage, true);
-  const NewMyPage = Auth(Mypage, true);
+  // const NewLoginPage = Auth(MainPage, false);
+  // const NewHomePage = Auth(HomePage, true);
+  // const NewInventoryPage = Auth(InventoryPage, true);
+  // const NewSalesPage = Auth(SalesPage, true);
+  // const NewMyPage = Auth(Mypage, true);
 
   const expiredTime = 1000 * 60 * 60 * 24;
   // const expiredTime = 65000;
@@ -66,7 +67,7 @@ function App() {
       <div>
         <div className="App">
           <Routes>
-            <Route path="/" element={<NewLoginPage />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
           </Routes>
         </div>
@@ -76,16 +77,21 @@ function App() {
   return (
     <div className="App">
       <Header2 />
-      <nav>
+      {/* <nav>
         <NavBar />
-      </nav>
+      </nav> */}
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/home" element={<NewHomePage />} />
+          {/* <Route path="/home" element={<NewHomePage />} />
           <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/Mypage" element={<NewMyPage />} /> */}
+          {/* <Route path="/home" element={<HomePage />} /> */}
+          <Route path="/home" element={<OrderPage />} />
+          <Route path="/Inventory" element={<InventoryPage />} />
+          <Route path="/Sales" element={<SalesPage />} />
+          <Route path="/Mypage" element={<Mypage />} />
           <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
       </Suspense>

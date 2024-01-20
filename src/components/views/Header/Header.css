@@ -1,5 +1,6 @@
 .header {
   /* width: 100%; */
+  width: 100vw;
   min-width: 64rem;
   /* min-width: 64rem; */
   height: 5.5rem;
@@ -13,8 +14,9 @@
   left: 0;
   right: 0;
   /* min-width: 73.75rem; */
-  width: 64rem;
-  max-width: 64rem;
+  width: 100vw;
+  /* width: 64rem; */
+  /* max-width: 64rem; */
   height: 5.5rem;
   background-color: #2e2d2d;
   z-index: 101;

@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { selectStatus } from "../../Atom/order";
+import { useRecoilState } from "recoil";
 import { soundState } from "../../Atom/status";
 import MP from "../../assets/Very.mp3";
 import EffectSound from "../../utils/EffectSound";
 import "./MainHome.css";
-import Complete from "./StatusHome/Complete";
-import Progress from "./StatusHome/Progress";
-import Wait from "./StatusHome/Wait";
 
-const MainHome = ({ waitInfo, makeInfo, completeInfo, pickUpInfo }) => {
+const MainHome = ({ waitInfo, children }) => {
+  // { waitInfo, makeInfo, completeInfo, pickUpInfo }
   const Mp = EffectSound(MP, 1);
-  const setStatusSelect = useSetRecoilState(selectStatus);
+  // const setStatusSelect = useSetRecoilState(selectStatus);
 
-  const [status, setStatus] = useState("Wait");
+  const [status, setStatus] = useState(1);
   const [sound] = useRecoilState(soundState);
   
   useEffect(() => {
@@ -27,16 +24,8 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo, pickUpInfo }) => {
   }, [waitInfo])
 
   const onClickHandler = (e) => {
-    const name = e.target.id;
-    if (name === status) return;
-
-    setStatus(name);
-
-    if (name === "Wait") setStatusSelect("pending");
-    else if (name === "Progress") setStatusSelect("progress");
-    else if (name === "Complete") setStatusSelect("complete");
-    else if (name === "PickUp") setStatusSelect("pickup");
-    else setStatusSelect("null");
+    // const { id } = e.target;
+    setStatus(e);
   };
 
   // useEffect(() => {
@@ -51,52 +40,7 @@ const MainHome = ({ waitInfo, makeInfo, completeInfo, pickUpInfo }) => {
 
   return (
     <div className="Main-Box">
-      <div className="status-header">
-        <div className="main-header__wrapper">
-          <div className="main-header-btn__wrapper">
-            <div
-              id="Wait"
-              className={`main-header-btn ${status === "Wait" && "selected"}`}
-              onClick={onClickHandler}
-            >
-              대기 {waitInfo?.orders?.length > 0 ? waitInfo.orders?.length : 0}
-            </div>
-          </div>
-          <div className="main-header-btn__wrapper">
-            <div
-              id="Progress"
-              className={`main-header-btn ${
-                status === "Progress" && "selected"
-              }`}
-              onClick={onClickHandler}
-            >
-              제조중{" "}
-              {makeInfo?.orders?.length > 0 ? makeInfo.orders?.length : 0}
-            </div>
-          </div>
-          <div className="main-header-btn__wrapper">
-            <div
-              id="Complete"
-              className={`main-header-btn ${
-                status === "Complete" && "selected"
-              }`}
-              onClick={onClickHandler}
-            >
-              픽업 관리{" "}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {status === "Wait" ? (
-        <Wait orderInfo={waitInfo} />
-      ) : status === "Progress" ? (
-        <Progress orderInfo={makeInfo} />
-      ) : status === "Complete" ? (
-        <Complete orderInfo={completeInfo} pickUpInfo={pickUpInfo} />
-      ) : (
-        <div>ERROR</div>
-      )}
+      {children}
     </div>
   );
 };
