@@ -1,0 +1,70 @@
+/* UserInputPassword */
+.user-input-phone-number-content-number-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    font-family: "Pretendard";
+}
+
+.user-input-phone-number-content-number-label-style{
+    color: #2E2D2D;
+    font-weight: 600;
+    margin-top: 4rem;
+}
+
+.user-input-phone-number-wrapper{
+    display: flex;
+    align-items: center;
+    font-family: "Pretendard";
+    justify-content: space-between;
+    width: 15rem;
+}
+
+.user-input-phone-number-input{
+    margin-top: 0.3rem; /* 0.6 -0.3 = 0.3 */
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    margin-bottom: 0.35rem;
+    height: 2.5rem;
+    padding: 0.8rem 1rem 0.7rem 1rem;
+    font-size: 0.8rem;
+}
+
+.user-input-phone-number-button{
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    background-color: white;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.user-input-phone-number-button-clicked{
+    background-color: #FFEAEF;
+}
+
+.user-input-phone-number-auth-button{
+    position: absolute;
+    transform: translateX(0%);
+    bottom: -4.95rem;
+}
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){
+    .user-input-phone-number-wrapper{
+        width: 17rem;
+    }
+    .user-input-phone-number-input{
+        width: 12.5rem;
+    }
+    .user-input-phone-number-button{
+        width: 4.25rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .user-input-phone-number-button{
+        width: 3.5rem;
+    }
+}

@@ -42,7 +42,7 @@ const Header = () => {
   return (
     <div className="header2">
       <div className="header2-wrapper">
-        <div>
+        <div className="logo-wrapper">
           <img src={LOGO} className="LOGO" alt="LOGO" />
         </div>
         <div className="head-container2">
@@ -63,11 +63,11 @@ const Header = () => {
           )}
           {sound ? (
             <div className="header-img-wrapper">
-              <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
+              <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" className="soundImg"/>
             </div>
           ) : (
             <div className="header-img-wrapper">
-              <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
+              <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" className="soundImg" />
             </div>
           )}
         </div>

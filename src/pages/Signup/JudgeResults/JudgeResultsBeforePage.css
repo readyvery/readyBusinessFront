@@ -1,0 +1,106 @@
+.judge-results-before-page-content-container{
+    margin-top: 2.24rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 20rem;
+}
+
+.judge-results-before-page-top-positon-icon{
+    width: 4.4rem;
+    height: 4.4rem;
+    display: flex;
+    position: absolute;
+    top: -2rem;
+    left: 43%;
+}
+
+.judge-results-before-page-content-text-style{
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: "Pretendard";
+}
+.judge-results-before-page-content-main-text-style{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Pretendard";
+    font-weight: 500;
+}
+.judge-results-before-page-content-main-text-tab{
+    margin-top: 0.8rem;
+    margin-bottom: 2.2rem ;
+}
+
+.judge-results-before-page-next-button{
+    margin-top: 2.1rem;
+}
+
+.redyvery-linked-message-for-kakao{
+    border-radius: 0.7rem;
+    border: 0.06rem solid #838383;
+    background: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content:space-around;
+    font-family: "Pretendard";
+    font-weight: 500;
+}
+
+.redyvery-linked-message-for-kakao-time{
+    color: #838383;
+    margin-top: 0.092rem;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){  
+    .judge-results-before-page-content-text-style{
+        margin-top: 3rem;
+        font-size: 1rem;
+    }
+    .judge-results-before-page-content-main-text-style{
+        margin-top: 2.24rem;
+        font-size: 0.7rem;
+    }
+    .redyvery-linked-message-for-kakao{
+        width: 14.79rem;
+        height: 3.12rem;
+        font-size: 0.6rem;
+    }
+    .redyvery-linked-message-for-readyvery-img{
+        width: 2rem;
+        height: 2rem;
+    }
+    .redyvery-linked-message-for-kakao-img{
+        width: 2.1rem;
+        height: 1.5rem;
+    }
+    
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .judge-results-before-page-content-text-style{
+        margin-top: 3rem;
+        font-size: 0.8rem;
+    }
+    .judge-results-before-page-content-main-text-style{
+        margin-top: 2.24rem;
+        font-size: 0.5rem;
+    }
+    .redyvery-linked-message-for-kakao{
+        width: 10rem;
+        height: 2rem;
+        font-size: 0.4rem;
+    }
+    .redyvery-linked-message-for-readyvery-img{
+        width: 1.35rem;
+        height: 1.35rem;
+    }
+    .redyvery-linked-message-for-kakao-img{
+        width: 1.35rem;
+        height: 1rem;
+    }
+
+}

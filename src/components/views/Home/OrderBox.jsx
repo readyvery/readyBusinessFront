@@ -2,11 +2,14 @@ import styled, { css } from "styled-components";
 import theme from "../../../style/theme/theme";
 
 export default function OrderBox ({ id, category, menu, clicked }) {
+    const menuLen = menu.length;
     return(
         <OrderBoxContainer clicked={clicked}>
             <OrderBoxSpan width={"15%"} size="big" align="right">{id}</OrderBoxSpan>
             <OrderBoxSpan width={"15%"} size="big" align="center">{category}</OrderBoxSpan>
-            <OrderBoxSpan width={"70%"} size="small" align="left">{menu}</OrderBoxSpan>
+            <OrderBoxSpan width={"70%"} size="small" align="left">
+                {menuLen > 1 ? `${menu[0].name} 외 ${menuLen - 1}건` : menu[0].name}
+            </OrderBoxSpan>
         </OrderBoxContainer>
     )
 };
@@ -27,9 +30,11 @@ const OrderBoxSpan = styled.span`
     width: ${(props) => props.width};
     ${(props) => props.size === "big" ? css`
         font-size: 1rem;
-        font-family: Bold;
+        font-family: "Pretendard";
+        font-weight: 800;
     ` : css`
         font-size: 0.8rem;
-        font-family: SemiBold;
+        font-family: "Pretendard";
+        font-weight: 600;
     `}
 `;

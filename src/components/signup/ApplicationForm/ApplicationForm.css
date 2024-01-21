@@ -1,0 +1,178 @@
+/* SignPageContainer css */
+
+.application-form-container-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F4F7FF;
+    overflow-y: auto;
+}  
+
+.application-form-container-wrapper-inner{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.25rem;
+    min-width: 20rem;
+    min-height: 30rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0rem 1.5rem 3rem 0rem rgba(0, 0, 0, 0.03), 0rem 1.525rem 3.5rem 0rem rgba(216, 216, 216, 0.30);
+}
+
+.application-form-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-align: center;
+    justify-content: center;
+    margin: 2.25rem 0 1.375rem 0;
+}
+
+.application-form-container-text{
+    font-family: "Pretendard";
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+
+  /* 안의 내용 */
+.application-form-circle-num-ber-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 원 */
+.application-form-circle-num-wapper{
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard";
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    /* point */
+    border: 0.15rem solid rgba(79, 79, 79, 1);
+    color: rgba(79, 79, 79, 1);
+}
+
+/* 바 */
+.application-form-bar-wapper{
+    width: 3.8rem;
+    height: 0.2rem;
+    margin: 0 0.33rem 0 0.33rem;
+    border-radius: 0.1rem;
+
+    /* point */
+    background-color: rgba(79, 79, 79, 1);
+}
+
+
+/* 글자 */
+.application-form-circle-num-ber-text-wrapper{
+    position: absolute;
+    bottom: -1rem;
+    display: flex;
+    transform: translateX(-51.6%);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.application-form-circle-num-bar-text-content{
+    color: rgba(217, 217, 217, 1);
+    text-align: center;
+    font-family: "Pretendard";
+    font-size: 0.6rem;
+    font-weight: 800;
+
+    /* point */
+    color: rgba(79, 79, 79, 1);
+}
+
+
+/* dkd */
+.application-form-content-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 20rem;
+}
+
+.application-form-content-main-text-style{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3rem;
+    max-width: 19rem;
+    font-family: "Pretendard";
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #2E2D2D;
+}
+
+.application-form-content-sub-text-style{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 1.4rem;
+    max-width: 12rem;
+    font-family: "Pretendard";
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #2E2D2D;
+}
+
+.application-form-content-main-text-tab{
+    margin-top: 1.8rem;
+    margin-bottom: 0.5rem ;
+}
+
+.application-form-next-button{
+    margin-top: 1.425rem;
+}
+
+.application-form-redyvery-linked-message-for-kakao{
+    width: 14.4rem;
+    height: 2.75rem;
+    border-radius: 7.5rem;
+    border: 0.05rem solid #838383;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-size: 0.4rem;
+}
+
+.application-form-redyvery-linked-message-for-kakao-time{
+    color: #838383;
+    margin-top: 0.092rem;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .application-form-container-wrapper-inner{
+        width: 30rem;
+        height: 40rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+
+}

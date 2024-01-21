@@ -1,0 +1,96 @@
+/* 안의 내용 */
+.circle-num-ber-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 원 */
+.circle-num-wapper{
+    min-width: 1.15rem;
+    min-height: 1.15rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pretendard";
+    font-weight: 800;
+}
+/* 원 색상 */
+.circle-num-wapper-point{
+    border: 0.2rem solid rgba(79, 79, 79, 1);
+    color: rgba(79, 79, 79, 1);
+}
+.circle-num-wapper-not-point{
+    border: 0.2rem solid rgba(217, 217, 217, 1);
+    color:rgba(217, 217, 217, 1);
+}
+
+/* 바 */
+.bar-wapper{
+    min-width: 3.8rem;
+    height: 0.2rem;
+    margin: 0 0.33rem 0 0.33rem;
+    border-radius: 0.1rem;
+}
+/* 바 색상 */
+.bar-wapper-point{
+    background-color: rgba(79, 79, 79, 1);
+}
+.bar-wapper-not-point{
+    background-color:rgba(217, 217, 217, 1);
+}
+
+/* 글자 */
+.circle-num-ber-text-wrapper{
+    position: absolute;
+    bottom: -1rem;
+    display: flex;
+    transform: translateX(-51%);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-num-bar-text-content{
+    color: rgba(217, 217, 217, 1);
+    text-align: center;
+    font-family: "Pretendard";
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+/* 글자 색 */
+.circle-num-bar-text-point{
+    color: rgba(79, 79, 79, 1);
+}
+.circle-num-bar-text-not-point{
+    color:rgba(217, 217, 217, 1);
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 481px){    
+    .circle-num-wapper{
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.2rem;
+    }
+    .bar-wapper{
+        width: 6rem;
+        margin: 0 0.33rem 0 0.33rem;
+    }
+    .circle-num-bar-text-content{
+        font-size: 0.8rem;
+    }
+    .circle-num-ber-text-wrapper{
+        bottom: -1.35rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .circle-num-wapper{
+        font-size: 0.6rem;
+    }
+}

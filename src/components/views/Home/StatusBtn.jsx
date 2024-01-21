@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import styled, { css } from "styled-components";
-import { HomeContext } from "../../../pages/Home/Home";
+import { HomeContext } from "../../../pages/OrderManage/Home";
 import theme from "../../../style/theme/theme";
 
 export default function StatusBtn ({ status, text }) {
     const context = useContext(HomeContext);
 
+    // 처리중 | 완료 버튼 눌렀을 때
     const onClickHandler = () => {
         context.setStatus(status);
         context.setSelectedIdx(0);
+        context.setSelectedMenu({});
     };
 
     return(
@@ -47,5 +49,6 @@ const StatusBtnBox = styled.div`
 
 const StatusTxt = styled.span`
     font-size: 1.25rem;
-    font-family: Bold;
+    font-family: "Pretendard";
+    font-weight: 800;
 `;

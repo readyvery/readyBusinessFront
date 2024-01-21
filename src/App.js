@@ -1,7 +1,4 @@
-import { message } from "antd";
-import axios from "axios";
 import React, { Suspense } from "react";
-import { useCookies } from "react-cookie";
 import {
   Navigate,
   Route,
@@ -9,65 +6,62 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Header2 from "../src/components/views/Header/Header2";
-import "./App.css";
-
-import InventoryPage from "../src/pages/Inventory/Inventory";
-import Mypage from "../src/pages/Mypage/Mypage";
-import SalesPage from "../src/pages/Sales/Sales";
+// import Header2 from "../src/components/views/Header/Header2";
 // import Auth from "./hoc/auth.jsx";
-import useInterval from "./hooks/useInterval.jsx";
-import OrderPage from "./pages/Home/Order.jsx";
-import MainPage from "./pages/Main/MainPage.jsx";
-// import HomePage from "./pages/Home/Home";
+import Auth from "./utils/Auth.jsx";
+// import MainPage from "./pages/Main/MainPage.jsx";
+// 추가 페이지
+import InventoryPage from "./pages/Inventory/Inventory.jsx";
+import MyPage from "./pages/Mypage/Mypage.jsx";
+import OrderManagePage from "./pages/OrderManage/Order.jsx";
+import SalesPage from "./pages/Sales/Sales.jsx";
+
+import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
+import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx"; //아이디 찾기-전화번호 인증
+import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx"; //아이디 찾기 결과-회원 X
+import UserFindIdPage from "./pages/Find/FindIdPage/UserFindIdPage/UserFindIdPage.jsx"; //아이디 찾기 결과-아이디 반환
+import ChangeNewPasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangeNewPasswordPage/ChangeNewPasswordPage.jsx"; //비밀번호 변경 - 새 비밀번호 인증
+import ChangePasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangePasswordPage.jsx"; //비밀번호 변경 - 전화번호 인증
+import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx"; //비밀번호 찾기 - 아이디 조회
+import LoginPage from "./pages/Login/LoginPage.jsx";
+import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
+import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
+import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
+import SignupPage from "./pages/Signup/SignupPage.jsx";
+import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
+import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 
 function App() {
-  const [cookies, , removeCookies] = useCookies();
+  //const [cookies, , removeCookies] = useCookies();
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_ROOT;
   let location = useLocation();
 
-  // const NewLoginPage = Auth(MainPage, false);
-  // const NewHomePage = Auth(HomePage, true);
-  // const NewInventoryPage = Auth(InventoryPage, true);
-  // const NewSalesPage = Auth(SalesPage, true);
-  // const NewMyPage = Auth(Mypage, true);
+  // 로그인 필요없는 페이지
+  const NewSignupPage = Auth(SignupPage, false); // 회원가입
+  const NewLoginPage = Auth(LoginPage, false); // 로그인
+  const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
+  const NewNoneFindIdPage = Auth(NoneFindIdPage, false); //아이디 찾기 결과-회원 X
+  const NewUserFindIdPage = Auth(UserFindIdPage, false); //아이디 찾기 결과-아이디 반환
+  const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
 
-  const expiredTime = 1000 * 60 * 60 * 24;
-  // const expiredTime = 65000;
-  useInterval(() => {
-    // console.log(cookies.refreshToken);
-    if (
-      cookies.refreshToken !== "undefined" &&
-      cookies.refreshToken !== undefined &&
-      cookies.refreshToken
-    ) {
-    if (cookies.accessToken) {
-      const config = {
-        withCredentials: true,
-      };
-      axios
-        .get(`${apiUrl}/api/v1/refresh/token`, config)
-        .then((response) => {
-          console.log(response);
-          if (!response.data) {
-            removeCookies();
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          message.info("토큰이 만료되었습니다. 로그인을 진행해주세요.");
-          navigate("/");
-        });
-    }
-    }
-  }, expiredTime - 60000);
+  // 로그인 필수 페이지
+  // GUEST : 1, USER : 2, CEO : 3
+  
+  const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
+  // 유저전용 메인페이지 (2)
+  // CEO전용 메인페이지 (3)
+  const NewOrderManagementPage = Auth(OrderManagePage, true, 3); // 주문관리
+  const NewInventoryPage = Auth(InventoryPage, true, 3); // 재고관리
+  const NewSalesPage = Auth(SalesPage, true, 3); // 매출관리
+  const NewMyPage = Auth(MyPage, true, 3); // 마이페이지
+
   if (location.pathname === "/") {
     return (
       <div>
         <div className="App">
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
           </Routes>
         </div>
@@ -76,23 +70,48 @@ function App() {
   }
   return (
     <div className="App">
-      <Header2 />
+      {/* <Header2 /> */}
       {/* <nav>
         <NavBar />
       </nav> */}
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          {/* <Route path="/home" element={<NewHomePage />} />
+          <Route path="/order" element={<NewOrderManagementPage />} />
           <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} /> */}
-          {/* <Route path="/home" element={<HomePage />} /> */}
-          <Route path="/home" element={<OrderPage />} />
-          <Route path="/Inventory" element={<InventoryPage />} />
-          <Route path="/Sales" element={<SalesPage />} />
-          <Route path="/Mypage" element={<Mypage />} />
-          <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
+          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/signup" element={<NewSignupPage />} />
+          {/* 추가 */}
+          <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
+          <Route
+            path="/signup/auth/verification"
+            element={<VerificationPage />}
+          />
+          <Route path="/signup/auth/terms" element={<TermsPage />} />
+          <Route path="/signup/auth/results" element={<ApplicationForm />} />
+          <Route
+            path="/signup/auth/results/before"
+            element={<JudgeResultsBeforePage />}
+          />
+          <Route
+            path="/signup/auth/results/reject"
+            element={<JudgeResultsRejectPage />}
+          />
+          <Route path="/login" element={<NewLoginPage />} />
+          <Route path="/find/id" element={<NewFindIdPage />} />
+          <Route path="/find/id/serch" element={<NewUserFindIdPage />} />
+          <Route path="/find/id/none" element={<NewNoneFindIdPage />} />
+          <Route path="/find/password" element={<NewFindPasswordPage />} />
+          <Route
+            path="/find/password/change"
+            element={<ChangePasswordPage />}
+          />
+          <Route
+            path="/find/password/change/user"
+            element={<ChangeNewPasswordPage />}
+          />
+          {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
         </Routes>
       </Suspense>
     </div>

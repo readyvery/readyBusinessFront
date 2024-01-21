@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import React from "react";
 import theme from "../../../style/theme/theme";
 
-export default function StatusHeader ({status, onClickHandler, children}) {
+export default function StatusHeader ({children}) {
     return(
         <Container>
             <StatusContainer>
@@ -24,32 +24,4 @@ const StatusContainer = styled.div`
     height: 100%;
     margin: 0 auto;
     display: flex;
-`;
-
-const StatusBtn = styled.div`
-    width: 50%;
-    height: 100%;
-    color: #fff;
-    background-color: ${theme.colors.MainColor};
-    border-radius: 15px 15px 0 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    ${(props) => props.clicked ? 
-        css`
-            color: #fff;
-            background-color: ${theme.colors.MainColor};
-        ` : 
-        css`
-            color: ${theme.colors.text};
-            background-color: #fff;
-        `
-    }
-`;
-
-const StatusTxt = styled.span`
-    font-size: 1.25rem;
-    font-family: Bold;
 `;

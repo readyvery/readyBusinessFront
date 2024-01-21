@@ -1,0 +1,39 @@
+.loginpage-user-num-input-style{
+    position: "relative"
+}
+
+.loginpage-user-auth-num{
+    border-radius: 0.25rem;
+    border: 0.05rem solid rgba(131, 131, 131, 1);
+    font-size: 0.8rem;
+    margin: 0.4375rem 0;
+    width: 15rem;
+    height: 2.5rem;
+    padding: 0.7rem 0.9rem 0.7rem 1rem;
+    font-family: "Pretendard";
+}
+
+.timer{
+    position: absolute;
+    top: 51.5%;
+    right: 5.1rem;
+    transform: translateY(-50%);
+    font-family: "Pretendard";
+    font-size: 0.8rem;
+    color: #838383;
+}
+
+/* w:768, h:1024이상일 때 */
+@media screen and (min-width: 481px) {
+    .loginpage-user-auth-num {
+        width: 17rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .timer{
+        right: 3.1rem;
+        top: 45.5%;
+    }
+}

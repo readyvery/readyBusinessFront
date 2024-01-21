@@ -1,8 +1,6 @@
 .header {
-  /* width: 100%; */
   width: 100vw;
   min-width: 64rem;
-  /* min-width: 64rem; */
   height: 5.5rem;
   background-color: #2e2d2d;
 }
@@ -25,24 +23,37 @@
 .header2-wrapper {
   display: flex;
   justify-content: space-between;
+  height: 100%;
+  padding: 0 2.5rem;
 }
 
 .head-container2 {
-  width: 23.6rem;
+  width: 22rem;
   display: flex;
   justify-content: space-evenly;
 }
 
 .header-img-wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soundImg{
+  width: 2rem;
+  height: 1.71575rem;
+}
+
+.logo-wrapper{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .LOGO {
   width: 19.1875rem;
   height: 4rem;
-  margin-left: 2.5rem;
-  margin-top: 1.25rem;
-  float: left;
 }
 
 .store-group {
@@ -50,6 +61,7 @@
   flex-direction: row;
   object-fit: contain;
   align-items: center;
+  justify-content: center;
 }
 
 .store-img__wrapper {
@@ -59,7 +71,8 @@
 .header-font {
   color: #fff;
   font-size: 1.875rem;
-  font-family: "SemiBold";
+  font-family: "Pretendard";
+  font-weight: 600;
 }
 
 .head-container {

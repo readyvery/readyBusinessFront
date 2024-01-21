@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { selectId } from "../../../Atom/order";
+import React, { useContext, useState } from "react";
 import X from "../../../assets/icons/X.svg";
-import "../../../pages/Home/Receipt.css";
+import cherry from "../../../assets/icons/cherry.svg";
+import { HomeContext } from "../../../pages/OrderManage/Home";
+import "../../../pages/OrderManage/Receipt.css";
 
-export default function ReceiptBox ({orderProps, children}) {
-    const orderId = useRecoilValue(selectId);
+export default function ReceiptBox ({children}) {
+    const context = useContext(HomeContext);
     const [ReceiveModal, setReceiveModal] = useState(false);
     const [RefuseModal, setRefuseModal] = useState(false);
   
@@ -82,193 +82,206 @@ export default function ReceiptBox ({orderProps, children}) {
       // }
     };
 
+    const selectedInfo = context.selectedMenu;
+    console.log(selectedInfo);
+
 
     return(
-        <div>
-        <div className="receiptHeader">
-            <span className="receipt-header"> 주문번호 123</span>
-            {children}
-        </div>
-        <div className="receiptTextBox">
-            <span className="receipt-text">주문시간</span>
-            <span className="receipt-text">
-                {/* {orderProps?.time?.split("T")[0]?.replaceAll("-", "/")}{" "}
-                {orderProps?.time?.split("T")[1]?.split(".")[0]} */}
-                23/10/23 14:13:02
-            </span>
-        </div>
-        <div className="receiptTextBox">
-            <span className="receipt-text">고객연락처</span>
-            <span className="receipt-text">
-                {/* {orderProps?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")} */}
-                010-1234-1234
-            </span>
-        </div>
-        <div className="receipt-divider" />
-        <div className="receiptTextBox">
-          <span className="receipt-text">주문내역</span>
-        </div>
-        {orderProps?.foodies?.map((e, i) => (
-          <React.Fragment key={i}>
+      <div className="receiptWrapper">
+        {
+          selectedInfo?.length ? (
+            <>
+              <div className="receiptHeader">
+                <span className="receipt-header"> 주문번호 {selectedInfo[0]?.idx}</span>
+                {children}
+            </div>
             <div className="receiptTextBox">
-              <span className="receipt-FoodName">• {e?.name}</span>
-              <span className="receipt-FoodName count">{e?.count}</span>
-            </div>
-            <div className="receiptOption">
-              {e?.options?.map((option) => (
-                <span
-                  className="receipt-optiontext"
-                  style={{
-                    color: (option?.price !== 0 || option?.category === "HOT/ICE"
-                    || option?.category === "ICE/HOT") ? "#D82356" : undefined,
-                    fontWeight: "500",
-                  }}
-                >
-                  └ ({option.category}) {option.name}
+                <span className="receipt-text">주문시간</span>
+                <span className="receipt-text">
+                    {selectedInfo[0]?.time?.split("T")[0].replaceAll("-", "/")}
+                    {" "}
+                    {selectedInfo[0]?.time?.split("T")[1]?.split(".")[0]}
                 </span>
-              ))}
             </div>
-          </React.Fragment>
-        ))}
-        <div className="receipt-divider" />
-        <div className="receiptTextBox">
-          <span className="receipt-text">상품금액</span>
-          <span className="receipt-text">
-            {/* {orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
-            8.500원
-          </span>
-        </div>
-        <div className="receiptTextBox">
-          <span className="receipt-text">할인금액</span>
-          <span className="receipt-text">
-            {/* {orderProps?.couponUsed ? "(-) 500원" : "0원"} */}
-            (-)500원
-          </span>
-        </div>
-        <div className="receiptTextBox">
-          <span className="receipt-text">결제금액</span>
-          <span className="receipt-text">
-            {/* {orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
-            7,000원
-          </span>
-        </div>
+            <div className="receiptTextBox">
+                <span className="receipt-text">고객연락처</span>
+                <span className="receipt-text">
+                    {/* {orderProps?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")} */}
+                    {selectedInfo[0]?.phone}
+                </span>
+            </div>
+            <div className="receipt-divider" />
+            <div className="receiptTextBox">
+              <span className="receipt-text">주문내역</span>
+            </div>
+            {selectedInfo[0]?.foodies?.map((food, i) => (
+              <React.Fragment key={i}>
+                <div className="receiptTextBox">
+                  <span className="receipt-FoodName">• {food?.name}</span>
+                  <span className="receipt-FoodName count">{food?.count}</span>
+                </div>
+                <div className="receiptOption">
+                  {food?.options?.map((option) => (
+                    <span
+                      className="receipt-optiontext"
+                      style={{
+                        color: (option?.price !== 0 || option?.category === "HOT/ICE"
+                        || option?.category === "ICE/HOT") ? "#D82356" : undefined,
+                        fontWeight: "500",
+                      }}
+                    >
+                      └ ({option.category}) {option.name}
+                    </span>
+                  ))}
+                </div>
+              </React.Fragment>
+            ))}
+            <div className="receipt-divider" />
+            <div className="receiptTextBox">
+              <span className="receipt-text">상품금액</span>
+              <span className="receipt-text">
+                {/* {orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
+                {selectedInfo[0]?.price}원
+              </span>
+            </div>
+            <div className="receiptTextBox">
+              <span className="receipt-text">할인금액</span>
+              <span className="receipt-text">
+                {/* {orderProps?.couponUsed ? "(-) 500원" : "0원"} */}
+                (-)500원
+              </span>
+            </div>
+            <div className="receiptTextBox">
+              <span className="receipt-text">결제금액</span>
+              <span className="receipt-text">
+                {/* {orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
+                {selectedInfo[0]?.price}원
+              </span>
+            </div>
 
-        {/* 주문거부모달창 */}
-        {!ReceiveModal && RefuseModal && (
-          <div className="modal-wrapper">
-            <div className="modal-box">
-              <div
-                className="modal-close__wrapper"
-                onClick={() => setRefuseModal((prev) => !prev)}
-              >
-                <img src={X} alt="close" />
-              </div>
-              <div className="modal-box-txt__wrapper">
-                <div className="modal-box-txt">접수 거부 사유를 선택해주세요</div>
-              </div>
-              <div className="modal-box-choose-btn__wrapper">
-                <div
-                  className="modal-box-choose-btn"
-                  onClick={(e) => cancelOrder(e)}
-                >
-                  재료소진
+            {/* 주문거부모달창 */}
+            {!ReceiveModal && RefuseModal && (
+              <div className="modal-wrapper">
+                <div className="modal-box">
+                  <div
+                    className="modal-close__wrapper"
+                    onClick={() => setRefuseModal((prev) => !prev)}
+                  >
+                    <img src={X} alt="close" />
+                  </div>
+                  <div className="modal-box-txt__wrapper">
+                    <div className="modal-box-txt">접수 거부 사유를 선택해주세요</div>
+                  </div>
+                  <div className="modal-box-choose-btn__wrapper">
+                    <div
+                      className="modal-box-choose-btn"
+                      onClick={(e) => cancelOrder(e)}
+                    >
+                      재료소진
+                    </div>
+                    <div
+                      className="modal-box-choose-btn"
+                      onClick={(e) => cancelOrder(e)}
+                    >
+                      가게사정
+                    </div>
+                    <div
+                      className="modal-box-choose-btn"
+                      onClick={(e) => cancelOrder(e)}
+                    >
+                      기타
+                    </div>
+                  </div>
                 </div>
-                <div
-                  className="modal-box-choose-btn"
-                  onClick={(e) => cancelOrder(e)}
-                >
-                  가게사정
-                </div>
-                <div
-                  className="modal-box-choose-btn"
-                  onClick={(e) => cancelOrder(e)}
-                >
-                  기타
-                </div>
               </div>
-            </div>
-          </div>
-        )}
+            )}
 
-        {/* 주문수락모달창 */}
-        {!RefuseModal && ReceiveModal && (
-          <div className="modal-wrapper">
-            <div className="modal-box">
-              <div className="modal-close__wrapper" onClick={() => setReceiveModal((prev) => !prev)}>
-                <img src={X} alt="close" />
+            {/* 주문수락모달창 */}
+            {!RefuseModal && ReceiveModal && (
+              <div className="modal-wrapper">
+                <div className="modal-box">
+                  <div className="modal-close__wrapper" onClick={() => setReceiveModal((prev) => !prev)}>
+                    <img src={X} alt="close" />
+                  </div>
+                  <div className="modal-box-txt__wrapper">
+                    <div className="modal-box-txt">제조 시간을 선택해주세요</div>
+                  </div>
+                  <div className="modal-box-choose-btn__wrapper">
+                    <div className="modal-box-choose-btn__row">
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn now"
+                          onClick={handleMake}
+                        >
+                          즉시완료
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-box-choose-btn__row">
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          5분
+                        </div>
+                      </div>
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          10분
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-box-choose-btn__row">
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          15분
+                        </div>
+                      </div>
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          20분
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-box-choose-btn__row">
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          25분
+                        </div>
+                      </div>
+                      <div className="modal-box-choose-btn__col">
+                        <div
+                          className="modal-box-chooseTime-btn"
+                          onClick={handleMake}
+                        >
+                          30분
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="modal-box-txt__wrapper">
-                <div className="modal-box-txt">제조 시간을 선택해주세요</div>
-              </div>
-              <div className="modal-box-choose-btn__wrapper">
-                <div className="modal-box-choose-btn__row">
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn now"
-                      onClick={handleMake}
-                    >
-                      즉시완료
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-box-choose-btn__row">
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      5분
-                    </div>
-                  </div>
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      10분
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-box-choose-btn__row">
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      15분
-                    </div>
-                  </div>
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      20분
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-box-choose-btn__row">
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      25분
-                    </div>
-                  </div>
-                  <div className="modal-box-choose-btn__col">
-                    <div
-                      className="modal-box-chooseTime-btn"
-                      onClick={handleMake}
-                    >
-                      30분
-                    </div>
-                  </div>
-                </div>
-              </div>
+            )}
+            </>
+          ) : (
+            <div className="noMenuImgWrapper">
+              <img src={cherry} alt="berry" className="noMenuImg"/>
             </div>
-          </div>
-        )}
+          )
+        }
       </div>
     );
 }
