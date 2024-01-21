@@ -1,6 +1,9 @@
-import Axios from "axios";
+import axios from "axios";
+import moment from "moment";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
 import RedButton from "../../components/login/redButton/RedButton";
 import "./LoginPage.css";
@@ -20,20 +23,20 @@ const LoginFindUserIdAndPassword = () => {
     </div>
   );
 };
+
 function LoginPage() {
   const is480 = window.innerWidth <= 480;
   const containerSize = is480
     ? ["20rem", "30rem", "3.3rem"]
     : ["25rem", "30rem", "4.55rem"];
 
-  // 로그인값 받아오기..
-  // const [userData, setUserData] = useState(true);
 
   // 로그인 내용
+  const setLoginToken = useSetRecoilState(loginState);
 
   const [EmailText, setEmailText] = useState("");
   const [Password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onEmailHandler = (event) => {
     setEmailText(event.currentTarget.value);
@@ -43,25 +46,23 @@ function LoginPage() {
     setPassword(event.currentTarget.value);
   };
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    console.log("로그인 버튼 클릭");
+  const onSubmitHandler = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_ROOT;
-      const response = await Axios.post(`${apiUrl}/api/v1/user/login`, {
+      const response = await axios.post('/user/login', {
         email: EmailText,
         password: Password,
-      });
+      })
+      console.log(response);
 
       if (response.data.success) {
-        // 로그인 성공: Recoil 상태와 localStorage에 토큰 저장
-        localStorage.clear();
-        localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("refreshToken", response.data.refreshToken);
+        // 로그인 성공: Recoil에 AT와 만료시간 저장
+        setLoginToken({
+          accessToken: response.data.accessToken,
+          expiredTime: moment().add(1, "day").format("yyyy-MM-DD HH:mm:ss")
+        });
+        // localStorage.setItem('accessToken', response.data.accessToken);
         console.log("로그인 성공:", response.data);
-        console.log(localStorage.accessToken)
-        console.log(localStorage.refreshToken)
-        navigate("/home");
+        // navigate("/home");
       } else {
         console.log("로그인 실패:", response.data);
       }
@@ -101,7 +102,7 @@ function LoginPage() {
         <LoginFindUserIdAndPassword />
         <div className="loginpage-form-login-wrapper">
           <RedButton
-            type="submit"
+            type="button"
             onClick={onSubmitHandler}
             className="loginButton"
           >
