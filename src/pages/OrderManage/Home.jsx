@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { soundState } from "../../Atom/status";
@@ -11,8 +10,6 @@ import EffectSound from "../../utils/EffectSound";
 import OrderContainer from "../../components/views/Home/OrderContainer";
 import StatusBtn from "../../components/views/Home/StatusBtn";
 import StatusHeader from "../../components/views/Home/StatusHeader";
-import useFetchCompletetInfo from "../../hooks/useFetchCompleteInfo";
-import useFetchMakeInfo from "../../hooks/useFetchMakeInfo";
 import useFetchWaitInfo from "../../hooks/useFetchWaitInfo";
 import "./Home.css";
 import MainHome from "./MainHome";
@@ -21,14 +18,11 @@ import Receipt from "./Receipt";
 // Context API 적용
 export const HomeContext = createContext(null);
 function Home({ defaultValue, defaultStatus, defaultMenu, children }) { 
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-  const navigate = useNavigate();
 
   const waitInfo = useFetchWaitInfo();
-  const makeInfo = useFetchMakeInfo();
-  const completeInfo = useFetchCompletetInfo();
+  // const makeInfo = useFetchMakeInfo();
+  // const completeInfo = useFetchCompletetInfo();
   // console.log(waitInfo);
-  const [, , removeCookie] = useCookies(["accessToken", "JSESSIONID"]);
 
   const [cookies] = useCookies(["accessToken"]);
   

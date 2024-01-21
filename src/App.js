@@ -3,8 +3,7 @@ import {
   Navigate,
   Route,
   Routes,
-  useLocation,
-  useNavigate,
+  useLocation
 } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
 // import Auth from "./hoc/auth.jsx";
@@ -33,8 +32,6 @@ import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
-  const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_ROOT;
   let location = useLocation();
 
   // 로그인 필요없는 페이지

@@ -1,7 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
@@ -36,7 +36,7 @@ function LoginPage() {
 
   const [EmailText, setEmailText] = useState("");
   const [Password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onEmailHandler = (event) => {
     setEmailText(event.currentTarget.value);
