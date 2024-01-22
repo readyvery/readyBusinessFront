@@ -1,0 +1,288 @@
+.mainInven-wrapper{
+    height: 100%;
+    font-family: "Pretendard";
+}
+
+.mainInven-title{
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-top: 3.85rem;
+}
+
+.mainInven-title__wrapper{
+    display: flex;
+    background-color: #838383;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom: 0.25rem solid #d82356;
+    position: relative;
+    align-items: center;
+}
+
+.mainInven-title__wrapper span{
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-size: 0.8rem; 
+}
+
+.mainInven-title__span1{
+    width: 15%;
+}
+
+.mainInven-title__span2__wrapper{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainInven-title__span3{
+    width: 60%;
+    white-space: nowrap;
+}
+
+.mainInven-category__modal{
+    position: absolute;
+    left: 50%;
+    display: flex;
+    width: 25%;
+    flex-direction: column;
+    border-radius: 0 0 0.625rem 0.625rem;
+    background-color: #838383;
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.mainInven-category__modal::-webkit-scrollbar {
+    display: none;
+}
+
+.mainInven-category__modal {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+.mainInven-category__modal span{
+    color: #FFF;
+    text-align: center;
+    font-family: "Pretendard";
+    font-weight: 600;
+    line-height: 410%;
+    font-size: 0.675rem;
+
+}
+.mainInven-category__line{
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 0.0625rem;
+}
+.mainInven-category-content__wrapper{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.mainInven-category-content__wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.mainInven-category-content__wrapper {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+/* --------------------------------- */
+.mainInven-category-content__box{
+    display: flex;
+    width: 100%;
+    height: 1.9rem;
+    border-bottom: #dadada solid 0.075rem;
+}
+
+.mainInven-category-content__box.selected{
+    background-color: rgba(216, 35, 86, 0.15);
+}
+
+.mainInven-category-content__box span{
+    font-family: "Pretendard";
+    color: #4f4f4f;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 115%;
+    font-size: 0.8rem;
+    height: 100%;
+}
+
+.mainInven-category-checkbox{
+    border:#dadada solid 0.1875rem;
+    border-radius: 0.125rem;
+    height: 1rem;
+    width: 1rem;
+}
+
+.mainInven-category-checkbox.selected{
+    background: #d82356 url( "../../../assets/icons/icon_check.svg" ) no-repeat center center;
+    border: none;
+    background-size: 70%;
+}
+
+.mainInven-category-content__span1{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #dadada solid 0.075rem;
+}
+
+.mainInven-category-content__span2{
+    width: 25%;
+    white-space: nowrap;
+    border: #dadada solid 0.075rem;
+    overflow-x: hidden;
+}
+
+.mainInven-category-content__span3{
+    width: 60%;
+    white-space: nowrap;
+    border: #dadada solid 0.075rem;
+    overflow-x: hidden;
+}
+/* 모달 */
+/* .inven-modal-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+} */
+.inven-modal-box{
+    position: absolute;
+    /* top: 100%; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+    width: 80%;
+    height: auto;
+    background-color: #fff;
+    border-radius: 2.8125rem;
+    z-index: 101;
+    padding: 2.0625rem 3.25rem;
+
+    display: flex;
+    flex-direction: column;
+}
+.inven-modal-close__wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inven-modal-box-img__wrapper{
+    height: 100%;
+}
+
+.inven-modal-box-txt__wrapper{
+    height: 100%;
+}
+.inven-modal-box-txt{
+    font-size: 0.8rem;
+    font-family: "Pretendard";
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.5rem;
+
+}
+
+.inven-modal-box-close-btn__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 20%;
+    margin-top: 20%;
+}
+
+.inven-modal-box-close-btn{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    color: #fff;
+    background-color: #d82356;
+    font-size: 1.875rem;
+    font-family: "Pretendard";
+    line-height: 3.125rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 769px){
+    .mainInven-title__wrapper{
+        height: 2.35rem;
+        width: 34.5rem;
+        margin-top: 2rem;
+    }
+    .mainInven-category-content__wrapper{
+        width: 34.5rem;
+    }
+    
+    .mainInven-title__wrapper span{
+        font-size: 0.9rem;
+    }
+    .mainInven-title{
+        font-size: 1.8rem;
+    }
+    .mainInven-category__modal{
+        font-size: 0.9rem;
+    }
+    .mainInven-category__modal{
+        top: 10.5rem;
+    }
+    .mainInven-category-content__box span{
+        font-size: 1rem;
+    }
+    .mainInven-category-content__box{
+        height: 2.5rem;
+    }
+    .mainInven-category-checkbox{
+        height: 1.4rem;
+        width: 1.4rem;
+    }
+}
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 481px) and (max-width: 768px){
+    .mainInven-title__wrapper{
+        height: 1.75rem;
+        width: 26rem;
+        margin-top: 1.4rem;
+    }
+    .mainInven-category-content__wrapper{
+        width: 26rem;
+    }
+    .mainInven-category__modal{
+        top: 9rem;
+    }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .mainInven-title__wrapper{
+        height: 1.75rem;
+        width: 21.6rem;
+        margin-top: 5.25rem;
+    }
+    .mainInven-category-content__wrapper{
+        width: 21.6rem;
+    }
+    .mainInven-title{
+        margin-top: 4.5rem;
+    }
+    .mainInven-category__modal{
+        top: 13.5rem;
+    }
+}
