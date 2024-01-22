@@ -1,6 +1,6 @@
 // import logo from "../../assets/icons/Big_LOGO.svg";
 // import kakao from "../../assets/icons/img_kakao.png";
-import Header480 from "../../components/views/Header/Header480";
+import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
 import "./MainPage.css";
 
 function MainPage() {
@@ -16,7 +16,11 @@ function MainPage() {
 
   //     </div>
   // )
-  return <Header480 />;
+  return (
+    <div className="main">
+      <ResponsiveHeader />
+    </div>
+  );
 }
 
 export default MainPage;

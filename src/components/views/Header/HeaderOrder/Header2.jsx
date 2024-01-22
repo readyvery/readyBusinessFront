@@ -2,12 +2,12 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { selectStoreState, soundState } from "../../../Atom/status";
-import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
-import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
-import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
-import SoundOff from "../../../assets/icons/Header/SoundOff.svg"; //소리끔
-import SoundOn from "../../../assets/icons/Header/SoundOn.svg"; //소리켬
+import { selectStoreState, soundState } from "../../../../Atom/status";
+import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
+import LOGO from "../../../../assets/icons/Header/LOGO.svg"; //로고
+import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
+import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
+import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
 
 const Header = () => {
@@ -19,17 +19,15 @@ const Header = () => {
   const [cookies] = useCookies(["accessToken"]);
 
   useEffect(() => {
-    if(cookies?.accessToken){
+    if (cookies?.accessToken) {
       const config = {
         withCredentials: true,
       };
 
-      axios
-        .get(`${baseUrl}/api/v1/store/sales`, config)
-        .then((res) => {
-          console.log(res);
-          setSelectStore(res.data.status);
-        })
+      axios.get(`${baseUrl}/api/v1/store/sales`, config).then((res) => {
+        console.log(res);
+        setSelectStore(res.data.status);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -63,11 +61,21 @@ const Header = () => {
           )}
           {sound ? (
             <div className="header-img-wrapper">
-              <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" className="soundImg"/>
+              <img
+                src={SoundOn}
+                onClick={onClickHandler}
+                alt="SoundOn"
+                className="soundImg"
+              />
             </div>
           ) : (
             <div className="header-img-wrapper">
-              <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" className="soundImg" />
+              <img
+                src={SoundOff}
+                onClick={onClickHandler}
+                alt="SoundOff"
+                className="soundImg"
+              />
             </div>
           )}
         </div>
