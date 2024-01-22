@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
 import NavBar from "../src/components/views/NavBar/NavBar";
-import InventoryPage from "../src/pages/Inventory/Inventory";
+import InventoryPage from "../src/pages/Inventory/Inventory/InventoryPage.jsx";
 import Mypage from "../src/pages/Mypage/Mypage";
 import SalesPage from "../src/pages/Sales/Sales";
 import "./App.css";
@@ -34,6 +34,7 @@ import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
+import MainInven from "./pages/Inventory/Inventory/MainInven.jsx";
 
 function App() {
   const [cookies, , removeCookies] = useCookies();
@@ -91,18 +92,23 @@ function App() {
   return (
     <div className="App">
       {/* <Header2 /> */}
-      <nav>
+      {/* <nav>
         <NavBar />
-      </nav>
+      </nav> */}
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/Inventory" element={<NewInventoryPage />} />
+          {/* <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/Mypage" element={<NewMyPage />} /> */}
           <Route path="/signup" element={<SignupPage />} /> 
           {/* 추가 */}
+          <Route path="/Inventory" element={<InventoryPage />} >
+            <Route path="" element={<MainInven />} />
+          </Route>
+          <Route path="/Sales" element={<SalesPage />} />
+          <Route path="/Mypage" element={<Mypage />} />
           <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route path="/signup/auth/verification" element={<VerificationPage />} />
           <Route path="/signup/auth/terms" element={<TermsPage />} />
