@@ -1,0 +1,30 @@
+.header480 {
+  display: flex;
+  width: 30rem;
+  height: 3.6875rem;
+  align-items: center;
+}
+
+.header480__menu {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  margin-left: 2rem;
+}
+
+.header__logo {
+  width: 9.4375rem;
+  height: 2.3125rem;
+  margin-left: 0.44rem;
+}
+
+.business-status {
+  color: var(--title, #2e2d2d);
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: auto;
+}
