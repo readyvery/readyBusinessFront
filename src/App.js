@@ -6,19 +6,8 @@ import {
   useLocation
 } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
-<<<<<<< HEAD
 // import Auth from "./hoc/auth.jsx";
 import Auth from "./utils/Auth.jsx";
-=======
-import NavBar from "../src/components/views/NavBar/NavBar";
-import InventoryPage from "../src/pages/Inventory/Inventory/InventoryPage.jsx";
-import Mypage from "../src/pages/Mypage/Mypage";
-import SalesPage from "../src/pages/Sales/Sales";
-import "./App.css";
-import Auth from "./hoc/auth.jsx";
-import useInterval from "./hooks/useInterval.jsx";
-// import HomePage from "./pages/Home/Home"; 카카오 로그인
->>>>>>> design-ceo-login
 // import MainPage from "./pages/Main/MainPage.jsx";
 // 추가 페이지
 import InventoryPage from "./pages/Inventory/Inventory.jsx";
@@ -36,15 +25,10 @@ import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx
 import LoginPage from "./pages/Login/LoginPage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
-<<<<<<< HEAD
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
 import SignupPage from "./pages/Signup/SignupPage.jsx";
 import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
-=======
-import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
-import MainInven from "./pages/Inventory/Inventory/MainInven.jsx";
->>>>>>> design-ceo-login
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -90,7 +74,6 @@ function App() {
 
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-<<<<<<< HEAD
           <Route path="/order" element={<NewOrderManagementPage />} />
           <Route path="/Inventory" element={<NewInventoryPage />} />
           <Route path="/Sales" element={<NewSalesPage />} />
@@ -102,21 +85,6 @@ function App() {
             path="/signup/auth/verification"
             element={<VerificationPage />}
           />
-=======
-          <Route path="/" element={<LoginPage />} />
-          {/* <Route path="/Inventory" element={<NewInventoryPage />} />
-          <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} /> */}
-          <Route path="/signup" element={<SignupPage />} /> 
-          {/* 추가 */}
-          <Route path="/Inventory" element={<InventoryPage />} >
-            <Route path="" element={<MainInven />} />
-          </Route>
-          <Route path="/Sales" element={<SalesPage />} />
-          <Route path="/Mypage" element={<Mypage />} />
-          <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
-          <Route path="/signup/auth/verification" element={<VerificationPage />} />
->>>>>>> design-ceo-login
           <Route path="/signup/auth/terms" element={<TermsPage />} />
           <Route path="/signup/auth/results" element={<ApplicationForm />} />
           <Route
