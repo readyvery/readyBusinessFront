@@ -2,11 +2,11 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { soundState, storeState } from "../../../Atom/status";
-import StoreOff from "../../../assets/icons/Header/CloseLight.svg"; //영업종료
+import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
-import StoreOn from "../../../assets/icons/Header/OpenLight.svg"; //영업중
-import SoundOff from "../../../assets/icons/Header/SoundOff.svg"; //소리끔
-import SoundOn from "../../../assets/icons/Header/SoundOn.svg"; //소리켬
+import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
+import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
+import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
 
 const Header = () => {

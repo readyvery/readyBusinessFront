@@ -1,20 +1,13 @@
 import React, { Suspense } from "react";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
 // import Auth from "./hoc/auth.jsx";
 import Auth from "./utils/Auth.jsx";
-// import MainPage from "./pages/Main/MainPage.jsx";
-// 추가 페이지
+import MainPage from "./pages/Main/MainPage.jsx";
 import InventoryPage from "./pages/Inventory/Inventory.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
 import SalesPage from "./pages/Sales/Sales.jsx";
-
 import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
 import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx"; //아이디 찾기-전화번호 인증
 import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx"; //아이디 찾기 결과-회원 X
@@ -44,7 +37,6 @@ function App() {
 
   // 로그인 필수 페이지
   // GUEST : 1, USER : 2, CEO : 3
-  
   const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
   // 유저전용 메인페이지 (2)
   // CEO전용 메인페이지 (3)
@@ -108,6 +100,7 @@ function App() {
             path="/find/password/change/user"
             element={<ChangeNewPasswordPage />}
           />
+          <Route path="/main" element={<MainPage />} />
           {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
         </Routes>
       </Suspense>
