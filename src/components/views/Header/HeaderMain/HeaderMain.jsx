@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo_txt from "../../../../assets/icons/Big_LOGO.svg";
 import logo_cherry from "../../../../assets/icons/small_cherry.svg";
 import "./HeaderMain.css";
