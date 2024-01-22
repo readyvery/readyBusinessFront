@@ -1,19 +1,26 @@
+
+.Box {
+  width: 97%;
+  height: 100%;
+  padding: 3vh 0;
+}
+
 .rounded-rectangle {
   width: 100%;
-  min-width: 22.125rem;
-  height: 41.25rem;
+  height: 100%;
+  /* min-width: 22.125rem;
+  height: 41.25rem; */
 
-  margin: 0.625rem auto;
-  padding: 0 0.875rem 1rem 0.875rem;
+  /* margin: 0.625rem auto; */
+  padding: 1.5rem 1rem ;
 
-  background-color: #f5f5f5; /* 배경색 설정 */
-  border-radius: 1.875rem; /* 모서리를 둥글게 만드는 값 */
+  background-color: #f5f5f5;
+  border-radius: 1.875rem;
 
-  text-align: center; /* 가운데 정렬 */
-  color: #000; /* 텍스트 색상 설정 */
-  font-size: 18px; /* 폰트 크기 설정 */
+  text-align: center;
+  color: #000;
+  font-size: 0.9px;
 
-  line-height: 100px; /* 수직 가운데 정렬을 위한 높이 설정 */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 
   overflow-y: auto;
@@ -26,13 +33,12 @@
   display: none;
 }
 
-.Box {
-  width: 100%; /* 너비 설정 */
+.receiptWrapper{
+  width: 100%;
+  height: 100%;
 }
 
 .receiptHeader {
-  padding-top: 10%;
-  /* padding-left: 10%; */
   display: flex;
   justify-content: space-between;
   width: 90%;
@@ -41,31 +47,11 @@
 
 .receipt-header {
   color: #000;
-  font-family: "Bold";
-  font-size: 1.75rem;
+  font-family: "Pretendard";
   font-weight: 800;
-  line-height: 130%; /* 2.275rem */
+  font-size: 1.75rem;
   letter-spacing: -0.0175rem;
-}
 
-.receipt-btn__wrapper {
-  /* padding: 10% 10% 5% 7%; */
-  /* width: 70%; */
-  /* margin: 0 auto; */
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.receiptButton {
-  height: 5.5rem;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-}
-
-.receiptCol {
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,10 +68,11 @@
   flex-direction: column;
   align-items: flex-start;
 
-  display: block; /* 블록 요소로 설정하여 각각 새로운 라인에 표시 */
-  text-align: left; /* 왼쪽 정렬 */
+  display: block;
+  text-align: left;
   color: #4f4f4f;
-  font-family: "SemiBold";
+  font-family: "Pretendard";
+  font-weight: 600;
   font-size: 1.4375rem;
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
@@ -94,7 +81,8 @@
 
 .receipt-FoodName.count{
   color:#d82356;
-  font-family: "Bold";
+  font-family: "Pretendard";
+  font-weight: 800;
   font-size: 1.75rem;
 }
 
@@ -107,7 +95,8 @@
 
 .receipt-optiontext {
   color: #4f4f4f;
-  font-family: "Regular";
+  font-family: "Pretendard";
+  font-weight: 500;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
@@ -116,7 +105,8 @@
 
 .receipt-text {
   color: #4f4f4f;
-  font-family: "Light";
+  font-family: "Pretendard";
+  font-weight: 300;
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 130%; /* 1.625rem */
@@ -125,13 +115,15 @@
 }
 
 .receipt-divider {
-  width: 18.4375rem;
-  height: 0rem;
+  width: 90%;
+  height: 1px;
+  margin: 0 auto;
+  background-color: #838383;
 
-  border-top: 1px solid #838383; /* 색상과 굵기를 조절할 수 있습니다. */
-  margin: 20px 0; /* 위아래 여백을 조절할 수 있습니다. */
+  /* border-top: 1px solid #838383; */
+  margin: 1rem 0;
 
-  transform: translate(7%, -50%);
+  /* transform: translate(7%, -50%); */
 }
 
 .receipt-btn {
@@ -140,7 +132,8 @@
   border: 2px solid;
   border-radius: 1.5625rem;
   background-color: #d82356;
-  font-family: "SemiBold";
+  font-family: "Pretendard";
+  font-weight: 600;
   font-size: 1.375rem;
   color: #ffffff;
 
@@ -155,7 +148,8 @@
   border: 2px solid;
   border-radius: 1.5625rem;
   background-color: #838383;
-  font-family: "SemiBold";
+  font-family: "Pretendard";
+  font-weight: 600;
   font-size: 1.375rem;
   color: #ffffff;
 
@@ -208,7 +202,8 @@
 
 .modal-box-txt {
   color: #4f4f4f;
-  font-family: "Regular";
+  font-family: "Pretendard";
+  font-weight: 500;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
@@ -241,9 +236,9 @@
 
   color: #838383;
   text-align: center;
-  font-family: "Light";
+  font-family: "Pretendard";
+  font-weight: 300;
   font-size: 1.375rem;
-  font-weight: 600;
   line-height: 100%; /* 1.375rem */
 }
 
@@ -266,7 +261,8 @@
 
   color: #838383;
   text-align: center;
-  font-family: "Light";
+  font-family: "Pretendard";
+  font-weight: 300;
   font-size: 1.375rem;
   font-weight: 600;
   line-height: 100%; /* 1.375rem */
@@ -281,4 +277,17 @@
   background-color: #d82356;
   border: 2px solid #d82356;
   color: #fff;
+}
+
+.noMenuImgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.noMenuImg{
+  width: 5.5rem;
+  height: 5.5rem;
 }

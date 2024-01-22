@@ -1,7 +1,7 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
 import { recoilPersist } from 'recoil-persist';
-import { Refresh } from "../hoc/handleRefresh";
+import { Refresh } from "../util/handleRefresh";
 
 const { persistAtom } = recoilPersist();
 
@@ -112,51 +112,3 @@ export const getUserSelector = selector({
   },
   effects_UNSTABLE: [persistAtom],
 });
-
-// export const waitorderState = atom({
-//   key: "waitorderState",
-//   default: [],
-// });
-
-// export const selectWaitOrderState = selector({
-//   key: "selectWaitOrderState",
-//   get: ({ get }) => {
-//     return get(waitorderState);
-//   },
-
-//   set: ({ set }, newValue) => {
-//     set(waitorderState, newValue);
-//   },
-// });
-
-// export const makeorderState = atom({
-//   key: "makeorderState",
-//   default: [],
-// });
-
-// export const selectMakeOrderState = selector({
-//   key: "selectMakeOrderState",
-//   get: ({ get }) => {
-//     return get(makeorderState);
-//   },
-
-//   set: ({ set }, newValue) => {
-//     set(makeorderState, newValue);
-//   },
-// });
-
-// export const completeorderState = atom({
-//   key: "completeorderState",
-//   default: [],
-// });
-
-// export const selectCompleteOrderState = selector({
-//   key: "selectCompleteOrderState",
-//   get: ({ get }) => {
-//     return get(completeorderState);
-//   },
-
-//   set: ({ set }, newValue) => {
-//     set(completeorderState, newValue);
-//   },
-// });

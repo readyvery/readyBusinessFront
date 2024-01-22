@@ -1,143 +1,84 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { message } from "antd";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
+import { soundState } from "../../Atom/status";
+import MP from "../../assets/Very.mp3";
+
+import EffectSound from "../../utils/EffectSound";
+
+import OrderContainer from "../../components/views/Home/OrderContainer";
+import StatusBtn from "../../components/views/Home/StatusBtn";
+import StatusHeader from "../../components/views/Home/StatusHeader";
+import useFetchWaitInfo from "../../hooks/useFetchWaitInfo";
 import "./Home.css";
 import MainHome from "./MainHome";
-import Receipt from "./Receipt/Receipt";
+import Receipt from "./Receipt";
 
-function Home() {
-  const apiUrl = process.env.REACT_APP_API_ROOT;
+// Context API 적용
+export const HomeContext = createContext(null);
+function Home({ defaultValue, defaultStatus, defaultMenu, children }) { 
 
-  const [waitInfo, setWaitInfo] = useState({});
-  const [makeInfo, setMakeInfo] = useState({});
-  const [completeInfo, setCompleteInfo] = useState({});
-  const [pickUpInfo, setpickUpInfo] = useState({});
+  const waitInfo = useFetchWaitInfo();
+  // const makeInfo = useFetchMakeInfo();
+  // const completeInfo = useFetchCompletetInfo();
+  // console.log(waitInfo);
 
   const [cookies] = useCookies(["accessToken"]);
+  
+  // Context API 적용 (status 관리)
+  const [status, setStatus] = useState(defaultStatus);
+  const [selectedIdx, setSelectedIdx] = useState(defaultValue);
+  const [selectedMenu, setSelectedMenu] = useState(defaultMenu);
+  const providerValue = { selectedIdx, setSelectedIdx, status, setStatus, selectedMenu, setSelectedMenu };
 
-  const waitData = () => {
-    const config = {
-      withCredentials: true,
-    };
 
-    axios
-      .get(`${apiUrl}/api/v1/order?status=ORDER`, config)
-      .then((res) => {
-        console.log(res);
-        setWaitInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error(
-          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
-        );
-        if (err.status === 404 && err.message === "Not found order.") {
-          setWaitInfo({});
-        }
-      });
-  };
-
-  const makeData = () => {
-    const config = {
-      withCredentials: true,
-    };
-
-    axios
-      .get(`${apiUrl}/api/v1/order?status=MAKE`, config)
-      .then((res) => {
-        console.log(res);
-        setMakeInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error(
-          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
-        );
-        if (err.status === 404 && err.message === "Not found order.") {
-          setMakeInfo({});
-        }
-      });
-  };
-
-  const completeData = () => {
-    const config = {
-      withCredentials: true,
-    };
-
-    axios
-      .get(`${apiUrl}/api/v1/order?status=COMPLETE`, config)
-      .then((res) => {
-        console.log(res);
-        setCompleteInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error(
-          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
-        );
-        if (err.status === 404 && err.message === "Not found order.") {
-          setCompleteInfo({});
-        }
-      });
-  };
-
-  const pickUpData = () => {
-    const config = {
-      withCredentials: true,
-    };
-
-    axios
-      .get(`${apiUrl}/api/v1/order?status=PICKUP`, config)
-      .then((res) => {
-        console.log(res);
-        setpickUpInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error(
-          "주문 정보를 불러오는데 실패했습니다. 네트워크를 확인해주세요."
-        );
-        if (err.status === 404 && err.message === "Not found order.") {
-          setpickUpInfo({});
-        }
-      });
-  };
-
-  const fetchData = () => {
-    waitData();
-    makeData();
-    completeData();
-    pickUpData();
-  };
-
+  // 소리 재생
+  const Mp = EffectSound(MP, 1);
+  const [sound] = useRecoilState(soundState);
+  
   useEffect(() => {
+    console.log(sound);
+    // console.log(waitInfo);
+    if (sound && waitInfo?.orders?.length > 0) {
+      console.log("소리 재생");
+      Mp.play();
+    }
     console.log(localStorage.accessToken);
     if (cookies.accessToken) {
-      const fetchDataAndSetInterval = async () => {
-        await fetchData();
-      };
+      // const fetchDataAndSetInterval = async () => {
+      //   await fetchData();
+      // };
 
-      fetchDataAndSetInterval();
-      const intervalId = setInterval(waitData, 3000); // 5초마다 실행
-      return () => clearInterval(intervalId);
+      // fetchDataAndSetInterval();
+      // const intervalId = setInterval(waitData, 3000); // 5초마다 실행
+      // return () => clearInterval(intervalId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [waitInfo])
 
   return (
-    <div className="home-wrapper">
-      <main>
-        <MainHome
-          waitInfo={waitInfo}
-          makeInfo={makeInfo}
-          completeInfo={completeInfo}
-          pickUpInfo={pickUpInfo}
-        />
-        <Receipt fetchData={fetchData} />
-      </main>
-    </div>
+    <HomeContext.Provider value={providerValue}>
+      <Container>
+        {children}
+      </Container>
+    </HomeContext.Provider>
   );
 }
 
+const Container = styled.div`
+  display: flex;
+  position: absolute;
+  top: 5.5rem;
+  width: 100vw;
+  height: calc(100vh - 5.5rem);
+`;
+
+Home.MainHome = MainHome;
+Home.Receipt = Receipt;
+Home.StatusHeader = StatusHeader;
+Home.StatusBtn = StatusBtn;
+Home.OrderContainer = OrderContainer;
+
 export default Home;
+

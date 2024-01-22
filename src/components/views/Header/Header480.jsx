@@ -1,7 +1,7 @@
 import menu from "../../../assets/icons/Header/ic_round-menu.svg";
 import logo from "../../../assets/icons/Header/LOGO.svg";
 
-const Header480 = () => {
+export default function Header480() {
   return (
     <header className="header480">
       <img src={menu} alt="menu" />
@@ -13,6 +13,4 @@ const Header480 = () => {
       </div>
     </header>
   );
-};
-
-export default Header480;
+}

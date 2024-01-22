@@ -4,7 +4,7 @@ import "./MainPage.css";
 
 function MainPage () {
     const handleKakaoLogin = () => {
-        // console.log(process.env.REACT_APP_KAKAO_LOGIN);
+        console.log(process.env.REACT_APP_KAKAO_LOGIN);
         window.location.href = `${process.env.REACT_APP_KAKAO_LOGIN}`;
     };
 

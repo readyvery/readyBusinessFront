@@ -14,6 +14,6 @@ nav {
 }
 
 main {
-  width: calc(100vw - 8.875rem);
-  margin-top: 5.5rem;
+  /* width: calc(100vw - 8.875rem);
+  margin-top: 5.5rem; */
 }
