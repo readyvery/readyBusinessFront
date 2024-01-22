@@ -14,3 +14,5 @@ const Header480 = () => {
     </header>
   );
 };
+
+export default Header480;

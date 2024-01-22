@@ -8,7 +8,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-// import Header2 from "../src/components/views/Header/Header2";
+import Header2 from "../src/components/views/Header/Header2";
 import NavBar from "../src/components/views/NavBar/NavBar";
 import InventoryPage from "../src/pages/Inventory/Inventory";
 import Mypage from "../src/pages/Mypage/Mypage";
@@ -33,6 +33,7 @@ import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
 import SignupPage from "./pages/Signup/SignupPage.jsx";
 import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
+import HomePage from "./pages/HomePage/HomePage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -90,7 +91,7 @@ function App() {
   }
   return (
     <div className="App">
-      {/* <Header2 /> */}
+      <Header2 />
       <nav>
         <NavBar />
       </nav>
@@ -103,7 +104,6 @@ function App() {
           <Route path="/Sales" element={<NewSalesPage />} />
           <Route path="/Mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          {/* 추가 */}
           <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
             path="/signup/auth/verification"
@@ -132,6 +132,7 @@ function App() {
             path="/find/password/change/user"
             element={<ChangeNewPasswordPage />}
           />
+          <Route path="/main" element={<HomePage />} />
           <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
       </Suspense>
