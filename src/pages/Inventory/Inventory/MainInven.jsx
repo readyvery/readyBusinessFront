@@ -15,7 +15,7 @@ function MainInven() {
   const [isSoldOutModalOpen, setIsSoldOutModalOpen] = useState(false);
   const [isCancleModalOpen, setIsCancleModalOpen] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
-  const invenList = useState([
+  const [invenList, setInvenList] = useState([
     {
       category: "음료",
       foodies: [
@@ -35,6 +35,29 @@ function MainInven() {
       foodies: [],
     },
   ]);
+  useEffect(() => {
+    setInvenList([
+      {
+        category: "음료",
+        foodies: [
+          { idx: 1, name: "콜라", soldOut: false },
+          { idx: 2, name: "오렌지주스를먹어봐요", soldOut: true },
+        ],
+      },
+      {
+        category: "과자자자ㅏ자자자자",
+        foodies: [
+          { idx: 3, name: "맛동산", soldOut: false },
+          { idx: 4, name: "사또밥", soldOut: true },
+        ],
+      },
+      {
+        category: "카레",
+        foodies: [],
+      },
+    ]);
+  }, []); // 빈 배열을 두어 컴포넌트가 처음 로드될 때만 실행되도록 함
+  
   // 모달창 열렸을 때 배경
   const isModalOpenBackground = isModalOpen
   ? "rgba(0, 0, 0, 0.1)"
