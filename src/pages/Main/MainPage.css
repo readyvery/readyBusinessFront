@@ -1,24 +1,582 @@
-/* .mainpage-wrapper{
-    width: 100%;
-    height: 94vh;
-    background-color: #fff;
-    
+.main__promotion {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.main__president {
+  border-radius: 0.3125rem;
+  border: 0.75px solid #d9d9d9;
+  background: #fff;
+}
+
+.main__box2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__president__ready {
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 0.5625rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.main__president__name {
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.main__box3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__order-management-btn {
+  width: fit-content;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 0.66rem 2.21rem;
+  border-radius: 0.3125rem;
+  background: var(--frame-text, #838383);
+}
+
+.main__order-management__notice {
+  color: #838383;
+  font-family: Pretendard;
+  font-size: 0.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.25rem;
+}
+
+.main__sales {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+}
+
+.main__box5 {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__sales__amount {
+  display: flex;
+  flex-shrink: 0;
+  background: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__sales__amount__title {
+  color: #4f4f4f;
+  font-family: Pretendard;
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.25rem;
+}
+
+.main__sales__amount__content {
+  color: #d82356;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.main__sales__amount__predicate {
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.main__sales__case {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.main__sales__case__this-week {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.25rem;
+  align-items: center;
+}
+
+.main__sales__case__title {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  /* margin-right: 5.37rem; */
+}
+
+.main__sales__case__this-week-amount {
+  color: #4f4f4f;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.main__sales__case__this-month {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main__sales__case__this-month-amount {
+  color: #4f4f4f;
+  text-align: right;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.main__sales__standard {
+  color: #838383;
+  font-family: Pretendard;
+  font-size: 0.375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 0.25rem;
+}
+
+.main__guide {
+  width: fit-content;
+}
+
+.main__guide__title {
+  display: flex;
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0.69rem;
+}
+
+.main__guide__content {
+  display: flex;
+  flex-direction: row;
+}
+
+.main__guide1 {
+  display: flex;
+  border-radius: 0.3125rem;
+  background-image: url("../../assets/icons/img_guide1.png");
+  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
+  background-position: center; /* 이미지를 요소의 중앙에 위치 */
+  background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
+  background-attachment: fixed; /* 이미지가 스크롤 시 고정되도록 설정 */
+  color: #fff;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1.19rem;
+  margin-right: 0.25rem;
+}
+
+.main__guide2 {
+  display: flex;
+  border-radius: 0.3125rem;
+  background-image: url("../../assets/icons/img_guide2.png");
+  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
+  background-position: center; /* 이미지를 요소의 중앙에 위치 */
+  background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
+  background-attachment: fixed; /* 이미지가 스크롤 시 고정되도록 설정 */
+  color: #fff;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1.19rem;
+  margin-right: 0.25rem;
+}
+
+.main__guide3 {
+  display: flex;
+  border-radius: 0.3125rem;
+  background-image: url("../../assets/icons/img_guide3.png");
+  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
+  background-position: center; /* 이미지를 요소의 중앙에 위치 */
+  background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
+  background-attachment: fixed; /* 이미지가 스크롤 시 고정되도록 설정 */
+  color: #fff;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 1.19rem;
+}
+
+@media (max-width: 480px) {
+  .main__promotion {
+    width: 27rem;
+    height: 7.5625rem;
+    margin: 1.12rem auto 1.81rem auto;
+  }
+
+  .main__box1 {
     display: flex;
     flex-direction: column;
+  }
+
+  .main__president {
+    display: flex; /* Flexbox 레이아웃을 사용 */
+    width: 27rem;
+    height: 4.4375rem;
+    flex-shrink: 0;
+    justify-content: space-between; /* 아이템들을 양 끝으로 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 10px; /* 패딩을 줘서 안쪽 여백을 생성 */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main__order-management__notice {
+    margin-top: 0.12rem;
+  }
+
+  .main__sales {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    margin-top: 0.81rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main__box5 {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main__sales__amount {
+    display: flex;
+    width: 13.125rem;
+    height: 5.8125rem;
+    flex-shrink: 0;
+    border-radius: 0.3125rem;
+    border: 0.75px solid #d9d9d9;
+    background: #fff;
+    flex-direction: column;
+    margin-right: 0.75rem;
+  }
+
+  .main__sales__amount__title {
+    color: #4f4f4f;
+    font-family: Pretendard;
+    font-size: 0.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 0.25rem;
+  }
+
+  .main__sales__amount__content {
+    color: #d82356;
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .main__sales__amount__predicate {
+    color: var(--title, #2e2d2d);
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .main__sales__case {
+    width: 13.125rem;
+    height: 5.8125rem;
+    border-radius: 0.3125rem;
+    border: 0.75px solid #d9d9d9;
+  }
+
+  .main__sales__case__title {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    /* margin-right: 5.37rem; */
+  }
+
+  .main__sales__case__this-week-amount {
+    color: #4f4f4f;
+    text-align: right;
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .main__sales__case__this-month-amount {
+    color: #4f4f4f;
+    text-align: right;
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .main__sales__standard {
+    color: #838383;
+    font-family: Pretendard;
+    font-size: 0.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 0.25rem;
+  }
+
+  .main__guide {
+    margin-top: 1.69rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main__guide1 {
+    width: 8.75rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+  }
+
+  .main__guide2 {
+    width: 8.75rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+  }
+
+  .main__guide3 {
+    width: 8.75rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+  }
+
+  /* .footer {
+    display: none;
+  } */
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .main__box1 {
+    display: flex;
+    width: fit-content;
+    height: 8.5625rem;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.69rem;
+  }
+
+  .main__promotion {
+    width: 19.375rem;
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+  }
+
+  .main__president {
+    display: flex;
+    width: 11.625rem;
+    height: 8.5625rem;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: space-around;
+  }
+
+  .main__box4 {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main__box5 {
+    border-radius: 0.3125rem;
+    border: 0.75px solid #d9d9d9;
+  }
+
+  .main__sales {
+    margin-top: 0.81rem;
+  }
+
+  .main__sales__amount {
+    width: 11.625rem;
+    height: 5.75rem;
+    flex-shrink: 0;
+    border-bottom: 0.75px solid #d9d9d9;
+  }
+
+  .main__sales__case {
+    width: 11.625rem;
+    height: 5.25rem;
+  }
+
+  .main__guide {
+    margin-top: auto;
+    margin-bottom: 0.875rem;
+    margin-right: 1.5rem;
+  }
+
+  .main__guide1 {
+    width: 6.25rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+    font-size: 0.5625rem;
+    margin-right: 0.31rem;
+  }
+
+  .main__guide2 {
+    width: 6.25rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+    font-size: 0.5625rem;
+    margin-right: 0.31rem;
+  }
+
+  .main__guide3 {
+    width: 6.25rem;
+    height: 8.5rem;
+    flex-shrink: 0;
+    font-size: 0.5625rem;
+  }
 }
 
-.mainpage-btn__wrapper{
-    width: 37.5rem;
-    height: 5.625rem;
-    line-height: 5.625rem;
-    background-color: #ffe812;
-    border-radius: 0.875rem;
-}
+@media (min-width: 768px) {
+  .main__box1 {
+    display: flex;
+    width: fit-content;
+    height: 11.4375rem;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.25rem;
+  }
 
-.mainpage-btn__wrapper span{
-    text-align: center;
-    font-family: "Regular";
-    font-size: 1.375rem;
-} */
+  .main__promotion {
+    width: 26rem;
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+  }
+
+  .main__president {
+    display: flex;
+    width: 15.625rem;
+    height: 11.4375rem;
+    flex-shrink: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .main__box4 {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main__sales {
+    margin-top: 1.31rem;
+  }
+
+  .main__box5 {
+    border-radius: 0.3125rem;
+    border: 0.75px solid #d9d9d9;
+  }
+
+  .main__sales__amount {
+    width: 15.625rem;
+    height: 7.69rem;
+    flex-shrink: 0;
+    border-bottom: 0.75px solid #d9d9d9;
+    padding-left: 1.37rem;
+    padding-right: 1.37rem;
+  }
+
+  .main__sales__case {
+    width: 15.625rem;
+    height: 6.44rem;
+    flex-shrink: 0;
+  }
+
+  .main__guide {
+    margin-top: auto;
+    margin-bottom: 0.875rem;
+    margin-right: 1.5rem;
+  }
+
+  .main__guide1 {
+    width: 8.4375rem;
+    height: 11.4375rem;
+    flex-shrink: 0;
+  }
+
+  .main__guide2 {
+    width: 8.4375rem;
+    height: 11.4375rem;
+    flex-shrink: 0;
+  }
+
+  .main__guide3 {
+    width: 8.4375rem;
+    height: 11.4375rem;
+    flex-shrink: 0;
+  }
+}
