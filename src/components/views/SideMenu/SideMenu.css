@@ -4,14 +4,14 @@
   height: 100%; /* 전체 화면 높이 */
   position: fixed;
   top: 0;
-  left: -250px; /* 초기에는 화면 왼쪽 바깥에 위치 */
+  left: -315px; /* 초기에는 화면 왼쪽 바깥에 위치 */
   background-color: #fff; /* 사이드바 배경색 */
   transition: transform 0.3s ease-in-out; /* 애니메이션 효과 */
   box-shadow: 11px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 .side-menu.open {
-  transform: translateX(250px); /* 사이드바가 화면 안으로 들어옴 */
+  transform: translateX(310px); /* 사이드바가 화면 안으로 들어옴 */
 }
 
 .side-menu__close {
@@ -27,10 +27,7 @@
   display: flex;
   width: 9.4375rem;
   height: 2.3125rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3.33rem;
-  margin-bottom: 2.88rem;
+  margin: 3.33rem auto 2.88rem auto;
 }
 
 .side-menu__sale {

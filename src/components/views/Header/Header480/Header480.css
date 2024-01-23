@@ -3,6 +3,7 @@
   width: 30rem;
   height: 3.6875rem;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .header480__menu {
@@ -16,6 +17,15 @@
   width: 9.4375rem;
   height: 2.3125rem;
   margin-left: 0.44rem;
+}
+
+a {
+  display: flex;
+  align-items: center;
+}
+
+a:focus {
+  outline: none !important; /* 포커스 아웃라인 제거 */
 }
 
 .business-status {
