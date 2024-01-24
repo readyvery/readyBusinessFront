@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import menu from "../../../../assets/icons/Header/ic_round-menu.svg";
 import logo from "../../../../assets/icons/Header/LOGO.svg";
 import SideMenu from "../../SideMenu/SideMenu";
@@ -31,7 +32,9 @@ export default function Header480() {
           className="header480__menu"
           onClick={handleSidebar}
         />
-        <img src={logo} alt="logo" className="header__logo" />
+        <Link to="/main">
+          <img src={logo} alt="logo" className="header__logo" />
+        </Link>
 
         <span className="business-status">
           {isOperation ? "영업종료" : "영업중"}
