@@ -1,3 +1,4 @@
+import "./InvenBox.css";
 const InvenBox = ({handleModal, invenProps: {category, name, soldOut}}) => {
   return(
       <>
