@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 // import Auth from "./hoc/auth.jsx";
 import Auth from "./utils/Auth.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
-import InventoryPage from "./pages/Inventory/Inventory.jsx";
+import InventoryPage from "./pages/Inventory/Inventory/InventoryPage.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
 import SalesPage from "./pages/Sales/Sales.jsx";
