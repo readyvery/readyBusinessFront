@@ -4,6 +4,7 @@
     /* height: 100%; */
     font-family: "Pretendard";
     white-space: nowrap;
+    overflow-y: auto;
 }
 .mainInven-title{
     color: #000;
@@ -171,7 +172,7 @@
     align-items: center; 
     flex-direction: column;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
     .inven-modal-box{
         width: 34.375rem;
         height: 24.3125rem;
@@ -199,7 +200,7 @@
     }
 }
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 481px) and (max-width: 768px){
+@media screen and (min-width: 480px) and (max-width: 768px){
     .inven-modal-box{
         width: 31.5rem;
         height: 22.3125rem;

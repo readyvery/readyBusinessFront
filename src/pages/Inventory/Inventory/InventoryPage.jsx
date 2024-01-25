@@ -3,6 +3,7 @@ import "./InventoryPage.css";
 import MainInven from "./MainInven";
 import HeaderMain from "../../../components/views/Header/HeaderMain/HeaderMain"
 import icon_parkOutline from "../../../assets/icons/icon_parkOutline.svg";
+import Footer from "../../../components/views/Footer/Footer";
 
 
 const InventoryPage = () => {
@@ -19,28 +20,16 @@ const InventoryPage = () => {
       </div>
     )
   }
-  // 480일 경우 재고관리에서는 헤더 사용 X
-  const ResponsiveHeader=()=> {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  
-    useEffect(() => {
-      function handleResize() {
-        setWindowWidth(window.innerWidth);
-      }
-  
-      window.addEventListener("resize", handleResize);
-  
-      return () => window.removeEventListener("resize", handleResize);
-    }, []); 
-    return windowWidth <= 480 ? <BackButtonHeader/> : <HeaderMain />;
-  }
-
   return (
     <div className="inven-wrapper-background">
-      <ResponsiveHeader/>
+      {/* 480일 경우 재고관리에서는 헤더 사용 X */}
+      <BackButtonHeader/>
+      <HeaderMain />
+      
       <main className="inven-wrapper">
         <MainInven />
       </main>
+      <Footer/>
     </div>
   );
 };

@@ -1,10 +1,4 @@
-.inven-wrapper-background{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+
 
 .inven-wrapper-background main {
   background-color: #fff;
@@ -27,14 +21,26 @@
 /* 480부터
   헤더 대신
   뒤로 가기 버튼 */
-.inven-wrapper-header-top-back-button-style{
-  position: relative;
-  top: 3rem;
-  left: 10%;
-  margin: 0%;
-  padding: 0%;
-}
-.inven-wrapper-header-top-back-button-style img {
-  width: 3rem;
-  height: 3rem;
-}
+  @media screen and (max-width: 480px) {
+    .inven-wrapper-header-top-back-button-style{
+      display: block;
+      position: relative;
+      top: 3rem;
+      left: 10%;
+      margin: 0%;
+      padding: 0%;
+    }
+    .inven-wrapper-header-top-back-button-style img {
+      display: block;
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  @media screen and (min-width: 480px) {
+    .inven-wrapper-header-top-back-button-style{
+      display: none;
+    }
+    .inven-wrapper-header-top-back-button-style img {
+      display: none;
+    }
+  }

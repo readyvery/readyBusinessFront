@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: center;
     line-height: 115%;
-    font-size: 0.8rem;
     height: 100%;
 }
 
@@ -54,4 +53,22 @@
     white-space: nowrap;
     border: #dadada solid 0.075rem;
     overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+    .mainInven-category-content__box span{
+        font-size: 1rem;
+    }
+}
+  
+@media (min-width: 480px) and (max-width: 768px) {
+    .mainInven-category-content__box span{
+        font-size: 1rem;
+    }
+}
+  
+@media (min-width: 768px) {
+    .mainInven-category-content__box span{
+        font-size: 1.25rem;
+    }
 }
