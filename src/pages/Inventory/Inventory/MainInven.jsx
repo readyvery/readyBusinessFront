@@ -48,75 +48,21 @@ function MainInven() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiUrl]);
+    // 모달 확인시 데이터 업데이트 (상태: 품절 처리)
+    const patchData = (e) => {
+      const config = {
+        withCredentials: true
+      };
   
-  // const [invenList, setInvenList] = useState([
-  //   {
-  //     category: "음료",
-  //     foodies: [
-  //       { idx: 1, name: "콜라", soldOut: false },
-  //       { idx: 2, name: "오렌지주스를먹어봐요", soldOut: true },
-  //     ],
-  //   },
-  //   {
-  //     category: "과자자자ㅏ자자자자",
-  //     foodies: [
-  //       { idx: 1, name: "맛동산1", soldOut: false },
-  //       { idx: 2, name: "사또밥2", soldOut: true },
-  //       { idx: 3, name: "맛동산3", soldOut: false },
-  //       { idx: 4, name: "사또밥4", soldOut: true },
-  //       { idx: 5, name: "맛동산5", soldOut: false },
-  //       { idx: 6, name: "사또밥6", soldOut: true },
-  //       { idx: 7, name: "맛동산7", soldOut: false },
-  //       { idx: 8, name: "사또밥8", soldOut: true },
-  //       { idx: 9, name: "맛동산9", soldOut: false },
-  //       { idx: 10, name: "사또밥10", soldOut: true },
-  //       { idx: 11, name: "맛동산11", soldOut: false },
-  //       { idx: 12, name: "사또밥12", soldOut: true },
-  //       { idx: 13, name: "맛동산13", soldOut: false },
-  //       { idx: 14, name: "사또밥14", soldOut: true },
-  //       { idx: 15, name: "맛동산15", soldOut: false },
-  //       { idx: 16, name: "사또밥16", soldOut: true },
-  //       { idx: 17, name: "맛동산17", soldOut: false },
-  //       { idx: 18, name: "사또밥18", soldOut: true },
-  //       { idx: 19, name: "맛동산19", soldOut: false },
-  //       { idx: 20, name: "사또밥20", soldOut: true },
-
-  //     ],
-  //   },
-  //   {
-  //     category: "카레",
-  //     foodies: [],
-  //   },
-  // ]);
-
-  // useEffect(() => {
-  //   setInvenList([
-  //     {
-  //       category: "음료",
-  //       foodies: [
-  //         { idx: 1, name: "콜라", soldOut: false },
-  //         { idx: 2, name: "오렌지주스를먹어봐요", soldOut: true },
-  //       ],
-  //     },
-  //     {
-  //       category: "과자자자ㅏ자자자자",
-  //       foodies: [
-  //         { idx: 3, name: "맛동산", soldOut: false },
-  //         { idx: 4, name: "사또밥", soldOut: true },
-  //       ],
-  //     },
-  //     {
-  //       category: "카레",
-  //       foodies: [],
-  //     },
-  //   ]);
-  // }, []); // 빈 배열을 두어 컴포넌트가 처음 로드될 때만 실행되도록 함
-  
-  // useEffect(() => {
-  //   const uniqueCategories = [...new Set(invenList.map(item => item.category))];
-  //   setCategoryList(["전체", ...uniqueCategories]);
-  //   console.log(invenList);
-  // }, [invenList]);
+      axios.patch(`${apiUrl}/api/v1/inventory`, currentBox, config)
+        .then((res) => {
+          console.log(res);
+          e.target.id === "cancle" ? setIsCancleModalOpen(false) : setIsSoldOutModalOpen(false);
+          setIsModalOpen(false);
+          fetchData();
+        })
+        .catch((err) => console.log(err));
+    };
 
   // 카테고리 변경
   const chnCategory = (e) => {
@@ -148,21 +94,6 @@ function MainInven() {
 
     fetchData();
     // console.log(isModalOpen, isSoldOutModalOpen, isCancleModalOpen);
-  };
-  // 모달 확인시 데이터 업데이트 (상태: 품절 처리)
-  const patchData = (e) => {
-    const config = {
-      withCredentials: true
-    };
-
-    axios.patch(`${apiUrl}/api/v1/inventory`, currentBox, config)
-      .then((res) => {
-        console.log(res);
-        e.target.id === "cancle" ? setIsCancleModalOpen(false) : setIsSoldOutModalOpen(false);
-        setIsModalOpen(false);
-        fetchData();
-      })
-      .catch((err) => console.log(err));
   };
   // handleIsSoldOutModal : 품절 조절 모달창 닫기
   const handleIsCloseModal = () => {
