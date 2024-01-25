@@ -3,6 +3,7 @@ import logo_txt from "../../../../assets/icons/Big_LOGO.svg";
 import logo_cherry from "../../../../assets/icons/small_cherry.svg";
 import "./HeaderMain.css";
 import { useState } from "react";
+
 const HeaderMain = () => {
   const navigate = useNavigate();
   // const location = useLocation();
