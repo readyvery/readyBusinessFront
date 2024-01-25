@@ -1,25 +1,22 @@
-.header-css {
+.header-css{
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: space-between;
-  /* position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 999; */
+  z-index: 900;
   border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
-
-  ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin: 0; /* 기본 마진 제거 */
-    padding: 0; /* 기본 패딩 제거 */
-  }
+  white-space:nowrap
+}
+.header-css ul{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
 }
 
-.headerTop-css {
+.headerTop-css{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,24 +24,21 @@
   padding: 1.5rem 20%;
   border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
 }
-.headerTop-logo-wrapper-css {
+.headerTop-logo-wrapper-css{
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 10%;
+  /* height: 10%; */
 }
 
-.headerTop-logo-cherry-css {
-  width: 100%;
-  height: 100%;
-  max-height: 2.79rem;
-  max-width: 2.79rem;
-}
-.headerTop-logo-txt-css {
+.headerTop-logo-txt-css{
+  width: 12.5625rem;
+  height: 3.125rem;
   padding-left: 0.1rem;
-  width: 100%;
-  height: 100%;
-  max-height: 3.125rem;
+}
+.headerTop-logo-cherry-css{
+  width: 2.7871rem;
+  height: 2.7871rem;
 }
 
 .headerTop-nav-css {
@@ -58,12 +52,12 @@
   font-size: 1rem;
   font-weight: 500;
 
-  li {
-    margin-right: 0.7rem;
-  }
+}
+.headerTop-nav-css li{
+  margin-right: 1.5rem;
 }
 
-.headerBottom-css {
+.headerBottom-css{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,41 +65,34 @@
   height: 3.25rem;
   padding: 0 20%;
 }
-.headerBottom-nav-css {
+.headerBottom-nav-css{
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-  /* height: 100%; */
-  /* margin-bottom: 0.2rem; */
-  li {
-    margin-right: 1rem;
-  }
-}
-.headerBottom-nav-left-css {
-  color: #2e2d2d;
+  color: #2E2D2D;
   text-align: center;
-  justify-content: center;
   font-family: "Pretendard";
+}
+.headerBottom-nav-css li{
+  margin-right: 1vw;
+}
+.headerBottom-nav-left-css{
+  justify-content: center;
   font-size: 1.125rem;
   font-weight: 600;
 }
 
-.loginControl-wrapper-css {
+.loginControl-wrapper-css{
   display: flex;
   align-items: center;
-  color: #2e2d2d;
-  font-family: "Pretendard";
   font-size: 0.75rem;
   font-weight: 700;
-  /* flex-direction: row; */
-  /* height: 100%; */
 }
 .loginControl-button-wrapper-css {
   display: flex;
   position: relative;
   border-radius: 2rem;
-  width: 3rem;
-  height: 1.5rem;
+  min-width: 3rem;
+  min-height: 1.5rem;
   margin-left: 0.5rem;
 }
 
@@ -120,15 +107,79 @@
   width: 1.3rem;
   height: 1.3rem;
   transition: transform 0.3s ease;
-  top: 6%;
+  top:6%;
 }
 
 .loginControl-button-isopen-css {
-  left: 0%;
-  transform: translateX(10%);
+  right: 0%;
+  transform: translateX(-10%);
 }
 
 .loginControl-button-isclose-css {
-  right: 0%;
-  transform: translateX(-10%);
+  left: 0%;
+  transform: translateX(10%); 
+}
+/* w:1024일때 */
+@media screen and (max-width: 768px){
+  .headerTop-logo-txt-css{
+      width: 12.5625rem;
+      height: 3.125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 2.7871rem;
+      height: 2.7871rem;
+  }
+  .headerTop-logo-txt-css{
+      width: 12.5625rem;
+      height: 3.125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 2.7871rem;
+      height: 2.7871rem;
+  }
+}
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 625px) and (max-width: 780px) {
+  .headerTop-logo-txt-css{
+      width: 9.4375rem;
+      height: 2.3125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 2.09rem;
+      height: 2.09rem;
+  }
+  .headerTop-nav-css {
+      font-size: 0.75rem;
+  }
+  .headerTop-nav-css li{
+      margin-right: 1rem;
+  }
+  /* .headerBottom-nav-css li{
+      margin-right: 1.2rem;
+  } */
+  .headerBottom-nav-left-css{
+      font-size: 0.875rem;
+  }
+}
+@media screen and (min-width:480px) and (max-width: 625px){
+  .headerTop-logo-txt-css{
+      width: 6.4375rem;
+      height: 2.3125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 1.09rem;
+      height: 1.09rem;
+  }
+  .headerTop-nav-css {
+      font-size: 0.75rem;
+  }
+  .headerTop-nav-css li{
+      margin-right: 0.6rem;
+  }
+  /* .headerBottom-nav-css li{
+      margin-right: 0.5rem;
+  } */
+  .headerBottom-nav-left-css{
+      font-size: 0.75rem;
+  }
 }
