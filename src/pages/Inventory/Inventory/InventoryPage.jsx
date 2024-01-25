@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./InventoryPage.css";
 import MainInven from "./MainInven";
 import HeaderMain from "../../../components/views/Header/HeaderMain/HeaderMain"
