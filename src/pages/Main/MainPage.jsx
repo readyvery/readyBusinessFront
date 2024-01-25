@@ -3,10 +3,30 @@ import promotion from "../../assets/icons/promotion.svg";
 import promotion2 from "../../assets/icons/promotion2.svg";
 import promotion3 from "../../assets/icons/promotion3.png";
 import right from "../../assets/icons/icon_right-line.png";
+import kakao from "../../assets/icons/icon_kakao_union.png";
 import "./MainPage.css";
 import Footer from "../../components/views/Footer/Footer";
 
 function MainPage() {
+  const notices = [
+    {
+      id: 1,
+      title: "2024년 4월 넷째 주(4/21~4/27) 입금 안내",
+      date: "24-04-21",
+    },
+    {
+      id: 2,
+      title: "2024년 4월 셋째 주(4/14~4/20) 입금 안내",
+      date: "24-04-14",
+    },
+    {
+      id: 3,
+      title: "2024년 4월 둘째 주(4/7~4/13) 입금 안내",
+      date: "24-04-07",
+    },
+    { id: 4, title: "2024년 4월 첫째 주(4/1~4/6) 입금 안내", date: "24-04-01" },
+  ];
+
   return (
     <div className="main">
       <ResponsiveHeader />
@@ -75,6 +95,52 @@ function MainPage() {
             <span className="main__guide1">주문접수 이용방법</span>
             <span className="main__guide2">메뉴수정 이용방법</span>
             <span className="main__guide3">재고관리 이용방법</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="main__box6">
+        <div className="main__notice">
+          <div className="main__notice__title">
+            <span>공지사항</span> <img src={right} alt=">" />
+          </div>
+          <ul className="main__notice__content">
+            {notices.map((notice) => (
+              <li key={notice.id} className="main__notice__content__item">
+                <span className="main__notice__content__title">
+                  {notice.title}
+                </span>
+                <span className="main__notice__content__date">
+                  {notice.date}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="main__notice__consultation">
+          <div className="main__notice__consultation__title">실시간 상담</div>
+
+          <div className="main__notice__consultation__content">
+            <span className="main__notice__consultation__ment">
+              <div>궁금한 사항이나 도움이 필요하시면</div>
+              <div>언제든지 문의해 주세요.</div>
+            </span>
+
+            <span className="main__notice__consultation__kakao">
+              <span style={{ display: "flex", flexDirection: "column" }}>
+                <span style={{ color: "var(--title, #2E2D2D)" }}>
+                  레디베리 상담
+                </span>
+                <span style={{ color: "#838383" }}>매일 00:00 ~ 24:00</span>
+              </span>
+
+              <img
+                src={kakao}
+                alt="kakao"
+                className="main__notice__consultation__kakao-btn"
+              />
+            </span>
           </div>
         </div>
       </div>

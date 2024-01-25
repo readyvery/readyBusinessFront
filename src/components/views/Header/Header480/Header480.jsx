@@ -56,7 +56,10 @@ export default function Header480() {
         <div
           className="loginControl-button-wrapper-css"
           onClick={() => handleOperation()}
-          style={{ backgroundColor: isOperationBackground }}
+          style={{
+            backgroundColor: isOperationBackground,
+            marginRight: "1.5rem",
+          }}
         >
           {isOperation ? (
             <div className="loginControl-button-isopen-css"></div>
