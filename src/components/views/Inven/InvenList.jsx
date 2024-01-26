@@ -1,18 +1,18 @@
 import React from "react";
 import InvenBox from "./InvenBox";
-import "./InvenList.css"
+import "./InvenList.css";
 
 const InvenList = ({ category, invenList, handleModal }) => (
   <div className="mainInven-category-content__wrapper">
-    {invenList
-      .filter((cate) => category === "전체" || cate.category === category)
-      .map((categoryItem) =>
-        categoryItem.foodies.map((foodItem) => (
+        {invenList?.categorys
+          ?.filter((cate) => category === "전체" || cate.name === category)
+          ?.map((categoryItem) =>
+        categoryItem?.foodies?.map((foodItem) => (
           <React.Fragment key={foodItem.idx}>
             <InvenBox
               handleModal={() => handleModal(foodItem.idx, foodItem.soldOut)}
               invenProps={{
-                category: categoryItem.category,
+                category: categoryItem.name,
                 name: foodItem.name,
                 soldOut: foodItem.soldOut,
               }}
