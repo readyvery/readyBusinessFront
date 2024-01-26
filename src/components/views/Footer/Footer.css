@@ -8,6 +8,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer__line {
