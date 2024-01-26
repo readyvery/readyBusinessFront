@@ -22,6 +22,7 @@ import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
 import SignupPage from "./pages/Signup/SignupPage.jsx";
 import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
+import StoreManage from "./pages/StoreManage/StoreManage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -59,17 +60,12 @@ function App() {
   }
   return (
     <div className="App">
-      {/* <Header2 /> */}
-      {/* <nav>
-        <NavBar />
-      </nav> */}
-
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/order" element={<NewOrderManagementPage />} />
-          <Route path="/Inventory" element={<NewInventoryPage />} />
-          <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/inventory" element={<NewInventoryPage />} />
+          <Route path="/sales" element={<NewSalesPage />} />
+          <Route path="/mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<NewSignupPage />} />
           {/* 추가 */}
           <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
@@ -101,6 +97,7 @@ function App() {
             element={<ChangeNewPasswordPage />}
           />
           <Route path="/main" element={<MainPage />} />
+          <Route path="/store" element={<StoreManage />} />
           {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
         </Routes>
       </Suspense>
