@@ -49,15 +49,14 @@
 }
 
 .modal__check {
-  width: 11.4375rem;
-  height: 1.875rem;
-  flex-shrink: 0;
+  width: 19.375rem;
+  height: 3.125rem;
   border-radius: 0.625rem;
   background: #d82356;
   color: #fff;
   text-align: center;
   font-family: "Pretendard";
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 1.4625rem */
@@ -84,5 +83,11 @@
   .modal__title {
     font-size: 1.25rem;
     letter-spacing: -0.0125rem;
+  }
+
+  .modal__check {
+    width: 11.4375rem;
+    height: 1.875rem;
+    font-size: 1.125rem;
   }
 }
