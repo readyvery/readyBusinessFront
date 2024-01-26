@@ -129,7 +129,7 @@ function MainInven() {
   return (
     <>
       <div className="mainInven-wrapper">
-        <div className="mainInven-title">재고관리</div>
+        {/* <div className="mainInven-title">재고관리</div> */}
         <div className="mainInven-title__wrapper">
           <span className="mainInven-title__span1">품절</span>
           <div
