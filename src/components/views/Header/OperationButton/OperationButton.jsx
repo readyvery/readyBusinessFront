@@ -23,24 +23,16 @@ const OperationButton = () => {
     setIsOperation((prev) => !prev);
     setIsModalOpen(false); // 모달 닫기
   };
-//   로그인 로그아웃에 대한 백그라운드 컬러값
-  const isOperationBackground = isOperation
-    ? "rgba(131, 131, 131, 1)"
-    : "rgba(216, 35, 86, 1)";
-
   return (
     <div className="loginControl-wrapper-css">
       <span className="business-status">
         {isOperation ? "영업종료" : "영업중"}
       </span>
       <div
-        className="loginControl-button-wrapper-css"
+        className={`loginControl-button-wrapper-css ${
+          isOperation ? "open" : ""
+        }`}
         onClick={() => handleOperation()}
-        style={{
-          backgroundColor: isOperationBackground,
-          marginRight: "1.5rem",
-        }}
-        //   className="business-status"
       >
         {isOperation ? (
           <div className="loginControl-button-isopen-css"></div>
