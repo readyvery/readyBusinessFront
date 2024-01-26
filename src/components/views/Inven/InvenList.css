@@ -15,3 +15,21 @@
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
 }
+
+@media (max-width: 480px) {
+    .mainInven-category-content__wrapper{
+        font-size: 1rem;
+    }
+}
+  
+@media (min-width: 480px) and (max-width: 768px) {
+    .mainInven-category-content__wrapper{
+        font-size: 1rem;
+    }
+}
+  
+@media (min-width: 768px) {
+    .mainInven-category-content__wrapper{
+        font-size: 1.25rem;
+    }
+}

@@ -138,30 +138,7 @@
       height: 2.7871rem;
   }
 }
-/* w:768, h:1024일 때 */
-@media screen and (min-width: 625px) and (max-width: 780px) {
-  .headerTop-logo-txt-css{
-      width: 9.4375rem;
-      height: 2.3125rem;
-  }
-  .headerTop-logo-cherry-css{
-      width: 2.09rem;
-      height: 2.09rem;
-  }
-  .headerTop-nav-css {
-      font-size: 0.75rem;
-  }
-  .headerTop-nav-css li{
-      margin-right: 1rem;
-  }
-  /* .headerBottom-nav-css li{
-      margin-right: 1.2rem;
-  } */
-  .headerBottom-nav-left-css{
-      font-size: 0.875rem;
-  }
-}
-@media screen and (min-width:480px) and (max-width: 625px){
+@media screen and (min-width : 481px) and (max-width: 768px){
   .headerTop-logo-txt-css{
       width: 6.4375rem;
       height: 2.3125rem;
@@ -176,10 +153,12 @@
   .headerTop-nav-css li{
       margin-right: 0.6rem;
   }
-  /* .headerBottom-nav-css li{
-      margin-right: 0.5rem;
-  } */
   .headerBottom-nav-left-css{
       font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 480px){
+  .header-css{
+    display: none;
   }
 }
