@@ -7,7 +7,7 @@ import kakao from "../../assets/icons/icon_kakao_union.png";
 import "./MainPage.css";
 import Footer from "../../components/views/Footer/Footer";
 
-function MainPage() {
+const MainPage = () => {
   const notices = [
     {
       id: 1,
@@ -148,6 +148,6 @@ function MainPage() {
       <Footer />
     </div>
   );
-}
+};
 
 export default MainPage;
