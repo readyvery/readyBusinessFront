@@ -10,8 +10,9 @@ const InventoryPage = () => {
   return (
     <div className="inven-wrapper-background">
       {/* 480일 경우 재고관리에서는 헤더 사용 X */}
-      <HeaderBack480 pageName="재고관리" />
       <HeaderMain />
+      <HeaderBack480 pageName="재고관리" />
+
       <main className="inven-wrapper">
         <MainInven />
       </main>
