@@ -1,38 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import logo_txt from "../../../../assets/icons/Big_LOGO.svg";
 import logo_cherry from "../../../../assets/icons/small_cherry.svg";
+import OperationButton from "../OperationButton/OperationButton";
 import "./HeaderMain.css";
-import { useState } from "react";
 const HeaderMain = () => {
   const navigate = useNavigate();
-  const [isOperation, setIsOperation] = useState(false); //가게 영업 상태를 받아와야합니다.
-  //영업중/영업종료를 바꿔주는 핸들러
-  //해당 로직 필요함
-  const handleOperation = () => {
-    setIsOperation((prev) => !prev);
-  };
-  const isOperationBackground = isOperation
-    ? "rgba(216, 35, 86, 1)"
-    : "rgba(131, 131, 131, 1)";
-
-  const OperationButton = () => {
-    return (
-      <div className="loginControl-wrapper-css">
-        <span>{isOperation ? "영업 중" : "영업 종료"}</span>
-        <div
-          className="loginControl-button-wrapper-css"
-          onClick={() => handleOperation()}
-          style={{ backgroundColor: isOperationBackground }}
-        >
-          {isOperation ? (
-            <div className="loginControl-button-isopen-css"></div>
-          ) : (
-            <div className="loginControl-button-isclose-css"></div>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   return (
     <header className="header-css">

@@ -25,19 +25,19 @@ function MainInven() {
   const { fetchData, isCategoryList, isInvenList } = useInventoryFetchData();
   const { patchData } = useInventoryPatchData();
   // 서버의 재고값 연동
-useEffect(() => {
-  setCategoryList(isCategoryList);
-  setInvenList(isInvenList);
-}, [isInvenList, isCategoryList]);
+  useEffect(() => {
+    setCategoryList(isCategoryList);
+    setInvenList(isInvenList);
+  }, [isInvenList, isCategoryList]);
 
   // 품절처리 모달 patch 기능
-  
-  const handlePatchData  = async () => {
+
+  const handlePatchData = async () => {
     await patchData(currentBox);
-    fetchData();// patch후 fetch를 통해 값을 갱신
+    fetchData(); // patch후 fetch를 통해 값을 갱신
     handleIsCloseModal();
   };
-  
+
   // 카테고리 변경
   const chnCategory = (e) => {
     setCategory(e);
