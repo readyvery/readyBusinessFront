@@ -359,6 +359,7 @@ ul {
   width: 1.8035rem;
   height: 1.2065rem;
   margin-left: 1.47rem;
+  border-radius: 0.22619rem;
 }
 
 @media (max-width: 480px) {

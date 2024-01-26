@@ -8,6 +8,7 @@
   background-color: #fff; /* 사이드바 배경색 */
   transition: transform 0.3s ease-in-out; /* 애니메이션 효과 */
   box-shadow: 11px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  z-index: 100;
 }
 
 .side-menu.open {
