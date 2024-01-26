@@ -4,13 +4,28 @@ import logo from "../../../../assets/icons/Header/LOGO.svg";
 import SideMenu from "../../SideMenu/SideMenu";
 import "./Header480.css";
 import { useState } from "react";
+import Modal from "../../Modal/Modal";
 
 export default function Header480() {
   const [isOperation, setIsOperation] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 표시 여부 상태 추가
+  const [modalTitle, setModalTitle] = useState("");
 
   const handleOperation = () => {
-    setIsOperation((prev) => !prev);
+    setIsModalOpen(true); // 영업 상태 변경 버튼 클릭 시 모달을 표시
+    setModalTitle(
+      isOperation ? "영업을 시작하시겠습니까?" : "영업을 종료하시겠습니까?"
+    );
+  };
+
+  const handleCancle = () => {
+    setIsModalOpen(false); // 모달 닫기 (영업 상태 변경 없음)
+  };
+
+  const handleCheck = () => {
+    setIsOperation(!isOperation);
+    setIsModalOpen(false); // 모달 닫기
   };
 
   const handleSidebar = () => {
@@ -24,7 +39,6 @@ export default function Header480() {
   return (
     <>
       <SideMenu isOpen={isSideMenuOpen} toggleSidebar={handleSidebar} />
-
       <header className="header480">
         <img
           src={menu}
@@ -42,7 +56,10 @@ export default function Header480() {
         <div
           className="loginControl-button-wrapper-css"
           onClick={() => handleOperation()}
-          style={{ backgroundColor: isOperationBackground }}
+          style={{
+            backgroundColor: isOperationBackground,
+            marginRight: "1.5rem",
+          }}
         >
           {isOperation ? (
             <div className="loginControl-button-isopen-css"></div>
@@ -51,6 +68,14 @@ export default function Header480() {
           )}
         </div>
       </header>
+
+      {isModalOpen && (
+        <Modal
+          handleCancle={handleCancle}
+          handleCheck={handleCheck}
+          title={modalTitle}
+        />
+      )}
     </>
   );
 }
