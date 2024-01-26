@@ -27,14 +27,3 @@ a {
 a:focus {
   outline: none !important; /* 포커스 아웃라인 제거 */
 }
-
-.business-status {
-  color: var(--title, #2e2d2d);
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-left: auto;
-}

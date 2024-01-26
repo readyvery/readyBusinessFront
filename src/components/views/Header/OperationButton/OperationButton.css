@@ -1,0 +1,43 @@
+.loginControl-wrapper-css{
+    display: flex;
+    align-items: center;
+  }
+  .business-status {
+    color: var(--title, #2e2d2d);
+    text-align: right;
+    font-family: "Pretendard";
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .loginControl-button-wrapper-css {
+    display: flex;
+    position: relative;
+    border-radius: 2rem;
+    min-width: 3rem;
+    min-height: 1.5rem;
+    margin-left: 0.5rem;
+  }
+  
+  .loginControl-button-isopen-css,
+  .loginControl-button-isclose-css {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 1.3rem;
+    height: 1.3rem;
+    transition: transform 0.3s ease;
+    top:6%;
+  }
+  
+  .loginControl-button-isopen-css {
+    right: 0%;
+    transform: translateX(-10%);
+  }
+  
+  .loginControl-button-isclose-css {
+    left: 0%;
+    transform: translateX(10%); 
+  }
