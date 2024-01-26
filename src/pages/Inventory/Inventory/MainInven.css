@@ -122,6 +122,7 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 1rem;
+    cursor: pointer;
 }
 .inven-modal-close__wrapper img {
     width: 1.5rem;
