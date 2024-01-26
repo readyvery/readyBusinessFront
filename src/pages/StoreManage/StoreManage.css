@@ -1,3 +1,18 @@
+.store {
+  display: flex;
+  flex-direction: column;
+}
+
+.store__notice {
+  color: var(--title, #2e2d2d);
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0.75rem auto 4rem auto;
+}
+
 @media (max-width: 480px) {
 }
 
@@ -5,4 +20,7 @@
 }
 
 @media (min-width: 768px) {
+  .store__notice {
+    font-size: 1rem;
+  }
 }
