@@ -11,7 +11,7 @@ const useFetchMakeInfo = () => {
         const fetchData = async () => {
             commonApis.get("/order?status=MAKE", {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token.accessToken}`
                 }
             })
                 .then((res) => {

@@ -2,12 +2,6 @@ import React, { Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
 // import Auth from "./hoc/auth.jsx";
-import Auth from "./utils/Auth.jsx";
-import MainPage from "./pages/Main/MainPage.jsx";
-import InventoryPage from "./pages/Inventory/Inventory/InventoryPage.jsx";
-import MyPage from "./pages/Mypage/Mypage.jsx";
-import OrderManagePage from "./pages/OrderManage/Order.jsx";
-import SalesPage from "./pages/Sales/Sales.jsx";
 import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
 import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx"; //아이디 찾기-전화번호 인증
 import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx"; //아이디 찾기 결과-회원 X
@@ -15,7 +9,12 @@ import UserFindIdPage from "./pages/Find/FindIdPage/UserFindIdPage/UserFindIdPag
 import ChangeNewPasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangeNewPasswordPage/ChangeNewPasswordPage.jsx"; //비밀번호 변경 - 새 비밀번호 인증
 import ChangePasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangePasswordPage.jsx"; //비밀번호 변경 - 전화번호 인증
 import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx"; //비밀번호 찾기 - 아이디 조회
+import InventoryPage from "./pages/Inventory/Inventory/InventoryPage.jsx";
 import LoginPage from "./pages/Login/LoginPage.jsx";
+import MainPage from "./pages/Main/MainPage.jsx";
+import MyPage from "./pages/Mypage/Mypage.jsx";
+import OrderManagePage from "./pages/OrderManage/Order.jsx";
+import SalesPage from "./pages/Sales/Sales.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
@@ -23,6 +22,7 @@ import SignupPage from "./pages/Signup/SignupPage.jsx";
 import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 import StoreManage from "./pages/StoreManage/StoreManage.jsx";
+import Auth from "./utils/Auth.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -35,16 +35,24 @@ function App() {
   const NewNoneFindIdPage = Auth(NoneFindIdPage, false); //아이디 찾기 결과-회원 X
   const NewUserFindIdPage = Auth(UserFindIdPage, false); //아이디 찾기 결과-아이디 반환
   const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
+  const NewChangeNewPasswordPage = Auth(ChangeNewPasswordPage, false); //비밀번호 변경 - 전화번호 인증
+  const NewChangePasswordPage = Auth(ChangePasswordPage, false); //비밀번호 변경 - 전화번호 인증
 
   // 로그인 필수 페이지
-  // GUEST : 1, USER : 2, CEO : 3
+  // GUEST : 1, USER : 2, Wait: 3, CEO : 4
   const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
-  // 유저전용 메인페이지 (2)
-  // CEO전용 메인페이지 (3)
-  const NewOrderManagementPage = Auth(OrderManagePage, true, 3); // 주문관리
-  const NewInventoryPage = Auth(InventoryPage, true, 3); // 재고관리
-  const NewSalesPage = Auth(SalesPage, true, 3); // 매출관리
-  const NewMyPage = Auth(MyPage, true, 3); // 마이페이지
+  const NewTermsPage = Auth(TermsPage, true, 1)// 이용약관 페이지
+  const NewApplicationForm = Auth(ApplicationForm, true, 2); // 입점신청서 가입 전 알림 페이지
+  // 입점신청서 페이지 (2)
+  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 2);// 입점 심사 반려 페이지
+  const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 3); // 입점신청서 신청 완료 페이지
+  // 유저전용 메인페이지 (3)
+  // 매장관리 페이지 (3, 4)
+  // CEO전용 메인페이지 (4)
+  // const NewOrderManagementPage = Auth(OrderManagePage, true, 4); // 주문관리
+  const NewInventoryPage = Auth(InventoryPage, true, 4); // 재고관리
+  const NewSalesPage = Auth(SalesPage, true, 4); // 매출관리
+  const NewMyPage = Auth(MyPage, true, 4); // 마이페이지
 
   if (location.pathname === "/") {
     return (
@@ -62,10 +70,10 @@ function App() {
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/order" element={<NewOrderManagementPage />} />
-          <Route path="/inventory" element={<NewInventoryPage />} />
-          <Route path="/sales" element={<NewSalesPage />} />
-          <Route path="/mypage" element={<NewMyPage />} />
+          <Route path="/order" element={<OrderManagePage />} />
+          <Route path="/Inventory" element={<NewInventoryPage />} />
+          <Route path="/Sales" element={<NewSalesPage />} />
+          <Route path="/Mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<NewSignupPage />} />
           {/* 추가 */}
           <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
@@ -73,15 +81,15 @@ function App() {
             path="/signup/auth/verification"
             element={<VerificationPage />}
           />
-          <Route path="/signup/auth/terms" element={<TermsPage />} />
-          <Route path="/signup/auth/results" element={<ApplicationForm />} />
+          <Route path="/signup/auth/terms" element={<NewTermsPage />} />
+          <Route path="/signup/auth/results" element={<NewApplicationForm />} />
           <Route
             path="/signup/auth/results/before"
-            element={<JudgeResultsBeforePage />}
+            element={<NewJudgeResultsBeforePage />}
           />
           <Route
             path="/signup/auth/results/reject"
-            element={<JudgeResultsRejectPage />}
+            element={<NewJudgeResultsRejectPage />}
           />
           <Route path="/login" element={<NewLoginPage />} />
           <Route path="/find/id" element={<NewFindIdPage />} />
@@ -90,11 +98,11 @@ function App() {
           <Route path="/find/password" element={<NewFindPasswordPage />} />
           <Route
             path="/find/password/change"
-            element={<ChangePasswordPage />}
+            element={<NewChangePasswordPage />}
           />
           <Route
             path="/find/password/change/user"
-            element={<ChangeNewPasswordPage />}
+            element={<NewChangeNewPasswordPage />}
           />
           <Route path="/main" element={<MainPage />} />
           <Route path="/store" element={<StoreManage />} />

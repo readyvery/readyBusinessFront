@@ -11,7 +11,7 @@ const useFetchCompletetInfo = () => {
         const fetchData = async () => {
             commonApis.get("/order?status=COMPLETE", {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token.accessToken}`
                 }
             })
                 .then((res) => {
