@@ -11,7 +11,7 @@ const useFetchWaitInfo = () => {
         const fetchData = async () => {
             commonApis.get("/order?status=ORDER", {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token.accessToken}`
                 }
             })
                 .then((res) => {

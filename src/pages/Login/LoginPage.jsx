@@ -48,7 +48,7 @@ function LoginPage() {
 
   const onSubmitHandler = async () => {
     try {
-      const response = await axios.post('/user/login', {
+      const response = await axios.post(process.env.REACT_APP_API_ROOT + '/api/v1/user/login', {
         email: EmailText,
         password: Password,
       })
