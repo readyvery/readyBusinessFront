@@ -29,7 +29,7 @@ function LoginPage() {
   const containerSize = is480
     ? ["20rem", "30rem", "3.3rem"]
     : ["25rem", "30rem", "4.55rem"];
-
+    const apiUrl = process.env.REACT_APP_API_ROOT;
 
   // 로그인 내용
   const setLoginToken = useSetRecoilState(loginState);
@@ -48,10 +48,10 @@ function LoginPage() {
 
   const onSubmitHandler = async () => {
     try {
-      const response = await axios.post(process.env.REACT_APP_API_ROOT + '/api/v1/user/login', {
+      const response = await axios.post(`${apiUrl}/api/v1/user/login`, {
         email: EmailText,
         password: Password,
-      })
+      }, {withCredentials: true})
       console.log(response);
 
       if (response.data.success) {

@@ -1,0 +1,126 @@
+.header-css{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  z-index: 900;
+  border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
+  white-space:nowrap
+}
+.header-css ul{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+}
+
+.headerTop-css{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.5rem 20%;
+  border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
+}
+.headerTop-logo-wrapper-css{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* height: 10%; */
+}
+
+.headerTop-logo-txt-css{
+  width: 12.5625rem;
+  height: 3.125rem;
+  padding-left: 0.1rem;
+}
+.headerTop-logo-cherry-css{
+  width: 2.7871rem;
+  height: 2.7871rem;
+}
+
+.headerTop-nav-css {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+
+  color: #838383;
+  font-family: "Pretendard";
+  font-size: 1rem;
+  font-weight: 500;
+
+}
+.headerTop-nav-css li{
+  margin-right: 1.5rem;
+}
+
+.headerBottom-css{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 3.25rem;
+  padding: 0 20%;
+}
+.headerBottom-nav-css{
+  display: flex;
+  align-items: center;
+  color: #2E2D2D;
+  text-align: center;
+  font-family: "Pretendard";
+}
+.headerBottom-nav-css li{
+  margin-right: 1vw;
+}
+.headerBottom-nav-left-css{
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* w:1024일때 */
+@media screen and (max-width: 768px){
+  .headerTop-logo-txt-css{
+      width: 12.5625rem;
+      height: 3.125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 2.7871rem;
+      height: 2.7871rem;
+  }
+  .headerTop-logo-txt-css{
+      width: 12.5625rem;
+      height: 3.125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 2.7871rem;
+      height: 2.7871rem;
+  }
+}
+@media screen and (min-width : 481px) and (max-width: 768px){
+  .headerTop-logo-txt-css{
+      width: 6.4375rem;
+      height: 2.3125rem;
+  }
+  .headerTop-logo-cherry-css{
+      width: 1.09rem;
+      height: 1.09rem;
+  }
+  .headerTop-nav-css {
+      font-size: 0.75rem;
+  }
+  .headerTop-nav-css li{
+      margin-right: 0.6rem;
+  }
+  .headerBottom-nav-left-css{
+      font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 480px){
+  .header-css{
+    display: none;
+  }
+}

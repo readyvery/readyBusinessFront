@@ -1,0 +1,31 @@
+.header__back__480 {
+  display: flex;
+  width: 100%;
+  margin-top: 5.31rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__back__480 span {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 480px) {
+  .header__back__480 img {
+    position: absolute;
+    left: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .header__back__480 img {
+    display: none;
+  }
+}

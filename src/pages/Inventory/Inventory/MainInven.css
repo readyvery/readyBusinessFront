@@ -1,0 +1,262 @@
+/* 재고관리 페이지 */
+.mainInven-wrapper{
+    width: 100%;
+    /* height: 100%; */
+    font-family: "Pretendard";
+    white-space: nowrap;
+    overflow-y: auto;
+}
+.mainInven-title{
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+    /* 1024기준 */
+    margin-top: 4.75rem;
+    font-size: 2.25rem;
+}
+.mainInven-title__wrapper{
+    display: flex;
+    background-color: #838383;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom: 0.25rem solid #d82356;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    /* 1024기준 */
+    height: 2.94rem;
+    margin-top: 2.5rem;
+}
+.mainInven-title__wrapper span{
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    font-family: "Pretendard";
+    font-weight: 600;
+    font-size: 1rem; 
+}
+.mainInven-title__span1{
+    width: 15%;
+}
+.mainInven-title__span2__wrapper{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+.mainInven-title__span2{
+    overflow-x: hidden;
+}
+.mainInven-title__span3{
+    width: 60%;
+    white-space: nowrap;
+}
+.mainInven-category__modal{
+    position: absolute;
+    left: 29%;
+    margin-top: -0.25rem;
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    border-radius: 0 0 0.625rem 0.625rem;
+    background-color: #838383;
+    z-index: 0;
+    /* 스크롤값 주려는데 지혜를 주세요 */
+    overflow-x: scroll;
+}
+.mainInven-category__modal::-webkit-scrollbar {
+    display: none;
+}
+
+.mainInven-category__modal {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+.mainInven-category__modal span{
+    color: #FFF;
+    text-align: center;
+    font-family: "Pretendard";
+    font-weight: 600;
+    line-height: 410%;
+    font-size: 0.84375rem;
+    border-top: 0.0625rem solid  #FFF;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* 이게 밑줄..? */
+/* .mainInven-category__line{
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 0.0625rem;
+} */
+
+/* 모달 */
+.inven-modal-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.50);
+}
+.inven-modal-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.3);
+    width: 50%;
+    max-width:34.4rem;
+    max-height: 24.3rem;
+    height: 50%;
+    background-color: #fff;
+    border-radius: 2.8125rem;
+    z-index: 101;
+    padding: 2rem;
+}
+.inven-modal-close__wrapper{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.inven-modal-close__wrapper img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.inven-modal-box-img__wrapper{
+    height: 100%;
+    margin-bottom: 1rem;
+}
+.inven-modal-box-img__wrapper img{
+    width: 4.498rem;
+    height: 4.498rem;
+}
+.inven-modal-box-txt__wrapper{
+    height: 100%;
+}
+.inven-modal-box-txt{
+    font-size: 0.8rem;
+    font-family: "Pretendard";
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.inven-modal-box-close-btn__wrapper{
+    display: flex;
+    height: 20%;
+    margin-top: 4.06rem;
+    margin-bottom: 1.5rem;
+}
+
+.inven-modal-box-close-btn{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    color: #fff;
+    background-color: #d82356;
+    font-family: "Pretendard";
+    border-radius: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.875rem;
+}
+.inven-modal-box-wrapper{
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+}
+@media screen and (min-width: 768px){
+    .inven-modal-box{
+        width: 34.375rem;
+        height: 24.3125rem;
+    }
+    .mainInven-title__wrapper span{
+        font-size: 0.9rem;
+    }
+    .mainInven-category__modal span{
+        font-size: 1.125rem;
+    }
+    .mainInven-category-content__box span{
+        font-size: 1rem;
+    }
+    .mainInven-category-content__box{
+        width: 100%;
+        height: 2.5rem;
+    }
+    .mainInven-category-checkbox{
+        height: 1.4rem;
+        width: 1.4rem;
+    }
+    .inven-modal-box-txt{
+        font-size: 1.5rem;
+        min-height: 1.5rem;
+    }
+}
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 480px) and (max-width: 768px){
+    .inven-modal-box{
+        width: 31.5rem;
+        height: 22.3125rem;
+    }
+    .mainInven-title{
+        font-size: 2rem;
+    }
+    .mainInven-title__wrapper{
+        height: 2.19rem;
+        margin-top: 1.75rem;
+    }
+    .inven-modal-box-txt{
+        font-size: 1.25rem;
+        min-height: 1.25rem;
+    }
+    .inven-modal-box-close-btn__wrapper{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    
+    .inven-modal-box-close-btn{
+        font-size: 1.5rem;
+    }
+}
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+    .inven-modal-box{
+        width: 20.3125rem;
+        height: 17.5rem;
+    }
+    .mainInven-title{
+        margin-top: 0rem;
+        font-size: 2rem
+    }
+    .mainInven-title__wrapper{
+        height: 2.19rem;
+        margin-top: 6.56rem;
+    }
+    .inven-modal-box-txt{
+        font-size: 1.125rem;
+        min-height: 1.125rem;
+    }
+    .inven-modal-box-close-btn__wrapper{
+        margin-top: 2.91rem;
+        margin-bottom: 2.8rem;   
+    }
+    .inven-modal-box-close-btn{
+        font-size: 1.125rem;
+    }
+    .inven-modal-box-img__wrapper img{
+        width: 2.499rem;
+        height: 2.499rem;
+    }
+    .inven-modal-close__wrapper img {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}

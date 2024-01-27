@@ -1,20 +1,7 @@
 import React, { Suspense } from "react";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation
-} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 // import Header2 from "../src/components/views/Header/Header2";
 // import Auth from "./hoc/auth.jsx";
-import Auth from "./utils/Auth.jsx";
-// import MainPage from "./pages/Main/MainPage.jsx";
-// 추가 페이지
-import InventoryPage from "./pages/Inventory/Inventory.jsx";
-import MyPage from "./pages/Mypage/Mypage.jsx";
-import OrderManagePage from "./pages/OrderManage/Order.jsx";
-import SalesPage from "./pages/Sales/Sales.jsx";
-
 import ApplicationForm from "./components/signup/ApplicationForm/ApplicationForm.jsx";
 import FindIdPage from "./pages/Find/FindIdPage/FindIdPage.jsx"; //아이디 찾기-전화번호 인증
 import NoneFindIdPage from "./pages/Find/FindIdPage/NoneFindIdPage/NoneFindIdPage.jsx"; //아이디 찾기 결과-회원 X
@@ -22,13 +9,20 @@ import UserFindIdPage from "./pages/Find/FindIdPage/UserFindIdPage/UserFindIdPag
 import ChangeNewPasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangeNewPasswordPage/ChangeNewPasswordPage.jsx"; //비밀번호 변경 - 새 비밀번호 인증
 import ChangePasswordPage from "./pages/Find/FindPasswordPage/ChangePasswordPage/ChangePasswordPage.jsx"; //비밀번호 변경 - 전화번호 인증
 import FindPasswordPage from "./pages/Find/FindPasswordPage/FindPasswordPage.jsx"; //비밀번호 찾기 - 아이디 조회
+import InventoryPage from "./pages/Inventory/Inventory/InventoryPage.jsx";
 import LoginPage from "./pages/Login/LoginPage.jsx";
+import MainPage from "./pages/Main/MainPage.jsx";
+import MyPage from "./pages/Mypage/Mypage.jsx";
+import OrderManagePage from "./pages/OrderManage/Order.jsx";
+import SalesPage from "./pages/Sales/Sales.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
 import SignupPage from "./pages/Signup/SignupPage.jsx";
 import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
+import StoreManage from "./pages/StoreManage/StoreManage.jsx";
+import Auth from "./utils/Auth.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -74,11 +68,6 @@ function App() {
   }
   return (
     <div className="App">
-      {/* <Header2 /> */}
-      {/* <nav>
-        <NavBar />
-      </nav> */}
-
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/order" element={<OrderManagePage />} />
@@ -115,6 +104,8 @@ function App() {
             path="/find/password/change/user"
             element={<NewChangeNewPasswordPage />}
           />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/store" element={<StoreManage />} />
           {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
         </Routes>
       </Suspense>
