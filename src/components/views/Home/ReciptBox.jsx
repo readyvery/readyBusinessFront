@@ -1,13 +1,27 @@
-import React, { useContext, useState } from "react";
-import X from "../../../assets/icons/X.svg";
+import React, { useContext, useMemo } from "react";
 import cherry from "../../../assets/icons/cherry.svg";
 import { HomeContext } from "../../../pages/OrderManage/Home";
 import "../../../pages/OrderManage/Receipt.css";
+import ReciptModal from "./ReciptModal";
 
-export default function ReceiptBox ({children}) {
+export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     const context = useContext(HomeContext);
-    const [ReceiveModal, setReceiveModal] = useState(false);
-    const [RefuseModal, setRefuseModal] = useState(false);
+
+    const refuseList = useMemo(() => ([
+      "재료 소진", 
+      "가게 사정", 
+      "기타"
+    ]), []);
+
+    const receiveList = useMemo(() => ([
+      "즉시", 
+      "5분", 
+      "10분", 
+      "15분", 
+      "20분", 
+      "25분", 
+      "30분"
+    ]), []);
   
     const cancelOrder = (e) => {
       console.log(e);
@@ -110,6 +124,13 @@ export default function ReceiptBox ({children}) {
                     {selectedInfo[0]?.phone}
                 </span>
             </div>
+            <div className="receiptTextBox">
+                <span className="receipt-text">수령방식</span>
+                <span className="receipt-text">
+                    {/* {orderProps?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")} */}
+                    {selectedInfo[0]?.pickUp}
+                </span>
+            </div>
             <div className="receipt-divider" />
             <div className="receiptTextBox">
               <span className="receipt-text">주문내역</span>
@@ -140,8 +161,7 @@ export default function ReceiptBox ({children}) {
             <div className="receiptTextBox">
               <span className="receipt-text">상품금액</span>
               <span className="receipt-text">
-                {/* {orderProps?.couponUsed ? orderProps?.price && (orderProps?.price + 500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
-                {selectedInfo[0]?.price}원
+                {selectedInfo[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </span>
             </div>
             <div className="receiptTextBox">
@@ -152,128 +172,72 @@ export default function ReceiptBox ({children}) {
               </span>
             </div>
             <div className="receiptTextBox">
-              <span className="receipt-text">결제금액</span>
-              <span className="receipt-text">
-                {/* {orderProps?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원 */}
-                {selectedInfo[0]?.price}원
+              <span className="receipt-text bold">총 결제금액</span>
+              <span className="receipt-text bold red">
+                {selectedInfo[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </span>
             </div>
 
             {/* 주문거부모달창 */}
-            {!ReceiveModal && RefuseModal && (
-              <div className="modal-wrapper">
-                <div className="modal-box">
-                  <div
-                    className="modal-close__wrapper"
-                    onClick={() => setRefuseModal((prev) => !prev)}
-                  >
-                    <img src={X} alt="close" />
-                  </div>
-                  <div className="modal-box-txt__wrapper">
-                    <div className="modal-box-txt">접수 거부 사유를 선택해주세요</div>
-                  </div>
-                  <div className="modal-box-choose-btn__wrapper">
-                    <div
-                      className="modal-box-choose-btn"
-                      onClick={(e) => cancelOrder(e)}
-                    >
-                      재료소진
-                    </div>
-                    <div
-                      className="modal-box-choose-btn"
-                      onClick={(e) => cancelOrder(e)}
-                    >
-                      가게사정
-                    </div>
-                    <div
-                      className="modal-box-choose-btn"
-                      onClick={(e) => cancelOrder(e)}
-                    >
-                      기타
-                    </div>
-                  </div>
+            {modalIdx === 1 && (
+              <ReciptModal 
+                handleOrder={cancelOrder} 
+                closeModal={() => setModalIdx(0)}
+                title="접수 거부 사유를 선택해주세요"
+              >
+                <div className="modal-box-choose-btn__wrapper">
+                  {refuseList.map((text, idx) => (
+                    <React.Fragment key={idx}>
+                      <div
+                        className="modal-box-choose-btn"
+                        onClick={cancelOrder}
+                      >
+                        {text}
+                      </div>
+                    </React.Fragment>
+                  ))}
                 </div>
-              </div>
+              </ReciptModal>
             )}
 
             {/* 주문수락모달창 */}
-            {!RefuseModal && ReceiveModal && (
-              <div className="modal-wrapper">
-                <div className="modal-box">
-                  <div className="modal-close__wrapper" onClick={() => setReceiveModal((prev) => !prev)}>
-                    <img src={X} alt="close" />
-                  </div>
-                  <div className="modal-box-txt__wrapper">
-                    <div className="modal-box-txt">제조 시간을 선택해주세요</div>
-                  </div>
-                  <div className="modal-box-choose-btn__wrapper">
-                    <div className="modal-box-choose-btn__row">
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn now"
-                          onClick={handleMake}
-                        >
-                          즉시완료
+            {modalIdx === 2 && (
+              <ReciptModal 
+                handleOrder={handleMake} 
+                closeModal={() => setModalIdx(0)}
+                title="제조 시간을 선택해주세요"
+              >
+                <div className="modal-box-choose-btn__wrapper">
+                  <div className="modal-box-chooseTime-wrapper">
+                  {receiveList.map((text, idx) => {
+                    if(!idx){
+                    return (
+                      <React.Fragment key={idx}>
+                        <div className="modal-box-choose-btn__row">
+                          <div
+                            className="modal-box-chooseTime-btn column"
+                            onClick={handleMake}
+                          >
+                            {text}
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="modal-box-choose-btn__row">
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          5분
-                        </div>
-                      </div>
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          10분
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-box-choose-btn__row">
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          15분
-                        </div>
-                      </div>
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          20분
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-box-choose-btn__row">
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          25분
-                        </div>
-                      </div>
-                      <div className="modal-box-choose-btn__col">
-                        <div
-                          className="modal-box-chooseTime-btn"
-                          onClick={handleMake}
-                        >
-                          30분
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      </React.Fragment>
+                    );} else {
+                      return (
+                        <React.Fragment key={idx}>
+                          <div
+                            className="modal-box-chooseTime-btn-between row"
+                            onClick={handleMake}
+                          >
+                            {text}
+                          </div>
+                        </React.Fragment>
+                      )
+                    }
+                  })}
                 </div>
-              </div>
+                </div>
+              </ReciptModal>
             )}
             </>
           ) : (
