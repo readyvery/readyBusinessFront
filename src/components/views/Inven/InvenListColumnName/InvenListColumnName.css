@@ -11,6 +11,7 @@
     height: 2.94rem;
     margin-top: 2.5rem;
 }
+
 .mainInven-title__wrapper span{
     color: #fff;
     text-align: center;
@@ -41,6 +42,10 @@
     .mainInven-title__wrapper span{
         font-size: 0.9rem;
     }
+    .mainInven-title__wrapper img {
+        width: 1.125rem;
+        height: 0.75rem;
+    }
 }
 /* w:768, h:1024일 때 */
 @media screen and (min-width: 480px) and (max-width: 768px){
@@ -48,6 +53,10 @@
     .mainInven-title__wrapper{
         height: 2.19rem;
         margin-top: 1.75rem;
+    }
+    .mainInven-title__wrapper img {
+        width: 0.84781rem;
+        height: 0.56519rem;
     }
 }
 /* w:480, h:800일 때 */
@@ -57,5 +66,9 @@
     .mainInven-title__wrapper{
         height: 2.19rem;
         margin-top: 6.56rem;
+    }
+    .mainInven-title__wrapper img {
+        width: 0.84781rem;
+        height: 0.56519rem;
     }
 }
