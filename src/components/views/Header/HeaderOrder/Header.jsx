@@ -8,10 +8,12 @@ import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const Store = useRecoilValue(storeState);
   const [Sound, setSound] = useRecoilState(soundState);
+  const navigate = useNavigate();
 
   const onClickHandler = () => {
     setSound((prev) => !prev);
@@ -41,7 +43,12 @@ const Header = () => {
     <div className="header">
       <Row>
         <Col>
-          <img src={LOGO} className="LOGO" alt="LOGO" />
+          <img
+            src={LOGO}
+            className="LOGO"
+            alt="LOGO"
+            onClick={() => navigate(`/main`)}
+          />
         </Col>
         <Col />
         <Col className="head-container">
