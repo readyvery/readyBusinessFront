@@ -14,7 +14,6 @@ import LoginPage from "./pages/Login/LoginPage.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
-import SalesPage from "./pages/Sales/Sales.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
@@ -23,6 +22,7 @@ import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 import StoreManage from "./pages/StoreManage/StoreManage.jsx";
 import Auth from "./utils/Auth.jsx";
+import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -51,7 +51,7 @@ function App() {
   // CEO전용 메인페이지 (4)
   // const NewOrderManagementPage = Auth(OrderManagePage, true, 4); // 주문관리
   const NewInventoryPage = Auth(InventoryPage, true, 4); // 재고관리
-  const NewSalesPage = Auth(SalesPage, true, 4); // 매출관리
+  const NewSalesPage = Auth(SalesManage, true, 4); // 매출관리
   const NewMyPage = Auth(MyPage, true, 4); // 마이페이지
 
   if (location.pathname === "/") {

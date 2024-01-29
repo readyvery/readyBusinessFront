@@ -17,7 +17,9 @@ const SideMenu = ({ isOpen, toggleSidebar }) => {
         <img src={logo} alt="logo" className="side-menu__logo" />
       </div>
 
-      <div className="side-menu__sale">매출관리</div>
+      <div className="side-menu__sale" onClick={() => navigate(`/sales`)}>
+        매출관리
+      </div>
       <div className="side-menu__store" onClick={() => navigate(`/store`)}>
         매장관리
       </div>
