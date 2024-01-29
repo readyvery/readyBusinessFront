@@ -61,6 +61,8 @@
   font-weight: 700;
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 480px) {

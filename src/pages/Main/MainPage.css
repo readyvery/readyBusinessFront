@@ -187,6 +187,11 @@
   margin-bottom: 0.69rem;
 }
 
+.main__guide__title img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .main__guide__content {
   display: flex;
   flex-direction: row;
@@ -271,6 +276,11 @@
   align-items: center;
   margin-top: auto;
   margin-bottom: 0.69rem;
+}
+
+.main__notice__title img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 ul {
