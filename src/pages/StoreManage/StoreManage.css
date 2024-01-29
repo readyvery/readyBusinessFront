@@ -69,6 +69,14 @@
     width: 32.4375rem;
     height: 6.25rem;
   }
+
+  .store__management__title {
+    width: 10rem;
+  }
+
+  .store__management__explanation {
+    width: 15rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -83,9 +91,11 @@
 
   .store__management__title {
     font-size: 2rem;
+    width: 13rem;
   }
 
   .store__management__explanation {
     font-size: 1rem;
+    width: 20rem;
   }
 }
