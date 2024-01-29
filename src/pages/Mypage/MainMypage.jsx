@@ -5,9 +5,6 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { isAuthenticatedState, loginState } from "../../Atom/status";
-import kakao from "../../assets/icons/icon_kakao.svg";
-import readyvery from "../../assets/icons/img_readyVery.svg";
-
 import "./MainMypage.css";
 
 const MainMypage = React.memo(() => {
@@ -35,7 +32,7 @@ const MainMypage = React.memo(() => {
   };
 
   useEffect(() => {
-    if(cookies?.accessToken){
+    if (cookies?.accessToken) {
       fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,14 +63,105 @@ const MainMypage = React.memo(() => {
         navigate("/");
       });
   };
-
-  const handleKaKao = () => {
-    window.location.href = "http://pf.kakao.com/_ZxiEjG/chat";
+  console.log(cafeInfo);
+  // 위는 서버 연결
+  const MypageMainContentBox = ({ label, children }) => {
+    return (
+      <div className="mypage-main">
+        <label className="mypage-main-content-box">{label}</label>
+        <div className="mypage-main-content-box-children">{children}</div>
+      </div>
+    );
   };
-
+  const MypageMainContentBoxInput = ({ id, type, value, day }) => {
+    if (type === "tel") {
+      value = value.replace(/(\d{3})(\d{4})(\d{4})/, "$1 - $2 - $3");
+    }
+    return (
+      <div id={id} type={type} className="mypage-main-content-box-text">
+        {day ? (
+          <>
+            <span>({day})</span>
+            {value}
+          </>
+        ) : (
+          value
+        )}
+      </div>
+    );
+  };
   return (
-    <div className="mypage-main__wrapper">
-      <div className="mypage-top__wrapper">
+    <div className="mypage-main-wrapper">
+      <MypageMainContentBox label={"아이디"}>
+        <MypageMainContentBoxInput
+          id="storeName"
+          type={"text"}
+          value="오르다 커피"
+        />
+      </MypageMainContentBox>
+      <MypageMainContentBox label={"매장 전화번호"}>
+        <MypageMainContentBoxInput
+          id="storeNumber"
+          type={"tel"}
+          value={"01047501096"}
+        />
+      </MypageMainContentBox>
+      <MypageMainContentBox label={"매장 주소"}>
+        <MypageMainContentBoxInput
+          id="storePostAddressNum"
+          type={"number"}
+          value={"14672"}
+        />
+        <MypageMainContentBoxInput
+          id="storePostAddressTxt"
+          type={"text"}
+          value={"역곡동 35"}
+        />
+        <MypageMainContentBoxInput
+          id="storePostAddressTxtDetail"
+          type={"text"}
+          value={"경기 부천시 원미구 지봉로 46"}
+        />
+      </MypageMainContentBox>
+      <MypageMainContentBox label={"영업시간 및 휴무일"}>
+        <MypageMainContentBoxInput
+          day="평일"
+          id="storeOpenTime"
+          type={"text"}
+          value={"월~금 10:00 - 22:00"}
+        />
+        <MypageMainContentBoxInput
+          day="토요일"
+          id="storeOpenTime"
+          type={"text"}
+          value={"10:00 - 22:00"}
+        />
+        <MypageMainContentBoxInput
+          day="일요일"
+          id="storeOpenTime"
+          type={"text"}
+          value={"10:00 - 22:00"}
+        />
+        <MypageMainContentBoxInput
+          day="휴무일"
+          id="storeOpenTime"
+          type={"text"}
+          value={"연중무휴"}
+        />
+      </MypageMainContentBox>
+      <MypageMainContentBox label={"계좌번호"}>
+        <MypageMainContentBoxInput
+          id="storeBank"
+          type={"text"}
+          value={"KB국민은행"}
+        />
+        <MypageMainContentBoxInput
+          id="storeBankAccount"
+          type={"number"}
+          value={"22930104331825"}
+        />
+      </MypageMainContentBox>
+      {/* <div className="mypage-top__wrapper">
         <div className="mypage-top__box">
           <div className="mypage-top-txt__wrapper">
             <span className="mypage-top__txt">오늘도 준비된</span>
@@ -126,7 +214,7 @@ const MainMypage = React.memo(() => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="mypage-logout__wrapper" onClick={handleLogout}>
         <span>로그아웃</span>
