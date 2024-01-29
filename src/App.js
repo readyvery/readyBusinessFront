@@ -41,10 +41,10 @@ function App() {
   // 로그인 필수 페이지
   // GUEST : 1, USER : 2, Wait: 3, CEO : 4
   const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
-  const NewTermsPage = Auth(TermsPage, true, 1)// 이용약관 페이지
+  const NewTermsPage = Auth(TermsPage, true, 1); // 이용약관 페이지
   const NewApplicationForm = Auth(ApplicationForm, true, 2); // 입점신청서 가입 전 알림 페이지
   // 입점신청서 페이지 (2)
-  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 2);// 입점 심사 반려 페이지
+  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 2); // 입점 심사 반려 페이지
   const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 3); // 입점신청서 신청 완료 페이지
   // 유저전용 메인페이지 (3)
   // 매장관리 페이지 (3, 4)
@@ -70,10 +70,12 @@ function App() {
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/store" element={<StoreManage />} />
           <Route path="/order" element={<OrderManagePage />} />
-          <Route path="/Inventory" element={<NewInventoryPage />} />
-          <Route path="/Sales" element={<NewSalesPage />} />
-          <Route path="/Mypage" element={<NewMyPage />} />
+          <Route path="/inventory" element={<NewInventoryPage />} />
+          <Route path="/sales" element={<NewSalesPage />} />
+          <Route path="/mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<NewSignupPage />} />
           {/* 추가 */}
           <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
@@ -104,8 +106,6 @@ function App() {
             path="/find/password/change/user"
             element={<NewChangeNewPasswordPage />}
           />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/store" element={<StoreManage />} />
           {/* <Route path="/*" element={<Navigate to="/"></Navigate>}></Route> */}
         </Routes>
       </Suspense>

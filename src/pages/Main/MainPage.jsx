@@ -6,8 +6,10 @@ import right from "../../assets/icons/icon_right-line.png";
 import kakao from "../../assets/icons/icon_kakao_union.png";
 import "./MainPage.css";
 import Footer from "../../components/views/Footer/Footer";
+import { Link, useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const notices = [
     {
       id: 1,
@@ -46,12 +48,15 @@ const MainPage = () => {
           </span>
 
           <span className="main__box3">
-            <span className="main__order-management-btn">
+            <span
+              className="main__order-management-btn"
+              onClick={() => navigate(`/order`)}
+            >
               주문관리 바로가기
             </span>
-            <span className="main__order-management__notice">
+            {/* <span className="main__order-management__notice">
               매장관리 입력 후 이용 가능합니다.
-            </span>
+            </span> */}
           </span>
         </span>
       </div>
@@ -134,12 +139,13 @@ const MainPage = () => {
                 </span>
                 <span style={{ color: "#838383" }}>매일 00:00 ~ 24:00</span>
               </span>
-
-              <img
-                src={kakao}
-                alt="kakao"
-                className="main__notice__consultation__kakao-btn"
-              />
+              <Link to="http://pf.kakao.com/_ZxiEjG/chat">
+                <img
+                  src={kakao}
+                  alt="kakao"
+                  className="main__notice__consultation__kakao-btn"
+                />
+              </Link>
             </span>
           </div>
         </div>
