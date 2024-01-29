@@ -1,19 +1,70 @@
-.mypage-wrapper {
+.mypage-wrapper-background main {
+  background-color: #fff;
   display: flex;
-  position: absolute;
-  top: 0;
-  left: 8.875rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom:1rem;
+}
+.mypage-top-toggle-box-wrapper ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: center;
+}
+.mypage-top-toggle-box li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3125rem;
+  text-align: center;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border: 0.0625rem solid var(--light-grey, #d9d9d9);
+  background: #fff;
+  color: var(--frame-text, #838383);
+}
+.mypage-top-toggle-box li.select {
+  border: none;
+  background: #FFEAEF;
+  color: var(--signature, #D82356);
 }
 
-nav {
-  width: 8.875rem;
-  /* height: 46.25rem; */
-  /* height: 42.5rem; */
-  height: 45.75rem;
-  padding-top: 5.5rem;
+@media screen and (min-width: 768px){
+  .mypage-wrapper-background main{
+    margin-top:2.75rem;
+  }
+  .mypage-top-toggle-box li {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    margin: 0 0.47rem;
+  }
 }
-
-main {
-  /* width: calc(100vw - 8.875rem);
-  margin-top: 5.5rem; */
+@media screen and (min-width : 481px) and (max-width: 768px){
+  .mypage-wrapper-background main{
+    margin-top:2.75rem;
+  }
+  .mypage-top-toggle-box li {
+    width: 8.75rem;
+    height: 2.1875rem;
+    font-size: 1rem;
+    margin: 0 0.22rem;
+  }
+}
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  .mypage-wrapper-background main {
+    padding: 0 7.5%;
+    margin-top: 3.94rem;
+  }
+  .mypage-top-toggle-box li {
+    width: 6.875rem;
+    height: 1.875rem;
+    font-size: 0.75rem;
+    margin: 0 0.155rem; 
+  }
 }
