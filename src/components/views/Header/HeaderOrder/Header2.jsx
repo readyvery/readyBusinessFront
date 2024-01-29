@@ -9,8 +9,10 @@ import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const baseUrl = process.env.REACT_APP_API_ROOT;
   const storeValue = useRecoilValue(selectStoreState); // 가게 영업 여부를 가져옵니다
   const setSelectStore = useSetRecoilState(selectStoreState); // 가게 영업 여부를 설정합니다
@@ -41,7 +43,12 @@ const Header = () => {
     <div className="header2">
       <div className="header2-wrapper">
         <div className="logo-wrapper">
-          <img src={LOGO} className="LOGO" alt="LOGO" />
+          <img
+            src={LOGO}
+            className="LOGO"
+            alt="LOGO"
+            onClick={() => navigate(`/main`)}
+          />
         </div>
         <div className="head-container2">
           {storeValue ? (
