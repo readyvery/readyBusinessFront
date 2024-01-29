@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import close from "../../../assets/icons/icon_closeModal.svg";
-import downArrow from "../../../assets/icons/icon_downArrow.svg";
-import upArrow from "../../../assets/icons/icon_upArrow.svg";
-import cherry from "../../../assets/icons/small_cherry.svg";
-import InvenList from "../../../components/views/Inven/InvenList";
+import InvenList from "../../../components/views/Inven/InvenList/InvenList";
+import InvenListColumnName from "../../../components/views/Inven/InvenListColumnName/InvenListColumnName";
+import InvenSoldOutModal from "../../../components/views/Inven/InvenSoldOutModal/InvenSoldOutModal";
 import useInventoryFetchData from "../../../hooks/Inventory/useInventoryFetchData";
 import useInventoryPatchData from "../../../hooks/Inventory/useInventoryPatchData";
 import "./MainInven.css";
 
 function MainInven() {
+  // 화면의 크기가 480보디 작은지 확인
+  // 품절처리 모달에서 \n이 다르기 때문에 이를 확인하기 위해 정의
+  const isMobile = window.innerWidth >= 480;
   const [category, setCategory] = useState("전체");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); //품절모달창에 대한 내용
@@ -31,7 +32,6 @@ function MainInven() {
   }, [isInvenList, isCategoryList]);
 
   // 품절처리 모달 patch 기능
-
   const handlePatchData = async () => {
     await patchData(currentBox);
     fetchData(); // patch후 fetch를 통해 값을 갱신
@@ -41,6 +41,10 @@ function MainInven() {
   // 카테고리 변경
   const chnCategory = (e) => {
     setCategory(e);
+    setIsCategoryOpen((prev) => !prev);
+  };
+
+  const handleCategoryModal = () => {
     setIsCategoryOpen((prev) => !prev);
   };
 
@@ -91,70 +95,15 @@ function MainInven() {
     };
   }, [isCategoryOpen]);
 
-  // 품절 관리 모달창
-  const SoldOutModal = ({ titletxt, contenttxt, requestid }) => {
-    return (
-      <div className="inven-modal-wrapper">
-        <div className="inven-modal-box">
-          <div
-            className="inven-modal-close__wrapper"
-            onClick={() => {
-              handleIsCloseModal();
-            }}
-          >
-            <img src={close} alt="close" />
-          </div>
-          <div className="inven-modal-box-wrapper">
-            <div className="inven-modal-box-img__wrapper">
-              <img src={cherry} alt="cherry" />
-            </div>
-            <div className="inven-modal-box-txt__wrapper">
-              <div className="inven-modal-box-txt">{titletxt}</div>
-              <div className="inven-modal-box-txt">{contenttxt}</div>
-            </div>
-          </div>
-          <div className="inven-modal-box-close-btn__wrapper">
-            <div
-              className="inven-modal-box-close-btn"
-              id={requestid}
-              onClick={(e) => handlePatchData(e)}
-            >
-              확인
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
   return (
     <>
       <div className="mainInven-wrapper">
-        {/* <div className="mainInven-title">재고관리</div> */}
-        <div className="mainInven-title__wrapper">
-          <span className="mainInven-title__span1">품절</span>
-          <div
-            className="mainInven-title__span2__wrapper"
-            onClick={() => setIsCategoryOpen((prev) => !prev)}
-          >
-            <span style={{ width: "1.125rem" }}></span>
-            <span
-              className="mainInven-title__span2"
-              onClick={() => setIsCategoryOpen((prev) => !prev)}
-            >
-              {category}
-            </span>
-            {isCategoryOpen ? (
-              <span>
-                <img src={downArrow} alt="downArrow" />
-              </span>
-            ) : (
-              <span>
-                <img src={upArrow} alt="upArrow" />
-              </span>
-            )}
-          </div>
-          <span className="mainInven-title__span3">상품명</span>
-        </div>
+        {/* 재고관리 title의 경우 headerBack에서*/}
+        <InvenListColumnName
+          category={category}
+          isCategoryOpen={isCategoryOpen}
+          HandleIsCategoryOpen={handleCategoryModal}
+        />
 
         {isCategoryOpen && (
           <div className="mainInven-category__modal">
@@ -168,6 +117,7 @@ function MainInven() {
             ))}
           </div>
         )}
+
         <InvenList
           category={category}
           invenList={invenList}
@@ -176,18 +126,30 @@ function MainInven() {
       </div>
 
       {isSoldOutModalOpen && isModalOpen && (
-        <SoldOutModal
-          titletxt="품절 처리 시 고객님은"
-          contenttxt="해당 메뉴를 주문할 수 없습니다."
+        <InvenSoldOutModal
+          contenttxt={
+            isMobile ? (
+              <>
+                품절 처리 시 <br /> 고객님은 해당 메뉴를 주문할 수 없습니다.
+              </>
+            ) : (
+              <>
+                품절 처리 시 고객님은 <br /> 해당 메뉴를 주문할 수 없습니다.
+              </>
+            )
+          }
           requestid="accept"
+          handleIsCloseModal={handleIsCloseModal}
+          handlePatchData={handlePatchData}
         />
       )}
 
       {isCancleModalOpen && isModalOpen && (
-        <SoldOutModal
-          titletxt=" "
+        <InvenSoldOutModal
           contenttxt="품절 처리를 취소하시겠습니까?"
           requestid="cancle"
+          handleIsCloseModal={handleIsCloseModal}
+          handlePatchData={handlePatchData}
         />
       )}
     </>
