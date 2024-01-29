@@ -46,7 +46,7 @@
   line-height: normal;
   padding: 0.66rem 2.21rem;
   border-radius: 0.3125rem;
-  background: var(--frame-text, #838383);
+  background: var(--frame-text, #d82356);
 }
 
 .main__order-management__notice {
