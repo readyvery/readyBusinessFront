@@ -12,7 +12,7 @@ const HeaderMain = () => {
         <div className="headerTop-css">
           <div
             className="headerTop-logo-wrapper-css"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(`/main`)}
           >
             <img
               src={logo_cherry}
