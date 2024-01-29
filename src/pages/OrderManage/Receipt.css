@@ -12,7 +12,7 @@
   height: 41.25rem; */
 
   /* margin: 0.625rem auto; */
-  padding: 1.5rem 1rem ;
+  padding: 4rem 1rem ;
 
   background-color: #f5f5f5;
   border-radius: 1.875rem;
@@ -72,7 +72,7 @@
   text-align: left;
   color: #4f4f4f;
   font-family: "Pretendard";
-  font-weight: 600;
+  font-weight: 800;
   font-size: 1.4375rem;
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
@@ -96,11 +96,9 @@
 .receipt-optiontext {
   color: #4f4f4f;
   font-family: "Pretendard";
-  font-weight: 500;
   font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 130%; /* 1.625rem */
-  letter-spacing: -0.0125rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
 }
 
 .receipt-text {
@@ -114,16 +112,20 @@
   white-space: nowrap;
 }
 
+.receipt-text.bold{
+  font-size: 1.375rem;
+  font-weight: 800;
+}
+
+.receipt-text.red{
+  color: #d82356;
+}
+
 .receipt-divider {
   width: 90%;
   height: 1px;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   background-color: #838383;
-
-  /* border-top: 1px solid #838383; */
-  margin: 1rem 0;
-
-  /* transform: translate(7%, -50%); */
 }
 
 .receipt-btn {
@@ -161,13 +163,13 @@
 /* 모달 */
 .modal-wrapper {
   position: absolute;
-  top: calc(5.5rem + 0.625rem);
-  left: calc(33rem);
+  top: 3vh;
+  left: 50.7%;
 
-  /* width: 23.75rem;
-  height: 43rem; */
-  min-width: 22.125rem;
-  height: 41.25rem;
+  /* min-width: 22.125rem;
+  height: 41.25rem; */
+  width: 49.3%;
+  height: calc(100% - 6vh);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 1.875rem;
 
@@ -176,12 +178,11 @@
 
 .modal-box {
   position: absolute;
-  /* top: calc(5.5rem + 0.625rem);
-  left: calc(8.875rem + 33rem); */
-  top: 10.45rem;
+  /* top: 10.45rem; */
+  top: 30%;
 
-  width: 22.125rem;
-  height: 30.8rem;
+  width: 100%;
+  height: 70%;
   background-color: #fff;
   border-radius: 1.875rem;
   z-index: 101;
@@ -203,8 +204,8 @@
 .modal-box-txt {
   color: #4f4f4f;
   font-family: "Pretendard";
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 130%; /* 1.625rem */
   letter-spacing: -0.0125rem;
@@ -215,12 +216,16 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 1.2rem;
+  margin-top: 3rem;
+  width: 100%;
   /* height: 12.9375rem; */
 }
 
 .modal-box-choose-btn__row {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .modal-box-choose-btn {
@@ -228,8 +233,9 @@
   justify-content: center;
   flex-direction: column;
 
-  width: 16.8125rem;
-  height: 3.125rem;
+  /* width: 16.8125rem; */
+  width: 80%;
+  height: 4rem;
   margin: 0 auto;
   border-radius: 0.625rem;
   border: 2px solid #dadada;
@@ -237,7 +243,7 @@
   color: #838383;
   text-align: center;
   font-family: "Pretendard";
-  font-weight: 300;
+  font-weight: 600;
   font-size: 1.375rem;
   line-height: 100%; /* 1.375rem */
 }
@@ -268,12 +274,52 @@
   line-height: 100%; /* 1.375rem */
 }
 
-.modal-box-chooseTime-btn.now{
+.modal-box-chooseTime-wrapper{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.modal-box-chooseTime-btn-between {
+  text-align: center;
+  width: 7.625rem;
+  height: 3.125rem;
+  /* margin: 0 auto; */
+  border-radius: 0.625rem;
+  border: 2px solid #dadada;
+  margin-bottom: 1.2rem;
+
+  color: #838383;
+  text-align: center;
+  font-family: "Pretendard";
+  font-weight: 300;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 4rem; /* 1.375rem */
+}
+
+.modal-box-chooseTime-btn.column{
   /* height: 100%; */
   width: 100%;
+  height: 4rem;
+  margin-bottom: 1.2rem;
+}
+
+.modal-box-chooseTime-btn-between.row{
+  /* height: 100%; */
+  width: 45%;
+  height: 4rem;
 }
 
 .modal-box-chooseTime-btn:active {
+  background-color: #d82356;
+  border: 2px solid #d82356;
+  color: #fff;
+}
+
+.modal-box-chooseTime-btn-between:active {
   background-color: #d82356;
   border: 2px solid #d82356;
   color: #fff;

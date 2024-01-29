@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ReceiptBox from "../../components/views/Home/ReciptBox";
 import theme from "../../style/theme/theme";
@@ -9,15 +9,16 @@ const Receipt = () => {
     status: 1,
   };
 
+  const [modalIdx, setModalIdx] = useState(0);
 
   return (
     <div className="Box">
       <div className="rounded-rectangle">
-        <ReceiptBox>
+        <ReceiptBox modalIdx={modalIdx} setModalIdx={setModalIdx}>
           {orderProps.status === 1 ? (
             <BtnWrapper>
-              <RefuseBtn>거부</RefuseBtn>
-              <AcceptBtn>접수</AcceptBtn>
+              <RefuseBtn onClick={() => setModalIdx(1)}>거부</RefuseBtn>
+              <AcceptBtn onClick={() => setModalIdx(2)}>접수</AcceptBtn>
             </BtnWrapper>
           ) : (
             <BtnWrapper>
