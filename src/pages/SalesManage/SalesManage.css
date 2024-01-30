@@ -74,12 +74,27 @@
 }
 
 .sales__graph__date {
+  display: flex;
   color: var(--title, #2e2d2d);
   font-family: "Pretendard";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  align-items: center;
+  justify-content: center;
+}
+
+.sales__graph__date__prev {
+  width: 1.50463rem;
+  height: 1.50463rem;
+  margin-right: 0.5rem;
+}
+
+.sales__graph__date__next {
+  width: 1.50463rem;
+  height: 1.50463rem;
+  margin-left: 0.5rem;
 }
 
 .sales__notice {
@@ -118,6 +133,16 @@
 
   .sales__graph__date {
     font-size: 0.75rem;
+  }
+
+  .sales__graph__date__prev {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .sales__graph__date__next {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .sales__notice {
