@@ -14,8 +14,9 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: calc(50% - 8.5rem);
-  left: calc(50% - 10.15625rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 31.5rem;
   height: 24.3125rem;
   border-radius: 2.5rem;
@@ -49,6 +50,7 @@
 }
 
 .modal__check {
+  display: flex;
   width: 19.375rem;
   height: 3.125rem;
   border-radius: 0.625rem;
