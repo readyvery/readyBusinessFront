@@ -10,7 +10,7 @@ const useInventoryFetchData = () => {
   const [isInvenList, setIsInvenList] = useState([]);
   const fetchData = useCallback(async () => {
     const config = {
-      // withCredentials: true, 
+      // withCredentials: true,
       headers: {
         Authorization: `Bearer ${token.accessToken}`,
       },
@@ -18,10 +18,14 @@ const useInventoryFetchData = () => {
     try {
       const response = await axios.get(`${apiUrl}/api/v1/inventory`, config);
       setIsInvenList(response.data);
-      setIsCategoryList(["전체", ...response.data.categorys.map((e) => e.name)]);
+      setIsCategoryList([
+        "전체",
+        ...response.data.categorys.map((e) => e.name),
+      ]);
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apiUrl, setIsInvenList, setIsCategoryList]);
 
   useEffect(() => {
