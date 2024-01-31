@@ -8,9 +8,9 @@ const useInventoryPatchData = () => {
   const { fetchData } = useInventoryFetchData();
   const token = useRecoilValue(loginState);
   const config = {
-    withCredentials: true,
+    // withCredentials: true,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token.accessToken}`,
     },
   };
   const patchData = async (currentBox) => {
