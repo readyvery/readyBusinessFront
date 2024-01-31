@@ -28,9 +28,11 @@
     display: flex;
     justify-content: space-between;
     overflow-x: hidden;
+    position: relative;
 }
 .mainInven-title__span2{
     overflow-x: hidden;
+    cursor: pointer;
 }
 .mainInven-title__span3{
     width: 60%;
