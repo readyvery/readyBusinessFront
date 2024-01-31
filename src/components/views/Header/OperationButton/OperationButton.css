@@ -38,13 +38,13 @@
   }
   
   .loginControl-button-isopen-css {
-    right: 0%;
-    transform: translateX(-10%);
+    left: 0%;
+    transform: translateX(10%); 
   }
   
   .loginControl-button-isclose-css {
-    left: 0%;
-    transform: translateX(10%); 
+    right: 0%;
+    transform: translateX(-10%);
   }
 
   @media screen and (min-width: 768px){
