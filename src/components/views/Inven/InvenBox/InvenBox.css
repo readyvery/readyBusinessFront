@@ -1,7 +1,8 @@
 .mainInven-category-content__box{
     display: flex;
     width: 100%;
-    height: 1.9rem;
+    /* height: 1.9rem; */
+    height: 3.17188rem;
     border-bottom: #dadada solid 0.075rem;
 }
 
@@ -11,6 +12,7 @@
 
 .mainInven-category-content__box span{
     font-family: "Pretendard";
+    height: 3.17188rem;
     color: #4f4f4f;
     font-weight: 500;
     display: flex;

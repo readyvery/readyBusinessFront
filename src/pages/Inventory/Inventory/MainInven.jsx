@@ -39,12 +39,13 @@ function MainInven() {
   };
 
   // 카테고리 변경
-  const chnCategory = (e) => {
+  const handlechnCategory = (e) => {
     setCategory(e);
-    setIsCategoryOpen((prev) => !prev);
+    handleCategoryModal();
   };
 
   const handleCategoryModal = () => {
+    console.log("handleCategoryModal called", isCategoryOpen);
     setIsCategoryOpen((prev) => !prev);
   };
 
@@ -84,8 +85,10 @@ function MainInven() {
   //외부 요소 클릭시 카테고리 모달 닫기
   useEffect(() => {
     const handleClickOutside = (e) => {
-      const layerPopup = document.querySelector(".mainInven-category__modal");
-      if (layerPopup && !layerPopup.contains(e.target)) {
+      const layerPopup = document.querySelector(
+        ".mainInven-category__modal"
+      );
+      if (layerPopup && !layerPopup.contains(e.target)&&!e.target.closest(".mainInven-title__wrapper")) {
         setIsCategoryOpen(false);
       }
     };
@@ -102,22 +105,10 @@ function MainInven() {
         <InvenListColumnName
           category={category}
           isCategoryOpen={isCategoryOpen}
-          HandleIsCategoryOpen={handleCategoryModal}
+          handleCategoryModal={handleCategoryModal}
+          categoryList={categoryList}
+          handlechnCategory={handlechnCategory}
         />
-
-        {isCategoryOpen && (
-          <div className="mainInven-category__modal">
-            {categoryList?.map((e, i) => (
-              <React.Fragment key={i}>
-                <span key={i} onClick={() => chnCategory(e)}>
-                  {e}
-                </span>
-                <div className="mainInven-category__line"></div>
-              </React.Fragment>
-            ))}
-          </div>
-        )}
-
         <InvenList
           category={category}
           invenList={invenList}
