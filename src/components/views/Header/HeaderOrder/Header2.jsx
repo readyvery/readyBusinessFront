@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { selectStoreState, soundState } from "../../../../Atom/status";
 import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
@@ -9,7 +10,6 @@ import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
