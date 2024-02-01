@@ -125,6 +125,12 @@ export const userPasswordState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const userConfirmPasswordState = atom({
+  key: "userConfirmPasswordState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+})
+
 export const userNameState = atom({
   key: "userNameState",
   default: null,
