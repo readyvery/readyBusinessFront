@@ -29,7 +29,8 @@ function App() {
   let location = useLocation();
 
   // 로그인 필요없는 페이지
-  const NewSignupPage = Auth(SignupPage, false); // 회원가입
+  // sms인증 구현으로 인한 AUTH잠시 해제
+  // const NewSignupPage = Auth(SignupPage, false); // 회원가입
   const NewLoginPage = Auth(LoginPage, false); // 로그인
   // sms인증 구현으로 인한 AUTH잠시 해제
   // const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
@@ -78,7 +79,7 @@ function App() {
           <Route path="/inventory" element={<NewInventoryPage />} />
           <Route path="/sales" element={<NewSalesPage />} />
           <Route path="/mypage" element={<NewMyPage />} />
-          <Route path="/signup" element={<NewSignupPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           {/* 추가 */}
           <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
