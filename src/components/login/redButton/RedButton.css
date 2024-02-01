@@ -1,32 +1,32 @@
 .red-button {
-    border-radius: 0.25rem;
-    background-color: #D82356;
-    border: none;
-    color: rgb(255, 255, 255);
-    font-family: "Pretendard";
-    font-size: 1.2rem;
-    text-align: center;
-    justify-content: center;
-    font-weight: 600;
-    line-height: 1.432;
-    padding: 0 0.8rem 0 0.8rem;
-    min-width: 15rem;
-    min-height: 2.5rem;
-    cursor: pointer;
+  border-radius: 0.3125rem;
+  background-color: #d82356;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-family: "Pretendard";
+  font-size: 1.5rem;
+  text-align: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 0 0.8rem 0 0.8rem;
+  min-width: 21.3rem;
+  min-height: 3.13rem;
+  cursor: pointer;
 }
 
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 481px){
-    .red-button {
-        width: 17rem;
-        font-size: 1.2rem;
-    }
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .red-button {
+    width: 21.25rem;
+    height: 3.125rem;
+  }
 }
 
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    .red-button {
-        max-width: 15rem;
-        font-size: 1rem;
-    }
+  .red-button {
+    width: 18.9rem;
+    height: 3.13rem;
+    font-size: 1.25rem;
+  }
 }
