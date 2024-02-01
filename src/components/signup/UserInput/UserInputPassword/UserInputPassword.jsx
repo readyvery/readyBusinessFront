@@ -1,11 +1,13 @@
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userPasswordState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputPassword.css";
-import { useState } from "react";
 
 
 
 const UserInputPassword = () => {
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useRecoilState(userPasswordState);
     const [passwordCheck, setPasswordCheck] = useState("");
     const [passwordError, setPasswordError] = useState(false);
   

@@ -14,6 +14,7 @@ import LoginPage from "./pages/Login/LoginPage.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
+import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
@@ -22,7 +23,6 @@ import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 import StoreManage from "./pages/StoreManage/StoreManage.jsx";
 import Auth from "./utils/Auth.jsx";
-import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -31,7 +31,8 @@ function App() {
   // 로그인 필요없는 페이지
   const NewSignupPage = Auth(SignupPage, false); // 회원가입
   const NewLoginPage = Auth(LoginPage, false); // 로그인
-  const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
+  // sms인증 구현으로 인한 AUTH잠시 해제
+  // const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
   const NewNoneFindIdPage = Auth(NoneFindIdPage, false); //아이디 찾기 결과-회원 X
   const NewUserFindIdPage = Auth(UserFindIdPage, false); //아이디 찾기 결과-아이디 반환
   const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
@@ -40,7 +41,8 @@ function App() {
 
   // 로그인 필수 페이지
   // GUEST : 1, USER : 2, Wait: 3, CEO : 4
-  const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
+  // sms인증 구현으로 인한 AUTH잠시 해제
+  // const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
   const NewTermsPage = Auth(TermsPage, true, 1); // 이용약관 페이지
   const NewApplicationForm = Auth(ApplicationForm, true, 2); // 입점신청서 가입 전 알림 페이지
   // 입점신청서 페이지 (2)
@@ -78,7 +80,7 @@ function App() {
           <Route path="/mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<NewSignupPage />} />
           {/* 추가 */}
-          <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
+          <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
             path="/signup/auth/verification"
             element={<VerificationPage />}
@@ -94,7 +96,7 @@ function App() {
             element={<NewJudgeResultsRejectPage />}
           />
           <Route path="/login" element={<NewLoginPage />} />
-          <Route path="/find/id" element={<NewFindIdPage />} />
+          <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/id/serch" element={<NewUserFindIdPage />} />
           <Route path="/find/id/none" element={<NewNoneFindIdPage />} />
           <Route path="/find/password" element={<NewFindPasswordPage />} />

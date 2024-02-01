@@ -70,7 +70,6 @@ export const getAuthenticatedSelector = selector({
   effects_UNSTABLE: [persistAtom],
 });
 
-// TODO: 여기 변경하기 
 export const loginState = atom({
   key: "loginState",
   default: {
@@ -110,5 +109,24 @@ export const getUserSelector = selector({
   set: ({ set }, newValue) => {
     set(userState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 회원가입시
+export const userIdState = atom({
+  key: "userIdState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const userPasswordState = atom({
+  key: "userPasswordState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const userNameState = atom({
+  key: "userNameState",
+  default: null,
   effects_UNSTABLE: [persistAtom],
 });

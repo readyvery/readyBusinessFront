@@ -1,10 +1,12 @@
+import { useState } from "react";
+import { useRecoilState } from 'recoil';
+import { userIdState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputId.css";
-import { useState } from "react";
 
 const UserInputId = () => {
     // 아이디 입력 값 처리
-    const [inputId, setInputId] = useState("");
+    const [inputId, setInputId] = useRecoilState(userIdState)
     const [inputIdError, setInputIdError] = useState(false);
     const isInputIdLength = (inputId) => {
         const minLength = 8;
