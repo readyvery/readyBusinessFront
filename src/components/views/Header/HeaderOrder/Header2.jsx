@@ -1,38 +1,36 @@
-import axios from "axios";
-import React, { useEffect } from "react";
-import { useCookies } from "react-cookie";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { selectStoreState, soundState } from "../../../../Atom/status";
+import { useRecoilState } from "recoil";
+import { soundState } from "../../../../Atom/status";
 import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import LOGO from "../../../../assets/icons/Header/LOGO.svg"; //로고
-import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
 import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
-  const baseUrl = process.env.REACT_APP_API_ROOT;
-  const storeValue = useRecoilValue(selectStoreState); // 가게 영업 여부를 가져옵니다
-  const setSelectStore = useSetRecoilState(selectStoreState); // 가게 영업 여부를 설정합니다
   const [sound, setSound] = useRecoilState(soundState); // 소리 여부를 가져옵니다
+  // const [token, setToken] = useRecoilState(loginState);
 
-  const [cookies] = useCookies(["accessToken"]);
+  //const [cookies] = useCookies(["accessToken"]);
 
-  useEffect(() => {
-    if (cookies?.accessToken) {
-      const config = {
-        withCredentials: true,
-      };
+  // useEffect(() => {
+  //   if (cookies?.accessToken) {
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token.accessToken}`
+  //       }, 
+  //       withCredentials: true,
+  //     };
 
-      axios.get(`${baseUrl}/api/v1/store/sales`, config).then((res) => {
-        console.log(res);
-        setSelectStore(res.data.status);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     // commonApis.get(`/api/v1/store/sales`, config).then((res) => {
+  //     //   console.log(res);
+  //     //   setSelectStore(res.data.status);
+  //     // });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const onClickHandler = () => {
     console.log(sound);
@@ -51,21 +49,21 @@ const Header = () => {
           />
         </div>
         <div className="head-container2">
-          {storeValue ? (
+          {/* {storeValue ? (
             <div className="store-group">
               <div className="store-img__wrapper">
                 <img src={StoreOn} alt="Open" />
               </div>
               <div className="header-font">영업중</div>
             </div>
-          ) : (
+          ) : ( */}
             <div className="store-group">
               <div className="store-img__wrapper">
                 <img src={StoreOff} alt="Close" />
               </div>
               <div className="header-font">영업종료 </div>
             </div>
-          )}
+          {/* )} */}
           {sound ? (
             <div className="header-img-wrapper">
               <img

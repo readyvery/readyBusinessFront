@@ -1,9 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/icons/Big_LOGO.svg";
-import "./ApplicationForm.css";
-import redyveryicon from "../../../assets/icons/img_readyVery.svg";
+import checkicon from "../../../assets/icons/icon_check_black.svg";
 import kakaolinkedicon from "../../../assets/icons/icon_kakao.svg";
+import redyveryicon from "../../../assets/icons/img_readyVery.svg";
 import RedButton from "../../login/redButton/RedButton";
-import checkicon from "../../../assets/icons/icon_check_black.svg"
+import "./ApplicationForm.css";
 const ApplicationFormContainer = ({ children }) =>{
     return(
         <div className="application-form-container-wrapper">
@@ -59,9 +60,10 @@ const ApplicationFormCircleNumBar = () => {
 };
 
 const ApplicationForm = () =>{
+    const navigate = useNavigate();
     return(
         <ApplicationFormContainer>
-                <ApplicationFormCircleNumBar step="3"/>
+                <ApplicationFormCircleNumBar step="2"/>
                 <div className="application-form-content-container">
                     <div className="application-form-content-main-text-style">
                         <span>안녕하세요!</span>
@@ -86,7 +88,7 @@ const ApplicationForm = () =>{
                         <img src={kakaolinkedicon} alt="kakaolinkedicon" style={{ 'width': '1.4rem', 'height': '1rem'}} />
                     </div>
                     <div className="application-form-next-button">
-                        <RedButton>확인</RedButton>
+                        <RedButton onClick={() => navigate('/signup/auth/verification')}>확인</RedButton>
                     </div>
                 </div>
         </ApplicationFormContainer>

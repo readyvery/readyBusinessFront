@@ -39,23 +39,21 @@ function App() {
   const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
   const NewChangeNewPasswordPage = Auth(ChangeNewPasswordPage, false); //비밀번호 변경 - 전화번호 인증
   const NewChangePasswordPage = Auth(ChangePasswordPage, false); //비밀번호 변경 - 전화번호 인증
+  //const NewPhoneAuthPage = Auth(PhoneAuthPage, false); // 휴대폰 인증
+  const NewTermsPage = Auth(TermsPage, false); // 이용약관 페이지
 
   // 로그인 필수 페이지
-  // GUEST : 1, USER : 2, Wait: 3, CEO : 4
-  // sms인증 구현으로 인한 AUTH잠시 해제
-  // const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
-  const NewTermsPage = Auth(TermsPage, true, 1); // 이용약관 페이지
-  const NewApplicationForm = Auth(ApplicationForm, true, 2); // 입점신청서 가입 전 알림 페이지
-  // 입점신청서 페이지 (2)
-  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 2); // 입점 심사 반려 페이지
-  const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 3); // 입점신청서 신청 완료 페이지
-  // 유저전용 메인페이지 (3)
-  // 매장관리 페이지 (3, 4)
-  // CEO전용 메인페이지 (4)
-  // const NewOrderManagementPage = Auth(OrderManagePage, true, 4); // 주문관리
-  const NewInventoryPage = Auth(InventoryPage, true, 4); // 재고관리
-  const NewSalesPage = Auth(SalesManage, true, 4); // 매출관리
-  const NewMyPage = Auth(MyPage, true, 4); // 마이페이지
+  // USER : 1, REVIEW : 2, REJECT : 3, READY : 4, CEO : 5
+  const NewApplicationForm = Auth(ApplicationForm, true, 1); // 입점신청서 가입 전 알림 페이지
+  const NewVerificationPage = Auth(VerificationPage, true, 1) // 입점신청서 페이지
+  const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 2); // 입점신청서 신청 완료 페이지
+  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 3); // 입점 심사 반려 페이지
+  // const NewMainPage = Auth(MainPage, true, 4); // 메인페이지 (4, 5)
+  const NewStoreManage = Auth(StoreManage, true, 4); // 매장관리 페이지 (4, 5)
+  // const NewOrderManagementPage = Auth(OrderManagePage, true, 5); // 주문관리
+  const NewInventoryPage = Auth(InventoryPage, true, 5); // 재고관리
+  const NewSalesPage = Auth(SalesManage, true, 5); // 매출관리
+  const NewMyPage = Auth(MyPage, true, 5); // 마이페이지
 
   if (location.pathname === "/") {
     return (
@@ -74,7 +72,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/main" element={<MainPage />} />
-          <Route path="/store" element={<StoreManage />} />
+          <Route path="/store" element={<NewStoreManage />} />
           <Route path="/order" element={<OrderManagePage />} />
           <Route path="/inventory" element={<NewInventoryPage />} />
           <Route path="/sales" element={<NewSalesPage />} />
@@ -84,7 +82,7 @@ function App() {
           <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
             path="/signup/auth/verification"
-            element={<VerificationPage />}
+            element={<NewVerificationPage />}
           />
           <Route path="/signup/auth/terms" element={<NewTermsPage />} />
           <Route path="/signup/auth/results" element={<NewApplicationForm />} />
