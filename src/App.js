@@ -29,15 +29,17 @@ function App() {
   let location = useLocation();
 
   // 로그인 필요없는 페이지
-  const NewSignupPage = Auth(SignupPage, false); // 회원가입
-  // const NewLoginPage = Auth(LoginPage, false); // 로그인
-  const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
+  // sms인증 구현으로 인한 AUTH잠시 해제
+  // const NewSignupPage = Auth(SignupPage, false); // 회원가입
+  const NewLoginPage = Auth(LoginPage, false); // 로그인
+  // sms인증 구현으로 인한 AUTH잠시 해제
+  // const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
   const NewNoneFindIdPage = Auth(NoneFindIdPage, false); //아이디 찾기 결과-회원 X
   const NewUserFindIdPage = Auth(UserFindIdPage, false); //아이디 찾기 결과-아이디 반환
   const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
   const NewChangeNewPasswordPage = Auth(ChangeNewPasswordPage, false); //비밀번호 변경 - 전화번호 인증
   const NewChangePasswordPage = Auth(ChangePasswordPage, false); //비밀번호 변경 - 전화번호 인증
-  const NewPhoneAuthPage = Auth(PhoneAuthPage, false); // 휴대폰 인증
+  //const NewPhoneAuthPage = Auth(PhoneAuthPage, false); // 휴대폰 인증
   const NewTermsPage = Auth(TermsPage, false); // 이용약관 페이지
 
   // 로그인 필수 페이지
@@ -75,9 +77,9 @@ function App() {
           <Route path="/inventory" element={<NewInventoryPage />} />
           <Route path="/sales" element={<NewSalesPage />} />
           <Route path="/mypage" element={<NewMyPage />} />
-          <Route path="/signup" element={<NewSignupPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           {/* 추가 */}
-          <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
+          <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
             path="/signup/auth/verification"
             element={<NewVerificationPage />}
@@ -92,8 +94,8 @@ function App() {
             path="/signup/auth/results/reject"
             element={<NewJudgeResultsRejectPage />}
           />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/find/id" element={<NewFindIdPage />} />
+          <Route path="/login" element={<NewLoginPage />} />
+          <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/id/serch" element={<NewUserFindIdPage />} />
           <Route path="/find/id/none" element={<NewNoneFindIdPage />} />
           <Route path="/find/password" element={<NewFindPasswordPage />} />

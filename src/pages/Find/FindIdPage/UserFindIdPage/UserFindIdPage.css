@@ -44,7 +44,7 @@
         width: 17rem;
         height: 3.8rem;
     }
-    .user-find-id-page-text-top{
+    .loginpage-findId-text span{
         font-size: 0.8rem;
     }
 }
@@ -55,7 +55,7 @@
         width: 15rem;
         height: 3.5rem;
     }
-    .user-find-id-page-text-top{
+    .loginpage-findId-text span{
         font-size: 0.6rem;
     }
 }

@@ -1,6 +1,8 @@
 import Footer from "../../components/views/Footer/Footer";
 import HeaderBack480 from "../../components/views/Header/Header480/HeaderBack480/HeaderBack480";
 import HeaderMain from "../../components/views/Header/HeaderMain/HeaderMain";
+import prev from "../../assets/icons/icon_date_prev.png";
+import next from "../../assets/icons/icon_date_next.png";
 import "./SalesManage.css";
 
 const SalesManage = () => {
@@ -31,7 +33,11 @@ const SalesManage = () => {
       <div className="sales__box2">
         <div className="sales__graph">
           <div className="sales__graph__title">주간매출</div>
-          <div className="sales__graph__date">2024-01-01 ~ 2024-01-07</div>
+          <div className="sales__graph__date">
+            <img src={prev} alt="<" className="sales__graph__date__prev" />
+            2024-01-01 ~ 2024-01-07
+            <img src={next} alt=">" className="sales__graph__date__next" />
+          </div>
         </div>
         <div className="sales__notice">
           매출 발생 후 최대 5영업일 이내에 입금 예정 ( 문의 : 오남택

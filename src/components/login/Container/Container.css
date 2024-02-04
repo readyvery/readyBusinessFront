@@ -8,8 +8,8 @@
     overflow-y: auto;
 
     /* 최소 크기 */
-    min-width: 20rem;
-    min-height: 30rem;
+    min-width: 25rem;
+    min-height: 37.5rem;
 }
 
 .container-wrapper-inner{
@@ -29,8 +29,17 @@
 .container-wrapper-wrapper{
     font-family: "Pretendard";
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.75rem;
     color: #2E2D2D;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.container-wrapper-wrapper img{
+    width: 6.3125rem;
+    height: 1.5625rem;
+    margin-bottom: 0.25rem;
 }
 .loginpage-content-wrapper{
     display: flex;
@@ -41,7 +50,7 @@
 /* w:768, h:1024 이상일 때 */
 @media screen and (min-width: 481px){    
     .container-wrapper-inner {
-        max-width: 30rem;
+        max-width: 31.3rem;
         height: 100%;
     }
 }
@@ -49,10 +58,13 @@
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
     .container-wrapper-inner {
-        max-width: 20rem;
+        max-width: 25rem;
         height: 100%;
     }
     .container-wrapper-wrapper{
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+    .container-wrapper-wrapper img{
+        margin-bottom: 0.31rem;
     }
 }

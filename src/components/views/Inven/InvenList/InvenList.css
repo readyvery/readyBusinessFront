@@ -1,10 +1,7 @@
 .mainInven-category-content__wrapper{
     width: 100%;
-    max-height: 30rem;
-    height: 40vh;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-bottom: 10vh;
 }
 
 .mainInven-category-content__wrapper::-webkit-scrollbar {
@@ -20,16 +17,27 @@
     .mainInven-category-content__wrapper{
         font-size: 1rem;
     }
+    .mainInven-category-content__wrapper{
+        height: 30.9rem;
+    }
 }
   
 @media (min-width: 480px) and (max-width: 768px) {
     .mainInven-category-content__wrapper{
         font-size: 1rem;
     }
+    .mainInven-category-content__wrapper{
+        height: 30.9rem;
+        margin-bottom: 11.44rem;
+    }
 }
   
 @media (min-width: 768px) {
     .mainInven-category-content__wrapper{
         font-size: 1.25rem;
+    }
+    .mainInven-category-content__wrapper{
+        height: 40.8rem;
+        margin-bottom: 11.44rem;
     }
 }

@@ -13,13 +13,9 @@ const LoginFindUserIdAndPassword = () => {
   return (
     <div className="loginpage-find-user-id-and-password">
       <div className="loginpage-form-find">
-        <Link to="/find/id" className="loginpage-form-find-id">
-          아이디 찾기
-        </Link>
+        <Link to="/find/id">아이디 찾기</Link>
         <span>•</span>
-        <Link to="/find/password" className="loginpage-form-find-password">
-          비밀번호 찾기
-        </Link>
+        <Link to="/find/password">비밀번호 찾기</Link>
       </div>
     </div>
   );
@@ -28,9 +24,9 @@ const LoginFindUserIdAndPassword = () => {
 function LoginPage() {
   const is480 = window.innerWidth <= 480;
   const containerSize = is480
-    ? ["20rem", "30rem", "3.3rem"]
-    : ["25rem", "30rem", "4.55rem"];
-    const apiUrl = process.env.REACT_APP_API_ROOT;
+    ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
+    : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
+  const apiUrl = process.env.REACT_APP_API_ROOT;
   const navigate = useNavigate();
 
   // 로그인 내용
@@ -50,10 +46,14 @@ function LoginPage() {
 
   const onSubmitHandler = async () => {
     try {
-      const response = await axios.post(`${apiUrl}/api/v1/user/login`, {
-        email: EmailText,
-        password: Password,
-      }, {withCredentials: true})
+      const response = await axios.post(
+        `${apiUrl}/api/v1/user/login`,
+        {
+          email: EmailText,
+          password: Password,
+        },
+        { withCredentials: true }
+      );
       console.log(response);
 
       const { role, success } = response.data;
@@ -61,7 +61,7 @@ function LoginPage() {
         // 로그인 성공: Recoil에 AT와 만료시간 저장
         setLoginToken({
           accessToken: response.data.accessToken,
-          expiredTime: moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")
+          expiredTime: moment().add(1, "day").format("yyyy-MM-DD HH:mm:ss"),
         });
         localStorage.setItem('accessToken', response.data.accessToken);
         console.log("로그인 성공:", response.data);
@@ -108,7 +108,7 @@ function LoginPage() {
       containerWidth={containerSize[0]}
       containerHeight={containerSize[1]}
       logoMarginTop={containerSize[2]}
-      logoMarginBottom={"2.55rem"}
+      logoMarginBottom={containerSize[3]}
     >
       <form className="loginpage-form">
         <input

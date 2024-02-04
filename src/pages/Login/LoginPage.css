@@ -1,36 +1,50 @@
 .loginpage-form{
     line-height: 1.2rem;
-    min-height: 12.6rem;
-    min-width: 15rem;
+    /* 9.62 + 3.125 + 3.125*/
+    min-height: 15.87rem;
+    min-width: 21.3rem;
     position: relative;
-    justify-content: center;
+    /* justify-content: center; */
+    font-family: "Pretendard";
+    display: flex;
+    flex-direction: column;
 }
 
 .loginpage-user-id{
-    border-radius: 0.25rem;
+    border-radius: 0.3125rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 0.8rem;
-    margin-bottom: 0.35rem;
-    min-width: 15rem;
-    height: 2.5rem;
-    padding: 0.8rem 1rem 0.7rem 1rem;
-    font-family: "Pretendard";
+    font-size: 1rem;
+    margin-bottom: 0.44rem;
+    min-width: 21.3rem;
+    height: 3.125rem;
+    text-align: flex-start;
+    padding-left: 1.25rem;
 }
 
 .loginpage-user-password{
-    border-radius: 0.25rem;
+    border-radius: 0.3125rem;
     border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 0.8rem;
-    min-width: 15rem;
-    height: 2.5rem;
-    margin-bottom: 0.35rem;
-    padding: 0.8rem 1rem 0.7rem 1rem;
-    font-family: "Pretendard";
+    font-size: 1rem;
+    min-width: 21.3rem;
+    height: 3.125rem;
+    margin-bottom: 0.31rem;
+    text-align: flex-start;
+    padding-left: 1.25rem;
 }
 
 .loginpage-find-user-id-and-password{
-    margin: 0.4rem 0;
+    margin-top: 0.94rem;
+    font-size: 1rem;
+    font-weight: 500;
     color: rgba(131, 131, 131, 1);
+}
+
+.loginpage-find-user-id-and-password a{
+    text-decoration: none;
+    color: rgba(131, 131, 131, 1);
+}
+.loginpage-find-user-id-and-password span{
+    margin: 0 0.25rem;
 }
 
 .loginpage-form-remember-text{
@@ -38,28 +52,17 @@
 }
 
 .loginpage-form-find{
-    font-size: 0.8rem;
     display: flex; 
     align-items: center;
     justify-content: flex-end;
 }
 
-.loginpage-form-find-id{
-    text-decoration: none;
-    color: rgba(131, 131, 131, 1);
-    margin-right: 0.25rem;
-}
-
-.loginpage-form-find-password{
-    text-decoration: none;
-    color: rgba(131, 131, 131, 1);
-    margin-left: 0.25rem;
-}
-
 .loginpage-form-login-wrapper{
     position: absolute;
-    top: 10.25rem;
+    /* 9.62 + 3.13*/
+    top: 12.75rem;
     transform: translateX(0%);
+    /* margin-bottom: 0.94rem; */
 }
 
 .loginpage-sign-button{
@@ -67,31 +70,17 @@
     background-color: white;
     cursor: pointer;
     font-family: "Pretendard";
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 500;
-    margin-top: 3.9rem; 
+    margin-top: 5.44rem; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .loginpage-sign-link{
     text-decoration: none;
     color: rgba(131, 131, 131, 1);
-}
-
-/* w:768, h:1024 이상*/
-@media screen and (min-width: 481px){
-    .loginpage-form{
-        min-height: 12.6rem;
-        width: 17rem;
-    }
-    .loginpage-user-id{
-        width: 17rem;/*17rem-2rem*/
-    }
-    .loginpage-user-password{
-        width: 17rem;/*17rem-2rem*/
-    }
-    .loginpage-find-user-id-and-password{
-        margin: 0.8rem 0;
-    }
 }
 
 /* w:480, h:800일 때 */
@@ -100,4 +89,8 @@
         height: 10.3rem;
         width: 15rem;
     }
+    .loginpage-sign-button{
+        margin-top: 6.31rem; 
+    }
+    
 }

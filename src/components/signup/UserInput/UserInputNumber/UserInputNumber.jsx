@@ -1,21 +1,43 @@
-import "./UserInputNumber.css";
+import axios from "axios";
 import { useState } from "react";
-import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
 import RedButton from "../../../login/redButton/RedButton";
+import "./UserInputNumber.css";
+import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
 
 function PhoneCertificationInput({ id, type, placeholder, requiredname, text, buttonText }) {
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
+  const [Phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
+  const apiUrl = process.env.REACT_APP_API_ROOT;
 
-  const handleButtonClick = () => {
-    setChkButton(true);
+  const handleButtonClick = async () => {
+    try {
+      setChkButton(true);
+      const response = await axios.post(`${apiUrl}/api/v1/sms/send`, {
+        phoneNumber: Phonenumber,
+      }, {withCredentials: true})
+      console.log(response);
+
+      if (response.data.success) {
+        console.log("인증번호 발송 성공:", response.data);
+      } else {
+        console.log("인증번호 발송 실패:", response.data);
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const renderUserInputNumberMessage = () => {
     if (type === "tel" && chkButton) {
-      return <UserInputNumberMessage />;
+      return <UserInputNumberMessage phoneNumber={Phonenumber}/>;
     }
     return null;
   };
+
+  const handlePhoneChange = (event) => {
+    setPhonenumber(event.target.value);
+  }
 
   return (
     <>
@@ -25,6 +47,8 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
           type={type}
           placeholder={placeholder}
           requiredname={requiredname}
+          value={Phonenumber}
+          onChange={handlePhoneChange}
           className="user-input-phone-number-input"
         />
         <button
