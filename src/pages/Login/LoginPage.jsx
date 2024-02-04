@@ -1,7 +1,8 @@
+import { message } from "antd";
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
@@ -30,6 +31,7 @@ function LoginPage() {
     ? ["20rem", "30rem", "3.3rem"]
     : ["25rem", "30rem", "4.55rem"];
     const apiUrl = process.env.REACT_APP_API_ROOT;
+  const navigate = useNavigate();
 
   // 로그인 내용
   const setLoginToken = useSetRecoilState(loginState);
@@ -54,20 +56,49 @@ function LoginPage() {
       }, {withCredentials: true})
       console.log(response);
 
-      if (response.data.success) {
+      const { role, success } = response.data;
+      if (success) {
         // 로그인 성공: Recoil에 AT와 만료시간 저장
         setLoginToken({
           accessToken: response.data.accessToken,
-          expiredTime: moment().add(1, "day").format("yyyy-MM-DD HH:mm:ss")
+          expiredTime: moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")
         });
-        // localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('accessToken', response.data.accessToken);
         console.log("로그인 성공:", response.data);
-        // navigate("/home");
+        message.success("로그인 성공");
+        
+        switch (role) {
+          case 'USER':
+            navigate('/signup/auth/results');
+            break;
+
+          case 'REVIEW':
+            navigate('/signup/auth/results/before');
+            break;
+          
+          case 'REJECT': 
+            navigate('/signup/auth/results/reject');
+            break;
+
+          case 'READY':
+            navigate('/main');
+            break;
+          
+          case 'CEO':
+            navigate('/main');
+            break;
+
+          default:
+        }
       } else {
         console.log("로그인 실패:", response.data);
       }
     } catch (error) {
+      const { status } = error.response;
       console.error("로그인 요청 실패:", error);
+      if (status === 400){
+        message.error("아이디 또는 비밀번호가 일치하지 않습니다.");
+      }
     }
   };
 

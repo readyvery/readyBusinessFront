@@ -14,6 +14,7 @@ import LoginPage from "./pages/Login/LoginPage.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
+import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
 import PhoneAuthPage from "./pages/Signup/PhoneAuth/PhoneAuthPage.jsx";
@@ -22,7 +23,6 @@ import TermsPage from "./pages/Signup/Terms/TermsPage.jsx";
 import VerificationPage from "./pages/Signup/Verification/VerificationPage.jsx";
 import StoreManage from "./pages/StoreManage/StoreManage.jsx";
 import Auth from "./utils/Auth.jsx";
-import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 
 function App() {
   //const [cookies, , removeCookies] = useCookies();
@@ -30,29 +30,28 @@ function App() {
 
   // 로그인 필요없는 페이지
   const NewSignupPage = Auth(SignupPage, false); // 회원가입
-  const NewLoginPage = Auth(LoginPage, false); // 로그인
+  // const NewLoginPage = Auth(LoginPage, false); // 로그인
   const NewFindIdPage = Auth(FindIdPage, false); //아이디 찾기-전화번호 인증
   const NewNoneFindIdPage = Auth(NoneFindIdPage, false); //아이디 찾기 결과-회원 X
   const NewUserFindIdPage = Auth(UserFindIdPage, false); //아이디 찾기 결과-아이디 반환
   const NewFindPasswordPage = Auth(FindPasswordPage, false); //비밀번호 찾기 - 아이디 조회
   const NewChangeNewPasswordPage = Auth(ChangeNewPasswordPage, false); //비밀번호 변경 - 전화번호 인증
   const NewChangePasswordPage = Auth(ChangePasswordPage, false); //비밀번호 변경 - 전화번호 인증
+  const NewPhoneAuthPage = Auth(PhoneAuthPage, false); // 휴대폰 인증
+  const NewTermsPage = Auth(TermsPage, false); // 이용약관 페이지
 
   // 로그인 필수 페이지
-  // GUEST : 1, USER : 2, Wait: 3, CEO : 4
-  const NewPhoneAuthPage = Auth(PhoneAuthPage, true, 1); // 휴대폰 인증
-  const NewTermsPage = Auth(TermsPage, true, 1); // 이용약관 페이지
-  const NewApplicationForm = Auth(ApplicationForm, true, 2); // 입점신청서 가입 전 알림 페이지
-  // 입점신청서 페이지 (2)
-  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 2); // 입점 심사 반려 페이지
-  const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 3); // 입점신청서 신청 완료 페이지
-  // 유저전용 메인페이지 (3)
-  // 매장관리 페이지 (3, 4)
-  // CEO전용 메인페이지 (4)
-  // const NewOrderManagementPage = Auth(OrderManagePage, true, 4); // 주문관리
-  const NewInventoryPage = Auth(InventoryPage, true, 4); // 재고관리
-  const NewSalesPage = Auth(SalesManage, true, 4); // 매출관리
-  const NewMyPage = Auth(MyPage, true, 4); // 마이페이지
+  // USER : 1, REVIEW : 2, REJECT : 3, READY : 4, CEO : 5
+  const NewApplicationForm = Auth(ApplicationForm, true, 1); // 입점신청서 가입 전 알림 페이지
+  const NewVerificationPage = Auth(VerificationPage, true, 1) // 입점신청서 페이지
+  const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 2); // 입점신청서 신청 완료 페이지
+  const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 3); // 입점 심사 반려 페이지
+  // const NewMainPage = Auth(MainPage, true, 4); // 메인페이지 (4, 5)
+  const NewStoreManage = Auth(StoreManage, true, 4); // 매장관리 페이지 (4, 5)
+  // const NewOrderManagementPage = Auth(OrderManagePage, true, 5); // 주문관리
+  const NewInventoryPage = Auth(InventoryPage, true, 5); // 재고관리
+  const NewSalesPage = Auth(SalesManage, true, 5); // 매출관리
+  const NewMyPage = Auth(MyPage, true, 5); // 마이페이지
 
   if (location.pathname === "/") {
     return (
@@ -71,7 +70,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/main" element={<MainPage />} />
-          <Route path="/store" element={<StoreManage />} />
+          <Route path="/store" element={<NewStoreManage />} />
           <Route path="/order" element={<OrderManagePage />} />
           <Route path="/inventory" element={<NewInventoryPage />} />
           <Route path="/sales" element={<NewSalesPage />} />
@@ -81,7 +80,7 @@ function App() {
           <Route path="/signup/auth/phone" element={<NewPhoneAuthPage />} />
           <Route
             path="/signup/auth/verification"
-            element={<VerificationPage />}
+            element={<NewVerificationPage />}
           />
           <Route path="/signup/auth/terms" element={<NewTermsPage />} />
           <Route path="/signup/auth/results" element={<NewApplicationForm />} />
@@ -93,7 +92,7 @@ function App() {
             path="/signup/auth/results/reject"
             element={<NewJudgeResultsRejectPage />}
           />
-          <Route path="/login" element={<NewLoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/find/id" element={<NewFindIdPage />} />
           <Route path="/find/id/serch" element={<NewUserFindIdPage />} />
           <Route path="/find/id/none" element={<NewNoneFindIdPage />} />

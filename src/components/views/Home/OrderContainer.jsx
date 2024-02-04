@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import useFetchWaitInfo from "../../../hooks/useFetchWaitInfo";
+// import useFetchWaitInfo from "../../../hooks/useFetchWaitInfo";
 import { HomeContext } from "../../../pages/OrderManage/Home";
 import theme from "../../../style/theme/theme";
 import OrderBox from "./OrderBox";
@@ -8,8 +8,8 @@ import OrderBox from "./OrderBox";
 export default function OrderContainer () {
     const context = useContext(HomeContext);
     
-    const waitInfo = useFetchWaitInfo();
-    console.log(waitInfo);
+    // const waitInfo = useFetchWaitInfo();
+    // console.log(waitInfo);
 
     const waitDummyInfo =
         {

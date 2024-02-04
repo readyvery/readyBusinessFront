@@ -80,11 +80,47 @@ export const loginState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const tokenSelector = selector({
+  key: "tokenSelector",
+  get: ({ get }) => {
+    const { accessToken } = get(loginState);
+    return accessToken;
+  },
+  set: ({ set }, newState) => {
+    set(loginState, (prevState) => ({
+      ...prevState,
+      ...newState,
+    }));
+  },
+});
+
+export const getLoginState = selector({
+  key: 'getLoginState',
+  get: ({ get }) => {
+    const loginStateValue = get(loginState);
+    const { accessToken } = loginStateValue;
+    return accessToken;
+  },
+});
+export const setLoginState = ({set}, newState) => {
+  set(loginState, (prevState) => ({
+    ...prevState,
+    ...newState,
+  }));
+};
+
 export const userState = atom({
   key: "userState",
   dafault: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+// ceo(true) or ready(false)
+export const ceoState = atom({
+  key: "ceoState",
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+})
 
 export const getUserSelector = selector({
   key: "user/get",

@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
-import { useRecoilValue } from 'recoil';
-import { loginState } from '../Atom/status';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { ceoState, loginState } from '../Atom/status';
 import commonApis from '../util/commonApis';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
         const navigate = useNavigate();
+        let location = useLocation();
         const token = useRecoilValue(loginState);
+        const [isCeo, setIsCeo] = useRecoilState(ceoState);
         
         useEffect(() => {
-            async function fetchAuth() {
-                try{
-                    const response = await commonApis.get("/auth", {
-                        headers: {
-                            Authorization: `Bearer ${token.accessToken}`
-                        }
-                    })
+            console.log("!");
+            function fetchAuth() {
+                commonApis.get("/auth", {
+                    headers: {
+                        Authorization: `Bearer ${token.accessToken}`
+                    },
+                    withCredentials: true
+                }).then((response) => {
                     console.log(response);
                     const { auth } = response.data; // 로그인 여부
                     const { role } = response.data; // GUEST, USER, CEO
@@ -32,42 +35,58 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     } else {
                         // 로그인 한 상태
                         switch (role) {
-                            case 'GUEST':
-                                // 회원가입만 완료
+                            case 'USER':
+                                // 회원가입 & 인증 O, 입점신청서 X
                                 if(adminRoute !== 1) {
                                     // 인증창으로 이동
-                                    navigate('/signup/auth/phone');
-                                }
-                                break;
-
-                            case 'USER':
-                                // 회원가입, 인증 완료
-                                if (adminRoute !== 2) {
-                                    // 입점신청서창으로 이동
                                     navigate('/signup/auth/results');
                                 }
                                 break;
 
-                            case 'Wait':
-                                // 회원가입, 인증, 입점신청서 대기
-                                if (adminRoute !== 3){
+                            case 'REVIEW':
+                                // 회원가입 & 인증 O, 입점신청서 O (검토중)
+                                if (adminRoute !== 2) {
+                                    // 입점신청서창으로 이동
+                                    navigate('/signup/auth/results/before');
+                                }
+                                break;
+
+                            case 'REJECT':
+                                // 회원가입 & 인증 O, 입점신청서 O (반려)
+                                if (adminRoute !== 3) {
                                     // 입점신청서 대기창으로 이동
-                                    navigate("/signup/auth/before");
+                                    navigate("/signup/auth/results/reject");
+                                }
+                                break;
+
+                            case 'READY':
+                                // 회원가입 & 인증 O, 입점신청서 O, 매장관리 X
+                                console.log('isCeo: ', isCeo);
+                                if(isCeo){
+                                    setIsCeo(false);
+                                }
+                                if (adminRoute !== 4) {
+                                    // 홈으로 이동
+                                    navigate("/main");
                                 }
                                 break;
 
                             case 'CEO':
-                                // 회원가입, 인증, 입점신청서 완료
-                                if (adminRoute !== 4){
+                                // 회원가입 & 인증 O, 입점신청서 O, 매장관리 O
+                                console.log('isCeo: ', isCeo);
+                                if(!isCeo){
+                                    setIsCeo(true);
+                                }
+                                if (adminRoute !== 5 && location.pathname !== '/main' && location.pathname !== '/store') {
                                     // 홈으로 이동
-                                    navigate("/order");
+                                    navigate("/main");
                                 }
                                 break;
                             default:
 
                         }
                     }
-                } catch(error){
+                }).catch((error) => {
                     console.log(error);
                     if (
                         error.response &&
@@ -80,10 +99,9 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     } else {
                         // 서버 오류 또는 네트워크 오류 등의 다른 오류 처리
                     }
-                }
+                })
             }
             fetchAuth();
-
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
