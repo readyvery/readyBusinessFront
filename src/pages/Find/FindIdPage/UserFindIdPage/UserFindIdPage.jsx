@@ -7,8 +7,8 @@ import "./UserFindIdPage.css";
 function UserFindIdPage() {
   const is480 = window.innerWidth <= 480;
   const containerSize = is480
-    ? ["25rem", "37.5rem", "4.13rem", "6.56rem"]
-    : ["31.3rem", "37.5rem", "5.56rem", "4.69rem"];
+    ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
+    : ["31.3rem", "37.5rem", "5.56rem", "1.38rem"];
 
   const idText = "kjwoo0121@naver.com"; //서버에서 값 가져오기
   return (

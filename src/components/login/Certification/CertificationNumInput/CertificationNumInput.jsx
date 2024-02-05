@@ -97,7 +97,6 @@ function CertificationNumInput({ phoneNumber }) {
           )}
         </div>
       </div>
-
       <div>{renderMessage()}</div>
     </>
   );
