@@ -1,9 +1,14 @@
-import React, { useState } from "react";
 import { Modal } from "antd";
-import "./UserInputStoreInformation.css";
+import React, { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
+import "./UserInputStoreInformation.css";
 
-const InputStoreInformationText = ({ title, id, placeholder, requiredname }) => {
+const InputStoreInformationText = ({
+  title,
+  id,
+  placeholder,
+  requiredname,
+}) => {
   return (
     <div className="signup-page-content-store-wrapper">
       <label className="signup-page-content-store-label-style">{title}</label>
@@ -40,27 +45,29 @@ const InputStoreAddressWrapper = () => {
     <div className="signup-page-content-store-wrapper">
       <label className="signup-page-content-store-label-style">매장주소</label>
       {openModal && (
-          <Modal
-            open={true}
-            onOk={onOpenPostModal}
-            onCancel={onOpenPostModal}
-            destroyOnClose={true}
-          >
-            <DaumPostcode onComplete={handleComplete} />
-          </Modal>
-        )}
-        <div onClick={onOpenPostModal}>
-          <div className="signup-page-content-store-input-top-wrapper">
-        <input
-          id="storezonecode"
-          type="text"
-          placeholder="우편번호"
-          required
-          name="storezonecode"
-          className="signup-page-content-store-input-top"
-          value={zonecode}
-        />
-        <button className="signup-page-content-store-input-top-button">조회</button>
+        <Modal
+          open={true}
+          onOk={onOpenPostModal}
+          onCancel={onOpenPostModal}
+          destroyOnClose={true}
+        >
+          <DaumPostcode onComplete={handleComplete} />
+        </Modal>
+      )}
+      <div onClick={onOpenPostModal}>
+        <div className="signup-page-content-store-input-top-wrapper">
+          <input
+            id="storezonecode"
+            type="text"
+            placeholder="우편번호"
+            required
+            name="storezonecode"
+            className="signup-page-content-store-input-top"
+            value={zonecode}
+          />
+          <button className="signup-page-content-store-input-top-button">
+            조회
+          </button>
         </div>
         <input
           id="storeaddress"
@@ -71,15 +78,16 @@ const InputStoreAddressWrapper = () => {
           value={zoneAddress}
           className="signup-page-content-store-input"
         />
-        </div>
-        <input
-          id="storeaddressdetail"
-          type="text"
-          placeholder="(필수) 상세 주소 입력"
-          required
-          name="storeaddressdetail"
-          className="signup-page-content-store-input"
-        />
+      </div>
+      <div className="signup-page-content-store-input-margin" />
+      <input
+        id="storeaddressdetail"
+        type="text"
+        placeholder="(필수) 상세 주소 입력"
+        required
+        name="storeaddressdetail"
+        className="signup-page-content-store-input"
+      />
     </div>
   );
 };
@@ -87,7 +95,7 @@ const InputStoreAddressWrapper = () => {
 const InputStoreInformationflie = ({ title, id, requiredname }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileSizeError, setFileSizeError] = useState(false);
-  if(fileSizeError){
+  if (fileSizeError) {
     console.log("파일크기 에러");
   }
   const InputFilesss = () => {
@@ -148,7 +156,9 @@ const ConsentForm = () => {
   return (
     <div className="signup-page-content-store-check">
       {/* 약관 나오면 입히기 */}
-      <label htmlFor="personalInfoConsent">개인정보 수집 및 이용 동의(필수) </label>
+      <label htmlFor="personalInfoConsent">
+        개인정보 수집 및 이용 동의(필수){" "}
+      </label>
       <input
         type="checkbox"
         id="personalInfoConsent"
