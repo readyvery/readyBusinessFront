@@ -1,4 +1,5 @@
 .red-button {
+  display: flex;
   border-radius: 0.3125rem;
   background-color: #d82356;
   border: none;
@@ -7,8 +8,8 @@
   font-size: 1.5rem;
   text-align: center;
   justify-content: center;
+  align-items: center;
   font-weight: 600;
-  padding: 0 0.8rem 0 0.8rem;
   min-width: 21.3rem;
   min-height: 3.13rem;
   cursor: pointer;
