@@ -1,21 +1,27 @@
-.signup-page-content-container{
-    margin-top: 2.24rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    max-width: 22.4rem;
+.signup-page-content-container1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* w:768, h:1024 이상일 때 */
-@media screen and (min-width: 481px){    
-    .signup-page-verification-next-button{
-        margin-top: 2.1rem;
-    }
+@media screen and (min-width: 480px) {
+  .signup-page-content-container1 {
+    width: 37.5rem;
+    margin-top: 5.59rem;
+  }
+  .signup-page-verification-next-button {
+    margin-top: 1rem;
+  }
 }
 
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    .signup-page-verification-next-button{
-        margin-top: 0.4rem;
-    }
+  .signup-page-content-container1 {
+    width: 25rem;
+    margin-top: 3.65rem;
+  }
+  .signup-page-verification-next-button {
+    margin-top: 0.49rem;
+  }
 }

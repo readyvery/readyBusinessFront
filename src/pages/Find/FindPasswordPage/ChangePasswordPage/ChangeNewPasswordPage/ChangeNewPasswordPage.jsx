@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../../../../components/login/Container/Container";
 import LoginChkAlrm from "../../../../../components/login/LoginChkAlrm/LoginChkAlrm";
 import RedButton from "../../../../../components/login/redButton/RedButton";
 import "./ChangeNewPasswordPage.css";
 
 function ChangeNewPasswordPage() {
-  const is480 = window.innerWidth <= 480;
+  const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "5.12rem"]
     : ["31.3rem", "37.5rem", "5.56rem", "3.38rem"];
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
