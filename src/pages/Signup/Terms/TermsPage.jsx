@@ -1,14 +1,24 @@
-import "./TermsPage.css";
-import RedButton from "../../../components/login/redButton/RedButton";
+import { useEffect, useState } from "react";
 import Container from "../../../components/login/Container/Container";
-import { useState } from "react";
+import RedButton from "../../../components/login/redButton/RedButton";
+import "./TermsPage.css";
 
 function TermsPage() {
-  const is480 = window.innerWidth <= 480;
+  const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["20rem", "30rem", "2.4rem"]
     : ["25rem", "40rem", "3.8rem"];
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const [consents, setConsents] = useState({
     itemall: false,
     item1: false,
@@ -80,7 +90,13 @@ function TermsPage() {
   };
 
   return (
-    <Container title="이용약관동의" containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom="2.7rem">
+    <Container
+      title="이용약관동의"
+      containerWidth={containerSize[0]}
+      containerHeight={containerSize[1]}
+      logoMarginTop={containerSize[2]}
+      logoMarginBottom="2.7rem"
+    >
       <div className="terms-page-container">
         <ConsentForm id="itemall" title="모든 이용약관에 동의합니다." />
         <ConsentForm id="item1" title="서비스 이용약관 동의(필수)" />
