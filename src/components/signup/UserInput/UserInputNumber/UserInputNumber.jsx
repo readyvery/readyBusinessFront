@@ -1,20 +1,41 @@
+import { message } from "antd";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userConfirmPasswordState, userIdState, userNameState, userPasswordState } from "../../../../Atom/status";
 import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
 
 function PhoneCertificationInput({ id, type, placeholder, requiredname, text, buttonText }) {
+  const navigate = useNavigate();
+  const userId = useRecoilValue(userIdState);
+  const userPassword = useRecoilValue(userPasswordState);
+  const userConfirmPassword = useRecoilValue(userConfirmPasswordState);
+  const userName = useRecoilValue(userNameState);
+
+  const [inputNum, setInputNum] = useState(false);
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = () => {
+    if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
+      setInputNum(true);
+      handlePostmessage();
+    } else {
+      setInputNum(false);
+      message.info("전화번호를 올바르게 입력해주세요.");
+    }
+  };
+
+  const handlePostmessage = async () => {
     try {
       setChkButton(true);
       const response = await axios.post(`${apiUrl}/api/v1/sms/send`, {
         phoneNumber: Phonenumber,
-      }, {withCredentials: true})
+      })
       console.log(response);
 
       if (response.data.success) {
@@ -28,8 +49,31 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
     }
   };
 
+  const handleJoinClick = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/api/v1/user/join`, {
+        email: userId,
+        password: userPassword,
+        confirmPassword: userConfirmPassword,
+        name: userName,
+        phone: Phonenumber,
+      })
+      console.log(response);
+
+      if (response.data.success) {
+        console.log("회원가입 성공: ", response.data);
+        message.info("회원가입이 완료되었습니다.");
+        navigate('/signup/auth/verification');
+      } else {
+        console.log("회원가입 실패: ", response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const renderUserInputNumberMessage = () => {
-    if (type === "tel" && chkButton) {
+    if (type === "tel" && chkButton && inputNum) {
       return <UserInputNumberMessage phoneNumber={Phonenumber}/>;
     }
     return null;
@@ -61,7 +105,7 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
       </div>
       {renderUserInputNumberMessage()}
       <div className="user-input-phone-number-auth-button">
-        <RedButton>{buttonText}</RedButton>
+        <RedButton type="submit" onClick={handleJoinClick}>{buttonText}</RedButton>
       </div>
     </>
   );

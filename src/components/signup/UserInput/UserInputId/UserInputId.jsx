@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from 'recoil';
-import { userIdState } from "../../../../Atom/status";
+import { userIdDuplicateState, userIdState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputId.css";
 
@@ -9,7 +9,13 @@ const UserInputId = () => {
     // 아이디 입력 값 처리
     const [inputId, setInputId] = useRecoilState(userIdState)
     const [inputIdError, setInputIdError] = useState(false);
-    const [isDuplicate, setIsDuplicate] = useState(null);
+    const [isDuplicate, setIsDuplicate] = useRecoilState(userIdDuplicateState);
+    
+    useEffect(() => {
+        // isDuplicate 상태가 변경된 후 수행할 작업
+        console.log("isDuplicate 상태가 변경되었습니다:", isDuplicate);
+        // 추가적인 작업을 여기에 구현할 수 있습니다.
+    }, [isDuplicate]);
 
     const isInputIdLength = (inputId) => {
         const minLength = 8;
@@ -48,7 +54,7 @@ const UserInputId = () => {
         try {
             const response = await axios.post(`${apiUrl}/api/v1/user/duplicate/check`, {
               email: inputId
-            }, {withCredentials: true})
+            })
             console.log(response);
 
             if (response.data.success) {
@@ -62,7 +68,6 @@ const UserInputId = () => {
             console.error("중복검사 요청 실패:", error);
             setIsDuplicate(null);
         }
-        return handleDuplicate;
     }
 
     const renderMessage = (userInputId) => {
@@ -79,8 +84,7 @@ const UserInputId = () => {
                 return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>이미 사용 중인 아이디입니다.</LoginChkAlrm>;
             }
         }
-        return null; 
-
+        return null;
       };
 
     return(
@@ -88,7 +92,9 @@ const UserInputId = () => {
             <label className="signup-page-content-id-label-style">아이디</label>
             <div className="signup-page-content-id-label-plus-text">
                 <div>영문+숫자+특수기호 8자 이상</div>
-                <button className="duplication-check-button" onClick={handleDuplicate}>중복 확인</button>
+                <button 
+                    className={`duplication-check-button ${isDuplicate === false ? "duplication-check-button-inactive" : ""}`}
+                    onClick={handleDuplicate}>중복 확인</button>
             </div>
             <div>
                 <input 

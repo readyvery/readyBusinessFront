@@ -36,7 +36,7 @@ function UserInputNumberMessage( { phoneNumber }){
         const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
           phoneNumber: phoneNumber,
           verifyNumber: newChkNum,
-        }, {withCredentials: true});
+        });
   
         if (response.data.success) {
           console.log("인증성공", response.data);
