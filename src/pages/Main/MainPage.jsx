@@ -48,10 +48,7 @@ const MainPage = () => {
           </span>
 
           <span className="main__box3">
-            <MainButton/>
-            {/* <span className="main__order-management__notice">
-              매장관리 입력 후 이용 가능합니다.
-            </span> */}
+            <MainButton />
           </span>
         </span>
       </div>
