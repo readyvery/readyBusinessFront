@@ -1,12 +1,7 @@
 /* SignupPage */
 .signup-page-content-container{
-    margin-top: 2.24rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    max-width: 22.4rem;
-}
-
-.signup-page-next-button{
-    margin-top: 2.1rem;
 }

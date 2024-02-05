@@ -10,13 +10,12 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  min-width: 21.3rem;
-  min-height: 3.13rem;
+  padding: 0 0.8rem 0 0.8rem;
   cursor: pointer;
 }
 
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (min-width: 480px) {
   .red-button {
     width: 21.25rem;
     height: 3.125rem;
@@ -26,8 +25,8 @@
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
   .red-button {
-    width: 18.9rem;
-    height: 3.13rem;
+    width: 18.75rem;
+    height: 3.125rem;
     font-size: 1.25rem;
   }
 }
