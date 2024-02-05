@@ -1,24 +1,27 @@
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userConfirmPasswordState, userPasswordState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputPassword.css";
-import { useState } from "react";
 
 
 
 const UserInputPassword = () => {
-    const [password, setPassword] = useState("");
-    const [passwordCheck, setPasswordCheck] = useState("");
+    const [password, setPassword] = useRecoilState(userPasswordState);
+    const [confirmPassword, setConfirmPassword] = useRecoilState(userConfirmPasswordState);
+    // const [passwordCheck, setPasswordCheck] = useState("");
     const [passwordError, setPasswordError] = useState(false);
   
     // 비밀번호 일치 여부 확인
     const handlePasswordChange = (e) => {
       const newPassword = e.target.value;
       setPassword(newPassword);
-      validatePassword(newPassword, passwordCheck);
+      isPasswordCombinationValid(newPassword);
     };
   
     const handlePasswordCheckChange = (e) => {
       const newPasswordCheck = e.target.value;
-      setPasswordCheck(newPasswordCheck);
+      setConfirmPassword(newPasswordCheck);
       validatePassword(password, newPasswordCheck);
     };
   
@@ -66,7 +69,7 @@ const UserInputPassword = () => {
                         id="passwordCheck"
                         type="password"
                         placeholder="비밀번호 재입력"
-                        value={passwordCheck}
+                        value={confirmPassword}
                         onChange={handlePasswordCheckChange}
                         className="signup-page-content-password-input"
                     />
@@ -74,7 +77,7 @@ const UserInputPassword = () => {
                     {/* 비밀번호 일치 여부에 따른 에러 메시지 */}
                     {passwordError ? (
                         <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>
-                            {password !== passwordCheck
+                            {password !== confirmPassword
                             ? "비밀번호가 일치하지 않습니다."
                             : !isPasswordLength(password)
                             ? "8자 이상 입력해야 합니다."

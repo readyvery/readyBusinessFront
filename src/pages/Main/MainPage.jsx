@@ -1,13 +1,13 @@
-import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
+import { Link } from "react-router-dom";
+import kakao from "../../assets/icons/icon_kakao_union.png";
+import right from "../../assets/icons/icon_right-line.png";
 import promotion from "../../assets/icons/promotion.svg";
 import promotion2 from "../../assets/icons/promotion2.svg";
 import promotion3 from "../../assets/icons/promotion3.png";
-import right from "../../assets/icons/icon_right-line.png";
-import kakao from "../../assets/icons/icon_kakao_union.png";
-import "./MainPage.css";
+import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
-import { Link } from "react-router-dom";
-import OrderManagementBtn from "../../components/views/Order/OrderManagementBtn";
+import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
+import "./MainPage.css";
 
 const MainPage = () => {
   const notices = [
@@ -48,7 +48,7 @@ const MainPage = () => {
           </span>
 
           <span className="main__box3">
-            <OrderManagementBtn />
+            <MainButton />
           </span>
         </span>
       </div>

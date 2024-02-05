@@ -7,23 +7,26 @@ const commonApis = axios.create({
 });
 
 
-// commonApis.interceptors.request.use(
-//     (config) => {
-//         const loginToken = useRecoilValue(loginState);
-//         console.log(loginToken);
-//         if (loginToken.accessToken) {
-//             config.headers['Authorization'] = `Bearer ${loginToken.accessToken}`;
-//         }
-//         return config;
-//     },
-//     error => {
-//         return Promise.reject(error);
-//     }
-// );
+commonApis.interceptors.request.use(
+    async (config) => {
+        const loginStateValue = localStorage.getItem('accessToken');
+        console.log('commonApi: ', loginStateValue);
+        // const expired = Refresh();
+        // console.log('expired: ', expired);
+        if (loginStateValue) {
+            config.headers['Authorization'] = `Bearer ${loginStateValue}`;
+        }
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
+
 
 commonApis.interceptors.response.use(
     (res) => { return res },
-    async (err) => {
+    (err) => {
         const {
             config,
             response,
@@ -31,28 +34,29 @@ commonApis.interceptors.response.use(
         console.log(err);
         // access token 만료 시
         if (response?.status === 403) {
-            try {
-                async function fetchRefresh () {
-                    const res = await axios.get(process.env.REACT_APP_API_ROOT + "/api/v1/refresh/token", {
-                        withCredentials: true
-                    });
-                    return res;
+            axios.get(process.env.REACT_APP_API_ROOT + "/api/v1/refresh/token", {
+                withCredentials: true
+            })
+            .then((res) => {
+                console.log(res);
+                const accessToken = res.data.accessToken;
+                // console.log('accessToken: ', accessToken);
+                if(accessToken){
+                    console.log("access token 재설정!");
+                    console.log(accessToken);
+                    localStorage.setItem('accessToken', accessToken);
+                    axios.defaults.headers.common.Authorization = "Bearer " + accessToken;
+                    config.headers.common["Authorization"] = "Bearer " + accessToken;
                 }
-                const response = fetchRefresh();
-                const accessToken = response.data.accessToken;
-                config.headers.common["Authorization"] = "Bearer " + accessToken;
-                return config;
-            } catch (e) {
-                // refresh token 만료 시
+                return axios(config);
+            })
+            .catch((e) => {
                 if (e?.response?.status === 401 || e?.response?.status === 403){
                     // 로그인 페이지로 이동
                     window.location.href = "/login";
                     alert('로그인을 다시 진행해 주세요.');
                 }
-            }
-            // const response = useRefresh();
-            // const { accessToken } = response.data;
-            // config.headers.common["Authorization"] = "Bearer " + accessToken;
+            });
             return config;
         }
         return Promise.reject(err);

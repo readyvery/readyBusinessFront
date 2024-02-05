@@ -70,7 +70,6 @@ export const getAuthenticatedSelector = selector({
   effects_UNSTABLE: [persistAtom],
 });
 
-// TODO: 여기 변경하기 
 export const loginState = atom({
   key: "loginState",
   default: {
@@ -80,11 +79,47 @@ export const loginState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const tokenSelector = selector({
+  key: "tokenSelector",
+  get: ({ get }) => {
+    const { accessToken } = get(loginState);
+    return accessToken;
+  },
+  set: ({ set }, newState) => {
+    set(loginState, (prevState) => ({
+      ...prevState,
+      ...newState,
+    }));
+  },
+});
+
+export const getLoginState = selector({
+  key: 'getLoginState',
+  get: ({ get }) => {
+    const loginStateValue = get(loginState);
+    const { accessToken } = loginStateValue;
+    return accessToken;
+  },
+});
+export const setLoginState = ({set}, newState) => {
+  set(loginState, (prevState) => ({
+    ...prevState,
+    ...newState,
+  }));
+};
+
 export const userState = atom({
   key: "userState",
   dafault: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+// ceo(true) or ready(false)
+export const ceoState = atom({
+  key: "ceoState",
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+})
 
 export const getUserSelector = selector({
   key: "user/get",
@@ -110,5 +145,30 @@ export const getUserSelector = selector({
   set: ({ set }, newValue) => {
     set(userState, newValue);
   },
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 회원가입시
+export const userIdState = atom({
+  key: "userIdState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const userPasswordState = atom({
+  key: "userPasswordState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const userConfirmPasswordState = atom({
+  key: "userConfirmPasswordState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+})
+
+export const userNameState = atom({
+  key: "userNameState",
+  default: null,
   effects_UNSTABLE: [persistAtom],
 });

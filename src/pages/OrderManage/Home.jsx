@@ -1,16 +1,10 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
-import { useRecoilState } from "recoil";
+import React, { createContext, useState } from "react";
 import styled from "styled-components";
-import { soundState } from "../../Atom/status";
-import MP from "../../assets/Very.mp3";
 
-import EffectSound from "../../utils/EffectSound";
 
 import OrderContainer from "../../components/views/Home/OrderContainer";
 import StatusBtn from "../../components/views/Home/StatusBtn";
 import StatusHeader from "../../components/views/Home/StatusHeader";
-import useFetchWaitInfo from "../../hooks/useFetchWaitInfo";
 import "./Home.css";
 import MainHome from "./MainHome";
 import Receipt from "./Receipt";
@@ -19,12 +13,10 @@ import Receipt from "./Receipt";
 export const HomeContext = createContext(null);
 function Home({ defaultValue, defaultStatus, defaultMenu, children }) { 
 
-  const waitInfo = useFetchWaitInfo();
+  // const waitInfo = useFetchWaitInfo();
   // const makeInfo = useFetchMakeInfo();
   // const completeInfo = useFetchCompletetInfo();
   // console.log(waitInfo);
-
-  const [cookies] = useCookies(["accessToken"]);
   
   // Context API 적용 (status 관리)
   const [status, setStatus] = useState(defaultStatus);
@@ -34,28 +26,28 @@ function Home({ defaultValue, defaultStatus, defaultMenu, children }) {
 
 
   // 소리 재생
-  const Mp = EffectSound(MP, 1);
-  const [sound] = useRecoilState(soundState);
+  // const Mp = EffectSound(MP, 1);
+  // const [sound] = useRecoilState(soundState);
   
-  useEffect(() => {
-    console.log(sound);
-    // console.log(waitInfo);
-    if (sound && waitInfo?.orders?.length > 0) {
-      console.log("소리 재생");
-      Mp.play();
-    }
-    console.log(localStorage.accessToken);
-    if (cookies.accessToken) {
-      // const fetchDataAndSetInterval = async () => {
-      //   await fetchData();
-      // };
+  // useEffect(() => {
+  //   console.log(sound);
+  //   // console.log(waitInfo);
+  //   if (sound && waitInfo?.orders?.length > 0) {
+  //     console.log("소리 재생");
+  //     Mp.play();
+  //   }
+  //   console.log(localStorage.accessToken);
+  //   if (cookies.accessToken) {
+  //     // const fetchDataAndSetInterval = async () => {
+  //     //   await fetchData();
+  //     // };
 
-      // fetchDataAndSetInterval();
-      // const intervalId = setInterval(waitData, 3000); // 5초마다 실행
-      // return () => clearInterval(intervalId);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [waitInfo])
+  //     // fetchDataAndSetInterval();
+  //     // const intervalId = setInterval(waitData, 3000); // 5초마다 실행
+  //     // return () => clearInterval(intervalId);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [waitInfo])
 
   return (
     <HomeContext.Provider value={providerValue}>

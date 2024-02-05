@@ -1,10 +1,12 @@
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { userNameState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputName.css";
-import { useState } from "react";
 
 const UserInputName = () => {
     // 아이디 입력 값 처리
-    const [inputName, setInputName] = useState("");
+    const [inputName, setInputName] = useRecoilState(userNameState);
     const [inputNameError, setInputNameError] = useState(false);
     const isInputNameLength = (inputName) => {
         const minLength = 0;

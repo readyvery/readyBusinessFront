@@ -1,9 +1,16 @@
-import "./PhoneAuthPage.css";
-import CircleNumBar from "../../../components/signup/CircleNumBar/CircleNumBar";
 import Container from "../../../components/login/Container/Container";
+import CircleNumBar from "../../../components/signup/CircleNumBar/CircleNumBar";
 import UserInputNumber from "../../../components/signup/UserInput/UserInputNumber/UserInputNumber";
+import "./PhoneAuthPage.css";
 
 function PhoneAuthPage () {
+    // const userId = useRecoilValue(userIdState);
+    // const userPassword = useRecoilValue(userPasswordState);
+    // const userName = useRecoilValue(userNameState);
+    // console.log(userId);
+    // console.log(userPassword);
+    // console.log(userName);
+    
     const is480 = window.innerWidth <= 480;
     const containerSize = is480
       ? ["20rem", "30rem", "2.05rem"]

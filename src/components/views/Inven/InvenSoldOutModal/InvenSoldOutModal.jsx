@@ -5,17 +5,14 @@ import "./InvenSoldOutModal.css";
 const InvenSoldOutModal = ({
   contenttxt,
   requestid,
-  handleIsCloseSoldOutModal,
+  handleIsCloseModal,
   handlePatchData,
 }) => {
   return (
     <div className="inven-modal-wrapper">
       <div className="inven-modal-box">
-        <div
-          className="inven-modal-close__wrapper"
-          onClick={handleIsCloseSoldOutModal}
-        >
-          <img src={close} alt="close" />
+        <div className="inven-modal-close__wrapper">
+          <img src={close} alt="close" onClick={handleIsCloseModal} />
         </div>
 
         <div className="inven-modal-box-wrapper">

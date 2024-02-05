@@ -49,6 +49,10 @@
   background: var(--frame-text, #d82356);
 }
 
+.main__order-management-btn.disabled {
+  background: var(--frame-text, #838383);
+}
+
 .main__order-management__notice {
   color: #838383;
   font-family: Pretendard;
