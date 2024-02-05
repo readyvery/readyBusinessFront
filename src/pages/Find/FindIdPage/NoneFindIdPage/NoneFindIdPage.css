@@ -13,7 +13,7 @@
   font-weight: 500;
 }
 
-.none-find-id-page-link-wrapper a {
+.none-find-id-page-wrapper a {
   text-decoration: none;
   color: rgba(131, 131, 131, 1);
 }
@@ -23,7 +23,7 @@
   color: rgba(131, 131, 131, 1);
 }
 
-.none-find-id-page-link-button {
+.none-find-id-page-button {
   width: 100%;
   display: flex;
   justify-content: center;

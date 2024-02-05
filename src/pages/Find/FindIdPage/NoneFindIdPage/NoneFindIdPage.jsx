@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import "./NoneFindIdPage.css";
 function NoneFindIdPage() {
+  const navigate = useNavigate();
   const is480 = window.innerWidth <= 480;
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
@@ -21,14 +22,16 @@ function NoneFindIdPage() {
         <div className="none-find-id-page-text">
           존재하지 않는 아이디입니다.
         </div>
-        <div className="none-find-id-page-link-wrapper">
-          <Link to={"/signup"}>
-            <RedButton>회원가입</RedButton>
-          </Link>
-          <button className="none-find-id-page-link-button">
-            <Link to="/" className="none-find-id-page-login-link">
-              로그인
-            </Link>
+        <div
+          className="none-find-id-page-wrapper"
+          onClick={() => navigate(`/signup`)}
+        >
+          <RedButton>회원가입</RedButton>
+          <button
+            className="none-find-id-page-button"
+            onClick={() => navigate(`/`)}
+          >
+            로그인
           </button>
         </div>
       </div>

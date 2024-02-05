@@ -1,4 +1,5 @@
 .red-button {
+  display: flex;
   border-radius: 0.3125rem;
   background-color: #d82356;
   border: none;
@@ -7,13 +8,14 @@
   font-size: 1.5rem;
   text-align: center;
   justify-content: center;
+  align-items: center;
   font-weight: 600;
   padding: 0 0.8rem 0 0.8rem;
   cursor: pointer;
 }
 
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 480px){
+@media screen and (min-width: 480px) {
   .red-button {
     width: 21.25rem;
     height: 3.125rem;

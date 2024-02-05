@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import RedButton from "../../redButton/RedButton";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
 import "./CertificationInput.css";
-// import { Link } from "react-router-dom";
 
 function CertificationInput({
   id,
