@@ -6,10 +6,10 @@ import right from "../../assets/icons/icon_right-line.png";
 import kakao from "../../assets/icons/icon_kakao_union.png";
 import "./MainPage.css";
 import Footer from "../../components/views/Footer/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import OrderManagementBtn from "../../components/views/Order/OrderManagementBtn";
 
 const MainPage = () => {
-  const navigate = useNavigate();
   const notices = [
     {
       id: 1,
@@ -48,15 +48,7 @@ const MainPage = () => {
           </span>
 
           <span className="main__box3">
-            <span
-              className="main__order-management-btn"
-              onClick={() => navigate(`/order`)}
-            >
-              주문관리 바로가기
-            </span>
-            {/* <span className="main__order-management__notice">
-              매장관리 입력 후 이용 가능합니다.
-            </span> */}
+            <OrderManagementBtn />
           </span>
         </span>
       </div>
