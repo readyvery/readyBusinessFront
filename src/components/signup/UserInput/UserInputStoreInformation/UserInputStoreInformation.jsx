@@ -1,175 +1,74 @@
-import { Modal } from "antd";
+import { message } from "antd";
 import React, { useState } from "react";
-import DaumPostcode from "react-daum-postcode";
+import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputStoreInformation.css";
+import CheckConsentForm from "./UserInputStoreInformationInputComponents/CheckConsentForm";
+import InputStoreAddress from "./UserInputStoreInformationInputComponents/InputStoreAddress";
+import InputStoreInformationText from "./UserInputStoreInformationInputComponents/InputStoreInformationText";
+import InputStoreInformationflie from "./UserInputStoreInformationInputComponents/InputStoreInformationflie";
 
-const InputStoreInformationText = ({
-  title,
-  id,
-  placeholder,
-  requiredname,
-}) => {
-  return (
-    <div className="signup-page-content-store-wrapper">
-      <label className="signup-page-content-store-label-style">{title}</label>
-      <div>
-        <input
-          id={id}
-          type="text"
-          placeholder={placeholder}
-          required
-          name={requiredname}
-          className="signup-page-content-store-input"
-        />
-      </div>
-    </div>
-  );
-};
-
-const InputStoreAddressWrapper = () => {
+const UserInputStoreInformation = () => {
+  const [storeName, setStoreName] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [zoneAddress, setZoneAddress] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleComplete = (data) => {
-    setZonecode(data.zonecode);
-    setZoneAddress(data.address);
-    onOpenPostModal();
-  };
-
-  const onOpenPostModal = () => {
-    setOpenModal((prev) => !prev);
-  };
-
-  return (
-    <div className="signup-page-content-store-wrapper">
-      <label className="signup-page-content-store-label-style">매장주소</label>
-      {openModal && (
-        <Modal
-          open={true}
-          onOk={onOpenPostModal}
-          onCancel={onOpenPostModal}
-          destroyOnClose={true}
-        >
-          <DaumPostcode onComplete={handleComplete} />
-        </Modal>
-      )}
-      <div onClick={onOpenPostModal}>
-        <div className="signup-page-content-store-input-top-wrapper">
-          <input
-            id="storezonecode"
-            type="text"
-            placeholder="우편번호"
-            required
-            name="storezonecode"
-            className="signup-page-content-store-input-top"
-            value={zonecode}
-          />
-          <button className="signup-page-content-store-input-top-button">
-            조회
-          </button>
-        </div>
-        <input
-          id="storeaddress"
-          type="text"
-          placeholder="매장 주소 입력"
-          required
-          name="storeaddress"
-          value={zoneAddress}
-          className="signup-page-content-store-input"
-        />
-      </div>
-      <div className="signup-page-content-store-input-margin" />
-      <input
-        id="storeaddressdetail"
-        type="text"
-        placeholder="(필수) 상세 주소 입력"
-        required
-        name="storeaddressdetail"
-        className="signup-page-content-store-input"
-      />
-    </div>
-  );
-};
-
-const InputStoreInformationflie = ({ title, id, requiredname }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [fileSizeError, setFileSizeError] = useState(false);
-  if (fileSizeError) {
-    console.log("파일크기 에러");
-  }
-  const InputFilesss = () => {
-    const handleFileChange = (event) => {
-      const file = event.target.files[0];
-
-      if (file && file.size <= 10 * 1024 * 1024) {
-        setSelectedFile(file);
-        setFileSizeError(false);
-      } else {
-        setFileSizeError(true);
-        setSelectedFile(null);
-      }
-    };
-
-    return (
-      <input
-        id={id}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
-    );
-  };
-
-  return (
-    <div className="signup-page-content-store-wrapper">
-      <label className="signup-page-content-store-label-style">{title}</label>
-      <div>
-        <InputFilesss />
-        <input
-          id={id}
-          type="text"
-          placeholder="파일을 마우스로 끌어오세요"
-          defaultValue={selectedFile ? selectedFile.name : ""}
-          readOnly
-          onClick={() => {
-            const inputFile = document.getElementById(id);
-            if (inputFile) {
-              inputFile.click();
-            }
-          }}
-          className="signup-page-content-store-input"
-        />
-      </div>
-    </div>
-  );
-};
-
-const ConsentForm = () => {
+  const [zoneAddressDetail, setZoneAddressDetail] = useState("");
+  const [storeBusinessNumber, setStoreBusinessNumber] = useState("");
+  const [storeBusinessRegistration, setStoreBusinessRegistration] =
+    useState(null);
+  const [storeBusinessLicense, setStoreBusinessLicense] = useState(null);
+  const [userIdentification, setUserIdentification] = useState(null);
+  const [userPassbook, setUserPassbook] = useState(null);
   const [personalInfoConsent, setPersonalInfoConsent] = useState(false);
+
+  const handleStoreNameChange = (event) => {
+    setStoreName(event.target.value);
+  };
+
+  const handleZonecodeChange = (zonecode) => {
+    setZonecode(zonecode);
+  };
+
+  const handleZoneAddressChange = (zoneAddress) => {
+    setZoneAddress(zoneAddress);
+  };
+  const handleZoneAddressDetailChange = (zoneAddressDetail) => {
+    setZoneAddressDetail(zoneAddressDetail);
+  };
+
+  const handleStoreBusinessNumberChange = (event) => {
+    setStoreBusinessNumber(event.target.value);
+  };
+
+  const checkInputsCompletion = () => {
+    const isComplete =
+      storeName &&
+      zonecode &&
+      zoneAddress &&
+      zoneAddressDetail &&
+      storeBusinessNumber &&
+      storeBusinessRegistration &&
+      storeBusinessLicense &&
+      userIdentification &&
+      userPassbook &&
+      personalInfoConsent;
+
+    return isComplete;
+  };
 
   const handlePersonalInfoConsentChange = () => {
     setPersonalInfoConsent((prev) => !prev);
   };
 
-  return (
-    <div className="signup-page-content-store-check">
-      {/* 약관 나오면 입히기 */}
-      <label htmlFor="personalInfoConsent">
-        개인정보 수집 및 이용 동의(필수){" "}
-      </label>
-      <input
-        type="checkbox"
-        id="personalInfoConsent"
-        checked={personalInfoConsent}
-        onChange={handlePersonalInfoConsentChange}
-      />
-    </div>
-  );
-};
+  const handleSubmission = () => {
+    const isComplete = checkInputsCompletion();
 
-const UserInputStoreInformation = () => {
+    if (isComplete) {
+      message.success("입력이 완료되었습니다.");
+      // 여기서 try..
+    } else {
+      message.error("필수 입력 항목을 모두 입력하세요.");
+    }
+  };
   return (
     <div>
       <InputStoreInformationText
@@ -177,35 +76,62 @@ const UserInputStoreInformation = () => {
         id="storename"
         placeholder="상호명 입력"
         requiredname="storename"
+        onChange={handleStoreNameChange}
       />
-      <InputStoreAddressWrapper />
+      <InputStoreAddress
+        onZonecodeChange={handleZonecodeChange}
+        onZoneAddressChange={handleZoneAddressChange}
+        onZoneAddressDetailChange={handleZoneAddressDetailChange}
+      />
       <InputStoreInformationText
         title="사업자 번호"
         id="storebusinessnumber"
         placeholder="사업자 번호 입력"
         requiredname="storebusinessnumber"
+        onChange={handleStoreBusinessNumberChange}
       />
       <InputStoreInformationflie
         title="사업자 등록증 (파일첨부)"
         id="storebusinessregistration"
         requiredname="storebusinessregistration"
+        onChange={(file) => {
+          setStoreBusinessRegistration(file);
+        }}
       />
       <InputStoreInformationflie
         title="영업 신고증 (파일 첨부)"
         id="storebusinesslicense"
         requiredname="storebusinesslicense"
+        onChange={(file) => {
+          setStoreBusinessLicense(file);
+        }}
       />
       <InputStoreInformationflie
         title="신분증 (파일 첨부)"
         id="useridentification"
         requiredname="useridentification"
+        onChange={(file) => {
+          setUserIdentification(file);
+        }}
       />
       <InputStoreInformationflie
         title="통장 사본"
         id="userpassbook"
         requiredname="userpassbook"
+        onChange={(file) => {
+          setUserPassbook(file);
+        }}
       />
-      <ConsentForm />
+      <CheckConsentForm
+        personalInfoConsent={personalInfoConsent}
+        onPersonalInfoConsentChange={handlePersonalInfoConsentChange}
+      />
+      <RedButton
+        className="signup-page-verification-next-button"
+        onClick={handleSubmission}
+      >
+        승인요청 신청
+      </RedButton>
     </div>
   );
 };

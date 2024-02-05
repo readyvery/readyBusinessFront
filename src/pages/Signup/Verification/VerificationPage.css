@@ -12,6 +12,7 @@
   }
   .signup-page-verification-next-button {
     margin-top: 1rem;
+    width: 100%;
   }
 }
 
@@ -23,5 +24,6 @@
   }
   .signup-page-verification-next-button {
     margin-top: 0.49rem;
+    width: 100%;
   }
 }
