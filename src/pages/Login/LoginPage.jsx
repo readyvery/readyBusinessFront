@@ -25,8 +25,8 @@ const LoginFindUserIdAndPassword = () => {
 function LoginPage() {
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-  ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
-  : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
+    ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
+    : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
 
   useEffect(() => {
     const handleResize = () => {
@@ -156,7 +156,7 @@ function LoginPage() {
       </form>
       <button
         className="loginpage-sign-button"
-        onClick={() => navigate(`/signup`)}
+        onClick={() => navigate(`/signup/auth/terms`)}
       >
         회원가입
       </button>
