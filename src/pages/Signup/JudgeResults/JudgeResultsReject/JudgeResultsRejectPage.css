@@ -1,60 +1,62 @@
-.judge-results-reject-page-content-container{
-    margin-top: 2.24rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 20rem;
+.judge-results-reject-page-content-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Pretendard";
+  white-space: nowrap;
 }
-
-.judge-results-reject-page-top-positon-icon{
-    width: 4.4rem;
-    height: 4.4rem;
-    display: flex;
-    position: absolute;
-    top: -2rem;
-    left: 43%;
+.judge-results-reject-page-top-positon-icon {
+  display: flex;
+  position: absolute;
+  top: -2rem;
+  left: 43%;
 }
-
-.judge-results-reject-page-content-text-style{
-    font-weight: 800;
-    font-family: "Pretendard";
-    font-size: 1rem;
+.judge-results-reject-page-content-text-style {
+  font-weight: 800;
+  color: var(--title, #2e2d2d);
+  text-align: center;
 }
-.judge-results-reject-page-content-main-text-style{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 1rem;
-    /* max-width: 22.4rem; */
-    font-family: "Pretendard";
-    font-weight: 500;
-    font-size: 0.8rem;
-}
-.judge-results-reject-page-content-main-text-tab{
-    margin-top: 0.8rem;
+.judge-results-reject-page-content-main-text-style {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-weight: 500;
 }
 /* w:768, h:1024 이상일 때 */
-@media screen and (min-width: 481px){  
-    .judge-results-reject-page-content-text-style{
-        margin-top: 2.9rem;
-    }
-    .judge-results-reject-page-content-main-text-style{
-        margin-top: 1rem;
-    }
-    .judge-results-reject-page-next-button{
-        margin-top: 5.2rem;
-    }
+@media screen and (min-width: 480px) {
+  .judge-results-reject-page-top-positon-icon {
+    width: 5.5rem;
+    height: 5.5rem;
+    left: 43%;
+  }
+  .judge-results-reject-page-content-text-style {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .judge-results-reject-page-content-main-text-style {
+    font-size: 1rem;
+  }
+  .judge-results-reject-page-next-button {
+    margin-top: 7.25rem;
+  }
 }
-
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    .judge-results-reject-page-content-text-style{
-        margin-top: 2.9rem;
-    }
-    .judge-results-reject-page-content-main-text-style{
-        margin-top: 1rem;
-    }
-    .judge-results-reject-page-next-button{
-        margin-top: 4.9rem;
-    }
+  .judge-results-reject-page-top-positon-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    left: 43%;
+  }
+  .judge-results-reject-page-content-text-style {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .judge-results-reject-page-content-main-text-style {
+    font-size: 1rem;
+  }
+  .judge-results-reject-page-next-button {
+    margin-top: 6.06rem;
+  }
 }

@@ -1,13 +1,15 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import deleteicon from "../../../../assets/icons/icon_delete.png";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
-// import deleteicon from "../../../../assets/icons/icon_delete.svg"; 크기 에러, 해결 후 업로드
-import { useEffect, useState } from "react";
 import "./JudgeResultsRejectPage.css";
 function JudgeResultsRejectPage() {
+  const navigate = useNavigate();
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-    ? ["20rem", "25rem", "3rem"]
-    : ["25rem", "25rem", "3.52rem"];
+    ? ["25rem", "31.3rem", "3.69rem", "4.56rem"]
+    : ["31.3rem", "31.3rem", "4.44rem", "3.5rem"];
   useEffect(() => {
     const handleResize = () => {
       setIs480(window.innerWidth <= 480);
@@ -25,10 +27,14 @@ function JudgeResultsRejectPage() {
       containerWidth={containerSize[0]}
       containerHeight={containerSize[1]}
       logoMarginTop={containerSize[2]}
-      logoMarginBottom="2.9rem"
+      logoMarginBottom={containerSize[3]}
     >
-      {/* <img src={deleteicon} alt="deleteicon" className="judge-results-reject-page-top-positon-icon" /> */}
-      <div className="">
+      <img
+        src={deleteicon}
+        alt="deleteicon"
+        className="judge-results-reject-page-top-positon-icon"
+      />
+      <div className="judge-results-reject-page-content-container">
         <span className="judge-results-reject-page-content-text-style">
           심사가 반려되었습니다
         </span>
@@ -38,7 +44,7 @@ function JudgeResultsRejectPage() {
         </div>
 
         <div className="judge-results-reject-page-next-button">
-          <RedButton>재신청하기</RedButton>
+          <RedButton onClick={() => navigate("/signup/auth/results")}>재신청하기</RedButton>
         </div>
       </div>
     </Container>
