@@ -1,7 +1,7 @@
 import { message } from "antd";
 import axios from "axios";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { loginState } from "../../Atom/status";
@@ -23,10 +23,22 @@ const LoginFindUserIdAndPassword = () => {
 };
 
 function LoginPage() {
-  const is480 = window.innerWidth <= 480;
+  const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-    ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
-    : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
+  ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
+  : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const navigate = useNavigate();
 
