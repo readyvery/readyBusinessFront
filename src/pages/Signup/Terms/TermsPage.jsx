@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../../../components/login/Container/Container";
 import RedButton from "../../../components/login/redButton/RedButton";
 import "./TermsPage.css";
 
 function TermsPage() {
+  const navigate = useNavigate();
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["20rem", "30rem", "2.4rem"]
@@ -104,7 +106,9 @@ function TermsPage() {
         <ConsentForm id="item3" title="사이트 이용약관 동의 (필수)" />
         <ConsentForm id="item4" title="전자금융거래 이용약관 동의 (필수)" />
         <div className="terms-page-next-button">
-          <RedButton>확인</RedButton>
+          <RedButton onClick={() => navigate(`/signup`)}>
+            확인
+          </RedButton>
         </div>
       </div>
     </Container>

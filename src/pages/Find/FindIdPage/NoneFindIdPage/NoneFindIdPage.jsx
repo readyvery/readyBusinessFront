@@ -9,17 +9,17 @@ function NoneFindIdPage() {
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
     : ["31.3rem", "37.5rem", "5.56rem", "1.38rem"];
-    useEffect(() => {
-      const handleResize = () => {
-        setIs480(window.innerWidth <= 480);
-      };
-  
-      window.addEventListener("resize", handleResize);
-  
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <Container
       title={"아이디 찾기"}
