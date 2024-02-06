@@ -42,9 +42,7 @@
 /* 글자 */
 .circle-num-ber-text-wrapper {
   position: absolute;
-  bottom: -1rem;
   display: flex;
-  transform: translateX(-52%);
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -80,6 +78,7 @@
   }
   .circle-num-ber-text-wrapper {
     bottom: -1.35rem;
+    transform: translateX(-52%);
   }
 }
 
@@ -97,5 +96,9 @@
   }
   .circle-num-bar-text-content {
     font-size: 0.75rem;
+  }
+  .circle-num-ber-text-wrapper {
+    bottom: -1.16rem;
+    transform: translateX(-51%);
   }
 }

@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
 import logo from "../../../assets/icons/Big_LOGO.svg";
+import basketicon from "../../../assets/icons/icon_basket.png";
 import kakaolinkedicon from "../../../assets/icons/icon_kakao.svg";
 import redyveryicon from "../../../assets/icons/img_readyVery.svg";
 import Container from "../../../components/login/Container/Container";
 import RedButton from "../../../components/login/redButton/RedButton";
 import CircleNumBar from "../../../components/signup/CircleNumBar/CircleNumBar";
-// import basketicon from "../../../assets/icons/icon_basket.svg"; 크기 에러 해결되면 업로드
-import { useEffect, useState } from "react";
 import "./JudgeResultsBeforePage.css";
 function JudgeResultsBeforePage() {
   const [is480, setIs480] = useState(window.innerWidth <= 480);
@@ -31,7 +31,11 @@ function JudgeResultsBeforePage() {
       logoMarginTop={containerSize[2]}
       logoMarginBottom={containerSize[3]}
     >
-      {/* <img src={basketicon} alt="basketicon" className="judge-results-before-page-top-positon-icon" /> */}
+      <img
+        src={basketicon}
+        alt="basketicon"
+        className="judge-results-before-page-top-positon-icon"
+      />
       <CircleNumBar step="3" />
       <div className="judge-results-before-page-content-container">
         <span className="judge-results-before-page-content-text-style">
@@ -39,12 +43,7 @@ function JudgeResultsBeforePage() {
         </span>
         <div className="judge-results-before-page-content-main-text-style">
           <span>
-            1~2일 이내로{" "}
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: "3.1rem", height: "0.8rem" }}
-            />
+            1~2일 이내로 <img src={logo} alt="logo" />
             담당자가 사장님께 전화를 드리거나
           </span>
           <span>가게를 방문하여 입점을 도와드립니다.</span>
@@ -66,11 +65,9 @@ function JudgeResultsBeforePage() {
               매일 00:00 ~ 24:00
             </div>
           </div>
-          <img
-            src={kakaolinkedicon}
-            alt="kakaolinkedicon"
-            className="redyvery-linked-message-for-kakao-img"
-          />
+          <div className="redyvery-linked-message-for-kakao-img">
+            <img src={kakaolinkedicon} alt="kakaolinkedicon" />
+          </div>
         </div>
 
         <div className="judge-results-before-page-next-button">
