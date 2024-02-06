@@ -89,7 +89,7 @@ const UserInputId = () => {
 
     return(
         <div className="signup-page-content-id-wrapper">
-            <label className="signup-page-content-id-label-style">아이디</label>
+            <label className="signup-page-content-id-label-style">이메일</label>
             <div className="signup-page-content-id-label-plus-text">
                 <div>영문+숫자+특수기호 8자 이상</div>
                 <button 
