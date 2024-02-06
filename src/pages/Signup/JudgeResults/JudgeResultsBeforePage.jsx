@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/icons/Big_LOGO.svg";
 import basketicon from "../../../assets/icons/icon_basket.png";
 import kakaolinkedicon from "../../../assets/icons/icon_kakao.svg";
@@ -8,6 +9,7 @@ import RedButton from "../../../components/login/redButton/RedButton";
 import CircleNumBar from "../../../components/signup/CircleNumBar/CircleNumBar";
 import "./JudgeResultsBeforePage.css";
 function JudgeResultsBeforePage() {
+  const navigate = useNavigate();
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "3rem", "2.28rem"]
@@ -71,7 +73,9 @@ function JudgeResultsBeforePage() {
         </div>
 
         <div className="judge-results-before-page-next-button">
-          <RedButton>확인</RedButton>
+          <RedButton onClick={()=>navigate("/")}>
+            확인
+          </RedButton>
         </div>
       </div>
     </Container>
