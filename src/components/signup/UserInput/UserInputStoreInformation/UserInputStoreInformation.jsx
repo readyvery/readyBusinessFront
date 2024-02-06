@@ -1,5 +1,6 @@
 import { message } from "antd";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputStoreInformation.css";
 import CheckConsentForm from "./UserInputStoreInformationInputComponents/CheckConsentForm";
@@ -8,6 +9,7 @@ import InputStoreInformationText from "./UserInputStoreInformationInputComponent
 import InputStoreInformationflie from "./UserInputStoreInformationInputComponents/InputStoreInformationflie";
 
 const UserInputStoreInformation = () => {
+  const navigate = useNavigate();
   const [storeName, setStoreName] = useState("");
   const [zonecode, setZonecode] = useState("");
   const [zoneAddress, setZoneAddress] = useState("");
@@ -65,6 +67,7 @@ const UserInputStoreInformation = () => {
     if (isComplete) {
       message.success("입력이 완료되었습니다.");
       // 여기서 try..
+      navigate("/signup/auth/results/before");
     } else {
       message.error("필수 입력 항목을 모두 입력하세요.");
     }
