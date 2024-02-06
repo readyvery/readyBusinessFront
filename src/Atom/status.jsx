@@ -172,3 +172,9 @@ export const userNameState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userIdDuplicateState = atom({
+  key:"userIdDuplicateState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+})
