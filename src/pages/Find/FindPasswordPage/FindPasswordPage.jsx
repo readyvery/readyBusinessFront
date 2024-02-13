@@ -37,6 +37,8 @@ function FindPasswordPage() {
         />
       </div>
     </Container>
+
+      
   );
 }
 export default FindPasswordPage;
