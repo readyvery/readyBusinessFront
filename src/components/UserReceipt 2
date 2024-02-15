@@ -10,27 +10,27 @@ function UserReceipt () {
   return (
     <Printer type="epson" width={42} characterSet="korea">
       
-      <Text>[매장용]{/*픽업 or 매장용*/}</Text>
-      <Br />
-      <Text size={{ width: 2, height: 2 }} align="center" bold={true}>
-        ReadyVery
+      <Text>주방주문서</Text>
+      <Text size={{ width: 2, height: 2 }}>
+        [주문시간] 2000-11-17 17:50
       </Text>
+      <Text>[오더번호] 69</Text>
+      <Line />
+      <Row left="메뉴명" right="수량(구분)" />
+      <Line />
       <Br />
-      <Text bold={true}>주문번호: 69 {/*idx*/}</Text>
       <Line />
-      <Row left="메뉴명" right="수량" />
-      <Line />
-      <Br />
-      <Line />
+      <Row left={'상품명'} right={`수량 (신규)`} />
       <Row
-        left={`- 아메리카노`}
-        right={`2`}
+        left={`ㄴ 아메리카노`}
+        right={`1`}
       />
-      <Text align="left">ㄴ 기본사이즈</Text>
-      <Text align="left">ㄴ 샷추가</Text>
-      <Line />
-      <Text>주문시간: 00/11/17 17:50:02</Text>
       <Br />
+      <Line />
+      <Text>매장컵</Text>
+      <Line />
+      <Br />
+      <Line />
       <Cut />
     </Printer>
   );
