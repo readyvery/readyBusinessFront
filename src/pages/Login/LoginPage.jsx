@@ -1,8 +1,8 @@
 import { message } from "antd";
 import axios from "axios";
 import moment from "moment";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
@@ -10,22 +10,35 @@ import RedButton from "../../components/login/redButton/RedButton";
 import "./LoginPage.css";
 
 const LoginFindUserIdAndPassword = () => {
+  const navigate = useNavigate();
   return (
     <div className="loginpage-find-user-id-and-password">
       <div className="loginpage-form-find">
-        <Link to="/find/id">아이디 찾기</Link>
+        <span onClick={() => navigate(`/find/id`)}>아이디 찾기</span>
         <span>•</span>
-        <Link to="/find/password">비밀번호 찾기</Link>
+        <span onClick={() => navigate(`/find/password`)}>비밀번호 찾기</span>
       </div>
     </div>
   );
 };
 
 function LoginPage() {
-  const is480 = window.innerWidth <= 480;
+  const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
     : ["31.3rem", "37.5rem", "5.69rem", "3.25rem"];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const navigate = useNavigate();
 
@@ -63,29 +76,29 @@ function LoginPage() {
           accessToken: response.data.accessToken,
           expiredTime: moment().add(1, "day").format("yyyy-MM-DD HH:mm:ss"),
         });
-        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem("accessToken", response.data.accessToken);
         console.log("로그인 성공:", response.data);
         message.success("로그인 성공");
-        
+
         switch (role) {
-          case 'USER':
-            navigate('/signup/auth/results');
+          case "USER":
+            navigate("/signup/auth/results");
             break;
 
-          case 'REVIEW':
-            navigate('/signup/auth/results/before');
-            break;
-          
-          case 'REJECT': 
-            navigate('/signup/auth/results/reject');
+          case "REVIEW":
+            navigate("/signup/auth/results/before");
             break;
 
-          case 'READY':
-            navigate('/main');
+          case "REJECT":
+            navigate("/signup/auth/results/reject");
             break;
-          
-          case 'CEO':
-            navigate('/main');
+
+          case "READY":
+            navigate("/main");
+            break;
+
+          case "CEO":
+            navigate("/main");
             break;
 
           default:
@@ -96,7 +109,7 @@ function LoginPage() {
     } catch (error) {
       const { status } = error.response;
       console.error("로그인 요청 실패:", error);
-      if (status === 400){
+      if (status === 400) {
         message.error("아이디 또는 비밀번호가 일치하지 않습니다.");
       }
     }
@@ -141,10 +154,11 @@ function LoginPage() {
           </RedButton>
         </div>
       </form>
-      <button className="loginpage-sign-button">
-        <Link to="/signup" className="loginpage-sign-link">
-          회원가입
-        </Link>
+      <button
+        className="loginpage-sign-button"
+        onClick={() => navigate(`/signup/auth/terms`)}
+      >
+        회원가입
       </button>
     </Container>
   );

@@ -1,96 +1,107 @@
-.loginpage-form{
+.loginpage-form {
+  line-height: 1.2rem;
+  position: relative;
+  font-family: "Pretendard";
+  display: flex;
+  flex-direction: column;
+}
+
+.loginpage-user-id {
+  border-radius: 0.3125rem;
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  font-size: 1rem;
+  margin-bottom: 0.44rem;
+  text-align: flex-start;
+  padding-left: 1.25rem;
+  height: 3.125rem;
+}
+
+.loginpage-user-password {
+  border-radius: 0.3125rem;
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  font-size: 1rem;
+  margin-bottom: 0.31rem;
+  text-align: flex-start;
+  padding-left: 1.25rem;
+  height: 3.125rem;
+}
+
+.loginpage-find-user-id-and-password {
+  margin-top: 0.94rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(131, 131, 131, 1);
+}
+
+.loginpage-find-user-id-and-password a {
+  text-decoration: none;
+  color: rgba(131, 131, 131, 1);
+}
+.loginpage-find-user-id-and-password span {
+  margin: 0 0.25rem;
+}
+
+.loginpage-form-remember-text {
+  font-size: 0.8rem;
+}
+
+.loginpage-form-find {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.loginpage-form-login-wrapper {
+  position: absolute;
+  /* 9.62 + 3.13*/
+  top: 12.75rem;
+  transform: translateX(0%);
+  /* margin-bottom: 0.94rem; */
+}
+
+.loginpage-sign-button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-family: "Pretendard";
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: rgba(131, 131, 131, 1);
+}
+
+@media screen and (min-width: 480px) {
+  .loginpage-form {
     line-height: 1.2rem;
     /* 9.62 + 3.125 + 3.125*/
-    min-height: 15.87rem;
-    min-width: 21.3rem;
-    position: relative;
-    /* justify-content: center; */
-    font-family: "Pretendard";
-    display: flex;
-    flex-direction: column;
+    height: 15.87rem;
+    width: 21.25rem;
+  }
+  .loginpage-user-id {
+    width: 21.25rem;
+  }
+  .loginpage-user-password {
+    width: 21.25rem;
+  }
+  .loginpage-sign-button {
+    margin-top: 5.44rem;
+  }
 }
-
-.loginpage-user-id{
-    border-radius: 0.3125rem;
-    border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 1rem;
-    margin-bottom: 0.44rem;
-    min-width: 21.3rem;
-    height: 3.125rem;
-    text-align: flex-start;
-    padding-left: 1.25rem;
-}
-
-.loginpage-user-password{
-    border-radius: 0.3125rem;
-    border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 1rem;
-    min-width: 21.3rem;
-    height: 3.125rem;
-    margin-bottom: 0.31rem;
-    text-align: flex-start;
-    padding-left: 1.25rem;
-}
-
-.loginpage-find-user-id-and-password{
-    margin-top: 0.94rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: rgba(131, 131, 131, 1);
-}
-
-.loginpage-find-user-id-and-password a{
-    text-decoration: none;
-    color: rgba(131, 131, 131, 1);
-}
-.loginpage-find-user-id-and-password span{
-    margin: 0 0.25rem;
-}
-
-.loginpage-form-remember-text{
-    font-size: 0.8rem;
-}
-
-.loginpage-form-find{
-    display: flex; 
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.loginpage-form-login-wrapper{
-    position: absolute;
-    /* 9.62 + 3.13*/
-    top: 12.75rem;
-    transform: translateX(0%);
-    /* margin-bottom: 0.94rem; */
-}
-
-.loginpage-sign-button{
-    border: none;
-    background-color: white;
-    cursor: pointer;
-    font-family: "Pretendard";
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 5.44rem; 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.loginpage-sign-link{
-    text-decoration: none;
-    color: rgba(131, 131, 131, 1);
-}
-
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    .loginpage-form{
-        height: 10.3rem;
-        width: 15rem;
-    }
-    .loginpage-sign-button{
-        margin-top: 6.31rem; 
-    }
-    
+  .loginpage-form {
+    height: 16rem;
+    width: 18.75rem;
+  }
+  .loginpage-user-id {
+    width: 18.75rem;
+  }
+  .loginpage-user-password {
+    width: 18.75rem;
+  }
+  .loginpage-sign-button {
+    margin-top: 6.31rem;
+  }
 }

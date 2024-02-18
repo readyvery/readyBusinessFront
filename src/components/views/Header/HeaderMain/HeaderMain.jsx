@@ -47,7 +47,6 @@ const HeaderMain = () => {
         <div className="headerTop-css">
           <div className="headerBottom-nav-css">
             <ul className="headerBottom-nav-left-css">
-              {/*경로 입력해주세요!  */}
               <li onClick={() => navigate(`/sales`)}>매출관리</li>
               <li onClick={() => navigate(`/store`)}>매장관리</li>
               <li onClick={() => navigate(`/inventory`)}>재고관리</li>

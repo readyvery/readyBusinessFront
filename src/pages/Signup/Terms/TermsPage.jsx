@@ -1,35 +1,58 @@
-import "./TermsPage.css";
-import RedButton from "../../../components/login/redButton/RedButton";
+import { message } from "antd";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../../../components/login/Container/Container";
-import { useState } from "react";
+import RedButton from "../../../components/login/redButton/RedButton";
+import "./TermsPage.css";
 
 function TermsPage() {
-  const is480 = window.innerWidth <= 480;
+  const navigate = useNavigate();
+  const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-    ? ["20rem", "30rem", "2.4rem"]
-    : ["25rem", "40rem", "3.8rem"];
+    ? ["25rem", "37.5rem", "3rem", "3.13rem"]
+    : ["31.3rem", "50rem", "4.69rem", "3.56rem"];
+  useEffect(() => {
+    const handleResize = () => {
+      setIs480(window.innerWidth <= 480);
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  // 이용약관 상태관리
   const [consents, setConsents] = useState({
-    itemall: false,
+    itemAll: false,
     item1: false,
     item2: false,
     item3: false,
     item4: false,
   });
 
+  const handleSubmission = () => {
+    const isComplete = consents.itemAll;
+    if (isComplete) {
+      navigate("/signup");
+    } else {
+      message.error("필수 동의항목을 모두 체크해주세요.");
+    }
+  };
+  // 이용약관 개별 동의 핸들러
   const handleConsentChange = (id) => {
     setConsents((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
   };
-
+  // 이용약관 모두 동의 핸들러
   const handleAllConsentsChange = () => {
     setConsents((prev) => {
-      const allChecked = !prev.itemall;
+      const allChecked = !prev.itemAll;
 
       return {
-        itemall: allChecked,
+        itemAll: allChecked,
         item1: allChecked,
         item2: allChecked,
         item3: allChecked,
@@ -38,12 +61,14 @@ function TermsPage() {
     });
   };
 
+  // 이용약관이 모두 동의된다면, 모두 동의도 체크되게
   if (consents.item1 && consents.item2 && consents.item3 && consents.item4) {
-    consents.itemall = true;
+    consents.itemAll = true;
   } else {
-    consents.itemall = false;
+    consents.itemAll = false;
   }
 
+  // 이용약관 동의 체크박스 컴포넌트
   const ConsentForm = ({ title, id }) => {
     const isChecked = consents[id];
 
@@ -51,7 +76,7 @@ function TermsPage() {
       handleConsentChange(id);
     };
 
-    const isAllItem = id === "itemall";
+    const isAllItem = id === "itemAll";
     const labelClassName = isAllItem
       ? "terms-page-check-box-font-style-1"
       : "terms-page-check-box-font-style-2";
@@ -80,15 +105,21 @@ function TermsPage() {
   };
 
   return (
-    <Container title="이용약관동의" containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom="2.7rem">
+    <Container
+      title="이용약관동의"
+      containerWidth={containerSize[0]}
+      containerHeight={containerSize[1]}
+      logoMarginTop={containerSize[2]}
+      logoMarginBottom={containerSize[3]}
+    >
       <div className="terms-page-container">
-        <ConsentForm id="itemall" title="모든 이용약관에 동의합니다." />
+        <ConsentForm id="itemAll" title="모든 이용약관에 동의합니다." />
         <ConsentForm id="item1" title="서비스 이용약관 동의(필수)" />
         <ConsentForm id="item2" title="개인정보 수집 및 이용 동의 (필수)" />
         <ConsentForm id="item3" title="사이트 이용약관 동의 (필수)" />
         <ConsentForm id="item4" title="전자금융거래 이용약관 동의 (필수)" />
         <div className="terms-page-next-button">
-          <RedButton>확인</RedButton>
+          <RedButton onClick={handleSubmission}>확인</RedButton>
         </div>
       </div>
     </Container>
