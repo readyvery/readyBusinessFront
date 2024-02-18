@@ -9534,7 +9534,7 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-react-thermal-printer@0.18.1:
+react-thermal-printer@^0.18.1:
   version "0.18.1"
   resolved "https://registry.npmjs.org/react-thermal-printer/-/react-thermal-printer-0.18.1.tgz"
   integrity sha512-5ibDqPYtQhlPRVhv+aNjO2RCjxwfGG30BkH95pEUnzq62RrfZkM2hMfbelnS+PbxA6IotaaZqwsqWD0mx++mtQ==
