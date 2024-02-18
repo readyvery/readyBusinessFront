@@ -1,7 +1,7 @@
 .header {
   width: 100vw;
   min-width: 64rem;
-  height: 5.5rem;
+  height: 6.5rem;
   background-color: #2e2d2d;
 }
 
@@ -15,9 +15,16 @@
   width: 100vw;
   /* width: 64rem; */
   /* max-width: 64rem; */
-  height: 5.5rem;
+  height: 6.5rem;
   background-color: #2e2d2d;
   z-index: 101;
+}
+
+@media screen and (max-width: 480px) {
+  .header2{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
 }
 
 .header2-wrapper {
@@ -31,6 +38,13 @@
   width: 22rem;
   display: flex;
   justify-content: space-evenly;
+}
+
+
+@media screen and (max-width: 480px) {
+  .head-container2{
+    width: auto;
+  }
 }
 
 .header-img-wrapper {
@@ -52,8 +66,10 @@
 }
 
 .LOGO {
-  width: 19.1875rem;
-  height: 4rem;
+  /* width: 19.1875rem; */
+  width: 13rem;
+  /* height: 4rem; */
+  height: 2.5rem;
 }
 
 .store-group {
@@ -66,11 +82,33 @@
 
 .store-img__wrapper {
   margin: 0 0.5625rem;
+  display: flex;
+  /* align-items: end; */
+}
+
+.store_img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.store_close_circle.close{
+  background-color: #34C759;;
+}
+
+@media screen and (max-width: 480px) {
+  .header-img-wrapper{
+    display: none;
+  }
+}
+
+.store_font_wrapper{
+  display: flex;
+  align-items: center;
 }
 
 .header-font {
   color: #fff;
-  font-size: 1.875rem;
+  font-size: 1.25rem;
   font-family: "Pretendard";
   font-weight: 600;
 }
@@ -80,4 +118,10 @@
   align-content: stretch;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+@media screen and (max-width: 480px) {
+  .head-container{
+    justify-content: space-between;
+  }
 }
