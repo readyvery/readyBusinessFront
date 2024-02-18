@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-// import useFetchWaitInfo from "../../../hooks/useFetchWaitInfo";
+import useFetchCompleteInfo from "../../../hooks/useFetchCompleteInfo";
+import useFetchMakeInfo from "../../../hooks/useFetchMakeInfo";
+import useFetchWaitInfo from "../../../hooks/useFetchWaitInfo";
 import { HomeContext } from "../../../pages/OrderManage/Home";
 import theme from "../../../style/theme/theme";
 import OrderBox from "./OrderBox";
@@ -8,8 +10,12 @@ import OrderBox from "./OrderBox";
 export default function OrderContainer () {
     const context = useContext(HomeContext);
     
-    // const waitInfo = useFetchWaitInfo();
-    // console.log(waitInfo);
+    const waitInfo = useFetchWaitInfo();
+    const makeInfo = useFetchMakeInfo();
+    const completeInfo = useFetchCompleteInfo();
+    console.log(waitInfo);
+    console.log(makeInfo);
+    console.log(completeInfo);
 
     const waitDummyInfo =
         {
@@ -224,38 +230,41 @@ export default function OrderContainer () {
         <Container>
             {context.status === 1 ? (
                 <>
-                <OrderTitleBox>신규 {waitDummyInfo.orders.length}건</OrderTitleBox>
-                {
-                    waitDummyInfo.orders.map((item) => (
-                        <span onClick={() => handleWaitOrderMenu(item.idx)}>
-                            <OrderBox 
-                                id={item.idx}
-                                category={item.pickUp}
-                                menu={item.foodies}
-                                clicked={item.idx === context.selectedIdx}
-                            />
-                        </span>
-                    ))
-                }
-                
-                <OrderTitleBox>진행 {makeDummyInfo.orders.length}건</OrderTitleBox>
-                {
-                    makeDummyInfo.orders.map((item) => (
-                        <span onClick={() => handleMakeOrderMenu(item.idx)}>
-                            <OrderBox 
-                                id={item.idx}
-                                category={item.pickUp}
-                                menu={item.foodies}
-                                clicked={item.idx === context.selectedIdx}
-                            />
-                        </span>
-                    ))
-                }
+                <OrderBoxContainer>
+                    <OrderTitleBox>신규 {waitDummyInfo?.orders?.length}건</OrderTitleBox>
+                    {
+                        waitDummyInfo?.orders?.map((item) => (
+                            <span onClick={() => handleWaitOrderMenu(item.idx)}>
+                                <OrderBox 
+                                    id={item.idx}
+                                    category={item.pickUp}
+                                    menu={item.foodies}
+                                    clicked={item.idx === context.selectedIdx}
+                                />
+                            </span>
+                        ))
+                    }
+                </OrderBoxContainer>
+                <OrderBoxContainer>
+                    <OrderTitleBox>진행 {makeDummyInfo?.orders?.length}건</OrderTitleBox>
+                    {
+                        makeDummyInfo?.orders?.map((item) => (
+                            <span onClick={() => handleMakeOrderMenu(item.idx)}>
+                                <OrderBox 
+                                    id={item.idx}
+                                    category={item.pickUp}
+                                    menu={item.foodies}
+                                    clicked={item.idx === context.selectedIdx}
+                                />
+                            </span>
+                        ))
+                    }
+                </OrderBoxContainer>
                 </>
             ) : (
                 <>
                     {
-                        completeDummyInfo.orders.map((item) => (
+                        completeDummyInfo?.orders?.map((item) => (
                             <span onClick={() => handleCompleteOrderMenu(item.idx)}>
                                 <OrderBox 
                                     id={item.idx}
@@ -274,8 +283,13 @@ export default function OrderContainer () {
 
 const Container = styled.div`
     width: 100%;
-    // height: 100%;
+    height: calc(100% - 60px);
     overflow-y: auto;
+`;
+
+const OrderBoxContainer = styled.div`
+    width: 100%;
+    height: 50%;
 `;
 
 const OrderTitleBox = styled.div`

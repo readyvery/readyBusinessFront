@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import ReceiptBox from "../../components/views/Home/ReciptBox";
 import theme from "../../style/theme/theme";
+import { HomeContext } from "./Home";
 import "./Receipt.css";
 
 const Receipt = () => {
   const orderProps = {
     status: 1,
   };
+  const context = useContext(HomeContext);
 
   const [modalIdx, setModalIdx] = useState(0);
 
+  useEffect(() => {
+    AOS.init();
+  })
+
   return (
-    <div className="Box">
+    <div data-aos="zoom-in" className={context.selectedIdx ? `Box` : `Box nonDisplay`}>
       <div className="rounded-rectangle">
         <ReceiptBox modalIdx={modalIdx} setModalIdx={setModalIdx}>
           {orderProps.status === 1 ? (

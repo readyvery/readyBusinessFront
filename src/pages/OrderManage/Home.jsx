@@ -61,9 +61,13 @@ function Home({ defaultValue, defaultStatus, defaultMenu, children }) {
 const Container = styled.div`
   display: flex;
   position: absolute;
-  top: 5.5rem;
+  top: 6.5rem;
   width: 100vw;
-  height: calc(100vh - 5.5rem);
+  height: calc(100vh - 6.5rem);
+
+  @media only screen and (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 Home.MainHome = MainHome;
