@@ -12,7 +12,7 @@ function UserReceipt () {
       
       <Text>[매장용]{/*픽업 or 매장용*/}</Text>
       <Br />
-      <Text size={{ width: 2, height: 2 }} align="center" bold={true}>
+      <Text size={{ width: 3, height: 3 }} align="center" bold={true}>
         ReadyVery
       </Text>
       <Br />
@@ -20,11 +20,9 @@ function UserReceipt () {
       <Line />
       <Row left="메뉴명" right="수량" />
       <Line />
-      <Br />
-      <Line />
       <Row
-        left={`- 아메리카노`}
-        right={`2`}
+        left={<Text size={{width: 2, height: 2}}>- 아메리카노</Text>}
+        right={<Text size={{width: 2, height: 2}}>2</Text>}
       />
       <Text align="left">ㄴ 기본사이즈</Text>
       <Text align="left">ㄴ 샷추가</Text>

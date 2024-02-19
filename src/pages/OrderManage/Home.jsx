@@ -48,6 +48,7 @@ function Home({ defaultValue, defaultStatus, defaultMenu, children }) {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [waitInfo])
+  // TODO:: 웹소켓을 써보고 싶다..나는..
 
   return (
     <HomeContext.Provider value={providerValue}>
