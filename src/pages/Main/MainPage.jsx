@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import kakao from "../../assets/icons/icon_kakao_union.png";
 import right from "../../assets/icons/icon_right-line.png";
-import promotion from "../../assets/icons/promotion.svg";
-import promotion2 from "../../assets/icons/promotion2.svg";
+import promotion from "../../assets/icons/promotion1.png";
+import promotion2 from "../../assets/icons/promotion2.png";
 import promotion3 from "../../assets/icons/promotion3.png";
 import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
