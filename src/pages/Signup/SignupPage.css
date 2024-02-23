@@ -5,3 +5,17 @@
     justify-content: center;
     flex-direction: column;
 }
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 480px) {
+    .signup-page-next-button{
+        margin-bottom: 7.19rem;
+    }
+  }
+  
+  /* w:480, h:800일 때 */
+  @media screen and (max-width: 480px) {
+    .signup-page-next-button{
+        margin-bottom: 7rem;
+    }
+  }

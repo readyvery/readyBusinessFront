@@ -17,7 +17,7 @@ const Container = ({
         style={{
           width: `${containerWidth}`,
           height: `${containerHeight}`,
-          overflow: "visible",
+          // overflow: "visible",
         }}
       >
         <div
