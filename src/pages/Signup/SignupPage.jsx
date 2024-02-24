@@ -38,8 +38,8 @@ function SignupPage() {
   };
   const is480 = window.innerWidth <= 480;
   const containerSize = is480
-    ? ["25rem", "50rem", "3.94rem", "2.75rem"]
-    : ["37.5rem", "62.5rem", "4.88rem", "3.38rem"];
+    ? ["25rem", "85vh", "3.94rem", "2.75rem"]
+    : ["37.5rem", "87vh", "4.88rem", "3.38rem"];
 
   return (
     <Container

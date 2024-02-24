@@ -7,8 +7,8 @@ import "./VerificationPage.css";
 function VerificationPage() {
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-    ? ["25rem", "54.8rem", "1.81rem", "1.79rem"]
-    : ["37.5rem", "90.7rem", "4.69rem", "3.94rem"];
+  ? ["25rem", "89.3vh", "3.94rem", "2.75rem"]
+  : ["37.5rem", "87.2vh", "4.88rem", "3.38rem"];
 
   useEffect(() => {
     const handleResize = () => {
