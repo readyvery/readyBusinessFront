@@ -1,4 +1,5 @@
 import { message } from "antd";
+import axios from 'axios';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RedButton from "../../../login/redButton/RedButton";
@@ -9,6 +10,7 @@ import InputStoreInformationText from "./UserInputStoreInformationInputComponent
 import InputStoreInformationflie from "./UserInputStoreInformationInputComponents/InputStoreInformationflie";
 
 const UserInputStoreInformation = () => {
+  const apiUrl = process.env.REACT_APP_API_ROOT;
   const navigate = useNavigate();
   const [storeName, setStoreName] = useState("");
   const [zonecode, setZonecode] = useState("");
@@ -61,13 +63,42 @@ const UserInputStoreInformation = () => {
     setPersonalInfoConsent((prev) => !prev);
   };
 
-  const handleSubmission = () => {
+  const handleSubmission = async () => {
     const isComplete = checkInputsCompletion();
 
     if (isComplete) {
       message.success("입력이 완료되었습니다.");
       // 여기서 try..
-      navigate("/signup/auth/results/before");
+      try {
+        // const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
+        //   phoneNumber: phoneNumber,
+        //   verifyNumber: newChkNum,
+        // });
+        const formData = new FormData();
+        const accessToken = localStorage.getItem('accessToken');
+
+        formData.append('storeName', storeName);
+        formData.append('storeAddress', `${zoneAddress} ${zoneAddressDetail}`);
+        formData.append('registrationNumber', storeBusinessNumber);
+
+        formData.append('businessLicense', storeBusinessRegistration);
+        formData.append('businessReport', storeBusinessLicense);
+        formData.append('identityCard', userIdentification);
+        formData.append('bankAccount', userPassbook);
+
+        const response = await axios.post(`${apiUrl}/api/v1/ceo/entry`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+
+        console.log(response.data);
+        navigate("/signup/auth/results/before");
+      } catch (error) {
+        message.error("전송 실패");
+        console.log(error);
+      }
     } else {
       message.error("필수 입력 항목을 모두 입력하세요.");
     }

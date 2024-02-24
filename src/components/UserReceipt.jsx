@@ -10,7 +10,7 @@ function UserReceipt (props) {
       
       <Text>[{pickUp}]{/*픽업 or 매장용*/}</Text>
       <Br />
-      <Text size={{ width: 2, height: 2 }} align="center" bold={true}>
+      <Text size={{ width: 3, height: 3 }} align="center" bold={true}>
         ReadyVery
       </Text>
       <Br />
