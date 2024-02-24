@@ -14,7 +14,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
         const [isCeo, setIsCeo] = useRecoilState(ceoState);
         
         useEffect(() => {
-            console.log("!");
             function fetchAuth() {
                 commonApis.get("/auth", {
                     headers: {

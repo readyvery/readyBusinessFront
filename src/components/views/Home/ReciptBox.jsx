@@ -24,7 +24,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     ]), []);
   
     const cancelOrder = (e) => {
-      console.log(e);
+      setModalIdx(0);
       // const config = {
       //   withCredentials: true,
       // };
@@ -62,7 +62,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     };
   
     const handleMake = async (e) => {
-      console.log(e);
+      setModalIdx(0);
       // const config = {
       //   withCredentials: true,
       // };

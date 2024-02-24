@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { soundState } from "../../../../Atom/status";
 import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
-import LOGO from "../../../../assets/icons/Header/LOGO.svg"; //로고
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
+import LOGO from "../../../../assets/icons/Header/header_logo.png"; //로고
 import "./Header.css";
 
 const Header = () => {
@@ -59,9 +59,11 @@ const Header = () => {
           ) : ( */}
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOff} alt="Close" />
+                <img src={StoreOff} alt="Close" className="store_img"/>
               </div>
-              <div className="header-font">영업종료 </div>
+              <div className="store_font_wrapper">
+                <div className="header-font">영업종료</div>
+              </div>
             </div>
           {/* )} */}
           {sound ? (
