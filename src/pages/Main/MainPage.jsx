@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
-import kakao from "../../assets/icons/icon_kakao_union.png";
 import right from "../../assets/icons/icon_right-line.png";
-import promotion from "../../assets/icons/promotion1.png";
-import promotion2 from "../../assets/icons/promotion2.png";
-import promotion3 from "../../assets/icons/promotion3.png";
 import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
 import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
+import { IMAGES } from "../../constants/images";
 import "./MainPage.css";
 
 const MainPage = () => {
@@ -35,10 +32,14 @@ const MainPage = () => {
 
       <div className="main__box1">
         <picture>
-          <source media="(min-width: 1024px)" srcSet={promotion3} />
-          <source media="(min-width: 480px)" srcSet={promotion2} />
-          <source media="(max-width: 480px)" srcSet={promotion} />
-          <img src={promotion3} alt="promotion" className="main__promotion" />
+          <source media="(min-width: 1024px)" srcSet={IMAGES.promotion_3} />
+          <source media="(min-width: 480px)" srcSet={IMAGES.promotion_2} />
+          <source media="(max-width: 480px)" srcSet={IMAGES.promotion_1} />
+          <img
+            src={IMAGES.promotion_3}
+            alt="promotion"
+            className="main__promotion"
+          />
         </picture>
 
         <span className="main__president">
@@ -132,11 +133,12 @@ const MainPage = () => {
                 <span style={{ color: "#838383" }}>매일 00:00 ~ 24:00</span>
               </span>
               <Link to="http://pf.kakao.com/_ZxiEjG/chat">
-                <img
-                  src={kakao}
-                  alt="kakao"
-                  className="main__notice__consultation__kakao-btn"
-                />
+                <div className="main__notice__consultation__kakao-btn">
+                  <img
+                    src={IMAGES.kakao_open_chat}
+                    alt="kakao"
+                  />
+                </div>
               </Link>
             </span>
           </div>

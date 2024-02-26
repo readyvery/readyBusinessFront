@@ -31,7 +31,7 @@
 }
 
 .mainInven-category-checkbox.selected{
-    background: #d82356 url( "../../../../assets/icons/icon_check.svg" ) no-repeat center center;
+    background: #d82356 url( "../../../../assets/images/ic_inventory_check_white.png" ) no-repeat center center;
     border: none;
     background-size: 70%;
 }

@@ -1,5 +1,4 @@
-import close from "../../../../assets/icons/icon_closeModal.svg";
-import cherry from "../../../../assets/icons/small_cherry.svg";
+import { IMAGES } from "../../../../constants/images";
 import "./InvenSoldOutModal.css";
 
 const InvenSoldOutModal = ({
@@ -12,12 +11,12 @@ const InvenSoldOutModal = ({
     <div className="inven-modal-wrapper">
       <div className="inven-modal-box">
         <div className="inven-modal-close__wrapper">
-          <img src={close} alt="close" onClick={handleIsCloseModal} />
+          <img src={IMAGES.check_x_gray} alt="close" onClick={handleIsCloseModal} />
         </div>
 
         <div className="inven-modal-box-wrapper">
           <div className="inven-modal-box-img__wrapper">
-            <img src={cherry} alt="cherry" />
+            <img src={IMAGES.cherry_red} alt="cherry" />
           </div>
           <div className="inven-modal-box-txt__wrapper">
             <div className="inven-modal-box-txt">{contenttxt}</div>

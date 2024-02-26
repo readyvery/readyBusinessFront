@@ -204,7 +204,7 @@
 .main__guide1 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide1.png");
+  background-image: url("../../assets/images/img_guide1.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
@@ -223,7 +223,7 @@
 .main__guide2 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide2.png");
+  background-image: url("../../assets/images/img_guide2.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
@@ -242,7 +242,7 @@
 .main__guide3 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide3.png");
+  background-image: url("../../assets/images/img_guide3.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
@@ -368,14 +368,13 @@ ul {
   line-height: normal;
   transform: rotate(0.029deg);
 }
-
 .main__notice__consultation__kakao-btn {
-  width: 1.8035rem;
-  height: 1.2065rem;
-  margin-left: 1.47rem;
-  border-radius: 0.22619rem;
+  background: #e6e6e6;
+  border-radius: 0.30163rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 @media (max-width: 480px) {
   .main__promotion {
     width: 27rem;
@@ -555,6 +554,15 @@ ul {
   .main__notice__consultation__kakao {
     margin-bottom: 0.37rem;
   }
+  .main__notice__consultation__kakao-btn {
+    width: 1.35263rem;
+    height: 0.90488rem;
+    margin-left: 1.47rem;
+  }
+  .main__notice__consultation__kakao-btn img {
+    width: 0.55969rem;
+    height: 0.47506rem;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
@@ -687,6 +695,15 @@ ul {
 
   .main__notice__consultation__kakao {
     margin-top: auto;
+  }
+  .main__notice__consultation__kakao-btn {
+    width: 1.35263rem;
+    height: 0.90488rem;
+    margin-left: 1.47rem;
+  }
+  .main__notice__consultation__kakao-btn img {
+    width: 0.55969rem;
+    height: 0.47506rem;
   }
 }
 
@@ -821,4 +838,14 @@ ul {
     font-size: 0.5rem;
     margin-top: auto;
   }
+  .main__notice__consultation__kakao-btn {
+    width: 1.8035rem;
+    height: 1.2065rem;
+    margin-left: 1.95rem;
+  }
+  .main__notice__consultation__kakao-btn img{
+    width: 0.74625rem;
+    height: 0.63344rem;
+  }
+  
 }
