@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import { render } from 'react-thermal-printer';
-import styled from 'styled-components';
-import UserReceipt from '../components/UserReceipt';
-import { HomeContext } from './OrderManage/Home';
+import { useContext } from "react";
+import { render } from "react-thermal-printer";
+import styled from "styled-components";
+import UserReceipt from "../components/UserReceipt";
+import { HomeContext } from "./OrderManage/Home";
 
 const ReceiptTest = () => {
   const context = useContext(HomeContext);
   const selectedInfo = context.selectedMenu;
   console.log(selectedInfo);
-  
+
   const onClickPrintHandler = async () => {
     const data = await render(UserReceipt(selectedInfo[0]));
     const port = await window.navigator.serial.requestPort();
@@ -19,10 +19,8 @@ const ReceiptTest = () => {
       await writer.releaseLock();
     }
     await port.close({ baudRate: 9600 });
-
   };
-  
-  
+
   return (
     <>
       <ReceiptButton
@@ -30,9 +28,12 @@ const ReceiptTest = () => {
           await onClickPrintHandler();
           alert("smartorder-preparing");
         }}
-      > 영수증 출력 </ReceiptButton>
+      >
+        {" "}
+        영수증 출력{" "}
+      </ReceiptButton>
     </>
- );
+  );
 };
 
 const ReceiptButton = styled.div`
