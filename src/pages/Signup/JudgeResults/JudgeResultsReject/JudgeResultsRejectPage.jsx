@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import deleteicon from "../../../../assets/icons/icon_delete.png";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
+import { IMAGES } from "../../../../constants/images";
 import "./JudgeResultsRejectPage.css";
 function JudgeResultsRejectPage() {
   const navigate = useNavigate();
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
-    ? ["25rem", "31.3rem", "3.69rem", "4.56rem"]
-    : ["31.3rem", "31.3rem", "4.44rem", "3.5rem"];
+    ? ["25rem", "33.18rem", "5.57rem", "4.56rem"]
+    //31.3+1.88 = 33.18, 3.69+1.88 =5.57
+    : ["31.3rem", "34.05rem", "7.19rem", "3.5rem"];
+  //31.3+2.75 = 34.05, 4.44+2.75 = 7.19
   useEffect(() => {
     const handleResize = () => {
       setIs480(window.innerWidth <= 480);
@@ -29,11 +31,14 @@ function JudgeResultsRejectPage() {
       logoMarginTop={containerSize[2]}
       logoMarginBottom={containerSize[3]}
     >
-      <img
-        src={deleteicon}
-        alt="deleteicon"
-        className="judge-results-reject-page-top-positon-icon"
-      />
+      <div className="judge-results-reject-page-top-positon-icon-line"/>
+      <div className="judge-results-reject-page-top-positon-icon-wrapper">
+        <img
+          src={IMAGES.store_application_bad}
+          alt="deleteicon"
+          className="judge-results-reject-page-top-positon-icon"
+        />
+      </div>
       <div className="judge-results-reject-page-content-container">
         <span className="judge-results-reject-page-content-text-style">
           심사가 반려되었습니다
@@ -44,7 +49,9 @@ function JudgeResultsRejectPage() {
         </div>
 
         <div className="judge-results-reject-page-next-button">
-          <RedButton onClick={() => navigate("/signup/auth/results")}>재신청하기</RedButton>
+          <RedButton onClick={() => navigate("/signup/auth/results")}>
+            재신청하기
+          </RedButton>
         </div>
       </div>
     </Container>

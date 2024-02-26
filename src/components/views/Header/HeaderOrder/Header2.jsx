@@ -5,7 +5,7 @@ import { soundState } from "../../../../Atom/status";
 import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
 import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
-import LOGO from "../../../../assets/icons/Header/header_logo.png"; //로고
+import { IMAGES } from "../../../../constants/images";
 import "./Header.css";
 
 const Header = () => {
@@ -42,7 +42,7 @@ const Header = () => {
       <div className="header2-wrapper">
         <div className="logo-wrapper">
           <img
-            src={LOGO}
+            src={IMAGES.logo}
             className="LOGO"
             alt="LOGO"
             onClick={() => navigate(`/main`)}

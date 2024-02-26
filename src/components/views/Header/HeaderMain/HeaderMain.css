@@ -73,7 +73,7 @@
     width: 43.1221rem;
   }
   .headerTop-logo-txt-css{
-    width: 12.5625rem;
+    /* width: 12.5625rem; */
     height: 3.125rem;
     margin-left: 0.21rem;
   }
@@ -110,7 +110,7 @@
     width: 32.36032rem;
   }
   .headerTop-logo-txt-css{
-      width: 6.4375rem;
+      /* width: 6.4375rem; */
       height: 2.3125rem;
       margin-left: 0.27rem;
   }

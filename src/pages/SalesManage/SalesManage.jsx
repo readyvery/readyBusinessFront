@@ -1,10 +1,8 @@
 import Footer from "../../components/views/Footer/Footer";
 import HeaderBack480 from "../../components/views/Header/Header480/HeaderBack480/HeaderBack480";
 import HeaderMain from "../../components/views/Header/HeaderMain/HeaderMain";
-import prev from "../../assets/icons/icon_date_prev.png";
-import next from "../../assets/icons/icon_date_next.png";
 import "./SalesManage.css";
-
+import { IMAGES } from "../../constants/images";
 const SalesManage = () => {
   return (
     <div className="sales">
@@ -34,9 +32,9 @@ const SalesManage = () => {
         <div className="sales__graph">
           <div className="sales__graph__title">주간매출</div>
           <div className="sales__graph__date">
-            <img src={prev} alt="<" className="sales__graph__date__prev" />
+            <img src={IMAGES.btn_sales_prev} alt="<" className="sales__graph__date__prev" />
             2024-01-01 ~ 2024-01-07
-            <img src={next} alt=">" className="sales__graph__date__next" />
+            <img src={IMAGES.btn_sales_next} alt=">" className="sales__graph__date__next" />
           </div>
         </div>
         <div className="sales__notice">

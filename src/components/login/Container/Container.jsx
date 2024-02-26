@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/icons/Big_LOGO.svg";
+import { IMAGES } from "../../../constants/images";
 import "./Container.css";
 
 const Container = ({
@@ -27,7 +27,7 @@ const Container = ({
             marginBottom: `${logoMarginBottom}`,
           }}
         >
-          <img src={logo} alt="logo" />
+          <img src={IMAGES.logo} alt="logo" />
           <div className="container-wrapper-text">{title}</div>
         </div>
         <div className="loginpage-content-wrapper">

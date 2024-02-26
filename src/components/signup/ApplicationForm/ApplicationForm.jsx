@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../../assets/icons/Big_LOGO.svg";
-import checkicon from "../../../assets/icons/icon_check_black.svg";
-import kakaolinkedicon from "../../../assets/icons/icon_kakao.svg";
-import redyveryicon from "../../../assets/icons/img_readyVery.svg";
+import { IMAGES } from "../../../constants/images";
 import RedButton from "../../login/redButton/RedButton";
 import "./ApplicationForm.css";
 const ApplicationFormContainer = ({ children }) => {
@@ -11,7 +8,7 @@ const ApplicationFormContainer = ({ children }) => {
       <div className="application-form-container-wrapper-inner">
         <div className="application-form-wrapper">
           <span>
-            <img src={logo} alt="logo" />
+            <img src={IMAGES.logo} alt="logo" />
           </span>
           <div className="application-form-container-text">시작하기</div>
         </div>
@@ -88,26 +85,26 @@ const ApplicationForm = () => {
         <div className="application-form-content-main-text-style">
           <span>안녕하세요!</span>
           <span>
-            <img src={logo} alt="logo" />와 함께하는 입점을 고려해 주셔서
+            <img src={IMAGES.logo} alt="logo" />와 함께하는 입점을 고려해 주셔서
             감사합니다.
           </span>
           <span>아래의 문서들을 미리 준비해 주시면</span>
           <span>입점 신청이 더욱 수월하게 진행됩니다.</span>
           <div className="application-form-content-sub-text-style">
             <span>
-              <img src={checkicon} alt="checkicon" />
+              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
               사업자등록증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={checkicon} alt="checkicon" />
+              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
               영업신고증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={checkicon} alt="checkicon" />
+              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
               신분증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={checkicon} alt="checkicon" />
+              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
               통장사본 (jpg 또는 jpeg 형식)
             </span>
           </div>
@@ -117,7 +114,7 @@ const ApplicationForm = () => {
         </div>
 
         <div className="application-form-redyvery-linked-message-for-kakao">
-          <img src={redyveryicon} alt="redyveryicon" />
+          <img src={IMAGES.logo_open_chat} alt="redyveryicon" />
           <div className="application-form-redyvery-linked-message-for-kakao-font">
             <div className="application-form-redyvery-linked-message-for-kakao-title">
               레디베이 상담
@@ -130,7 +127,7 @@ const ApplicationForm = () => {
             className="
             application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper"
           >
-            <img src={kakaolinkedicon} alt="kakaolinkedicon" />
+            <img src={IMAGES.kakao_open_chat} alt="kakaolinkedicon" />
           </div>
         </div>
         <div className="application-form-next-button">
