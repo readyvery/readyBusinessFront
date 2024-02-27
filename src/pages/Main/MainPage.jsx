@@ -7,6 +7,8 @@ import { IMAGES } from "../../constants/images";
 import "./MainPage.css";
 
 const MainPage = () => {
+  const thisWeekCases = 23;
+  const thisMonthCases = 54;
   const notices = [
     {
       id: 1,
@@ -72,12 +74,14 @@ const MainPage = () => {
             <span className="main__sales__case">
               <div className="main__sales__case__this-week">
                 <span className="main__sales__case__title">이번주</span>
-                <span className="main__sales__case__this-week-amount">0원</span>
+                <span className="main__sales__case__this-week-amount">
+                  {thisWeekCases}건
+                </span>
               </div>
               <div className="main__sales__case__this-month">
                 <span className="main__sales__case__title">이번달</span>
                 <span className="main__sales__case__this-month-amount">
-                  0원
+                  {thisMonthCases}건
                 </span>
               </div>
             </span>
@@ -134,10 +138,7 @@ const MainPage = () => {
               </span>
               <Link to="http://pf.kakao.com/_ZxiEjG/chat">
                 <div className="main__notice__consultation__kakao-btn">
-                  <img
-                    src={IMAGES.kakao_open_chat}
-                    alt="kakao"
-                  />
+                  <img src={IMAGES.kakao_open_chat} alt="kakao" />
                 </div>
               </Link>
             </span>
