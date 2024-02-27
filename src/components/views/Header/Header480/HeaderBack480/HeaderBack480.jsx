@@ -1,4 +1,4 @@
-import back from "../../../../../assets/icons/icon_parkOutline.svg";
+import { IMAGES } from "../../../../../constants/images";
 import "./HeaderBack480.css";
 
 const HeaderBack480 = ({ pageName }) => {
@@ -6,9 +6,10 @@ const HeaderBack480 = ({ pageName }) => {
     window.history.back();
   };
 
+  //TODO:: 백버튼 마진 수정
   return (
     <header className="header__back__480">
-      <img src={back} alt="<" onClick={() => handleGoBack()} />
+      <img src={IMAGES.back} alt="<" onClick={() => handleGoBack()} />
       {/* 페이지 이름 표시 */}
       <span>{pageName}</span>
     </header>

@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import downArrow from "../../assets/icons/icon_downArrow.svg";
-import upArrow from "../../assets/icons/icon_upArrow.svg";
 import InvenBox from "../../components/views/Inven/InvenBox";
 import { IMAGES } from "../../constants/images";
 import "./MainInven.css";
@@ -111,7 +109,7 @@ function MainInven () {
         <div className="mainInven-title__span2__wrapper" onClick={() => setIsCategoryOpen((prev) => !prev)}>
           <span style={{ 'width': '1.125rem' }}></span>
           <span className="mainInven-title__span2">{category}</span>
-          {isCategoryOpen ? (<span><img src={downArrow} alt="downArrow"/></span>) : (<span><img src={upArrow} alt="upArrow"/></span>)}
+          {isCategoryOpen ? (<span><img src={IMAGES.arrow_down} alt="downArrow"/></span>) : (<span><img src={IMAGES.arrow_up} alt="upArrow"/></span>)}
         </div>
         <span className="mainInven-title__span3">상품명</span>
       </div>

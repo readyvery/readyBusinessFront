@@ -32,4 +32,22 @@ export const IMAGES = {
         // 카카오톡 오픈 채팅 아이콘
     kakao_open_chat: require("../assets/images/ic_kakao_open_chat.png"),
     logo_open_chat: require("../assets/images/ic_logo_open_chat.png"),
+
+    //영업중 영업종료 아이콘
+    store_off: require("../assets/images/ic_close_light.png"),
+    store_on: require("../assets/images/ic_open_light.png"),
+
+    // 소리 크기, 끄기 버튼
+    sound_on: require("../assets/images/btn_sound_on.png"),
+    sound_off: require("../assets/images/btn_sound_off.png"),
+
+    // 메인페이지 햄버거바
+    round_menu: require("../assets/images/ic_round_menu.png"),
+
+    // 재고관리 화살표
+    arrow_up: require("../assets/images/ic_arrow_up.png"),
+    arrow_down: require("../assets/images/ic_arrow_down.png"),
+
+    //header480 뒤로가기
+    back: require("../assets/images/ic_park_outline.png"),
 };

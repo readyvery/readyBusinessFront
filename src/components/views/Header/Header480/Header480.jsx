@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import menu from "../../../../assets/icons/Header/ic_round-menu.svg";
 import { IMAGES } from "../../../../constants/images";
 import SideMenu from "../../SideMenu/SideMenu";
 import OperationButton from "../OperationButton/OperationButton";
@@ -18,7 +17,7 @@ export default function Header480() {
       <SideMenu isOpen={isSideMenuOpen} toggleSidebar={handleSidebar} />
       <header className="header480">
         <img
-          src={menu}
+          src={IMAGES.round_menu}
           alt="menu"
           className="header480__menu"
           onClick={handleSidebar}
