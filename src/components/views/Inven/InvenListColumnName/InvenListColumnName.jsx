@@ -1,5 +1,4 @@
-import downArrow from "../../../../assets/icons/icon_downArrow.svg";
-import upArrow from "../../../../assets/icons/icon_upArrow.svg";
+import { IMAGES } from "../../../../constants/images";
 import InvenCategoryList from "../InvenCategoryList/InvenCategoryList";
 import "./InvenListColumnName.css";
 const InvenListColumnName = ({
@@ -20,11 +19,11 @@ const InvenListColumnName = ({
         <span className="mainInven-title__span2">{category}</span>
         {isCategoryOpen ? (
           <span>
-            <img src={downArrow} alt="downArrow" />
+            <img src={IMAGES.arrow_down} alt="downArrow" />
           </span>
         ) : (
           <span>
-            <img src={upArrow} alt="upArrow" />
+            <img src={IMAGES.arrow_up} alt="upArrow" />
           </span>
         )}
       </div>
