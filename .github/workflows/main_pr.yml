@@ -17,7 +17,7 @@ jobs:
             exit 1
           fi
       - name: Checkout source code.   # Repo checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check Node v            # Node v 확인
         run: node -v
