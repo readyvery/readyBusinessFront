@@ -19,11 +19,11 @@ const InvenListColumnName = ({
         <span className="mainInven-title__span2">{category}</span>
         {isCategoryOpen ? (
           <span>
-            <img src={IMAGES.arrow_down} alt="downArrow" />
+            <img src={IMAGES.arrow_up} alt="upArrow" />
           </span>
         ) : (
           <span>
-            <img src={IMAGES.arrow_up} alt="upArrow" />
+            <img src={IMAGES.arrow_down} alt="downArrow" />
           </span>
         )}
       </div>
