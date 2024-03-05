@@ -91,7 +91,6 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-bottom: 0.25rem;
 }
 
 .main__sales__amount__content {
@@ -137,7 +136,7 @@
   /* margin-right: 5.37rem; */
 }
 
-.main__sales__case__this-week-amount {
+.main__sales__case__amount {
   color: #4f4f4f;
   text-align: right;
   font-family: "Pretendard Variable";
@@ -151,16 +150,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.main__sales__case__this-month-amount {
-  color: #4f4f4f;
-  text-align: right;
-  font-family: "Pretendard Variable";
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
 }
 
 .main__sales__standard {
@@ -410,6 +399,10 @@ ul {
     margin-right: auto;
   }
 
+  .main__sales__amount__title {
+    margin-bottom: 0.25rem;
+  }
+
   .main__box5 {
     display: flex;
     flex-direction: row;
@@ -426,69 +419,12 @@ ul {
     margin-right: 0.75rem;
   }
 
-  .main__sales__amount__title {
-    color: #4f4f4f;
-    font-family: "Pretendard Variable";
-    font-size: 0.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-bottom: 0.25rem;
-  }
-
-  .main__sales__amount__content {
-    color: #d82356;
-    font-family: "Pretendard Variable";
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  .main__sales__amount__predicate {
-    color: var(--title, #2e2d2d);
-    font-family: "Pretendard Variable";
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
   .main__sales__case {
     width: 13.125rem;
     height: 5.8125rem;
     border-radius: 0.3125rem;
     border: 0.75px solid #d9d9d9;
-  }
-
-  .main__sales__case__title {
-    color: #000;
-    font-family: "Pretendard Variable";
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    /* margin-right: 5.37rem; */
-  }
-
-  .main__sales__case__this-week-amount {
-    color: #4f4f4f;
-    text-align: right;
-    font-family: "Pretendard Variable";
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  .main__sales__case__this-month-amount {
-    color: #4f4f4f;
-    text-align: right;
-    font-family: "Pretendard Variable";
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    background: #fff;
   }
 
   .main__sales__standard {
@@ -598,6 +534,7 @@ ul {
   .main__box5 {
     border-radius: 0.3125rem;
     border: 0.75px solid #d9d9d9;
+    background: #fff;
   }
 
   .main__sales {
@@ -698,7 +635,7 @@ ul {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .main__box1 {
     display: flex;
     width: fit-content;
@@ -738,7 +675,8 @@ ul {
 
   .main__box5 {
     border-radius: 0.3125rem;
-    border: 0.75px solid #d9d9d9;
+    border: 1px solid #d9d9d9;
+    background: #fff;
   }
 
   .main__sales__amount {
@@ -749,9 +687,30 @@ ul {
     padding-right: 1.37rem;
   }
 
+  .main__sales__amount__title {
+    font-size: 0.75rem;
+    margin-bottom: 0.31rem;
+  }
+
+  .main__sales__amount__content {
+    font-size: 1.25rem;
+  }
+
+  .main__sales__amount__predicate {
+    font-size: 1.25rem;
+  }
+
   .main__sales__case {
     width: 15.625rem;
     height: 6.44rem;
+  }
+
+  .main__sales__case__title {
+    font-size: 1rem;
+  }
+
+  .main__sales__case__amount {
+    font-size: 1.25rem;
   }
 
   .main__guide {

@@ -80,13 +80,13 @@ const MainPage = () => {
             <span className="main__sales__case">
               <div className="main__sales__case__this-week">
                 <span className="main__sales__case__title">이번주</span>
-                <span className="main__sales__case__this-week-amount">
+                <span className="main__sales__case__amount">
                   {thisWeekCases}건
                 </span>
               </div>
               <div className="main__sales__case__this-month">
                 <span className="main__sales__case__title">이번달</span>
-                <span className="main__sales__case__this-month-amount">
+                <span className="main__sales__case__amount">
                   {thisMonthCases}건
                 </span>
               </div>
