@@ -128,7 +128,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
                 <span className="receipt-text">수령방식</span>
                 <span className="receipt-text">
                     {/* {orderProps?.phone?.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")} */}
-                    {selectedInfo[0]?.pickUp}
+                    {selectedInfo[0]?.pickUp === 1 ? "매장" : "픽업"}
                 </span>
             </div>
             <div className="receipt-divider" />
@@ -168,7 +168,8 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
               <span className="receipt-text">할인금액</span>
               <span className="receipt-text">
                 {/* {orderProps?.couponUsed ? "(-) 500원" : "0원"} */}
-                (-)500원
+                {/* (-)500원 */}
+                {selectedInfo[0]?.couponUsed ? "(-) 500원" : "0원"}
               </span>
             </div>
             <div className="receiptTextBox">
