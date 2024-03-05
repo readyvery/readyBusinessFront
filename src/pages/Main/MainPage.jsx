@@ -7,6 +7,7 @@ import { IMAGES } from "../../constants/images";
 import "./MainPage.css";
 
 const MainPage = () => {
+  const thisWeekSales = 585554;
   const thisWeekCases = 23;
   const thisMonthCases = 54;
   const notices = [
@@ -64,7 +65,12 @@ const MainPage = () => {
                 <div className="main__sales__amount__title">
                   레디베리를 통해 이번주
                 </div>
-                <div className="main__sales__amount__content">0원</div>
+                <div className="main__sales__amount__content">
+                  {thisWeekSales
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </div>
                 <div className="main__sales__amount__predicate">
                   매출을 기록했습니다
                 </div>

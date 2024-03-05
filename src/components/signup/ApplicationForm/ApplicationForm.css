@@ -31,7 +31,7 @@
   align-items: center;
   -webkit-box-align: center;
   justify-content: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   text-align: center;
 }
 /* 로고 */
@@ -100,7 +100,7 @@
 }
 .application-form-circle-num-bar-text-content {
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 800;
 }
@@ -123,7 +123,7 @@
   align-items: center;
   flex-direction: column;
   width: 18.8rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 500;
   color: #2e2d2d;
@@ -138,7 +138,7 @@
   align-items: flex-start;
   flex-direction: column;
   margin-top: 1.75rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 500;
   color: #2e2d2d;
@@ -166,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
 }
 .application-form-redyvery-linked-message-for-kakao img {
   width: 1.68906rem;

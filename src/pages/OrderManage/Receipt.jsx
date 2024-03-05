@@ -18,10 +18,13 @@ const Receipt = () => {
 
   useEffect(() => {
     AOS.init();
-  })
+  });
 
   return (
-    <div data-aos="zoom-in" className={context.selectedIdx ? `Box` : `Box nonDisplay`}>
+    <div
+      data-aos="zoom-in"
+      className={context.selectedIdx ? `Box` : `Box nonDisplay`}
+    >
       <div className="rounded-rectangle">
         <ReceiptBox modalIdx={modalIdx} setModalIdx={setModalIdx}>
           {orderProps.status === 1 && (
@@ -59,7 +62,7 @@ const RefuseBtn = styled.div`
   color: ${theme.colors.text};
   border: 1.74px solid ${theme.colors.borderColor};
   font-size: 1.2rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 800;
   width: 45%;
   height: 3rem;
@@ -74,7 +77,7 @@ const AcceptBtn = styled.div`
   background-color: ${theme.colors.MainColor};
   border: 1.74px solid ${theme.colors.MainColor};
   font-size: 1.2rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 800;
   width: 45%;
   height: 3rem;
@@ -89,7 +92,7 @@ const CompleteBtn = styled.div`
   background-color: ${theme.colors.MainColor};
   border: 1.74px solid ${theme.colors.MainColor};
   font-size: 1.2rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 800;
   width: 100%;
   height: 3rem;

@@ -1,5 +1,5 @@
 .loginpage-user-num-input-style {
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
 }
 .loginpage-user-auth-num {
   border: 0.05rem solid rgba(131, 131, 131, 1);
@@ -17,7 +17,7 @@
   margin-top: -3rem;
   margin-bottom: 2rem;
   margin-right: 0.94rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   color: #838383;
 }

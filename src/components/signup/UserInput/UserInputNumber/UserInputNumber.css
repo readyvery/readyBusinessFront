@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   justify-content: center;
 }
 
@@ -15,7 +15,7 @@
 .user-input-phone-number-wrapper {
   display: flex;
   align-items: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
 }
 
 .user-input-phone-number-input {
