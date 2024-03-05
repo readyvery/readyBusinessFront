@@ -23,9 +23,11 @@ const UserInputId = () => {
     };
 
     const isInputIdCombinationValid = (inputId) => {
-        const hasLetter = /[a-zA-Z]/.test(inputId);
-        const hasNumber = /\d/.test(inputId);
-        return hasLetter && hasNumber;
+        // const hasLetter = /[a-zA-Z]/.test(inputId);
+        // const hasNumber = /\d/.test(inputId);
+        // return hasLetter && hasNumber;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(inputId);
     };
 
     const handleInputChange = (e) => {
@@ -72,16 +74,14 @@ const UserInputId = () => {
 
     const renderMessage = (userInputId) => {
         if (inputIdError) {
-            if (!isInputIdLength(userInputId)) {
-                return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>8자 이상 입력해야 합니다.</LoginChkAlrm>;
-              } else if (!isInputIdCombinationValid(userInputId)) {
-                return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>영문+숫자의 조합이어야 합니다.</LoginChkAlrm>;
+            if (!isInputIdCombinationValid(userInputId)) {
+                return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>올바른 형식의 이메일이 아닙니다.</LoginChkAlrm>;
               } 
         } if (isDuplicate !== null) { // isDuplicate 상태가 null이 아닐 때만 메시지 렌더링
             if (isDuplicate === false) {
                 return <LoginChkAlrm icon={""} paddingSize={"0.45rem"}>사용 가능한 아이디입니다.</LoginChkAlrm>;
             } else if (isDuplicate === true) {
-                return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>이미 사용 중인 아이디입니다.</LoginChkAlrm>;
+                return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>이미 존재하는 아이디입니다.</LoginChkAlrm>;
             }
         }
         return null;
@@ -89,9 +89,8 @@ const UserInputId = () => {
 
     return(
         <div className="signup-page-content-id-wrapper">
-            <label className="signup-page-content-id-label-style">이메일</label>
             <div className="signup-page-content-id-label-plus-text">
-                <div>영문+숫자+특수기호 8자 이상</div>
+                <label className="signup-page-content-id-label-style">아이디</label>
                 <button 
                     className={`duplication-check-button ${isDuplicate === false ? "duplication-check-button-inactive" : ""}`}
                     onClick={handleDuplicate}>중복 확인</button>
@@ -100,7 +99,7 @@ const UserInputId = () => {
                 <input 
                     id="userid" 
                     type="text" 
-                    placeholder="아이디" 
+                    placeholder="아이디 입력(이메일)" 
                     required name="userid"             
                     value={inputId}
                     onChange={handleInputChange}
