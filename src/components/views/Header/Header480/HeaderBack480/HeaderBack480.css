@@ -13,7 +13,7 @@
 
 .header__back__480 span {
   color: #000;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -29,7 +29,7 @@
   }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 481px) {
   .header__back__480 img {
     display: none;
   }

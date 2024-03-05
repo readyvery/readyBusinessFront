@@ -1,7 +1,7 @@
 /* 재고관리 페이지 */
 .mainInven-wrapper {
   width: 100%;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   white-space: nowrap;
   position: relative;
 }
@@ -33,7 +33,7 @@
 .mainInven-category__modal span {
   color: #fff;
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 600;
   width: 100%;
   overflow-x: hidden;
@@ -94,7 +94,7 @@
   .mainInven-title__span2__category-wrapper {
     padding-top: 0.23rem;
     /* 2.17-0.23 */
-    top: 1.94rem; 
+    top: 1.94rem;
   }
   .mainInven-category__modal span {
     font-size: 1rem;
