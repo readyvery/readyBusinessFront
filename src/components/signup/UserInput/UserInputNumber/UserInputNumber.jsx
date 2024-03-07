@@ -18,6 +18,7 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
   const [inputNum, setInputNum] = useState(false);
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
+  // const [operationMode, setOperationMode] = useState('join');
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
   const handleButtonClick = () => {

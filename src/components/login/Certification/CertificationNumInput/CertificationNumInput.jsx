@@ -39,8 +39,7 @@ function CertificationNumInput({ phoneNumber }) {
           {
             phoneNumber: phoneNumber,
             verifyNumber: newChkNum,
-          },
-          { withCredentials: true }
+          }
         );
 
         if (response.data.success) {
