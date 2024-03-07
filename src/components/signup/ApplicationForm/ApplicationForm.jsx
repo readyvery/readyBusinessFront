@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../../../constants/images";
 import RedButton from "../../login/redButton/RedButton";
 import "./ApplicationForm.css";
@@ -92,29 +92,41 @@ const ApplicationForm = () => {
           <span>입점 신청이 더욱 수월하게 진행됩니다.</span>
           <div className="application-form-content-sub-text-style">
             <span>
-              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
+              <img
+                src={IMAGES.store_application_form_check_gray}
+                alt="checkicon"
+              />
               사업자등록증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
+              <img
+                src={IMAGES.store_application_form_check_gray}
+                alt="checkicon"
+              />
               영업신고증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
+              <img
+                src={IMAGES.store_application_form_check_gray}
+                alt="checkicon"
+              />
               신분증 (jpg 또는 jpeg 형식)
             </span>
             <span>
-              <img src={IMAGES.store_application_form_check_gray} alt="checkicon" />
+              <img
+                src={IMAGES.store_application_form_check_gray}
+                alt="checkicon"
+              />
               통장사본 (jpg 또는 jpeg 형식)
             </span>
           </div>
           <span className="application-form-content-main-text-tab">
-            작성 중 어움이 있으시면 아래 카카오톡 채팅방으로 연락 주세요.
+            작성 중 어려움이 있으시면 아래 카카오톡 채팅방으로 연락 주세요.
           </span>
         </div>
 
         <div className="application-form-redyvery-linked-message-for-kakao">
-          <img src={IMAGES.logo_open_chat} alt="redyveryicon" />
+          <img src={IMAGES.logo_open_chat} alt="redyveryicon" className="application-form-redyvery-linked-message-for-kakao-readyvery-img"/>
           <div className="application-form-redyvery-linked-message-for-kakao-font">
             <div className="application-form-redyvery-linked-message-for-kakao-title">
               레디베이 상담
@@ -123,12 +135,11 @@ const ApplicationForm = () => {
               매일 00:00 ~ 24:00
             </div>
           </div>
-          <div
-            className="
-            application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper"
-          >
-            <img src={IMAGES.kakao_open_chat} alt="kakaolinkedicon" />
-          </div>
+          <Link to="http://pf.kakao.com/_ZxiEjG/chat">
+            <div className="application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper">
+              <img src={IMAGES.kakao_open_chat} alt="kakaolinkedicon" />
+            </div>
+          </Link>
         </div>
         <div className="application-form-next-button">
           <RedButton onClick={() => navigate("/signup/auth/verification")}>

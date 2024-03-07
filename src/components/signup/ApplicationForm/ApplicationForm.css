@@ -168,12 +168,12 @@
   justify-content: space-around;
   font-family: "Pretendard";
 }
-.application-form-redyvery-linked-message-for-kakao img {
+.application-form-redyvery-linked-message-for-kakao-readyvery-img {
   width: 1.68906rem;
   height: 1.68906rem;
   border-radius: 0.30163rem;
 }
-.application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper {
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper {
   width: 1.74938rem;
   height: 1.2065rem;
   border-radius: 0.30163rem;
@@ -182,8 +182,8 @@
   align-items: center;
   justify-content: center;
 }
-.application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper
-  img {
+
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper img {
   width: 0.72388rem;
   height: 0.63344rem;
 }
