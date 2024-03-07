@@ -1,0 +1,191 @@
+.judge-results-before-page-content-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Pretendard";
+  white-space: nowrap;
+}
+
+.judge-results-before-page-top-positon-icon-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+}
+.judge-results-before-page-top-positon-icon-line{
+  width: 100%;
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  background-color: #f4f7ff;
+}
+
+.judge-results-before-page-content-text-style {
+  color: var(--title, #2e2d2d);
+  text-align: center;
+  font-weight: 800;
+}
+
+.judge-results-before-page-content-main-text-style {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+  color: var(--title, #2e2d2d);
+}
+
+.redyvery-linked-message-for-kakao {
+  border-radius: 0.94175rem;
+  border: 1.205px solid var(--frame-text, #838383);
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+.redyvery-linked-message-for-kakao-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redyvery-linked-message-for-kakao-title {
+  color: var(--title, #2e2d2d);
+}
+
+.redyvery-linked-message-for-kakao-time {
+  color: #838383;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 480px) {
+  .judge-results-before-page-content-container {
+    margin-top: 7.03rem;
+  }
+  .judge-results-before-page-top-positon-icon {
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-top: -2.75rem;
+  }
+  .judge-results-before-page-top-positon-icon-wrapper{
+    top: 2.75rem;
+    height: 5.5rem;
+  }
+  .judge-results-before-page-top-positon-icon-line{
+    height: 2.75rem;
+  }
+  .judge-results-before-page-content-text-style {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .judge-results-before-page-content-main-text-style {
+    font-size: 1rem;
+  }
+  .judge-results-before-page-content-main-text-style img {
+    padding-top: 0.1rem;
+    height: 1rem;
+    margin-right: 0.2rem;
+  }
+  .judge-results-before-page-content-main-text-tab {
+    margin-top: 1rem;
+    margin-bottom: 2.81rem;
+  }
+  .redyvery-linked-message-for-kakao {
+    width: 17.72438rem;
+    height: 3.90844rem;
+    padding: 0 1.1rem;
+  }
+  .redyvery-linked-message-for-readyvery-img {
+    width: 2.54506rem;
+    height: 2.54506rem;
+    border-radius: 0.30163rem;
+  }
+  .redyvery-linked-message-for-kakao-img {
+    width: 2.63594rem;
+    height: 1.81788rem;
+    border-radius: 0.4545rem;
+    background: #e6e6e6;
+  }
+  .redyvery-linked-message-for-kakao-img img {
+    width: 1.09075rem;
+    height: 0.95438rem;
+  }
+  .redyvery-linked-message-for-kakao-title {
+    font-size: 0.75338rem;
+  }
+  .redyvery-linked-message-for-kakao-time {
+    margin-top: 0.12rem;
+    font-size: 0.75338rem;
+  }
+
+  .judge-results-before-page-next-button {
+    margin-top: 5.9rem;
+  }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  .judge-results-before-page-content-container {
+    margin-top: 4.31rem;
+  }
+  .judge-results-before-page-top-positon-icon {
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-top: -1.88rem;
+  }
+
+  .judge-results-before-page-content-text-style {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .judge-results-before-page-content-main-text-style {
+    font-size: 0.75rem;
+  }
+  .judge-results-before-page-content-main-text-style img {
+    padding-top: 0.1rem;
+    height: 0.75rem;
+    margin-right: 0.2rem;
+  }
+  .judge-results-before-page-content-main-text-tab {
+    margin-top: 1rem;
+    margin-bottom: 1.12rem;
+  }
+  .redyvery-linked-message-for-kakao {
+    width: 12.5rem;
+    height: 2.5rem;
+    padding: 0 1.1rem;
+  }
+  .redyvery-linked-message-for-readyvery-img {
+    width: 1.68906rem;
+    height: 1.68906rem;
+    border-radius: 0.30163rem;
+  }
+  .redyvery-linked-message-for-kakao-img {
+    width: 1.74938rem;
+    height: 1.2065rem;
+    border-radius: 0.30163rem;
+    background: #e6e6e6;
+  }
+  .redyvery-linked-message-for-kakao-img img {
+    width: 0.72388rem;
+    height: 0.63344rem;
+  }
+  .redyvery-linked-message-for-kakao-title {
+    font-size: 0.5rem;
+  }
+  .redyvery-linked-message-for-kakao-time {
+    margin-top: 0.03rem;
+    font-size: 0.5rem;
+  }
+
+  .judge-results-before-page-next-button {
+    margin-top: 5.19rem;
+  }
+  .judge-results-before-page-top-positon-icon-wrapper{
+    top: 1.88rem;
+    height: 3.75rem;
+  }
+  .judge-results-before-page-top-positon-icon-line{
+    height: 1.88rem;
+  }
+}

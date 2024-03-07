@@ -1,11 +1,8 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import close from "../../assets/icons/icon_closeModal.svg";
-import downArrow from "../../assets/icons/icon_downArrow.svg";
-import upArrow from "../../assets/icons/icon_upArrow.svg";
-import cherry from "../../assets/icons/small_cherry.svg";
 import InvenBox from "../../components/views/Inven/InvenBox";
+import { IMAGES } from "../../constants/images";
 import "./MainInven.css";
 
 
@@ -112,7 +109,7 @@ function MainInven () {
         <div className="mainInven-title__span2__wrapper" onClick={() => setIsCategoryOpen((prev) => !prev)}>
           <span style={{ 'width': '1.125rem' }}></span>
           <span className="mainInven-title__span2">{category}</span>
-          {isCategoryOpen ? (<span><img src={downArrow} alt="downArrow"/></span>) : (<span><img src={upArrow} alt="upArrow"/></span>)}
+          {isCategoryOpen ? (<span><img src={IMAGES.arrow_down} alt="downArrow"/></span>) : (<span><img src={IMAGES.arrow_up} alt="upArrow"/></span>)}
         </div>
         <span className="mainInven-title__span3">상품명</span>
       </div>
@@ -151,9 +148,9 @@ function MainInven () {
         <div className="inven-modal-wrapper">
           <div className="inven-modal-box">
             <div className="inven-modal-close__wrapper" onClick={() => setIsModalOpen((prev) => !prev)}>
-              <img src={close} alt="close"/>
+              <img src={IMAGES.check_x_gray} alt="close"/>
             </div>
-            <div className="inven-modal-box-img__wrapper"><img src={cherry} alt="cherry" /></div>
+            <div className="inven-modal-box-img__wrapper"><img src={IMAGES.cherry_red} alt="cherry" /></div>
             <div className="inven-modal-box-txt__wrapper">
               <div className="inven-modal-box-txt">품절 처리 시</div>
               <div className="inven-modal-box-txt">고객님은 해당 메뉴를 주문할 수 없습니다.</div>
@@ -169,9 +166,9 @@ function MainInven () {
         <div className="inven-modal-wrapper">
           <div className="inven-modal-box">
             <div className="inven-modal-close__wrapper" onClick={() => setIsCancleModalOpen((prev) => !prev)}>
-              <img src={close} alt="close"/>
+              <img src={IMAGES.check_x_gray} alt="close"/>
             </div>
-            <div className="inven-modal-box-img__wrapper"><img src={cherry} alt="cherry" /></div>
+            <div className="inven-modal-box-img__wrapper"><img src={IMAGES.cherry_red} alt="cherry" /></div>
             <div className="inven-modal-box-txt__wrapper">
               <div className="inven-modal-box-txt">품절 처리를 취소하시겠습니까?</div>
             </div>
