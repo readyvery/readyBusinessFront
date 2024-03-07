@@ -1,6 +1,7 @@
 import { message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RedButton from "../../redButton/RedButton";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
 import "./CertificationInput.css";
@@ -13,6 +14,7 @@ function CertificationInput({
   text,
   buttonText,
 }) {
+  const navigate = useNavigate();
   const [inputNum, setInputNum] = useState(false); //전화번호 입력상태
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
@@ -35,8 +37,7 @@ function CertificationInput({
         `${apiUrl}/api/v1/sms/send`,
         {
           phoneNumber: Phonenumber,
-        },
-        { withCredentials: true }
+        }
       );
       console.log(response);
 
@@ -52,6 +53,7 @@ function CertificationInput({
 
   const renderCertificationNumInput = () => {
     if (type === "tel" && chkButton && inputNum) {
+      console.log('번호 verify')
       return <CertificationNumInput phoneNumber={Phonenumber} />;
     }
     return null;
@@ -59,6 +61,25 @@ function CertificationInput({
 
   const handlePhoneChange = (event) => {
     setPhonenumber(event.target.value);
+  };
+
+  const handleFindIdClick = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/api/v1/ceo/find/email`, {
+        phone: Phonenumber,
+      })
+      console.log(response);
+
+      if (response.data.success) {
+        console.log(response.data.message);
+        navigate('/find/id/search');
+      } else {
+        console.log('아이디찾기 실패' + response.data)
+        navigate('/find/id/none');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -84,14 +105,13 @@ function CertificationInput({
         </button>
       </div>
 
-      <form>
+      
         {renderCertificationNumInput()}
         <div className="loginpage-form-submit-button-position">
-          <RedButton type="submit" onSubmit={(e) => e.preventDefault()}>
+          <RedButton type="submit" onClick={handleFindIdClick}>
             {buttonText}
           </RedButton>
         </div>
-      </form>
     </>
   );
 }
