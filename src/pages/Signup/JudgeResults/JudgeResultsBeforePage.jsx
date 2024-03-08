@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../../../components/login/Container/Container";
 import RedButton from "../../../components/login/redButton/RedButton";
 import CircleNumBar from "../../../components/signup/CircleNumBar/CircleNumBar";
@@ -69,9 +69,11 @@ function JudgeResultsBeforePage() {
               매일 00:00 ~ 24:00
             </div>
           </div>
-          <div className="redyvery-linked-message-for-kakao-img">
-            <img src={IMAGES.kakao_open_chat} alt="kakaolinkedicon" />
-          </div>
+          <Link to="http://pf.kakao.com/_ZxiEjG/chat">
+            <div className="redyvery-linked-message-for-kakao-img">
+              <img src={IMAGES.kakao_open_chat} alt="kakaolinkedicon" />
+            </div>
+          </Link>
         </div>
 
         <div className="judge-results-before-page-next-button">
