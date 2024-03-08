@@ -5,8 +5,7 @@
   width: 8.875rem;
   /* height: 46.25rem; */
   /* height: 45.75rem; */
-  /* height: 42.5rem; */
-  height: calc(100vh - 5.5rem);
+  height: 42.5rem;
   background-color: #2e2d2d;
 
   display: flex;
