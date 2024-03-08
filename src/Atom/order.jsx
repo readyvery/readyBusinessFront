@@ -1,8 +1,4 @@
 import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
-
-const { persistAtom } = recoilPersist();
-
 
 export const ordercnt = atom({
   key: "ordercnt",
@@ -27,9 +23,3 @@ export const selectTotal = atom({
   key: "selectTotal",
   default: [],
 });
-
-export const selectId = atom({
-  key: "selectId",
-  default: 0,
-  effects_UNSTABLE: [persistAtom],
-})
