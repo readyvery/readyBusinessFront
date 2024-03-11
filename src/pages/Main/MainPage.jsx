@@ -4,14 +4,15 @@ import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
 import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
 import { IMAGES } from "../../constants/images";
+import useFetchSaleAmount from "../../hooks/useFetchSaleAmount";
 import useFetchWeeklySale from "../../hooks/useFetchWeeklySale";
 import "./MainPage.css";
 
 const MainPage = () => {
   const thisWeekSales = useFetchWeeklySale();
   console.log(thisWeekSales)
-  const thisWeekCases = 23;
-  const thisMonthCases = 54;
+  const thisWeekCases = useFetchSaleAmount().weeklyAmount;
+  const thisMonthCases = useFetchSaleAmount().monthlyAmount;
   const notices = [
     {
       id: 1,
@@ -68,7 +69,8 @@ const MainPage = () => {
                   레디베리를 통해 이번주
                 </div>
                 <div className="main__sales__amount__content">
-                  {thisWeekSales}
+                  {thisWeekSales.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   원
                 </div>
                 <div className="main__sales__amount__predicate">

@@ -1,9 +1,13 @@
 import Footer from "../../components/views/Footer/Footer";
 import HeaderBack480 from "../../components/views/Header/Header480/HeaderBack480/HeaderBack480";
 import HeaderMain from "../../components/views/Header/HeaderMain/HeaderMain";
-import "./SalesManage.css";
 import { IMAGES } from "../../constants/images";
+import useFetchMonthlySale from "../../hooks/useFetchMonthlySale";
+import useFetchWeeklySale from "../../hooks/useFetchWeeklySale";
+import "./SalesManage.css";
 const SalesManage = () => {
+  const weeklySale = useFetchWeeklySale();
+  const monthlySale = useFetchMonthlySale();
   return (
     <div className="sales">
       <HeaderMain />
@@ -14,14 +18,16 @@ const SalesManage = () => {
           <div>
             <div className="sales__amount__title">이번달</div>
             <div className="sales__amount__price">
-              <span>154,876,778</span> 원
+              <span>{monthlySale.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span> 원
             </div>
           </div>
 
           <div>
             <div className="sales__amount__title">이번주</div>
             <div className="sales__amount__price">
-              <span>154,876,778</span> 원
+              <span>{weeklySale.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span> 원
             </div>
           </div>
         </div>
