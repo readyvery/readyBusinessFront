@@ -11,14 +11,16 @@ const ReceiptTest = () => {
 
   const onClickPrintHandler = async () => {
     const data = await render(UserReceipt(selectedInfo[0]));
-    const port = await window.navigator.serial.requestPort();
-    await port.open({ baudRate: 9600 });
+    const port = await window.navigator?.serial?.requestPort();
+    // await port.open({ baudRate: 9600 });
+    if (port.writable === null) {
+      await port.open({ baudRate: 38400 });
+    }
     const writer = port.writable?.getWriter();
     if (writer !== null) {
-      await writer.write(data);
-      await writer.releaseLock();
+      await writer.write(data).then(() => setTimeout(() => port.close(), 500)); // ←
+      writer.releaseLock();
     }
-    await port.close({ baudRate: 9600 });
   };
 
   return (
@@ -26,7 +28,7 @@ const ReceiptTest = () => {
       <ReceiptButton
         onClick={async () => {
           await onClickPrintHandler();
-          alert("smartorder-preparing");
+          // alert("smartorder-preparing");
         }}
       >
         {" "}
