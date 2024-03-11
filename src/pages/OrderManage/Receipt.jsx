@@ -10,7 +10,7 @@ import "./Receipt.css";
 
 const Receipt = () => {
   const orderProps = {
-    status: 1,
+    status: 3,
   };
   const context = useContext(HomeContext);
 
