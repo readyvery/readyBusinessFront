@@ -66,7 +66,7 @@ function CertificationInput({
   const handleFindIdClick = async () => {
     try {
       const response = await axios.post(`${apiUrl}/api/v1/ceo/find/email`, {
-        phone: Phonenumber,
+        phoneNumber: Phonenumber,
       })
       console.log(response);
 
