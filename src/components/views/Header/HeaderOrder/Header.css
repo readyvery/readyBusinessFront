@@ -71,6 +71,12 @@
   flex-shrink: 0;
 }
 
+@media screen and (min-width: 480px) {
+  .BackIcon {
+    display: none;
+  }
+}
+
 .LOGO {
   /* width: 19.1875rem; */
   width: 13rem;

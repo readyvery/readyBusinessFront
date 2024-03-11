@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import SoundOff from "../../../../src/assets/icons/Header/SoundOff.svg"; //소리끔
-import SoundOn from "../../../../src/assets/icons/Header/SoundOn.svg"; //소리켬
 import { soundState } from '../../../Atom/status';
+import { IMAGES } from "../../../constants/images";
 import { useAudioManager } from '../../../hooks/useAudioManager';
 
 const SoundComponent = () => {
@@ -35,7 +34,7 @@ const SoundComponent = () => {
     {sound ? (
         <div className="header-img-wrapper">
             <img
-            src={SoundOn}
+            src={IMAGES.sound_on}
             onClick={onClickHandler}
             alt="SoundOn"
             className="soundImg"
@@ -44,7 +43,7 @@ const SoundComponent = () => {
         ) : (
         <div className="header-img-wrapper">
             <img
-            src={SoundOff}
+            src={IMAGES.sound_off}
             onClick={onClickHandler}
             alt="SoundOff"
             className="soundImg"
