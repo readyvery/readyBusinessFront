@@ -1,11 +1,9 @@
+import { IMAGES } from "../../../constants/images";
 import "./LoginChkAlrm.css";
-import x_icon from "../../../assets/icons/icon_x.svg";
-import chk_icon from "../../../assets/icons/icon_chk.svg";
-
 const LoginChkAlrm=({ children, icon, paddingSize})=>{
-    let SelectIcon = chk_icon;
+    let SelectIcon = IMAGES.check_red;
     if(icon === "X"){
-        SelectIcon = x_icon;
+        SelectIcon = IMAGES.check_x_red;
     }
     return(
         <div className="check-message">

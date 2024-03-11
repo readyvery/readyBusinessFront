@@ -31,7 +31,7 @@
   align-items: center;
   -webkit-box-align: center;
   justify-content: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   text-align: center;
 }
 /* 로고 */
@@ -100,7 +100,7 @@
 }
 .application-form-circle-num-bar-text-content {
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 800;
 }
@@ -123,7 +123,7 @@
   align-items: center;
   flex-direction: column;
   width: 18.8rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 500;
   color: #2e2d2d;
@@ -137,19 +137,25 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  justify-content: center;
   margin-top: 1.75rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-weight: 500;
   color: #2e2d2d;
 }
+.application-form-content-sub-text-style-in-check{
+  display: flex;
+  margin-bottom: 0.32rem;
+}
+
 .application-form-content-sub-text-style img {
   width: 0.95231rem;
   height: 0.95231rem;
 }
 
 .application-form-content-main-text-tab {
-  margin-top: 2.25rem;
+  margin-top: 1.93rem; /* 2.25-0.32 */
   margin-bottom: 0.62rem;
 }
 
@@ -166,14 +172,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
 }
-.application-form-redyvery-linked-message-for-kakao img {
+.application-form-redyvery-linked-message-for-kakao-readyvery-img {
   width: 1.68906rem;
   height: 1.68906rem;
   border-radius: 0.30163rem;
 }
-.application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper {
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper {
   width: 1.74938rem;
   height: 1.2065rem;
   border-radius: 0.30163rem;
@@ -182,8 +188,8 @@
   align-items: center;
   justify-content: center;
 }
-.application-form-redyvery-linked-message-for-kakao-kakaolinkedicon-wrapper
-  img {
+
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper img {
   width: 0.72388rem;
   height: 0.63344rem;
 }

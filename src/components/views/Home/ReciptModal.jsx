@@ -1,4 +1,5 @@
-import X from "../../../assets/icons/X.svg";
+
+import { IMAGES } from "../../../constants/images";
 import "../../../pages/OrderManage/Receipt.css";
 
 export default function ReciptModal ({ children, closeModal, title }) {
@@ -9,7 +10,7 @@ export default function ReciptModal ({ children, closeModal, title }) {
                   className="modal-close__wrapper"
                   onClick={() => closeModal((prev) => !prev)}
                 >
-                  <img src={X} alt="close" />
+                  <img src={IMAGES.check_x_gray} alt="close" />
                 </div>
                 <div className="modal-box-txt__wrapper">
                   <div className="modal-box-txt">{title}</div>

@@ -15,7 +15,7 @@
 
 .main__president__ready {
   color: var(--title, #2e2d2d);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.5625rem;
   font-style: normal;
   font-weight: 600;
@@ -24,7 +24,7 @@
 
 .main__president__name {
   color: var(--title, #2e2d2d);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 800;
@@ -39,7 +39,7 @@
 .main__order-management-btn {
   width: fit-content;
   color: #fff;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
@@ -55,7 +55,7 @@
 
 .main__order-management__notice {
   color: #838383;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.375rem;
   font-style: normal;
   font-weight: 700;
@@ -78,7 +78,6 @@
 
 .main__sales__amount {
   display: flex;
-
   background: #fff;
   flex-direction: column;
   justify-content: center;
@@ -87,17 +86,16 @@
 
 .main__sales__amount__title {
   color: #4f4f4f;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.5rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-bottom: 0.25rem;
 }
 
 .main__sales__amount__content {
   color: #d82356;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -106,7 +104,7 @@
 
 .main__sales__amount__predicate {
   color: var(--title, #2e2d2d);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -130,7 +128,7 @@
 
 .main__sales__case__title {
   color: #000;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 700;
@@ -138,10 +136,10 @@
   /* margin-right: 5.37rem; */
 }
 
-.main__sales__case__this-week-amount {
+.main__sales__case__amount {
   color: #4f4f4f;
   text-align: right;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -154,19 +152,9 @@
   align-items: center;
 }
 
-.main__sales__case__this-month-amount {
-  color: #4f4f4f;
-  text-align: right;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
 .main__sales__standard {
   color: #838383;
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 0.375rem;
   font-style: normal;
   font-weight: 700;
@@ -181,7 +169,7 @@
 .main__guide__title {
   display: flex;
   color: var(--title, #2e2d2d);
-  font-family: Pretendard;
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 800;
@@ -204,12 +192,12 @@
 .main__guide1 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide1.png");
+  background-image: url("../../assets/images/img_guide1.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
   color: #fff;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 700;
@@ -223,12 +211,12 @@
 .main__guide2 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide2.png");
+  background-image: url("../../assets/images/img_guide2.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
   color: #fff;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 700;
@@ -242,12 +230,12 @@
 .main__guide3 {
   display: flex;
   border-radius: 0.3125rem;
-  background-image: url("../../assets/icons/img_guide3.png");
+  background-image: url("../../assets/images/img_guide3.png");
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center; /* 이미지를 요소의 중앙에 위치 */
   background-size: cover; /* 이미지가 요소의 크기를 커버하도록 조정 */
   color: #fff;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 700;
@@ -272,7 +260,7 @@
 .main__notice__title {
   display: flex;
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 800;
@@ -296,7 +284,6 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
   border-radius: 0.23438rem;
   border: 0.75px solid var(--light-grey, #d9d9d9);
 }
@@ -308,7 +295,7 @@ ul {
 .main__notice__content__title {
   color: var(--title, #2e2d2d);
   text-align: right;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
@@ -323,7 +310,7 @@ ul {
   transform: translateY(-50%); /* 상하 중앙 정렬 */
   color: var(--frame-text, #838383);
   text-align: right;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
@@ -337,7 +324,7 @@ ul {
 
 .main__notice__consultation__title {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 800;
@@ -351,7 +338,7 @@ ul {
 
 .main__notice__consultation__ment {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.5rem;
   font-style: normal;
   font-weight: 500;
@@ -361,19 +348,19 @@ ul {
 .main__notice__consultation__kakao {
   display: flex;
   flex-direction: row;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.375rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   transform: rotate(0.029deg);
 }
-
 .main__notice__consultation__kakao-btn {
-  width: 1.8035rem;
-  height: 1.2065rem;
-  margin-left: 1.47rem;
-  border-radius: 0.22619rem;
+  background: #e6e6e6;
+  border-radius: 0.30163rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 480px) {
@@ -392,7 +379,6 @@ ul {
     display: flex; /* Flexbox 레이아웃을 사용 */
     width: 27rem;
     height: 4.4375rem;
-
     justify-content: space-between; /* 아이템들을 양 끝으로 정렬 */
     align-items: center; /* 수직 중앙 정렬 */
     padding: 10px; /* 패딩을 줘서 안쪽 여백을 생성 */
@@ -413,6 +399,10 @@ ul {
     margin-right: auto;
   }
 
+  .main__sales__amount__title {
+    margin-bottom: 0.25rem;
+  }
+
   .main__box5 {
     display: flex;
     flex-direction: row;
@@ -422,7 +412,6 @@ ul {
     display: flex;
     width: 13.125rem;
     height: 5.8125rem;
-
     border-radius: 0.3125rem;
     border: 0.75px solid #d9d9d9;
     background: #fff;
@@ -430,74 +419,17 @@ ul {
     margin-right: 0.75rem;
   }
 
-  .main__sales__amount__title {
-    color: #4f4f4f;
-    font-family: Pretendard;
-    font-size: 0.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-bottom: 0.25rem;
-  }
-
-  .main__sales__amount__content {
-    color: #d82356;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  .main__sales__amount__predicate {
-    color: var(--title, #2e2d2d);
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
   .main__sales__case {
     width: 13.125rem;
     height: 5.8125rem;
     border-radius: 0.3125rem;
     border: 0.75px solid #d9d9d9;
-  }
-
-  .main__sales__case__title {
-    color: #000;
-    font-family: Pretendard;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    /* margin-right: 5.37rem; */
-  }
-
-  .main__sales__case__this-week-amount {
-    color: #4f4f4f;
-    text-align: right;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  .main__sales__case__this-month-amount {
-    color: #4f4f4f;
-    text-align: right;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    background: #fff;
   }
 
   .main__sales__standard {
     color: #838383;
-    font-family: Pretendard;
+    font-family: "Pretendard Variable";
     font-size: 0.375rem;
     font-style: normal;
     font-weight: 700;
@@ -555,6 +487,15 @@ ul {
   .main__notice__consultation__kakao {
     margin-bottom: 0.37rem;
   }
+  .main__notice__consultation__kakao-btn {
+    width: 1.35263rem;
+    height: 0.90488rem;
+    margin-left: 1.47rem;
+  }
+  .main__notice__consultation__kakao-btn img {
+    width: 0.55969rem;
+    height: 0.47506rem;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
@@ -570,7 +511,6 @@ ul {
 
   .main__promotion {
     width: 19.375rem;
-
     margin-right: 1.5rem;
   }
 
@@ -578,7 +518,6 @@ ul {
     display: flex;
     width: 11.625rem;
     height: 8.5625rem;
-
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -595,6 +534,7 @@ ul {
   .main__box5 {
     border-radius: 0.3125rem;
     border: 0.75px solid #d9d9d9;
+    background: #fff;
   }
 
   .main__sales {
@@ -604,7 +544,6 @@ ul {
   .main__sales__amount {
     width: 11.625rem;
     height: 5.75rem;
-
     border-bottom: 0.75px solid #d9d9d9;
   }
 
@@ -622,7 +561,6 @@ ul {
   .main__guide1 {
     width: 6.25rem;
     height: 8.5rem;
-
     font-size: 0.5625rem;
     margin-right: 0.31rem;
   }
@@ -630,7 +568,6 @@ ul {
   .main__guide2 {
     width: 6.25rem;
     height: 8.5rem;
-
     font-size: 0.5625rem;
     margin-right: 0.31rem;
   }
@@ -638,7 +575,6 @@ ul {
   .main__guide3 {
     width: 6.25rem;
     height: 8.5rem;
-
     font-size: 0.5625rem;
   }
 
@@ -688,9 +624,18 @@ ul {
   .main__notice__consultation__kakao {
     margin-top: auto;
   }
+  .main__notice__consultation__kakao-btn {
+    width: 1.35263rem;
+    height: 0.90488rem;
+    margin-left: 1.47rem;
+  }
+  .main__notice__consultation__kakao-btn img {
+    width: 0.55969rem;
+    height: 0.47506rem;
+  }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .main__box1 {
     display: flex;
     width: fit-content;
@@ -711,7 +656,6 @@ ul {
     display: flex;
     width: 15.625rem;
     height: 11.4375rem;
-
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -731,21 +675,42 @@ ul {
 
   .main__box5 {
     border-radius: 0.3125rem;
-    border: 0.75px solid #d9d9d9;
+    border: 1px solid #d9d9d9;
+    background: #fff;
   }
 
   .main__sales__amount {
     width: 15.625rem;
     height: 7.69rem;
-
     border-bottom: 0.75px solid #d9d9d9;
     padding-left: 1.37rem;
     padding-right: 1.37rem;
   }
 
+  .main__sales__amount__title {
+    font-size: 0.75rem;
+    margin-bottom: 0.31rem;
+  }
+
+  .main__sales__amount__content {
+    font-size: 1.25rem;
+  }
+
+  .main__sales__amount__predicate {
+    font-size: 1.25rem;
+  }
+
   .main__sales__case {
     width: 15.625rem;
     height: 6.44rem;
+  }
+
+  .main__sales__case__title {
+    font-size: 1rem;
+  }
+
+  .main__sales__case__amount {
+    font-size: 1.25rem;
   }
 
   .main__guide {
@@ -820,5 +785,14 @@ ul {
   .main__notice__consultation__kakao {
     font-size: 0.5rem;
     margin-top: auto;
+  }
+  .main__notice__consultation__kakao-btn {
+    width: 1.8035rem;
+    height: 1.2065rem;
+    margin-left: 1.95rem;
+  }
+  .main__notice__consultation__kakao-btn img {
+    width: 0.74625rem;
+    height: 0.63344rem;
   }
 }

@@ -1,8 +1,7 @@
 import React from "react";
-import "./SideMenu.css";
-import logo from "../../../assets/icons/Header/LOGO.svg";
-import X from "../../../assets/icons/X.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { IMAGES } from "../../../constants/images";
+import "./SideMenu.css";
 
 const SideMenu = ({ isOpen, toggleSidebar }) => {
   const navigate = useNavigate();
@@ -10,11 +9,11 @@ const SideMenu = ({ isOpen, toggleSidebar }) => {
   return (
     <div className={isOpen ? "side-menu open" : "side-menu"}>
       <div className="side-menu__close" onClick={toggleSidebar}>
-        <img src={X} alt="X" />
+        <img src={IMAGES.check_x_gray} alt="X" />
       </div>
 
       <div>
-        <img src={logo} alt="logo" className="side-menu__logo" />
+        <img src={IMAGES.logo} alt="logo" className="side-menu__logo" />
       </div>
 
       <div className="side-menu__sale" onClick={() => navigate(`/sales`)}>

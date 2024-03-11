@@ -1,61 +1,61 @@
-.loginpage-find-form-input-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: "Pretendard";
+.loginpage-find-form-input-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Pretendard Variable";
 }
 
-.loginpage-findId-input{
-    border-radius: 0.3125rem;
-    border: 0.05rem solid rgba(131, 131, 131, 1);
-    font-size: 1rem;
-    width: 15.6rem;
-    height: 3.13rem;
-    padding-left: 1.25rem;
-    text-align: flex-start;
-    margin-right: 0.31rem;
+.loginpage-findId-input {
+  border-radius: 0.3125rem;
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  font-size: 1rem;
+  width: 15.6rem;
+  height: 3.13rem;
+  padding-left: 1.25rem;
+  text-align: flex-start;
+  margin-right: 0.31rem;
 }
 
-.loginpage-findId-form-submit{
-    border-radius: 0.3125rem;
-    border: 0.05rem solid rgba(131, 131, 131, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    color: rgba(131, 131, 131, 1);
-    font-size: 1rem;
-    font-weight: 500;
-    white-space: nowrap;
+.loginpage-findId-form-submit {
+  border-radius: 0.3125rem;
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: rgba(131, 131, 131, 1);
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-.buttonClicked{
-    background-color: #FFEAEF;
+.buttonClicked {
+  background-color: #ffeaef;
 }
 
-.loginpage-form-submit-button-position{
-    position: absolute;
-    transform: translateX(0%);
-    bottom: 4.95rem;
+.loginpage-form-submit-button-position {
+  position: absolute;
+  transform: translateX(0%);
+  bottom: 4.95rem;
 }
 
 /* w:768, h:1024 이상일 때 */
-@media screen and (min-width: 480px){
-    .loginpage-findId-form-submit{
-        width: 5.3125rem;
-        height: 3.125rem;
-    }
+@media screen and (min-width: 480px) {
+  .loginpage-findId-form-submit {
+    width: 5.3125rem;
+    height: 3.125rem;
+  }
 }
 
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    .loginpage-findId-input{
-        width: 14.1rem;
-        height: 3.125rem;
-        padding-left: 1rem;
-    }
-    .loginpage-findId-form-submit{
-        width: 4.375rem;
-        height: 3.125rem;
-    }
+  .loginpage-findId-input {
+    width: 14.1rem;
+    height: 3.125rem;
+    padding-left: 1rem;
+  }
+  .loginpage-findId-form-submit {
+    width: 4.375rem;
+    height: 3.125rem;
+  }
 }

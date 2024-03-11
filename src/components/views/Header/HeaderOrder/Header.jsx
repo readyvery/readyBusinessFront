@@ -1,14 +1,10 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { soundState, storeState } from "../../../Atom/status";
-import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
-import LOGO from "../../../assets/icons/Header/LOGO.svg"; //로고
-import StoreOn from "../../../../assets/icons/Header/OpenLight.svg"; //영업중
-import SoundOff from "../../../../assets/icons/Header/SoundOff.svg"; //소리끔
-import SoundOn from "../../../../assets/icons/Header/SoundOn.svg"; //소리켬
-import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IMAGES } from "../../../../constants/images";
+import { soundState, storeState } from "../../../Atom/status";
+import "./Header.css";
 
 const Header = () => {
   const Store = useRecoilValue(storeState);
@@ -44,7 +40,7 @@ const Header = () => {
       <Row>
         <Col>
           <img
-            src={LOGO}
+            src={IMAGES.logo}
             className="LOGO"
             alt="LOGO"
             onClick={() => navigate(`/main`)}
@@ -55,22 +51,22 @@ const Header = () => {
           {!Store ? (
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOn} alt="Open" />
+                <img src={IMAGES.store_on} alt="Open" />
               </div>
               <div className="header-font">영업중</div>
             </div>
           ) : (
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOff} alt="Close" />
+                <img src={IMAGES.store_off} alt="Close" />
               </div>
               <div className="header-font">영업종료 </div>
             </div>
           )}
           {Sound ? (
-            <img src={SoundOn} onClick={onClickHandler} alt="SoundOn" />
+            <img src={IMAGES.sound_on} onClick={onClickHandler} alt="SoundOn" />
           ) : (
-            <img src={SoundOff} onClick={onClickHandler} alt="SoundOff" />
+            <img src={IMAGES.sound_off} onClick={onClickHandler} alt="SoundOff" />
           )}
         </Col>
       </Row>

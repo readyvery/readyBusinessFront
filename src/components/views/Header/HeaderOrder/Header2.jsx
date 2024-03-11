@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import StoreOff from "../../../../assets/icons/Header/CloseLight.svg"; //영업종료
 import BackIcon from "../../../../assets/icons/Header/backIcon.png";
 import LOGO from "../../../../assets/icons/Header/header_logo.png"; //로고
+import { IMAGES } from "../../../../constants/images";
+import { HomeContext } from "../../../../pages/OrderManage/Home";
 import SoundComponent from "../../Audio/SoundComponent";
 import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
 
+  const context = useContext(HomeContext);
+  console.log(context?.selectedMenu);
   return (
     <div className="header2">
       <div className="header2-wrapper">
         <div className="logo-wrapper">
-          <img
-            src={BackIcon}
-            className="BackIcon"
-            alt="BackIcon"
-            onClick={() => navigate(`/main`)}
-          />
+          {
+            context?.selectedMenu.length > 0 && 
+            <img
+              src={BackIcon}
+              className="BackIcon"
+              alt="BackIcon"
+              onClick={() => navigate(`/main`)}
+            />
+          }
           <img
             src={LOGO}
             className="LOGO"
@@ -30,20 +36,19 @@ const Header = () => {
           {/* {storeValue ? (
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOn} alt="Open" />
+                <img src={StoreOn} alt="Open" className="store_img"/>
               </div>
               <div className="header-font">영업중</div>
             </div>
           ) : ( */}
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOff} alt="Close" className="store_img"/>
+                <img src={IMAGES.store_off} alt="Close" className="store_img"/>
               </div>
               <div className="store_font_wrapper">
                 <div className="header-font">영업종료</div>
               </div>
             </div>
-          {/* )} */}
           <SoundComponent />
         </div>
       </div>

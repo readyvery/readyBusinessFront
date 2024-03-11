@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import cherry from "../../../assets/icons/cherry.svg";
+import { IMAGES } from "../../../constants/images";
 import useAcceptOrder from "../../../hooks/useAcceptOrder";
 import useCancelOrder from "../../../hooks/useCancelOrder";
 import { HomeContext } from "../../../pages/OrderManage/Home";
@@ -209,7 +209,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
             </>
           ) : (
             <div className="noMenuImgWrapper">
-              <img src={cherry} alt="berry" className="noMenuImg"/>
+              <img src={IMAGES.cherry_red} alt="berry" className="noMenuImg"/>
             </div>
           )
         }

@@ -22,7 +22,7 @@ const ReceiptTest = ({color}) => {
         > 영수증 출력 </ReceiptButton>
       )}
     </>
- );
+  );
 };
 
 const ReceiptButtonContainer = styled.div`

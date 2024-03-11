@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../../../assets/icons/Header/LOGO.svg";
-import menu from "../../../../assets/icons/Header/ic_round-menu.svg";
+import { IMAGES } from "../../../../constants/images";
 import SideMenu from "../../SideMenu/SideMenu";
 import OperationButton from "../OperationButton/OperationButton";
 import "./Header480.css";
@@ -18,13 +17,13 @@ export default function Header480() {
       <SideMenu isOpen={isSideMenuOpen} toggleSidebar={handleSidebar} />
       <header className="header480">
         <img
-          src={menu}
+          src={IMAGES.round_menu}
           alt="menu"
           className="header480__menu"
           onClick={handleSidebar}
         />
         <img
-          src={logo}
+          src={IMAGES.logo}
           alt="logo"
           className="header__logo"
           onClick={() => navigate(`/main`)}

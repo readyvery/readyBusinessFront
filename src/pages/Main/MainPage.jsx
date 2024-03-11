@@ -1,12 +1,12 @@
+import moment from "moment/moment";
 import { Link } from "react-router-dom";
-import kakao from "../../assets/icons/icon_kakao_union.png";
 import right from "../../assets/icons/icon_right-line.png";
-import promotion from "../../assets/icons/promotion1.png";
-import promotion2 from "../../assets/icons/promotion2.png";
-import promotion3 from "../../assets/icons/promotion3.png";
 import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
 import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
+import { IMAGES } from "../../constants/images";
+import useFatchWeekAndMonthOrderCount from "../../hooks/Sales/useFatchWeekAndMonthOrderCount";
+import useFetchWeekTotalSales from "../../hooks/Sales/useFetchWeekTotalSales";
 import "./MainPage.css";
 
 const MainPage = () => {
@@ -28,17 +28,29 @@ const MainPage = () => {
     },
     { id: 4, title: "2024년 4월 첫째 주(4/1~4/6) 입금 안내", date: "24-04-01" },
   ];
-
+  // 현 날짜
+  const currentDate = {
+    monday: moment(moment()).startOf("isoWeek"),
+    sunday: moment(moment()).endOf("isoWeek"),
+  };
+  const weekStart = currentDate.monday.format("YYYY-MM-DD");
+  const weekTotalSales = useFetchWeekTotalSales(weekStart);
+  const weekAndMonthOrderCount = useFatchWeekAndMonthOrderCount(weekStart);
+  //객체 구성{totalWeekOrder, totalMonthOrder}
   return (
     <div className="main">
       <ResponsiveHeader />
 
       <div className="main__box1">
         <picture>
-          <source media="(min-width: 1024px)" srcSet={promotion3} />
-          <source media="(min-width: 480px)" srcSet={promotion2} />
-          <source media="(max-width: 480px)" srcSet={promotion} />
-          <img src={promotion3} alt="promotion" className="main__promotion" />
+          <source media="(min-width: 1024px)" srcSet={IMAGES.promotion_3} />
+          <source media="(min-width: 480px)" srcSet={IMAGES.promotion_2} />
+          <source media="(max-width: 480px)" srcSet={IMAGES.promotion_1} />
+          <img
+            src={IMAGES.promotion_3}
+            alt="promotion"
+            className="main__promotion"
+          />
         </picture>
 
         <span className="main__president">
@@ -61,7 +73,12 @@ const MainPage = () => {
                 <div className="main__sales__amount__title">
                   레디베리를 통해 이번주
                 </div>
-                <div className="main__sales__amount__content">0원</div>
+                <div className="main__sales__amount__content">
+                  {weekTotalSales
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </div>
                 <div className="main__sales__amount__predicate">
                   매출을 기록했습니다
                 </div>
@@ -71,17 +88,23 @@ const MainPage = () => {
             <span className="main__sales__case">
               <div className="main__sales__case__this-week">
                 <span className="main__sales__case__title">이번주</span>
-                <span className="main__sales__case__this-week-amount">0원</span>
+                <span className="main__sales__case__amount">
+                  {weekAndMonthOrderCount.totalWeekOrder}건
+                </span>
               </div>
               <div className="main__sales__case__this-month">
                 <span className="main__sales__case__title">이번달</span>
-                <span className="main__sales__case__this-month-amount">
-                  0원
+                <span className="main__sales__case__amount">
+                  {weekAndMonthOrderCount.totalMonthOrder}건
                 </span>
               </div>
             </span>
           </div>
-          <div className="main__sales__standard">(기준 12월 13일 11:30)</div>
+          <div className="main__sales__standard">
+            {" "}
+            (기준 {moment().format("M")}월 {moment().format("D")}일{" "}
+            {moment().format("HH")}:{moment().format("mm")})
+          </div>
         </div>
 
         <div className="main__guide">
@@ -132,11 +155,9 @@ const MainPage = () => {
                 <span style={{ color: "#838383" }}>매일 00:00 ~ 24:00</span>
               </span>
               <Link to="http://pf.kakao.com/_ZxiEjG/chat">
-                <img
-                  src={kakao}
-                  alt="kakao"
-                  className="main__notice__consultation__kakao-btn"
-                />
+                <div className="main__notice__consultation__kakao-btn">
+                  <img src={IMAGES.kakao_open_chat} alt="kakao" />
+                </div>
               </Link>
             </span>
           </div>

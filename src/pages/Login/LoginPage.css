@@ -1,7 +1,7 @@
 .loginpage-form {
   line-height: 1.2rem;
   position: relative;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   display: flex;
   flex-direction: column;
 }
@@ -63,7 +63,7 @@
   border: none;
   background-color: white;
   cursor: pointer;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-weight: 500;
   width: 100%;

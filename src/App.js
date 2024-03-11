@@ -98,7 +98,7 @@ function App() {
           />
           <Route path="/login" element={<NewLoginPage />} />
           <Route path="/find/id" element={<FindIdPage />} />
-          <Route path="/find/id/serch" element={<NewUserFindIdPage />} />
+          <Route path="/find/id/search" element={<NewUserFindIdPage />} />
           <Route path="/find/id/none" element={<NewNoneFindIdPage />} />
           <Route path="/find/password" element={<NewFindPasswordPage />} />
           <Route

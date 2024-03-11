@@ -2,14 +2,22 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   white-space: nowrap;
 }
-.judge-results-reject-page-top-positon-icon {
+.judge-results-reject-page-top-positon-icon-wrapper {
+  width: 100%;
   display: flex;
+  justify-content: center;
   position: absolute;
-  top: -2rem;
-  left: 43%;
+  left: 0;
+}
+.judge-results-reject-page-top-positon-icon-line {
+  width: 100%;
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  background-color: #f4f7ff;
 }
 .judge-results-reject-page-content-text-style {
   font-weight: 800;
@@ -29,7 +37,7 @@
   .judge-results-reject-page-top-positon-icon {
     width: 5.5rem;
     height: 5.5rem;
-    left: 43%;
+    margin-top: -2.75rem;
   }
   .judge-results-reject-page-content-text-style {
     font-size: 1.25rem;
@@ -41,13 +49,20 @@
   .judge-results-reject-page-next-button {
     margin-top: 7.25rem;
   }
+  .judge-results-reject-page-top-positon-icon-wrapper {
+    top: 2.75rem;
+    height: 5.5rem;
+  }
+  .judge-results-reject-page-top-positon-icon-line {
+    height: 2.75rem;
+  }
 }
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
   .judge-results-reject-page-top-positon-icon {
     width: 3.75rem;
     height: 3.75rem;
-    left: 43%;
+    margin-top: -1.88rem;
   }
   .judge-results-reject-page-content-text-style {
     font-size: 1.25rem;
@@ -58,5 +73,12 @@
   }
   .judge-results-reject-page-next-button {
     margin-top: 6.06rem;
+  }
+  .judge-results-reject-page-top-positon-icon-wrapper {
+    top: 1.88rem;
+    height: 3.75rem;
+  }
+  .judge-results-reject-page-top-positon-icon-line {
+    height: 1.88rem;
   }
 }

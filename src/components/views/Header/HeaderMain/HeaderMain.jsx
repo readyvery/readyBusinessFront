@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo_txt from "../../../../assets/icons/Big_LOGO.svg";
-import logo_cherry from "../../../../assets/icons/small_cherry.svg";
+import { IMAGES } from "../../../../constants/images";
 import OperationButton from "../OperationButton/OperationButton";
 import "./HeaderMain.css";
 const HeaderMain = () => {
@@ -15,12 +14,12 @@ const HeaderMain = () => {
             onClick={() => navigate(`/main`)}
           >
             <img
-              src={logo_cherry}
+              src={IMAGES.cherry_red}
               alt="logo_cherry"
               className="headerTop-logo-cherry-css"
             />
             <img
-              src={logo_txt}
+              src={IMAGES.logo}
               alt="logoicon"
               className="headerTop-logo-txt-css"
             />

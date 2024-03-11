@@ -87,9 +87,9 @@ export default function OrderContainer () {
 }
 
 const Container = styled.div`
-    width: 100%;
-    height: calc(100% - 60px);
-    overflow-y: auto;
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: auto;
 `;
 
 const OrderBoxContainer = styled.div`
