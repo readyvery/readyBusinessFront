@@ -1,18 +1,15 @@
+import moment from "moment/moment";
 import { Link } from "react-router-dom";
 import right from "../../assets/icons/icon_right-line.png";
 import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
 import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
 import { IMAGES } from "../../constants/images";
-import useFetchSaleAmount from "../../hooks/useFetchSaleAmount";
-import useFetchWeeklySale from "../../hooks/useFetchWeeklySale";
+import useFatchWeekAndMonthOrderCount from "../../hooks/Sales/useFatchWeekAndMonthOrderCount";
+import useFetchWeekTotalSales from "../../hooks/Sales/useFetchWeekTotalSales";
 import "./MainPage.css";
 
 const MainPage = () => {
-  const thisWeekSales = useFetchWeeklySale();
-  console.log(thisWeekSales)
-  const thisWeekCases = useFetchSaleAmount().weeklyAmount;
-  const thisMonthCases = useFetchSaleAmount().monthlyAmount;
   const notices = [
     {
       id: 1,
@@ -31,7 +28,15 @@ const MainPage = () => {
     },
     { id: 4, title: "2024년 4월 첫째 주(4/1~4/6) 입금 안내", date: "24-04-01" },
   ];
-
+  // 현 날짜
+  const currentDate = {
+    monday: moment(moment()).startOf("isoWeek"),
+    sunday: moment(moment()).endOf("isoWeek"),
+  };
+  const weekStart = currentDate.monday.format("YYYY-MM-DD");
+  const weekTotalSales = useFetchWeekTotalSales(weekStart);
+  const weekAndMonthOrderCount = useFatchWeekAndMonthOrderCount(weekStart);
+  //객체 구성{totalWeekOrder, totalMonthOrder}
   return (
     <div className="main">
       <ResponsiveHeader />
@@ -69,7 +74,8 @@ const MainPage = () => {
                   레디베리를 통해 이번주
                 </div>
                 <div className="main__sales__amount__content">
-                  {thisWeekSales.toString()
+                  {weekTotalSales
+                    .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   원
                 </div>
@@ -83,18 +89,22 @@ const MainPage = () => {
               <div className="main__sales__case__this-week">
                 <span className="main__sales__case__title">이번주</span>
                 <span className="main__sales__case__amount">
-                  {thisWeekCases}건
+                  {weekAndMonthOrderCount.totalWeekOrder}건
                 </span>
               </div>
               <div className="main__sales__case__this-month">
                 <span className="main__sales__case__title">이번달</span>
                 <span className="main__sales__case__amount">
-                  {thisMonthCases}건
+                  {weekAndMonthOrderCount.totalMonthOrder}건
                 </span>
               </div>
             </span>
           </div>
-          <div className="main__sales__standard">(기준 12월 13일 11:30)</div>
+          <div className="main__sales__standard">
+            {" "}
+            (기준 {moment().format("M")}월 {moment().format("D")}일{" "}
+            {moment().format("HH")}:{moment().format("mm")})
+          </div>
         </div>
 
         <div className="main__guide">

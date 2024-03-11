@@ -10,6 +10,7 @@
 }
 .header-css ul {
   display: flex;
+  align-items: center;
   flex-direction: row;
   list-style: none;
 }
@@ -114,8 +115,8 @@
     margin-left: 0.27rem;
   }
   .headerTop-logo-cherry-css {
-    width: 1.09rem;
-    height: 1.09rem;
+    width: 2.09031rem;
+    height: 2.09031rem;
     padding-top: 0.14rem;
   }
   .headerTop-nav-css {
