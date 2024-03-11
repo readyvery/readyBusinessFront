@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../Atom/status";
 
-const useFetchWeeklySale = () => {
-    const [currentAmount, setCurrentAmount] = useState('');
+const useFetchSaleAmount = () => {
+    const [monthlyAmount, setMonthlyAmount] = useState('');
+    const [weeklyAmount, setWeeklyAmount] = useState('');
     const token = useRecoilValue(loginState);
     const apiUrl = process.env.REACT_APP_API_ROOT;
 
@@ -21,19 +22,20 @@ const useFetchWeeklySale = () => {
 
     useEffect(() => {
         const fetchData = () => {
-            axios.post(`${apiUrl}/api/v1/sale/management/amount/weekly`, { monday: currentDate } , { 
+            axios.post(`${apiUrl}/api/v1/sale/management/order/total`, { monday: currentDate } , { 
                 headers: {
                     Authorization: `Bearer ${token.accessToken}`
                 }
             })
                 .then((res) => {
                     console.log(res);
-                    setCurrentAmount(res.data.totalMoney);
+                    setWeeklyAmount(res.data.totalWeekOrder);
+                    setMonthlyAmount(res.data.totalMonthOrder);
                 })
                 .catch((err) => {
                     console.log(err);
                     if (err.status === 404 && err.message === "Not found order.") {
-                        setCurrentAmount(0);
+                        setMonthlyAmount(0);
                     };
                 });
         }
@@ -41,7 +43,7 @@ const useFetchWeeklySale = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
-    return currentAmount;
+    return { weeklyAmount, monthlyAmount };
 }
 
-export default useFetchWeeklySale;
+export default useFetchSaleAmount;
