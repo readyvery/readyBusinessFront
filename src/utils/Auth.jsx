@@ -11,7 +11,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
         const navigate = useNavigate();
         let location = useLocation();
-        const [cookies, , removeCookie] = useCookies(["accessToken"]);
+        const [cookies, ,] = useCookies(["accessToken"]);
         const token = localStorage.getItem("accessToken");
         const [isCeo, setIsCeo] = useRecoilState(ceoState);
         

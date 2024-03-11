@@ -3,8 +3,6 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
 import RedButton from "../../components/login/redButton/RedButton";
 import "./LoginPage.css";
@@ -43,7 +41,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   // 로그인 내용
-  const setLoginToken = useSetRecoilState(loginState);
+  // const setLoginToken = useSetRecoilState(loginState);
 
   const [EmailText, setEmailText] = useState("");
   const [Password, setPassword] = useState("");
