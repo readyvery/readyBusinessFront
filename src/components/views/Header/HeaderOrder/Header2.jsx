@@ -1,45 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { soundState } from "../../../../Atom/status";
+import BackIcon from "../../../../assets/icons/Header/backIcon.png";
+import LOGO from "../../../../assets/icons/Header/header_logo.png"; //로고
 import { IMAGES } from "../../../../constants/images";
+import { HomeContext } from "../../../../pages/OrderManage/Home";
+import SoundComponent from "../../Audio/SoundComponent";
 import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [sound, setSound] = useRecoilState(soundState); // 소리 여부를 가져옵니다
-  // const [token, setToken] = useRecoilState(loginState);
 
-  //const [cookies] = useCookies(["accessToken"]);
-
-  // useEffect(() => {
-  //   if (cookies?.accessToken) {
-  //     const config = {
-  //       headers: {
-  //         Authorization: `Bearer ${token.accessToken}`
-  //       }, 
-  //       withCredentials: true,
-  //     };
-
-  //     // commonApis.get(`/api/v1/store/sales`, config).then((res) => {
-  //     //   console.log(res);
-  //     //   setSelectStore(res.data.status);
-  //     // });
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  const onClickHandler = () => {
-    console.log(sound);
-    // sound ? setSound(false) : setSound(true);
-    setSound((prev) => !prev);
-  };
+  const context = useContext(HomeContext);
+  console.log(context?.selectedMenu);
   return (
     <div className="header2">
       <div className="header2-wrapper">
         <div className="logo-wrapper">
+          {
+            context?.selectedMenu.length > 0 && 
+            <img
+              src={BackIcon}
+              className="BackIcon"
+              alt="BackIcon"
+              onClick={() => navigate(`/main`)}
+            />
+          }
           <img
-            src={IMAGES.logo}
+            src={LOGO}
             className="LOGO"
             alt="LOGO"
             onClick={() => navigate(`/main`)}
@@ -62,26 +49,7 @@ const Header = () => {
                 <div className="header-font">영업종료</div>
               </div>
             </div>
-          {/* )} */}
-          {sound ? (
-            <div className="header-img-wrapper">
-              <img
-                src={IMAGES.sound_on}
-                onClick={onClickHandler}
-                alt="SoundOn"
-                className="soundImg"
-              />
-            </div>
-          ) : (
-            <div className="header-img-wrapper">
-              <img
-                src={IMAGES.sound_off}
-                onClick={onClickHandler}
-                alt="SoundOff"
-                className="soundImg"
-              />
-            </div>
-          )}
+          <SoundComponent />
         </div>
       </div>
     </div>
