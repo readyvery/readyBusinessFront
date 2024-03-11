@@ -63,6 +63,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.BackIcon {
+  width: 1.125rem;
+  height: 1.96538rem;
+  flex-shrink: 0;
 }
 
 .LOGO {
