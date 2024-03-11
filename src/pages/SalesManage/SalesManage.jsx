@@ -18,7 +18,7 @@ const SalesManage = () => {
     currentDate.monday.format("YYYY-MM-DD")
   );
   const weekTotalSales = useFetchWeekTotalSales(weekStart);
-  const weekSalesCharts =  useFatchWeekSalesCharts(weekStart);
+  const weekSalesCharts = useFatchWeekSalesCharts(weekStart);
   const monthlyTotalSales = useFetchMonthlyTotalSales(weekStart);
   const handlePrevWeek = () => {
     const currentWeekStart = moment(currentDate.monday)
@@ -56,14 +56,24 @@ const SalesManage = () => {
           <div>
             <div className="sales__amount__title">이번달</div>
             <div className="sales__amount__price">
-              <span>{monthlyTotalSales} 원</span>
+              <span>
+                {monthlyTotalSales
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                원
+              </span>
             </div>
           </div>
 
           <div>
             <div className="sales__amount__title">이번주</div>
             <div className="sales__amount__price">
-              <span>{weekTotalSales} 원</span>
+              <span>
+                {weekTotalSales
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                원
+              </span>
             </div>
           </div>
         </div>
@@ -92,7 +102,7 @@ const SalesManage = () => {
               onClick={handleNextWeek}
             />
           </div>
-          <WeekSalesCharts data={weekSalesCharts}/>
+          <WeekSalesCharts data={weekSalesCharts} />
         </div>
         <div className="sales__notice">
           매출 발생 후 최대 5영업일 이내에 입금 예정 ( 문의 : 오남택

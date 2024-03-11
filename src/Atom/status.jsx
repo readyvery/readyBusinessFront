@@ -178,3 +178,10 @@ export const userIdDuplicateState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 })
+
+//아이디 비번찾기 상태값
+export const findState = atom({
+  key:"findState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+})
