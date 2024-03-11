@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { ceoState, loginState } from '../Atom/status';
+import { useCookies } from 'react-cookie';
+import { useRecoilState } from 'recoil';
+import { ceoState } from '../Atom/status';
 import commonApis from '../util/commonApis';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,14 +11,15 @@ export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
         const navigate = useNavigate();
         let location = useLocation();
-        const token = useRecoilValue(loginState);
+        const [cookies, , removeCookie] = useCookies(["accessToken"]);
+        const token = localStorage.getItem("accessToken");
         const [isCeo, setIsCeo] = useRecoilState(ceoState);
         
         useEffect(() => {
             function fetchAuth() {
                 commonApis.get("/auth", {
                     headers: {
-                        Authorization: `Bearer ${token.accessToken}`
+                        Authorization: `Bearer ${token ? token : cookies?.accessToken}`
                     },
                     withCredentials: true
                 }).then((response) => {
