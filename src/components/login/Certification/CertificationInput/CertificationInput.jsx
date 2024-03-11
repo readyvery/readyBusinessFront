@@ -2,6 +2,9 @@ import { message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { findState } from "../../../../Atom/status";
+import LoginChkAlrm from "../../LoginChkAlrm/LoginChkAlrm";
 import RedButton from "../../redButton/RedButton";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
 import "./CertificationInput.css";
@@ -18,7 +21,9 @@ function CertificationInput({
   const [inputNum, setInputNum] = useState(false); //전화번호 입력상태
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
+  const [isExist, setIsExist] = useState(null);
   const apiUrl = process.env.REACT_APP_API_ROOT;
+  const [isFind, setIsFind] = useRecoilState(findState);
 
   const handleButtonClick = () => {
     if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
@@ -66,13 +71,14 @@ function CertificationInput({
   const handleFindIdClick = async () => {
     try {
       const response = await axios.post(`${apiUrl}/api/v1/ceo/find/email`, {
-        phone: Phonenumber,
+        phoneNumber: Phonenumber,
       })
       console.log(response);
 
       if (response.data.success) {
         console.log(response.data.message);
-        navigate('/find/id/search');
+        navigate('/find/id/search', { state: { message: response.data.message } });
+        setIsFind(0);
       } else {
         console.log('아이디찾기 실패' + response.data)
         navigate('/find/id/none');
@@ -81,6 +87,74 @@ function CertificationInput({
       console.log(error);
     }
   };
+
+  // const handleFindPwdClick = async () => {
+  //   try {
+  //     const response = await axios.post(`${apiUrl}/api/v1/ceo/find/email`, {
+  //       phoneNumber: Phonenumber,
+  //     })
+  //     console.log(response);
+
+  //     if (response.data.success) {
+  //       console.log(response.data.message);
+  //       navigate('/find/id/search', { state: { message: response.data.message } });
+  //     } else {
+  //       console.log('아이디찾기 실패' + response.data)
+  //       navigate('/find/id/none');
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleFindClick = async () => {
+    if (isFind === 1) {
+      handleFindIdClick();
+    } else if (isFind === 2 && isExist) {
+      // handleFindPwdClick();
+      console.log('1111111');
+      navigate('/find/password/change')
+    }
+  };
+
+  const handleSubmitClick = async () => {
+    console.log("1234")
+    if (isFind === 1) {
+      handleButtonClick();
+    } else if (isFind === 2) {
+      console.log("5678")
+      handleIdDuplicateCheck();
+    }
+  }
+
+  //TODO: 변수명 수정
+  const handleIdDuplicateCheck = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/api/v1/user/duplicate/check`, {
+        email: Phonenumber,
+      })
+      console.log(response);
+
+      if (response.data.success) {
+          console.log("존재하지 않는 아이디:", response.data);
+          setIsExist(false);
+      } else {
+        console.log("존재하는 아이디:", response.data);
+        setIsExist(true);
+      }
+    } catch (error) {
+      console.error("중복검사 요청 실패:", error);
+      setIsExist(null);
+    }
+  };
+
+  const renderMessage = () => {
+    if (isExist !== null) {
+      if (!isExist) {
+        return <LoginChkAlrm icon={"X"} paddingSize={"0.45rem"}>존재하지 않는 아이디입니다.</LoginChkAlrm>;
+      }
+    }
+  }
 
   return (
     <>
@@ -96,7 +170,7 @@ function CertificationInput({
         />
         <button
           type="submit"
-          onClick={handleButtonClick}
+          onClick={handleSubmitClick}
           className={`loginpage-findId-form-submit ${
             chkButton ? "buttonClicked" : ""
           }`}
@@ -104,11 +178,11 @@ function CertificationInput({
           {text === "인증" ? (chkButton ? "재인증" : text) : "조회"}
         </button>
       </div>
-
+      <div>{renderMessage()}</div>
       
         {renderCertificationNumInput()}
         <div className="loginpage-form-submit-button-position">
-          <RedButton type="submit" onClick={handleFindIdClick}>
+          <RedButton type="submit" onClick={handleFindClick}>
             {buttonText}
           </RedButton>
         </div>

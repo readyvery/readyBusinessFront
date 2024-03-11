@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { findState } from "../../../Atom/status";
 import CertificationInput from "../../../components/login/Certification/CertificationInput/CertificationInput";
 import Container from "../../../components/login/Container/Container";
 
 function FindIdPage() {
+  const setIsFind = useSetRecoilState(findState);
+  setIsFind(1);
+  
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
   ? ["25rem", "37.5rem", "4.13rem", "6.56rem"]
