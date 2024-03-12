@@ -202,6 +202,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -221,6 +222,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -240,6 +242,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -355,6 +358,7 @@ ul {
   line-height: normal;
   transform: rotate(0.029deg);
 }
+
 .main__notice__consultation__kakao-btn {
   background: #e6e6e6;
   border-radius: 0.30163rem;
