@@ -185,3 +185,10 @@ export const findState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 })
+
+// 포트 상태값
+export const portState = atom({
+  key:"portState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+})
