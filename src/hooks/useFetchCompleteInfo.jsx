@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 
 const useFetchCompletetInfo = () => {
     const [completeInfo, setCompleteInfo] = useState([]);
-    const token = useRecoilValue(loginState);
-
+    const token = localStorage.getItem("accessToken");
     useEffect(() => {
         const fetchData = async () => {
             commonApis.get("/order?status=COMPLETE", {
                 headers: {
-                    Authorization: `Bearer ${token.accessToken}`
+                    Authorization: `Bearer ${token}`
                 }
             })
                 .then((res) => {

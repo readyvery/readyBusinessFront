@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../../Atom/status";
 
 const apiRoot = process.env.REACT_APP_API_ROOT;
 const apiVer = "api/v1";
@@ -12,10 +10,10 @@ const useFatchWeekAndMonthOrderCount = (monday) => {
     totalWeekOrder: 0,
     totalMonthOrder: 0,
   });
-  const token = useRecoilValue(loginState);
+  const token = localStorage.getItem("accessToken");
   const config = {
     headers: {
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   const body = {

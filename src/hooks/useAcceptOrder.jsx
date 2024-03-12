@@ -1,12 +1,9 @@
 import { message } from "antd";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 import usePrintHandler from "./usePrintHandler";
 
 const useAcceptOrder = () => {
-    const token = useRecoilValue(loginState);
-
+    const token = localStorage.getItem("accessToken");
     const onClickPrintHandler = usePrintHandler();
 
     const acceptOrder = async (orderId, time) => {
@@ -18,7 +15,7 @@ const useAcceptOrder = () => {
         },
         {
             headers: {
-                Authorization: `Bearer ${token.accessToken}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then((res) => {

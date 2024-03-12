@@ -1,10 +1,8 @@
 import { message } from "antd";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 
 const useCompleteOrder = () => {
-    const token = useRecoilValue(loginState);
+    const token = localStorage.getItem("accessToken");
     const completeOrder = async (orderId) => {
         commonApis.post("/order/complete", {
             orderId: orderId,
@@ -14,7 +12,7 @@ const useCompleteOrder = () => {
         },
         {
             headers: {
-                Authorization: `Bearer ${token.accessToken}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then((res) => {

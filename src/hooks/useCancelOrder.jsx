@@ -1,10 +1,8 @@
 import { message } from "antd";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 
 const useCancelOrder = () => {
-    const token = useRecoilValue(loginState);
+    const token = localStorage.getItem("accessToken");
     const cancelOrder = async (orderId, rejectReason) => {
         console.log(orderId, rejectReason);
         commonApis.post("/order/cancel", {
@@ -15,7 +13,7 @@ const useCancelOrder = () => {
         },
         {
             headers: {
-                Authorization: `Bearer ${token.accessToken}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then((res) => {
