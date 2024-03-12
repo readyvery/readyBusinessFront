@@ -112,9 +112,30 @@ const MainPage = () => {
             <span>레디베리 가이드</span> <img src={right} alt=">" />
           </div>
           <div className="main__guide__content">
-            <span className="main__guide1">주문접수 이용방법</span>
-            <span className="main__guide2">메뉴수정 이용방법</span>
-            <span className="main__guide3">재고관리 이용방법</span>
+            <Link
+              to={
+                "https://readyberry.notion.site/8cab670acd234eebb9d35d4540ef49c9"
+              }
+              className="main__guide1"
+            >
+              입점가이드
+            </Link>
+            <Link
+              to={
+                "https://readyberry.notion.site/473a61b674204f5b913ff8dc41929914"
+              }
+              className="main__guide2"
+            >
+              주문접수 이용방법
+            </Link>
+            <Link
+              to={
+                "https://readyberry.notion.site/86960eb623ee4abd8af7219ad6db9e37"
+              }
+              className="main__guide3"
+            >
+              재고관리 이용방법
+            </Link>
           </div>
         </div>
       </div>
