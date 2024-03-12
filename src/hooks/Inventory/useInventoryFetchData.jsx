@@ -1,18 +1,16 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../../Atom/status";
 
 const useInventoryFetchData = () => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const token = useRecoilValue(loginState);
+  const token = localStorage.getItem("accessToken");
   const [isCategoryList, setIsCategoryList] = useState([]);
   const [isInvenList, setIsInvenList] = useState([]);
   const fetchData = useCallback(async () => {
     const config = {
       // withCredentials: true,
       headers: {
-        Authorization: `Bearer ${token.accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     try {

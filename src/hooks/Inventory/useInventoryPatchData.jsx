@@ -1,16 +1,14 @@
 import axios from "axios";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../../Atom/status";
 import useInventoryFetchData from "./useInventoryFetchData";
 
 const useInventoryPatchData = () => {
   const apiUrl = process.env.REACT_APP_API_ROOT;
   const { fetchData } = useInventoryFetchData();
-  const token = useRecoilValue(loginState);
+  const token = localStorage.getItem("accessToken");
   const config = {
     // withCredentials: true,
     headers: {
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
   };
   const patchData = async (currentBox) => {
