@@ -101,16 +101,21 @@ const MainPage = () => {
             </span>
           </div>
           <div className="main__sales__standard">
-            {" "}
-            (기준 {moment().format("M")}월 {moment().format("D")}일{" "}
+            (기준 {moment().format("M")}월 {moment().format("D")}일
             {moment().format("HH")}:{moment().format("mm")})
           </div>
         </div>
 
         <div className="main__guide">
-          <div className="main__guide__title">
-            <span>레디베리 가이드</span> <img src={right} alt=">" />
-          </div>
+          <Link
+            to={
+              "https://readyberry.notion.site/b62a5c9f93974a1281052c37c8b3756c"
+            }
+            className="main__guide__title"
+          >
+            <span>레디베리 가이드</span>
+            <img src={right} alt=">" />
+          </Link>
           <div className="main__guide__content">
             <Link
               to={
@@ -142,9 +147,14 @@ const MainPage = () => {
 
       <div className="main__box6">
         <div className="main__notice">
-          <div className="main__notice__title">
+          <Link
+            to={
+              "https://readyberry.notion.site/b62a5c9f93974a1281052c37c8b3756c"
+            }
+            className="main__notice__title"
+          >
             <span>공지사항</span> <img src={right} alt=">" />
-          </div>
+          </Link>
           <ul className="main__notice__content">
             {notices.map((notice) => (
               <li key={notice.id} className="main__notice__content__item">
