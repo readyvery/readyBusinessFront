@@ -1,42 +1,46 @@
-import { useContext } from "react";
-import { render } from "react-thermal-printer";
-import styled from "styled-components";
-import UserReceipt from "../components/UserReceipt";
-import { HomeContext } from "./OrderManage/Home";
+import styled from 'styled-components';
+import usePrintHandler from '../hooks/usePrintHandler';
 
-const ReceiptTest = () => {
-  const context = useContext(HomeContext);
-  const selectedInfo = context.selectedMenu;
-  console.log(selectedInfo);
-
-  const onClickPrintHandler = async () => {
-    const data = await render(UserReceipt(selectedInfo[0]));
-    const port = await window.navigator?.serial?.requestPort();
-    // await port.open({ baudRate: 9600 });
-    if (port.writable === null) {
-      await port.open({ baudRate: 38400 });
-    }
-    const writer = port.writable?.getWriter();
-    if (writer !== null) {
-      await writer.write(data).then(() => setTimeout(() => port.close(), 500)); // ←
-      writer.releaseLock();
-    }
-  };
-
+const ReceiptTest = ({color}) => {
+  const onClickPrintHandler = usePrintHandler();
+  
   return (
     <>
-      <ReceiptButton
-        onClick={async () => {
-          await onClickPrintHandler();
-          // alert("smartorder-preparing");
-        }}
-      >
-        {" "}
-        영수증 출력{" "}
-      </ReceiptButton>
+      {color === "white" ? (
+        <ReceiptButtonContainer>
+          <ReceiptWhiteButton
+            onClick={async () => {
+              await onClickPrintHandler();
+            }}
+          > 영수증 출력 </ReceiptWhiteButton>
+        </ReceiptButtonContainer>
+      ) : (
+        <ReceiptButton
+          onClick={async () => {
+            await onClickPrintHandler();
+          }}
+        > 영수증 출력 </ReceiptButton>
+      )}
     </>
   );
 };
+
+const ReceiptButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+`;
+
+const ReceiptWhiteButton = styled.div`
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 1.25rem;
+  border: 1.302px solid #DADADA;
+  color: #838383;
+  line-height: 2.5rem;
+  font-size: 1.2rem;
+`;
 
 const ReceiptButton = styled.div`
   width: 10rem;

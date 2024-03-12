@@ -3,8 +3,6 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { loginState } from "../../Atom/status";
 import Container from "../../components/login/Container/Container";
 import RedButton from "../../components/login/redButton/RedButton";
 import "./LoginPage.css";
@@ -43,7 +41,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   // 로그인 내용
-  const setLoginToken = useSetRecoilState(loginState);
+  // const setLoginToken = useSetRecoilState(loginState);
 
   const [EmailText, setEmailText] = useState("");
   const [Password, setPassword] = useState("");
@@ -72,13 +70,10 @@ function LoginPage() {
       const { role, success } = response.data;
       if (success) {
         // 로그인 성공: Recoil에 AT와 만료시간 저장
-        setLoginToken({
-          accessToken: response.data.accessToken,
-          expiredTime: moment().add(1, "day").format("yyyy-MM-DD HH:mm:ss"),
-        });
         localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("expiredTime", moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
         console.log("로그인 성공:", response.data);
-        message.success("로그인 성공");
+        message.success("로그인에 성공하셨습니다!");
 
         switch (role) {
           case "USER":
