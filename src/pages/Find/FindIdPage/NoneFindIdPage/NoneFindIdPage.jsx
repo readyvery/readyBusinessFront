@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { findPasswordState } from "../../../../Atom/status";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import "./NoneFindIdPage.css";
 function NoneFindIdPage() {
   const navigate = useNavigate();
   const [is480, setIs480] = useState(window.innerWidth <= 480);
+  const setPasswordState = useSetRecoilState(findPasswordState);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
     : ["31.3rem", "37.5rem", "5.56rem", "1.38rem"];
+    setPasswordState({
+      email: "",
+      phoneNumber: "",
+      verify: false,
+    });
   useEffect(() => {
     const handleResize = () => {
       setIs480(window.innerWidth <= 480);

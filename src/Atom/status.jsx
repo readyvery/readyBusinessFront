@@ -192,3 +192,13 @@ export const portState = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 })
+
+//비번찾기 아이디 및 번호
+export const findPasswordState = atom({
+  key: "findPasswordState",
+  default: {
+    email: "",
+    phoneNumber: "",
+    verify: false,
+  },
+});
