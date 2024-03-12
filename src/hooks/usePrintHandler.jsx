@@ -1,5 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { render } from "react-thermal-printer";
+import { useRecoilState } from "recoil";
+import { portState } from "../Atom/status";
 import UserReceipt from "../components/UserReceipt";
 import { HomeContext } from "../pages/OrderManage/Home";
 
@@ -7,7 +9,7 @@ const usePrintHandler = () => {
     const context = useContext(HomeContext);
     const selectedInfo = context.selectedMenu;
     console.log(selectedInfo);
-    const [savePort, setSavePort] = useState(null);
+    const [savePort, setSavePort] = useRecoilState(portState);
 
     const onClickPrintHandler = async () => {
     const data = await render(UserReceipt(selectedInfo[0]));
