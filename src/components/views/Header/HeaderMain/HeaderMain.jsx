@@ -27,7 +27,12 @@ const HeaderMain = () => {
 
           <div className="headerTop-nav-css">
             <ul className="headerTop-nav-right-css">
-              <li>공지사항</li>
+              <Link
+                to="https://readyberry.notion.site/b62a5c9f93974a1281052c37c8b3756c"
+                style={{ textDecoration: "none", color: "#838383" }}
+              >
+                <li>공지사항</li>
+              </Link>
               <span className="headerTop-nav-line"></span>
               <Link
                 to="http://pf.kakao.com/_ZxiEjG/chat"
