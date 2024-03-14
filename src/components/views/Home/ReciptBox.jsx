@@ -1,4 +1,6 @@
-import React, { useContext, useMemo } from "react";
+import { message } from "antd";
+import React, { useContext } from "react";
+import { config } from "../../../config/index";
 import { IMAGES } from "../../../constants/images";
 import useAcceptOrder from "../../../hooks/useAcceptOrder";
 import useCancelOrder from "../../../hooks/useCancelOrder";
@@ -10,62 +12,40 @@ import ReciptModal from "./ReciptModal";
 export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     const context = useContext(HomeContext);
 
-    const refuseList = useMemo(() => ([
-      "재료 소진", 
-      "가게 사정", 
-      "기타"
-    ]), []);
-
-    const receiveList = useMemo(() => ([
-      0, 
-      5, 
-      10, 
-      15, 
-      20, 
-      25, 
-      30
-    ]), []);
-
-    const cancelOrder = useCancelOrder();
-    const acceptOrder = useAcceptOrder();
+    const { cancelOrder } = useCancelOrder();
+    const { acceptOrder } = useAcceptOrder();
   
-    const handleCancel = async(e) => {
-      setModalIdx(0);
+    // 주문 거부
+    const handleCancel = async (e) => {
+      // setLoading(1);
       console.log(e);
-      try{
-        await cancelOrder(
-          context?.selectedMenu[0]?.orderId, 
-          e
-        )
-      } catch (error){
-        console.error(error);
-      }
+      message.loading("로딩 중...");
+
+      await cancelOrder(
+        `${context?.selectedMenu[0]?.orderId}@${e}`
+      );
+    
+      setModalIdx(0);
+      // setLoading(0);
     };
   
+    // 주문 접수
     const handleMake = async (e) => {
-      setModalIdx(0);
+      // setLoading(2);
       console.log(context?.selectedMenu);
-      try{
-        await acceptOrder(
-          context?.selectedMenu[0]?.orderId, 
-          e
-        )
-      } catch (error){
-        console.error(error);
-      }
+      message.loading("로딩 중...");
+
+      await acceptOrder(
+        `${context?.selectedMenu[0]?.orderId}@${e}`, 
+      );
+      setModalIdx(0);
+      // setLoading(0);
     };
 
     const selectedInfo = context.selectedMenu;
-    console.log(selectedInfo);
 
     return(
       <div className="receiptWrapper">
-        {/* <img
-            src={close}
-            className="BackIcon"
-            alt="BackIcon"
-            onClick={() => setModalIdx(0)}
-          /> */}
         {
           selectedInfo?.length ? (
             <>
@@ -154,7 +134,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
                 title="접수 거부 사유를 선택해주세요"
               >
                 <div className="modal-box-choose-btn__wrapper">
-                  {refuseList.map((text, idx) => (
+                  {config?.refuseList?.map((text, idx) => (
                     <React.Fragment key={idx}>
                       <div
                         className="modal-box-choose-btn"
@@ -176,7 +156,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
               >
                 <div className="modal-box-choose-btn__wrapper">
                   <div className="modal-box-chooseTime-wrapper">
-                  {receiveList.map((text, idx) => {
+                  {config?.receiveList?.map((text, idx) => {
                     if(!idx){
                     return (
                       <React.Fragment key={idx}>

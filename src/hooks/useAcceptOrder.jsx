@@ -1,39 +1,51 @@
 import { message } from "antd";
+import { useMutation, useQueryClient } from "react-query";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 import usePrintHandler from "./usePrintHandler";
 
 const useAcceptOrder = () => {
+    const queryClient = useQueryClient();
     const token = useRecoilValue(loginState);
 
     const onClickPrintHandler = usePrintHandler();
 
-    const acceptOrder = async (orderId, time) => {
-        commonApis.post("/order/complete", {
-            orderId: orderId,
+    const { mutate: acceptOrder, isLoading, isError, error } = useMutation(
+        ( e ) => commonApis.post("/order/complete", {
+            orderId: e.split("@")[0],
             status: "MAKE",
-            time: time,
+            time: e.split("@")[1],
             rejectReason: "",
-        },
-        {
+        }, {
             headers: {
-                Authorization: `Bearer ${token.accessToken}`
-            }
-        })
-            .then((res) => {
-                console.log(res);
-                if(res.status === 200 && res.data.success === true){
+                Authorization: `Bearer ${token}`,
+            },
+        }),
+        {
+            onSuccess: (data) => {
+                if (data.status === 200 && data.data.success === true) {
+                    message.destroy();
                     message.success("주문 접수되었습니다.");
-                    onClickPrintHandler(); // 영수증 출력
+                    queryClient.invalidateQueries({queryKey: ["get-wait"]}); // 쿼리 무효화
+                    queryClient.invalidateQueries({queryKey: ["get-make"]}); // 쿼리 무효화
+                    onClickPrintHandler();
+                } else {
+                    message.destroy();
+                    message.error("주문 접수 실패. 다시 시도해주세요.");
+                    queryClient.invalidateQueries({queryKey: ["get-wait"]}); // 쿼리 무효화
+                    queryClient.invalidateQueries({queryKey: ["get-make"]}); // 쿼리 무효화
                 }
-            })
-            .catch((err) => {
-                console.log(err);
-                message.error("주문 접수 중 오류가 발생하였습니다.")
-            });
-    }
-    return acceptOrder;
+            },
+            onError: (err) => {
+                console.error(err);
+                message.destroy();
+                message.error("주문 접수 중 오류가 발생하였습니다.");
+            },
+        }
+    );
+
+    return { acceptOrder, isLoading, isError, error };
 }
 
 export default useAcceptOrder;
