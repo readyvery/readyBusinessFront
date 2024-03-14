@@ -49,7 +49,7 @@ function App() {
   const NewVerificationPage = Auth(VerificationPage, true, 1) // 입점신청서 페이지
   const NewJudgeResultsBeforePage = Auth(JudgeResultsBeforePage, true, 2); // 입점신청서 신청 완료 페이지
   const NewJudgeResultsRejectPage = Auth(JudgeResultsRejectPage, true, 3); // 입점 심사 반려 페이지
-  // const NewMainPage = Auth(MainPage, true, 4); // 메인페이지 (4, 5)
+  const NewMainPage = Auth(MainPage, true, 4); // 메인페이지 (4, 5)
   const NewStoreManage = Auth(StoreManage, true, 4); // 매장관리 페이지 (4, 5)
   // const NewOrderManagementPage = Auth(OrderManagePage, true, 5); // 주문관리
   const NewInventoryPage = Auth(InventoryPage, true, 5); // 재고관리
@@ -72,7 +72,7 @@ function App() {
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/main" element={<NewMainPage />} />
           <Route path="/store" element={<NewStoreManage />} />
           <Route path="/order" element={<OrderManagePage />} />
           <Route path="/inventory" element={<NewInventoryPage />} />
