@@ -1,6 +1,6 @@
 import axios from "axios";
 import { atom, selector } from "recoil";
-import { recoilPersist } from 'recoil-persist';
+import { recoilPersist } from "recoil-persist";
 import { Refresh } from "../util/handleRefresh";
 
 const { persistAtom } = recoilPersist();
@@ -94,14 +94,14 @@ export const tokenSelector = selector({
 });
 
 export const getLoginState = selector({
-  key: 'getLoginState',
+  key: "getLoginState",
   get: ({ get }) => {
     const loginStateValue = get(loginState);
     const { accessToken } = loginStateValue;
     return accessToken;
   },
 });
-export const setLoginState = ({set}, newState) => {
+export const setLoginState = ({ set }, newState) => {
   set(loginState, (prevState) => ({
     ...prevState,
     ...newState,
@@ -119,7 +119,7 @@ export const ceoState = atom({
   key: "ceoState",
   default: false,
   effects_UNSTABLE: [persistAtom],
-})
+});
 
 export const getUserSelector = selector({
   key: "user/get",
@@ -165,7 +165,7 @@ export const userConfirmPasswordState = atom({
   key: "userConfirmPasswordState",
   default: null,
   effects_UNSTABLE: [persistAtom],
-})
+});
 
 export const userNameState = atom({
   key: "userNameState",
@@ -174,24 +174,25 @@ export const userNameState = atom({
 });
 
 export const userIdDuplicateState = atom({
-  key:"userIdDuplicateState",
+  key: "userIdDuplicateState",
   default: null,
   effects_UNSTABLE: [persistAtom],
-})
-
-//아이디 비번찾기 상태값
-export const findState = atom({
-  key:"findState",
-  default: null,
-  effects_UNSTABLE: [persistAtom],
-})
+});
 
 // 포트 상태값
 export const portState = atom({
-  key:"portState",
+  key: "portState",
   default: null,
   effects_UNSTABLE: [persistAtom],
-})
+});
+
+//아이디 비번찾기 상태값
+export const userVerifyState = atom({
+  key: "userVerifyState",
+  default: {
+    verify: false,
+  },
+});
 
 //비번찾기 아이디 및 번호
 export const findPasswordState = atom({
@@ -200,5 +201,12 @@ export const findPasswordState = atom({
     email: "",
     phoneNumber: "",
     verify: false,
+  },
+});
+// 번호(가림처리 없는, 유저가 입력)
+export const getPhoneNumber = atom({
+  key: "getPhoneNumber",
+  default: {
+    phoneNumber: "",
   },
 });
