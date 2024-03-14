@@ -1,13 +1,11 @@
 import { message } from "antd";
 import { useMutation, useQueryClient } from "react-query";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 import usePrintHandler from "./usePrintHandler";
 
 const useAcceptOrder = () => {
     const queryClient = useQueryClient();
-    const token = useRecoilValue(loginState);
+    const token = localStorage.getItem("accessToken");
 
     const onClickPrintHandler = usePrintHandler();
 

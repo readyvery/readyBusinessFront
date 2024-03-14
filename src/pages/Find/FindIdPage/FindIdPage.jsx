@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { findState } from "../../../Atom/status";
 import CertificationInput from "../../../components/login/Certification/CertificationInput/CertificationInput";
 import Container from "../../../components/login/Container/Container";
 
 function FindIdPage() {
-  const setIsFind = useSetRecoilState(findState);
-  setIsFind(1);
   
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
@@ -27,11 +23,8 @@ function FindIdPage() {
   return (
     <Container title={"아이디 찾기"} containerWidth={containerSize[0]} containerHeight={containerSize[1]} logoMarginTop={containerSize[2]} logoMarginBottom={containerSize[3]}>
       <CertificationInput
-        id="userid"
         type="tel"
         placeholder="전화번호"
-        requiredname="username"
-        text="인증"
         buttonText="확인"
       />
     </Container>

@@ -5,23 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { findPasswordState } from "../../../../Atom/status";
 import RedButton from "../../redButton/RedButton";
+import "../CertificationInput/CertificationInput.css";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
-import "./CertificationInput.css";
 
-function CertificationInput({ type, text, buttonText }) {
+function CertificationInputPhoneNumber(userName, userEmail) {
   const navigate = useNavigate();
   const [inputNum, setInputNum] = useState(false); //전화번호 입력상태
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
   const passwordState = useRecoilValue(findPasswordState);
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-
   const handleButtonClick = () => {
+    // 전체가 숫자인지, 000-0000-0000 총 11자리인지 확인
     if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
       setInputNum(true);
       handlePostmessage();
     } else {
       setInputNum(false);
+      setPhonenumber("");
       message.info("전화번호를 올바르게 입력해주세요.");
     }
   };
@@ -32,12 +32,16 @@ function CertificationInput({ type, text, buttonText }) {
     try {
       setChkButton(true);
       const response = await axios.post(`${apiUrl}`, {
+        email: userEmail,
         phoneNumber: Phonenumber,
+        name: userName,
       });
+      console.log(response);
+
       if (response.data.success) {
-        console.log(" 아이디 찾기 인증번호 발송 성공:", response.data);
+        console.log("인증번호 발송 성공:", response.data);
       } else {
-        console.log("아이디 찾기 인증번호 발송 실패:", response.data);
+        console.log("인증번호 발송 실패:", response.data);
       }
     } catch (error) {
       console.error(error);
@@ -45,49 +49,17 @@ function CertificationInput({ type, text, buttonText }) {
   };
 
   const renderCertificationNumInput = () => {
-    if (type === "tel" && chkButton && inputNum) {
-      console.log("번호 verify");
-      return <CertificationNumInput phoneNumber={Phonenumber} />;
-    }
-    return null;
+    return <CertificationNumInput phoneNumber={Phonenumber} />;
   };
 
   const handlePhoneChange = (event) => {
     setPhonenumber(event.target.value);
   };
 
-  const handleFindIdClick = async () => {
-    try {
-      const response = await axios.post(`${apiUrl}/api/v1/ceo/find/email`, {
-        phoneNumber: Phonenumber,
-      });
-      console.log(response);
-
-      if (response.data.success) {
-        console.log(response.data.message);
-        navigate("/find/id/search", {
-          state: { message: response.data.message },
-        });
-      }
-    } catch (error) {
-      // 404에러 처리(사용자 id가 db에 없을 경우)
-      if (axios.isAxiosError(error)) {
-        if (error.response && error.response.status === 404) {
-          navigate("/find/id/none");
-        }
-      }
-      // 다른 오류 처리
-      else {
-        message.error("아이디 조회 요청에 실패했습니다.");
-      }
-    }
-  };
-
-  const handleSubmitClick = () => {
+  // 인증성공 시,
+  const handleFindClick = () => {
     if (passwordState.verify) {
-      handleFindIdClick();
-    } else {
-      message.info("번호 인증을 해주세요.");
+      navigate("/find/password/change/user");
     }
   };
 
@@ -112,14 +84,15 @@ function CertificationInput({ type, text, buttonText }) {
         </button>
       </div>
 
-      {renderCertificationNumInput()}
+      {inputNum && renderCertificationNumInput()}
+
       <div className="loginpage-form-submit-button-position">
-        <RedButton type="submit" onClick={handleSubmitClick}>
-          {buttonText}
+        <RedButton type="submit" onClick={handleFindClick}>
+          다음
         </RedButton>
       </div>
     </>
   );
 }
 
-export default CertificationInput;
+export default CertificationInputPhoneNumber;

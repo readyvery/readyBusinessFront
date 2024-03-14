@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { findPasswordState } from "../../../../../Atom/status";
 import Container from "../../../../../components/login/Container/Container";
 import LoginChkAlrm from "../../../../../components/login/LoginChkAlrm/LoginChkAlrm";
 import RedButton from "../../../../../components/login/redButton/RedButton";
 import "./ChangeNewPasswordPage.css";
 
 function ChangeNewPasswordPage() {
+  const setPasswordState = useSetRecoilState(findPasswordState);
+  setPasswordState({
+    email: "",
+    phoneNumber: "",
+    verify: false,
+  });
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "5.12rem"]
@@ -80,7 +88,7 @@ function ChangeNewPasswordPage() {
         <form className="password-changepage-form" onSubmit={handleSubmit}>
           <input
             id="password"
-            type="password"
+            type="text"
             placeholder="새로운 비밀번호"
             required
             name="usernamepassword"
@@ -90,7 +98,7 @@ function ChangeNewPasswordPage() {
           />
           <input
             id="passwordCheck"
-            type="password"
+            type="text"
             placeholder="비밀번호 확인"
             value={passwordCheck}
             onChange={handlePasswordCheckChange}

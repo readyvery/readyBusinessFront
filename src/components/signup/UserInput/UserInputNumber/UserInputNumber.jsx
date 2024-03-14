@@ -3,12 +3,24 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { userConfirmPasswordState, userIdState, userNameState, userPasswordState } from "../../../../Atom/status";
+import {
+  userConfirmPasswordState,
+  userIdState,
+  userNameState,
+  userPasswordState,
+} from "../../../../Atom/status";
 import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
 
-function PhoneCertificationInput({ id, type, placeholder, requiredname, text, buttonText }) {
+function PhoneCertificationInput({
+  id,
+  type,
+  placeholder,
+  requiredname,
+  text,
+  buttonText,
+}) {
   const navigate = useNavigate();
   const userId = useRecoilValue(userIdState);
   const userPassword = useRecoilValue(userPasswordState);
@@ -17,7 +29,7 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
 
   const [inputNum, setInputNum] = useState(false);
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
-  const [Phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
+  const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
   // const [operationMode, setOperationMode] = useState('join');
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
@@ -36,7 +48,7 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
       setChkButton(true);
       const response = await axios.post(`${apiUrl}/api/v1/sms/send`, {
         phoneNumber: Phonenumber,
-      })
+      });
       console.log(response);
 
       if (response.data.success) {
@@ -44,7 +56,6 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
       } else {
         console.log("인증번호 발송 실패:", response.data);
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -58,13 +69,13 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
         confirmPassword: userConfirmPassword,
         name: userName,
         phone: Phonenumber,
-      })
+      });
       console.log(response);
 
       if (response.data.success) {
         console.log("회원가입 성공: ", response.data);
         message.info("회원가입이 완료되었습니다.");
-        navigate('/login');
+        navigate("/login");
       } else {
         console.log("회원가입 실패: ", response.data);
       }
@@ -75,14 +86,14 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
 
   const renderUserInputNumberMessage = () => {
     if (type === "tel" && chkButton && inputNum) {
-      return <UserInputNumberMessage phoneNumber={Phonenumber}/>;
+      return <UserInputNumberMessage phoneNumber={Phonenumber} />;
     }
     return null;
   };
 
   const handlePhoneChange = (event) => {
     setPhonenumber(event.target.value);
-  }
+  };
 
   return (
     <>
@@ -99,34 +110,40 @@ function PhoneCertificationInput({ id, type, placeholder, requiredname, text, bu
         <button
           type="submit"
           onClick={handleButtonClick}
-          className={`user-input-phone-number-button ${chkButton ? "user-input-phone-number-button-clicked" : ""}`}
+          className={`user-input-phone-number-button ${
+            chkButton ? "user-input-phone-number-button-clicked" : ""
+          }`}
         >
           {text === "인증" ? (chkButton ? "재인증" : text) : "조회"}
         </button>
       </div>
       {renderUserInputNumberMessage()}
-      <div className="user-input-phone-number-auth-button">
-        <RedButton type="submit" onClick={handleJoinClick}>{buttonText}</RedButton>
-      </div>
+      <RedButton
+        type="submit"
+        onClick={handleJoinClick}
+        className="user-input-phone-number-auth-button"
+      >
+        {buttonText}{" "}
+      </RedButton>
     </>
   );
 }
 
-
 const UserInputNumber = () => {
-
-    return(
-        <div className="user-input-phone-number-content-number-wrapper">
-            <label className="user-input-phone-number-content-number-label-style">전화번호 인증</label>
-            <PhoneCertificationInput 
-                id="userid" 
-                type="tel"
-                placeholder="전화번호"
-                requiredname="username"
-                text="인증"
-                buttonText="완료"
-            />
-        </div>
-    )
-}
+  return (
+    <div className="user-input-phone-number-content-number-wrapper">
+      <label className="user-input-phone-number-content-number-label-style">
+        전화번호 인증
+      </label>
+      <PhoneCertificationInput
+        id="userid"
+        type="tel"
+        placeholder="전화번호"
+        requiredname="username"
+        text="인증"
+        buttonText="완료"
+      />
+    </div>
+  );
+};
 export default UserInputNumber;

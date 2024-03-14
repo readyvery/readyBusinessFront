@@ -3,12 +3,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #fff;
+}
+
+.footer__link {
   color: var(--frame-text, #838383);
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  background: #fff;
+  text-decoration: none;
 }
 
 .footer__line {

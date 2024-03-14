@@ -168,13 +168,14 @@
 
 .main__guide__title {
   display: flex;
+  align-items: center;
   color: var(--title, #2e2d2d);
   font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  align-items: center;
+  text-decoration: none;
   margin-top: auto;
   margin-bottom: 0.69rem;
 }
@@ -202,6 +203,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -221,6 +223,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -240,6 +243,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-decoration: none;
   justify-content: center;
   align-items: flex-end;
   padding-bottom: 1.19rem;
@@ -268,6 +272,7 @@
   align-items: center;
   margin-top: auto;
   margin-bottom: 0.69rem;
+  text-decoration: none;
 }
 
 .main__notice__title img {
@@ -355,6 +360,7 @@ ul {
   line-height: normal;
   transform: rotate(0.029deg);
 }
+
 .main__notice__consultation__kakao-btn {
   background: #e6e6e6;
   border-radius: 0.30163rem;
@@ -719,6 +725,10 @@ ul {
     margin-right: 1.5rem;
   }
 
+  .main__guide__title {
+    font-size: 1.25rem;
+  }
+
   .main__guide1 {
     width: 8.4375rem;
     height: 11.4375rem;
@@ -753,7 +763,7 @@ ul {
   }
 
   .main__notice__title {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .main__notice__consultation {

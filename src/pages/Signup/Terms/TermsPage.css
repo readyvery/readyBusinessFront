@@ -76,3 +76,9 @@
     height: 1.25rem;
   }
 }
+
+.terms-page-check-box-wrapper-label a {
+  color: black; /* 링크 색상을 검은색으로 설정 */
+  text-decoration: none; /* 밑줄을 없애기 */
+  cursor: pointer; /* 마우스 오버 시 커서 모양을 pointer로 설정 */
+}
