@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import { soundState } from '../../../Atom/status';
 import { IMAGES } from "../../../constants/images";
 import { useAudioManager } from '../../../hooks/useAudioManager';
+import { useFetchWaitInfo } from '../../../hooks/useFetchWaitInfo';
 
 const SoundComponent = () => {
   const audioManager = useAudioManager();
@@ -13,10 +14,12 @@ const SoundComponent = () => {
     setSound((prev) => !prev);
   }
 
+  const {data: waitData} = useFetchWaitInfo();
+
   useEffect(() => {
     let interval = null;
 
-    if(sound){
+    if(sound && waitData?.data?.orders?.length > 0){
         interval = setInterval(() => {
             console.log('소리 출력');
             audioManager.playSound();
@@ -28,7 +31,7 @@ const SoundComponent = () => {
             clearInterval(interval);
         }
     };
-  }, [sound, audioManager]);
+  }, [waitData, sound, audioManager]);
 
   return (<>
     {sound ? (
