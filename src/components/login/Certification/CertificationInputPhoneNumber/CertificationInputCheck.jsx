@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { userVerifyState } from "../../../../Atom/status";
+import { findPasswordState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../LoginChkAlrm/LoginChkAlrm";
-import "./CertificationNumInput.css";
+import "./CertificationInputCheck.css";
 
 // const AUTH_CODE = "1234";//서버에서 받아오는 값
 const TIMER_DURATION = 600; //타이머 시간 설정(600초)
@@ -13,14 +13,14 @@ const Timer = ({ minutes, seconds }) => (
     {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
   </div>
 );
-// 아이디 찾기 및 회원가입 번호인증
-// 추후 비밀번호 인증과 통합예정
-function CertificationNumInput({ phoneNumber }) {
+// 비밀번호 변경 번호 인증_인증번호 확인
+// 추후 아이디 찾기 및 회원가입 번호인증과 비교 후 수정 필요
+function CertificationInputCheck({ phoneNumber }) {
   const [chkNum, setChkNum] = useState("");
   const [timer, setTimer] = useState(TIMER_DURATION);
   const [isAuth, setIsAuth] = useState();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const setUserVerifyState = useSetRecoilState(userVerifyState);
+  const setPasswordState = useSetRecoilState(findPasswordState);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,15 +35,18 @@ function CertificationNumInput({ phoneNumber }) {
     setChkNum(newChkNum);
     if (newChkNum.length === 6) {
       try {
-        const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
-          phoneNumber: phoneNumber,
-          verifyNumber: newChkNum,
-        });
+        const response = await axios.post(
+          `${apiUrl}/api/v1/sms/verify/find-email`,
+          {
+            phoneNumber: phoneNumber,
+            verifyNumber: newChkNum,
+          }
+        );
 
         if (response.data.success) {
           console.log("인증성공", response.data);
           setIsAuth(true);
-          setUserVerifyState({
+          setPasswordState({
             verify: true,
           });
         } else {
@@ -98,4 +101,4 @@ function CertificationNumInput({ phoneNumber }) {
   );
 }
 
-export default CertificationNumInput;
+export default CertificationInputCheck;

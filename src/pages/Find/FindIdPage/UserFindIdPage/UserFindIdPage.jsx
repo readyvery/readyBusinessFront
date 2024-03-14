@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { findPasswordState } from "../../../../Atom/status";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import "./UserFindIdPage.css";
@@ -9,10 +7,8 @@ import "./UserFindIdPage.css";
 function UserFindIdPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const message = location.state?.message;
-
+  const userId = location.state?.message?.slice(4); // 아이디 ...이렇게와서,,.
   const [is480, setIs480] = useState(window.innerWidth <= 480);
-  const setPasswordState = useSetRecoilState(findPasswordState);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
     : ["31.3rem", "37.5rem", "5.56rem", "1.38rem"];
@@ -27,12 +23,6 @@ function UserFindIdPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  setPasswordState({
-    email: "",
-    phoneNumber: "",
-    verify: false,
-  });
-
   return (
     <Container
       title={"아이디 찾기"}
@@ -46,7 +36,7 @@ function UserFindIdPage() {
           <span>가입하신 아이디는 아래와 같습니다.</span>
           <input
             type="text"
-            defaultValue={"아이디: " + message}
+            defaultValue={"아이디: " + userId}
             className="user-find-id-page-text-output"
             readOnly
           />

@@ -1,18 +1,17 @@
+import { message } from "antd";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { findPasswordState } from "../../../../../Atom/status";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { getPhoneNumber } from "../../../../../Atom/status";
 import Container from "../../../../../components/login/Container/Container";
 import LoginChkAlrm from "../../../../../components/login/LoginChkAlrm/LoginChkAlrm";
 import RedButton from "../../../../../components/login/redButton/RedButton";
 import "./ChangeNewPasswordPage.css";
 
 function ChangeNewPasswordPage() {
-  const setPasswordState = useSetRecoilState(findPasswordState);
-  setPasswordState({
-    email: "",
-    phoneNumber: "",
-    verify: false,
-  });
+  const navigate = useNavigate();
+  const phoneNumberState = useRecoilValue(getPhoneNumber);
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "5.12rem"]
@@ -69,8 +68,28 @@ function ChangeNewPasswordPage() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // 폼 제출 방지
+  const handleSubmit = async () => {
+    const apiRoot = process.env.REACT_APP_API_ROOT;
+    const apiVer = "api/v1";
+    const apiUrl = `${apiRoot}/${apiVer}/ceo/find/password`;
+    if (!passwordError && password !== "") {
+      try {
+        const response = await axios.post(`${apiUrl}`, {
+          phoneNumber: phoneNumberState.phoneNumber,
+          password: password,
+          confirmPassword: passwordCheck,
+        });
+
+        if (response.data.success) {
+          message.success("비밀번호 변경에 성공했습니다!");
+          navigate(`/`);
+        }
+      } catch (error) {
+        message.error("비밀번호 변경에 실패했습니다.");
+      }
+    } else {
+      message.error("비밀번호 변경 조건에 맞춰주세요.");
+    }
   };
 
   return (
@@ -85,7 +104,7 @@ function ChangeNewPasswordPage() {
         <div className="password-changepage-qualification-text">
           영문+숫자+특수문자 8자 이상
         </div>
-        <form className="password-changepage-form" onSubmit={handleSubmit}>
+        <div className="password-changepage-form">
           <input
             id="password"
             type="text"
@@ -117,11 +136,11 @@ function ChangeNewPasswordPage() {
             </LoginChkAlrm>
           ) : null}
           <div className="password-changepage-submit-wrapper">
-            <RedButton type="submit" disabled={passwordError}>
+            <RedButton disabled={passwordError} onClick={handleSubmit}>
               확인
             </RedButton>
           </div>
-        </form>
+        </div>
       </div>
     </Container>
   );

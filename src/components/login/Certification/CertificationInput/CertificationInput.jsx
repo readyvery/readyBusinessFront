@@ -3,17 +3,18 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { findPasswordState } from "../../../../Atom/status";
+import { userVerifyState } from "../../../../Atom/status";
 import RedButton from "../../redButton/RedButton";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
 import "./CertificationInput.css";
 
-function CertificationInput({ type, text, buttonText }) {
+// 아이디찾기 및 회원가입 번호인증에 사용
+function CertificationInput({ type, buttonText }) {
   const navigate = useNavigate();
   const [inputNum, setInputNum] = useState(false); //전화번호 입력상태
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
   const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
-  const passwordState = useRecoilValue(findPasswordState);
+  const verifyState = useRecoilValue(userVerifyState);
   const apiUrl = process.env.REACT_APP_API_ROOT;
 
   const handleButtonClick = () => {
@@ -84,7 +85,7 @@ function CertificationInput({ type, text, buttonText }) {
   };
 
   const handleSubmitClick = () => {
-    if (passwordState.verify) {
+    if (verifyState.verify) {
       handleFindIdClick();
     } else {
       message.info("번호 인증을 해주세요.");
