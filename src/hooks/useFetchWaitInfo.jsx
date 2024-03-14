@@ -10,7 +10,7 @@ export const useFetchWaitInfo = () => {
         }
     });
     }, {
-        // refetchInterval: 3000,
+        refetchInterval: 3000,
         refetchOnWindowFocus: true
     })
 
