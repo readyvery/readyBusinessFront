@@ -1,12 +1,11 @@
-import Header from "../../components/views/Header/HeaderOrder/Header2";
 import Home from "./Home";
 
 // 주문관리 가장 상위 컴포넌트
 const Order = () => {
   return (
     <>
-      <Header />
       <Home defaultStatus={1} defaultValue={0} setSelectedMenu={{}}>
+        <Home.Header />
         {/* 주문 목록 */}
         <Home.MainHome>
           <Home.StatusHeader>

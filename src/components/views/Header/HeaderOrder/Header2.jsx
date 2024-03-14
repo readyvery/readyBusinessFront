@@ -9,20 +9,24 @@ import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
-
   const context = useContext(HomeContext);
-  console.log(context?.selectedMenu);
+
+  const onBackHandler = () => {
+    context.setSelectedMenu({});
+    context.setSelectedIdx(0);
+  }
   return (
     <div className="header2">
       <div className="header2-wrapper">
         <div className="logo-wrapper">
           {
+            context?.selectedMenu && 
             context?.selectedMenu.length > 0 && 
             <img
               src={BackIcon}
               className="BackIcon"
               alt="BackIcon"
-              onClick={() => navigate(`/main`)}
+              onClick={onBackHandler}
             />
           }
           <img

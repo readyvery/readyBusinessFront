@@ -22,19 +22,32 @@ const OrderBoxContainer = styled.div`
     display: flex;
     align-items: center;
     background-color: ${(props) => props.clicked && theme.colors.clickColor};
+
+    @media (max-width: 768px) {
+        height: 4.5rem;
+    }
 `;
 
 const OrderBoxSpan = styled.span`
     text-align: ${(props) => props.align};
     color: ${theme.colors.title};
     width: ${(props) => props.width};
+    font-family: "Pretendard Variable";
     ${(props) => props.size === "big" ? css`
         font-size: 1.1rem;
-        font-family: "Pretendard";
+        font-family: "Pretendard Variable";
         font-weight: 800;
     ` : css`
         font-size: 0.9rem;
-        font-family: "Pretendard";
+        font-family: "Pretendard Variable";
         font-weight: 600;
     `}
+
+    @media (max-width: 768px) {
+        font-size: ${(props) => props.size === "big" ? '1.3rem' : '1.1rem'};
+    }
+
+    @media (max-width: 480px) {
+        font-size: ${(props) => props.size === "big" ? '1.4rem' : '1.2rem'};
+    }
 `;

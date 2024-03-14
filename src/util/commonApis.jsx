@@ -10,9 +10,6 @@ const commonApis = axios.create({
 commonApis.interceptors.request.use(
     async (config) => {
         const loginStateValue = localStorage.getItem('accessToken');
-        console.log('commonApi: ', loginStateValue);
-        // const expired = Refresh();
-        // console.log('expired: ', expired);
         if (loginStateValue) {
             config.headers['Authorization'] = `Bearer ${loginStateValue}`;
         }

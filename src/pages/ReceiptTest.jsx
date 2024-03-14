@@ -37,6 +37,7 @@ const ReceiptWhiteButton = styled.div`
   height: 2.5rem;
   border-radius: 1.25rem;
   border: 1.302px solid #DADADA;
+  text-align:center;
   color: #838383;
   line-height: 2.5rem;
   font-size: 1.2rem;
@@ -47,6 +48,7 @@ const ReceiptButton = styled.div`
   height: 2.5rem;
   background-color: #d82356;
   border-radius: 1.25rem;
+  text-align:center;
   color: #fff;
   line-height: 2.5rem;
   font-size: 1.2rem;

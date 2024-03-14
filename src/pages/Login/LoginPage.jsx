@@ -55,6 +55,12 @@ function LoginPage() {
     setPassword(event.currentTarget.value);
   };
 
+  const onEnterHandler = (event) => {
+    if(event.keyCode === 13){
+      onSubmitHandler();
+    }
+  }
+
   const onSubmitHandler = async () => {
     try {
       const response = await axios.post(
@@ -131,6 +137,7 @@ function LoginPage() {
           placeholder="Password"
           value={Password}
           onChange={onPasswordHandler}
+          onKeyDown={onEnterHandler}
           className="loginpage-user-password"
         />
         {/* {!loginInfo && (

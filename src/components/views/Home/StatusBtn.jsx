@@ -1,16 +1,31 @@
 import { useContext } from "react";
 import styled, { css } from "styled-components";
+import { useFetchCompleteInfo } from "../../../hooks/useFetchCompleteInfo";
+import { useFetchMakeInfo } from "../../../hooks/useFetchMakeInfo";
+import { useFetchWaitInfo } from "../../../hooks/useFetchWaitInfo";
 import { HomeContext } from "../../../pages/OrderManage/Home";
 import theme from "../../../style/theme/theme";
 
 export default function StatusBtn({ status, text }) {
   const context = useContext(HomeContext);
 
+  const {refreshData: fetchWait} = useFetchWaitInfo();
+  const {refreshData: fetchMake} = useFetchMakeInfo();
+  const {refreshData: fetchComplete} = useFetchCompleteInfo();
+  
   // 처리중 | 완료 버튼 눌렀을 때
   const onClickHandler = () => {
     context.setStatus(status);
     context.setSelectedIdx(0);
     context.setSelectedMenu({});
+
+    if(status === 1){
+      fetchWait();
+      fetchMake();
+    }
+    if(status === 2){
+      fetchComplete();
+    }
   };
 
   return (

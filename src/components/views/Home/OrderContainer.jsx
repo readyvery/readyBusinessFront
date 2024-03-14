@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import useFetchCompleteInfo from "../../../hooks/useFetchCompleteInfo";
+import { useFetchCompleteInfo } from "../../../hooks/useFetchCompleteInfo";
 import { useFetchMakeInfo } from "../../../hooks/useFetchMakeInfo";
 import { useFetchWaitInfo } from "../../../hooks/useFetchWaitInfo";
 import { HomeContext } from "../../../pages/OrderManage/Home";
@@ -13,9 +13,9 @@ export default function OrderContainer () {
     const {data: waitData} = useFetchWaitInfo();
     const {data: makeData} = useFetchMakeInfo();
     const {data: completeData} = useFetchCompleteInfo();
-    console.log(waitData);
-    console.log(makeData);
-    console.log(completeData);
+    // console.log(waitData);
+    // console.log(makeData);
+    // console.log(completeData);
 
     const handleOrderMenu = (dummyInfo, e) => {
         const selectedMenu = dummyInfo.orders.filter((order) => order.orderNum === e);
@@ -70,12 +70,12 @@ export default function OrderContainer () {
                 <>
                     {
                         completeData && completeData?.data?.orders?.map((item) => (
-                            <span onClick={() => handleCompleteOrderMenu(item.idx)}>
+                            <span onClick={() => handleCompleteOrderMenu(item.orderNum)}>
                                 <OrderBox 
-                                    id={item.idx}
+                                    id={item.orderNum}
                                     category={item.pickUp}
                                     menu={item.foodies}
-                                    clicked={item.idx === context.selectedIdx}
+                                    clicked={item.orderNum === context.selectedIdx}
                                 />
                             </span>
                         ))
