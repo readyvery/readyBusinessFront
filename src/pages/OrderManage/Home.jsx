@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import styled from "styled-components";
 
 
+import Header from "../../components/views/Header/HeaderOrder/Header2";
 import OrderContainer from "../../components/views/Home/OrderContainer";
 import StatusBtn from "../../components/views/Home/StatusBtn";
 import StatusHeader from "../../components/views/Home/StatusHeader";
@@ -41,6 +42,7 @@ const Container = styled.div`
   }
 `;
 
+Home.Header = Header;
 Home.MainHome = MainHome;
 Home.Receipt = Receipt;
 Home.StatusHeader = StatusHeader;
