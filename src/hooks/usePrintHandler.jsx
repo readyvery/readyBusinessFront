@@ -6,7 +6,6 @@ import { HomeContext } from "../pages/OrderManage/Home";
 const usePrintHandler = () => {
     const context = useContext(HomeContext);
     const selectedInfo = context.selectedMenu;
-    console.log(selectedInfo);
 
     const onClickPrintHandler = async () => {
     const data = await render(UserReceipt(selectedInfo[0]));
