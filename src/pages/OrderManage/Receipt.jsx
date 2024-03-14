@@ -1,3 +1,4 @@
+import { message } from "antd";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useContext, useEffect, useState } from "react";
@@ -15,24 +16,22 @@ const Receipt = () => {
 
   const [modalIdx, setModalIdx] = useState(0);
 
-  console.log(context?.selectedMenu && context?.selectedMenu);
 
   useEffect(() => {
     AOS.init();
   });
+  
+  const { completeOrder } = useCompleteOrder();
 
-  const completeOrder = useCompleteOrder();
-
+  // 제조 완료
   const handleMakeComplete = async () => {
+    message.loading("로딩 중...");
+    completeOrder(
+      context?.selectedMenu[0]?.orderId, 
+    );
     setModalIdx(0);
-    console.log(context?.selectedMenu);
-    try{
-      await completeOrder(
-        context?.selectedMenu[0]?.orderId, 
-      )
-    } catch (error){
-      console.error(error);
-    }
+    context.setSelectedMenu({});
+    context.setSelectedIdx(0);
   }
 
   return (
@@ -83,7 +82,7 @@ const BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 60%;
-  gap: 1.5rem;
+  gap: 1rem;
   // height: 50px;
 `;
 
