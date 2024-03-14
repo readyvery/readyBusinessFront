@@ -1,34 +1,21 @@
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
+import { useQuery } from "react-query";
 import commonApis from "../util/commonApis";
 
-const useFetchCompletetInfo = () => {
-    const [completeInfo, setCompleteInfo] = useState([]);
-    const token = useRecoilValue(loginState);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            commonApis.get("/order?status=COMPLETE", {
-                headers: {
-                    Authorization: `Bearer ${token.accessToken}`
-                }
-            })
-                .then((res) => {
-                    console.log(res);
-                    setCompleteInfo(res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    if (err.status === 404 && err.message === "Not found order.") {
-                        setCompleteInfo([]);
-                    };
-                });
+export const useFetchCompleteInfo = () => {
+    const token = localStorage.getItem("accessToken");
+    const { data, error, isLoading, refetch } = useQuery(["get-complete"], () => {
+    return commonApis.get("/order?status=COMPLETE", {
+        headers: {
+            Authorization: `Bearer ${token}`
         }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return completeInfo;
-}
+    });
+    }, {
+        // refetchInterval: 3000,
+    })
 
-export default useFetchCompletetInfo;
+    const refreshData = () => {
+        refetch();
+    };
+
+    return { data, isLoading, error, refreshData };
+}
