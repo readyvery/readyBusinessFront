@@ -6,7 +6,7 @@ export default function OrderBox ({ id, category, menu, clicked }) {
     return(
         <OrderBoxContainer clicked={clicked}>
             <OrderBoxSpan width={"15%"} size="big" align="right">{id}</OrderBoxSpan>
-            <OrderBoxSpan width={"20%"} size="big" align="center">{category === 1 ? "픽업" : "매장"}</OrderBoxSpan>
+            <OrderBoxSpan width={"20%"} size="big" align="center">{category === 1 ? "매장" : "픽업"}</OrderBoxSpan>
             <OrderBoxSpan width={"65%"} size="small" align="left">
                 {menuLen > 1 ? `${menu[0].name} 외 ${menuLen - 1}건` : menu[0].name}
             </OrderBoxSpan>

@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { soundState } from '../../../Atom/status';
 import { IMAGES } from "../../../constants/images";
-import { useAudioManager } from '../../../hooks/useAudioManager';
+// import { useAudioManager } from '../../../hooks/useAudioManager';
+import useSound from 'use-sound';
+import Very from "../../../assets/Very.mp3";
 import { useFetchWaitInfo } from '../../../hooks/useFetchWaitInfo';
 
 const SoundComponent = () => {
-  const audioManager = useAudioManager();
   const [sound, setSound] = useRecoilState(soundState); // 소리 여부를 가져옵니다
 
   const onClickHandler = () => {
@@ -15,23 +16,23 @@ const SoundComponent = () => {
   }
 
   const {data: waitData} = useFetchWaitInfo();
+  // const soundRef = useRef(undefined);
+  const [soundPlay] = useSound(Very);
 
   useEffect(() => {
-    let interval = null;
+    // let interval = null;
 
     if(sound && waitData?.data?.orders?.length > 0){
-        interval = setInterval(() => {
-            console.log('소리 출력');
-            audioManager.playSound();
-        }, 3000); // 매 3초마다 소리 재생
+      console.log('소리 출력');
+      soundPlay();
     }
 
-    return () => {
-        if(interval){
-            clearInterval(interval);
-        }
-    };
-  }, [waitData, sound, audioManager]);
+    // return () => {
+    //     if(interval){
+    //         clearInterval(interval);
+    //     }
+    // };
+  }, [waitData, sound, soundPlay]);
 
   return (<>
     {sound ? (
