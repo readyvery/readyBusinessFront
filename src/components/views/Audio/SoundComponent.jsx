@@ -16,23 +16,16 @@ const SoundComponent = () => {
   }
 
   const {data: waitData} = useFetchWaitInfo();
-  // const soundRef = useRef(undefined);
-  const [soundPlay] = useSound(Very);
+  const [soundPlay, {stop}] = useSound(Very);
 
   useEffect(() => {
-    // let interval = null;
-
-    if(sound && waitData?.data?.orders?.length > 0){
-      console.log('소리 출력');
-      soundPlay();
-    }
-
-    // return () => {
-    //     if(interval){
-    //         clearInterval(interval);
-    //     }
-    // };
-  }, [waitData, sound, soundPlay]);
+      if(sound && waitData?.data?.orders?.length > 0 && document.visibilityState === 'visible'){
+        console.log('소리 출력');
+        soundPlay();
+      } else {
+        stop();
+      }
+  }, [waitData, sound, soundPlay, stop]);
 
   return (<>
     {sound ? (
