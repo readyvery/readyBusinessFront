@@ -14,7 +14,6 @@ import LoginPage from "./pages/Login/LoginPage.jsx";
 import MainPage from "./pages/Main/MainPage.jsx";
 import MyPage from "./pages/Mypage/Mypage.jsx";
 import OrderManagePage from "./pages/OrderManage/Order.jsx";
-import ReceiptTest from "./pages/ReceiptTest.jsx";
 import SalesManage from "./pages/SalesManage/SalesManage.jsx";
 import JudgeResultsBeforePage from "./pages/Signup/JudgeResults/JudgeResultsBeforePage.jsx";
 import JudgeResultsRejectPage from "./pages/Signup/JudgeResults/JudgeResultsReject/JudgeResultsRejectPage.jsx";
@@ -79,7 +78,6 @@ function App() {
           <Route path="/sales" element={<NewSalesPage />} />
           <Route path="/mypage" element={<NewMyPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/receipt" element={<ReceiptTest />} />
           {/* 추가 */}
           <Route path="/signup/auth/phone" element={<PhoneAuthPage />} />
           <Route
