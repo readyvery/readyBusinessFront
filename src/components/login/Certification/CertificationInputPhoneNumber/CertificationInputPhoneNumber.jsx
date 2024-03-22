@@ -2,8 +2,8 @@ import { message } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { findPasswordState, getPhoneNumber } from "../../../../Atom/status";
+import { useSetRecoilState } from "recoil";
+import { getPhoneNumber } from "../../../../Atom/status";
 import RedButton from "../../redButton/RedButton";
 import "../CertificationInput/CertificationInput.css";
 import CertificationInputCheck from "./CertificationInputCheck";
@@ -14,18 +14,19 @@ function CertificationInputPhoneNumber(userInfo) {
   const navigate = useNavigate();
   const [inputNum, setInputNum] = useState(false); //전화번호 입력상태
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
-  const [Phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
+  const [hyphenPhonenumber, setHyphenPhonenumber] = useState(""); // 전화번호 상태  
   const [postmessage, setPostmessage] = useState(false); // 인증 번호 발송 성공 여부
-  const passwordState = useRecoilValue(findPasswordState);
+  const [verifyState, setVerifyState] = useState(false); //전화번호 인증 상태
   const setPhoneNumberState = useSetRecoilState(getPhoneNumber);
   const handleButtonClick = () => {
     // 전체가 숫자인지, 000-0000-0000 총 11자리인지 확인
-    if (/^\d+$/.test(Phonenumber) && Phonenumber.length === 11) {
+    const PhoneNumber = hyphenPhonenumber.replace(/\D/g, "");
+    if (/^\d+$/.test(PhoneNumber) && PhoneNumber.length === 11) {
       setInputNum(true);
       handlePostmessage();
     } else {
       setInputNum(false);
-      setPhonenumber("");
+      setHyphenPhonenumber("");
       message.info("전화번호를 올바르게 입력해주세요.");
     }
   };
@@ -33,11 +34,12 @@ function CertificationInputPhoneNumber(userInfo) {
     const apiRoot = process.env.REACT_APP_API_ROOT;
     const apiVer = "api/v1";
     const apiUrl = `${apiRoot}/${apiVer}/sms/send/find-email`;
+    const PhoneNumber = hyphenPhonenumber.replace(/\D/g, "");
     try {
       setChkButton(true);
       const response = await axios.post(`${apiUrl}`, {
         email: userInfo.userEmail,
-        phoneNumber: Phonenumber,
+        phoneNumber: PhoneNumber,
         name: userInfo.userName,
       });
       console.log(response);
@@ -45,7 +47,7 @@ function CertificationInputPhoneNumber(userInfo) {
       if (response.data.success) {
         message.success("인증번호가 발송되었습니다.");
         setPhoneNumberState({
-          phoneNumber: Phonenumber,
+          phoneNumber: PhoneNumber,
         });
         setPostmessage(true);
       } else {
@@ -66,18 +68,31 @@ function CertificationInputPhoneNumber(userInfo) {
     }
   };
 
+  const handleAuthSuccess = (success) => {
+    setVerifyState(success);
+  };
   const renderCertificationNumInput = () => {
-    return <CertificationInputCheck phoneNumber={Phonenumber} />;
+    return (
+      <CertificationInputCheck
+        phoneNumber={hyphenPhonenumber.replace(/\D/g, "")}
+        onAuthSuccess={handleAuthSuccess}
+      />
+    );
   };
 
   const handlePhoneChange = (event) => {
-    setPhonenumber(event.target.value);
+    const HyphenNumber = event.target.value
+      .replace(/[^0-9]/g, "")
+      .replace(/(\d{3})(\d{1,4})(\d{1,4})/, "$1-$2-$3");
+    setHyphenPhonenumber(HyphenNumber);
   };
 
   // 인증성공 시,
   const handleFindClick = () => {
-    if (passwordState.verify) {
+    if (verifyState) {
       navigate("/find/password/change/user");
+    } else {
+      message.info("번호 인증을 해주세요.");
     }
   };
 
@@ -85,9 +100,12 @@ function CertificationInputPhoneNumber(userInfo) {
     <>
       <div className="loginpage-find-form-input-div">
         <input
-          type="tel"
+         type="tel"
+         inputmode="numeric"
+         pattern="[0-9]*"
           placeholder="전화번호"
-          value={Phonenumber}
+          value={hyphenPhonenumber}
+          maxLength="13"
           onChange={handlePhoneChange}
           className="loginpage-findId-input"
         />

@@ -186,13 +186,6 @@ export const portState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-//아이디 비번찾기 상태값
-export const userVerifyState = atom({
-  key: "userVerifyState",
-  default: {
-    verify: false,
-  },
-});
 
 //비번찾기 아이디 및 번호
 export const findPasswordState = atom({
@@ -200,7 +193,6 @@ export const findPasswordState = atom({
   default: {
     email: "",
     phoneNumber: "",
-    verify: false,
   },
 });
 // 번호(가림처리 없는, 유저가 입력)

@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { userVerifyState } from "../../../../Atom/status";
 import LoginChkAlrm from "../../LoginChkAlrm/LoginChkAlrm";
 import "./CertificationNumInput.css";
 
@@ -15,12 +13,11 @@ const Timer = ({ minutes, seconds }) => (
 );
 // 아이디 찾기 및 회원가입 번호인증
 // 추후 비밀번호 인증과 통합예정
-function CertificationNumInput({ phoneNumber }) {
+function CertificationNumInput({ phoneNumber, onAuthSuccess  }) {
   const [chkNum, setChkNum] = useState("");
   const [timer, setTimer] = useState(TIMER_DURATION);
   const [isAuth, setIsAuth] = useState();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-  const setUserVerifyState = useSetRecoilState(userVerifyState);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,11 +40,10 @@ function CertificationNumInput({ phoneNumber }) {
         if (response.data.success) {
           console.log("인증성공", response.data);
           setIsAuth(true);
-          setUserVerifyState({
-            verify: true,
-          });
+          onAuthSuccess(true);
         } else {
           console.log("인증실패", response.data);
+          onAuthSuccess(false);
           setIsAuth(false);
         }
       } catch (error) {

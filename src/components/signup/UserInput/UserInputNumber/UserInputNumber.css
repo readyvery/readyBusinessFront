@@ -2,9 +2,7 @@
 .user-input-phone-number-content-number-wrapper {
   display: flex;
   flex-direction: column;
-  position: relative;
   font-family: "Pretendard Variable";
-  justify-content: center;
 }
 
 .user-input-phone-number-content-number-label-style {
@@ -31,6 +29,8 @@
   background-color: white;
   font-weight: 500;
   font-size: 1rem;
+  color: var(--frame-text, #838383);
+  cursor: pointer;
 }
 
 .user-input-phone-number-button-clicked {
@@ -38,14 +38,16 @@
 }
 
 .user-input-phone-number-auth-button {
-  position: absolute;
-  transform: translateX(0%);
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: auto;
 }
 /* w:768, h:1024 이상일 때 */
 @media screen and (min-width: 480px) {
+  .user-input-phone-number-content-number-wrapper {
+    height: 28.5rem;
+  }
   .user-input-phone-number-wrapper {
     width: 28rem;
     margin-top: 0.75rem;
@@ -63,12 +65,15 @@
     font-size: 1rem;
   }
   .user-input-phone-number-auth-button {
-    bottom: -7.5rem;
+    margin-bottom: 7.69rem;
   }
 }
 
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
+  .user-input-phone-number-content-number-wrapper {
+    height: 23rem;
+  }
   .user-input-phone-number-wrapper {
     width: 18.75rem;
     margin: 0.25rem 0;
@@ -83,6 +88,6 @@
     height: 3.125rem;
   }
   .user-input-phone-number-auth-button {
-    bottom: -6.06rem;
+    margin-bottom: 5rem;
   }
 }
