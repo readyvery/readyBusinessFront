@@ -8,6 +8,7 @@ import { HomeContext } from "../pages/OrderManage/Home";
 const usePrintHandler = () => {
     const context = useContext(HomeContext);
     const selectedInfo = context.selectedMenu;
+    console.log(selectedInfo);
     // const [savePort, setSavePort] = useRecoilState(portState);
     const [savePort, setSavePort] = useState(null);
 
@@ -22,6 +23,7 @@ const usePrintHandler = () => {
       port = savePort;
     }
 
+    console.log(port);
     if (port.writable === null) {
         await port.open({ baudRate: 38400 });
     }
