@@ -1,0 +1,17 @@
+.inven-wrapper-background main {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* 패딩값은 유동적으로 */
+  /* padding: 0 20%;  */
+  width: 100%;
+  height: 100%;
+}
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  .inven-wrapper-background main {
+    padding: 0 7.5%;
+  }
+}
