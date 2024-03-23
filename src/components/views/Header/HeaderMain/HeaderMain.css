@@ -1,0 +1,145 @@
+.header-css {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
+  white-space: nowrap;
+  font-family: "Pretendard";
+}
+.header-css ul {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
+}
+/* header-bar의 top */
+.headerTop-wrapper-css {
+  width: 100%;
+  border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*headerTop-css top,bottom 공용 사용  */
+.headerTop-css {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerTop-logo-wrapper-css {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.headerTop-nav-css {
+  color: #838383;
+  font-weight: 500;
+}
+.headerTop-nav-line {
+  width: 0.05rem;
+  height: 0.75rem;
+  background: #e6e6e6;
+}
+
+/* header-bar의 bottom */
+.headerBottom-wrapper-css {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerBottom-nav-css {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2e2d2d;
+  text-align: center;
+}
+
+.headerBottom-nav-left-css {
+  color: #2e2d2d;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* w:1024일때 */
+@media screen and (min-width: 768px) {
+  /* header-bar의 top */
+  .headerTop-wrapper-css {
+    height: 8.06rem;
+  }
+  .headerTop-css {
+    width: 43.1221rem;
+  }
+  .headerTop-logo-txt-css {
+    /* width: 12.5625rem; */
+    height: 3.125rem;
+    margin-left: 0.21rem;
+  }
+  .headerTop-logo-cherry-css {
+    width: 2.7871rem;
+    height: 2.7871rem;
+    padding-top: 0.18rem;
+    /* logo-txt보다 0.14rem 아래에 위치 */
+  }
+  .headerTop-nav-css {
+    font-size: 1rem;
+  }
+  .headerTop-nav-line {
+    margin-left: 0.62rem;
+    margin-right: 0.88rem;
+  }
+  /* header-bar의 bottom */
+  .headerBottom-wrapper-css {
+    height: 3.25rem;
+  }
+  .headerBottom-nav-css li {
+    margin: 0 1.28rem;
+  }
+  .headerBottom-nav-left-css {
+    font-size: 1.125rem;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .headerTop-wrapper-css {
+    height: 7.31rem;
+  }
+  .headerTop-css {
+    width: 32.36032rem;
+  }
+  .headerTop-logo-txt-css {
+    /* width: 6.4375rem; */
+    height: 2.3125rem;
+    margin-left: 0.27rem;
+  }
+  .headerTop-logo-cherry-css {
+    width: 2.09031rem;
+    height: 2.09031rem;
+    padding-top: 0.14rem;
+  }
+  .headerTop-nav-css {
+    font-size: 0.75rem;
+  }
+  .headerTop-nav-line {
+    margin-left: 0.48rem;
+    margin-right: 0.5rem;
+  }
+
+  /* header-bar의 bottom */
+  .headerBottom-wrapper-css {
+    height: 2.44rem;
+  }
+  .headerBottom-nav-css li {
+    margin: 0 0.91rem;
+  }
+  .headerBottom-nav-left-css {
+    font-size: 0.875rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header-css {
+    display: none;
+  }
+}
