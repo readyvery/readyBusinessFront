@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: #fff;
 }
 
 .App-logo {
@@ -10,6 +11,34 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .App {
+    max-width: 480px;
+    background-color: white;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .App {
+    max-width: 768px;
+    background-color: white;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .App {
+    width: 1024px;
+    background-color: white;
+    padding-top: 4rem;
   }
 }
 
@@ -36,49 +65,6 @@
     transform: rotate(360deg);
   }
 }
-/* 
-@font-face {
-  font-family: "Bold";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-Bold.woff2");
-}
-
-@font-face {
-  font-family: "ExtraBold";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-ExtraBold.woff2");
-}
-
-@font-face {
-  font-family: "ExtraLight";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-ExtraLight.woff2");
-}
-
-@font-face {
-  font-family: "Light";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-Light.woff2");
-}
-
-@font-face {
-  font-family: "Medium";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-Medium.woff2");
-}
-
-@font-face {
-  font-family: "Regular";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-Regular.woff2");
-}
-
-@font-face {
-  font-family: "SemiBold";
-  font-display: swap;
-  src: url("/src/assets/font/Pretendard-SemiBold.woff2");
-} */
-
 
 @font-face {
   font-family: "Bold";

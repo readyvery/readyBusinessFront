@@ -1,123 +1,128 @@
-.mypage-main__wrapper{
-    display: flex;
-    flex-direction: column;
-
-    padding: 4.3125rem 4rem 2rem 4rem;
-    /* width: 100%; */
-    /* height: calc(100% + 5.5rem); */
-    width: calc(64rem - 8.875rem);
-    min-width: calc(64rem - 8.875rem);
-    height: calc(48rem - 5.5rem);
-
-    justify-content: space-between;
+.mypage-main-wrapper {
+  width: 100%;
+  font-family: "Pretendard";
+  white-space: nowrap;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mypage-main {
+  margin-bottom: 2.5rem;
+}
+.mypage-main-content-box {
+  color: var(--title, #2e2d2d);
+  font-weight: 600;
+}
+.mypage-main-content-box-children {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mypage-main-content-box-text {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  color: var(--frame-text, #838383);
+  font-weight: 500;
+  border-radius: 0.3125rem;
+  border: 0.0625rem solid var(--frame-text, #838383);
+  padding: 0 1.2rem;
+  width: 100%;
+}
+.mypage-main-content-box-text span {
+  color: var(--title, #2e2d2d);
+  font-weight: 600;
+}
+.mypage-logout__wrapper {
+  color: var(--frame-text, #838383);
+  text-align: center;
+  font-weight: 600;
+  margin-top: 7.5rem;
+  /* footer와의 사이값을 디자인 나오면 수정 */
 }
 
-.mypage-top__wrapper{
-    width: 100%;
-}
-
-.mypage-top__txt{
+@media screen and (min-width: 768px) {
+  /* 확인하여 처리한 부분 */
+  .mypage-main-wrapper {
+    width: 43.1rem;
+    margin-top: 2.75rem;
+  }
+  .mypage-main {
+    width: 43.1rem;
+  }
+  .mypage-main-content-box-text {
     font-size: 1.25rem;
-    font-family: "Bold";
-    color: #4f4f4f;
+    height: 4rem;
+    padding: 0 1.63rem;
+  }
+  .mypage-main-content-box {
+    font-size: 1.5rem;
+  }
+  .mypage-main-content-box-text span {
+    font-size: 1rem;
+    width: 4.2rem;
+    margin-right: 1.44rem;
+  }
+  .mypage-logout__wrapper {
+    font-size: 1.25rem;
+  }
 }
-
-.mypage-top__box{
-    display: flex;
-    justify-content: space-between;
+/* w:768, h:1024일 때 */
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  /* 확인하여 처리한 부분 */
+  .mypage-main-wrapper {
+    width: 32.36032rem;
+    margin-top: 2.75rem;
+  }
+  .mypage-main {
+    width: 32.36032rem;
+  }
+  .mypage-main-content-box-text {
+    font-size: 1rem;
+    height: 3.125rem;
+    padding: 0 1.19rem;
+  }
+  .mypage-main-content-box {
+    font-size: 1.25rem;
+  }
+  .mypage-main-content-box-text span {
+    font-size: 1rem;
+    width: 3.4rem;
+    margin-right: 1.25rem;
+  }
+  .mypage-logout__wrapper {
+    font-size: 1.25rem;
+  }
 }
-
-.mypage-top-txt__wrapper{
-    text-align: start;
-    white-space: nowrap;
-}
-
-.mypage-top-cafe__txt{
-    max-width: 28.375rem;
-    font-size: 1.875rem;
-    font-family: "Bold";
-    white-space: pre-line;
-}
-
-.mypage-top-cafe__txt span{
-    font-size: 3.125rem;
-    max-width: 18.75rem;
-}
-
-.mypage-kakao__wrapper{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.mypage-kakao__txt{
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    margin: 0 3.4375rem 0 0.6875rem;
-    white-space: nowrap;
-}
-
-.mypage-kakao__txt span{
-    font-size: 1.09rem;
-    font-family: "Medium";
-    color: #838383;
-}
-
-.mypage-kakao-img__box{
-    width: 3.625rem;
-    height: 2.5rem;
-    border-radius: 0.625rem;
-    background-color: #d9d9d9;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* padding: 0.59375rem 0; */
-}
-
-.mypage__line{
-    height: 0.15625rem;
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  /* 처리한 부분 */
+  /* 모바일의 경우 %로 */
+  .mypage-main-wrapper {
+    min-width: 27rem;
+    margin-top: 3.62rem;
+  }
+  .mypage-main {
     width: 100%;
-    background-color: #dadada;
-    margin: 1.5625rem 0;
-}
-
-.mypage-content__wrapper{
-    width: 100%;
-    text-align: start;
-}
-
-.mypage-content__wrapper p{
-    font-size: 1.875rem;
-    font-family: "Bold";
-    color: #4f4f4f;
-    margin: 2rem 0;
-}
-
-.mypage-content__box div{
-    display: flex;  /* 추가: 내부 div들을 가로로 나열하기 위해 Flexbox 사용 */
-    justify-content: space-between;
-    width: 100%;
-    margin: 0.625rem 0;
-}
-
-.mypage-content__title{
-    font-size: 1.875rem;
-    font-family: "Medium";
-    color: #000;
-    width: 30%;
-}
-
-.mypage-content__txt{
-    font-size: 1.5625rem;
-    font-family: "Light";
-    color: #000;
-    width: 70%;
-}
-
-.mypage-logout__wrapper span{
-    font-size: 0.9375rem;
-    font-family: "Regular";
-    color: #838383;
+    min-width: 27rem;
+  }
+  .mypage-main-content-box-text {
+    font-size: 1rem;
+    height: 3.125rem;
+    padding: 0 1.19rem;
+  }
+  .mypage-main-content-box {
+    font-size: 1.25rem;
+  }
+  .mypage-main-content-box-text span {
+    font-size: 1rem;
+    width: 3.4rem;
+    margin-right: 0.75rem;
+  }
+  .mypage-logout__wrapper {
+    font-size: 1rem;
+  }
 }

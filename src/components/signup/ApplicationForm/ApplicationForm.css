@@ -1,0 +1,223 @@
+/* SignPageContainer css */
+
+.application-form-container-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f4f7ff;
+  overflow-y: auto;
+}
+
+.application-form-container-wrapper-inner {
+  background-color: #fff;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.3125rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0rem 1.5rem 3rem 0rem rgba(0, 0, 0, 0.03),
+    0rem 1.525rem 3.5rem 0rem rgba(216, 216, 216, 0.3);
+}
+/* 로고와 타이틀이 들어가는 곳 */
+.application-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-box-align: center;
+  justify-content: center;
+  font-family: "Pretendard";
+  text-align: center;
+}
+/* 로고 */
+.application-form-wrapper img {
+  height: 1rem;
+}
+/* 타이틀 */
+.application-form-container-text {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* 안의 내용 */
+.application-form-circle-num-ber-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 원 */
+.application-form-circle-num-wapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.44294rem;
+  height: 1.44294rem;
+  padding: 0.18044rem 0.52431rem 0.2rem 0.48106rem;
+  border-radius: 50%;
+  font-size: 0.90181rem;
+  font-weight: 800;
+}
+.application-form-circle-num-wapper-point {
+  border: 0.15rem solid rgba(79, 79, 79, 1);
+  color: rgba(79, 79, 79, 1);
+}
+.application-form-circle-num-wapper-non-point {
+  border: 0.15rem solid rgba(217, 217, 217, 1);
+  color: var(--light-grey, #d9d9d9);
+}
+
+/* 바 */
+.application-form-bar-wapper {
+  width: 4.74956rem;
+  height: 0.2rem;
+  margin: 0 0.24rem;
+  border-radius: 0.1rem;
+}
+.application-form-bar-wapper-point {
+  background-color: rgba(79, 79, 79, 1);
+}
+.application-form-bar-wapper-non-point {
+  background-color: rgba(217, 217, 217, 1);
+}
+
+/* 글자 */
+.application-form-circle-num-ber-text-wrapper {
+  position: absolute;
+  bottom: -1.26rem;
+  display: flex;
+  transform: translateX(-51.6%);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.application-form-circle-num-bar-text-content {
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.application-form-circle-num-bar-text-content-point {
+  color: rgba(79, 79, 79, 1);
+}
+.application-form-circle-num-bar-text-content-non-point {
+  color: var(--light-grey, #d9d9d9);
+}
+
+/* dkd */
+.application-form-content-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3.74rem;
+}
+.application-form-content-main-text-style {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 18.8rem;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #2e2d2d;
+}
+.application-form-content-main-text-style img {
+  height: 0.75rem;
+  margin-right: 0.1rem;
+}
+
+.application-form-content-sub-text-style {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 1.75rem;
+  font-family: "Pretendard";
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #2e2d2d;
+}
+.application-form-content-sub-text-style img {
+  width: 0.95231rem;
+  height: 0.95231rem;
+}
+
+.application-form-content-main-text-tab {
+  margin-top: 2.25rem;
+  margin-bottom: 0.62rem;
+}
+
+.application-form-next-button {
+  margin-top: 1.78rem;
+}
+
+.application-form-redyvery-linked-message-for-kakao {
+  width: 11.76306rem;
+  height: 2.59394rem;
+  border-radius: 0.625rem;
+  border: 0.05rem solid #838383;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Pretendard";
+}
+.application-form-redyvery-linked-message-for-kakao-readyvery-img {
+  width: 1.68906rem;
+  height: 1.68906rem;
+  border-radius: 0.30163rem;
+}
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper {
+  width: 1.74938rem;
+  height: 1.2065rem;
+  border-radius: 0.30163rem;
+  background: #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.application-form-redyvery-linked-message-for-kakao-kakao-icon-wrapper img {
+  width: 0.72388rem;
+  height: 0.63344rem;
+}
+.application-form-redyvery-linked-message-for-kakao-title {
+  color: var(--title, #2e2d2d);
+  font-size: 0.5rem;
+  font-weight: 500;
+}
+
+.application-form-redyvery-linked-message-for-kakao-time {
+  color: #838383;
+  font-size: 0.5rem;
+}
+
+/* w:768, h:1024 이상일 때 */
+@media screen and (min-width: 480px) {
+  .application-form-container-wrapper-inner {
+    width: 25rem;
+    height: 37.5rem;
+  }
+  .application-form-wrapper {
+    margin-top: 2.38rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  .application-form-container-wrapper-inner {
+    width: 25rem;
+    height: 37.5rem;
+  }
+  .application-form-wrapper {
+    margin-top: 2.69rem;
+    margin-bottom: 1.13rem;
+  }
+}
