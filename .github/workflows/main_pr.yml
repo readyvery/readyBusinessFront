@@ -12,7 +12,7 @@ jobs:
         run: |
           echo "Head branch is: ${{ github.head_ref }}"
           echo "Base branch is: ${{ github.base_ref }}"
-          if [[ "${{ github.head_ref }}" != "test" ]]; then
+          if [[ "${{ github.head_ref }}" != "test" || "revert" ]]; then
             echo "test 브랜치가 아님"
             exit 1
           fi
