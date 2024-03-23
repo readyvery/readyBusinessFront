@@ -7,7 +7,7 @@
 
 .header2 {
   position: absolute;
-  top: 0;
+  top: -6.5rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -21,7 +21,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .header2{
+  .header2 {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
@@ -40,9 +40,8 @@
   justify-content: space-evenly;
 }
 
-
 @media screen and (max-width: 480px) {
-  .head-container2{
+  .head-container2 {
     width: auto;
   }
 }
@@ -53,16 +52,29 @@
   justify-content: center;
 }
 
-.soundImg{
+.soundImg {
   width: 2rem;
   height: 1.71575rem;
 }
 
-.logo-wrapper{
+.logo-wrapper {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.BackIcon {
+  width: 1.125rem;
+  height: 1.96538rem;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 480px) {
+  .BackIcon {
+    display: none;
+  }
 }
 
 .LOGO {
@@ -86,22 +98,22 @@
   /* align-items: end; */
 }
 
-.store_img{
+.store_img {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.store_close_circle.close{
-  background-color: #34C759;;
+.store_close_circle.close {
+  background-color: #34c759;
 }
 
 @media screen and (max-width: 480px) {
-  .header-img-wrapper{
+  .header-img-wrapper {
     display: none;
   }
 }
 
-.store_font_wrapper{
+.store_font_wrapper {
   display: flex;
   align-items: center;
 }
@@ -109,7 +121,7 @@
 .header-font {
   color: #fff;
   font-size: 1.25rem;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 600;
 }
 
@@ -121,7 +133,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .head-container{
+  .head-container {
     justify-content: space-between;
   }
 }

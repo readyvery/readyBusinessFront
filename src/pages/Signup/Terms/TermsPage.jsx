@@ -69,12 +69,16 @@ function TermsPage() {
   }
 
   // 이용약관 동의 체크박스 컴포넌트
-  const ConsentForm = ({ title, id }) => {
+  const ConsentForm = ({ title, id, link }) => {
     const isChecked = consents[id];
 
     const handleCheckboxChange = () => {
       handleConsentChange(id);
     };
+
+    const handleLinkClick = () => {
+      handleConsentChange(id);
+    }
 
     const isAllItem = id === "itemAll";
     const labelClassName = isAllItem
@@ -90,7 +94,9 @@ function TermsPage() {
         <div className="terms-page-check-box-wrapper-inner">
           {/* 약관 나오면 입히기 */}
           <label htmlFor={id} className="terms-page-check-box-wrapper-label">
+            <a href={link} onClick={handleLinkClick} target="_blank" rel="noopener noreferrer">
             {title}
+            </a>
           </label>
           <input
             type="checkbox"
@@ -114,10 +120,10 @@ function TermsPage() {
     >
       <div className="terms-page-container">
         <ConsentForm id="itemAll" title="모든 이용약관에 동의합니다." />
-        <ConsentForm id="item1" title="서비스 이용약관 동의(필수)" />
-        <ConsentForm id="item2" title="개인정보 수집 및 이용 동의 (필수)" />
-        <ConsentForm id="item3" title="사이트 이용약관 동의 (필수)" />
-        <ConsentForm id="item4" title="전자금융거래 이용약관 동의 (필수)" />
+        <ConsentForm id="item1" title="서비스 이용약관 동의(필수)" link="https://readyberry.notion.site/b68ddd36b1b0429089a6e12cffcdc876"/>
+        <ConsentForm id="item2" title="개인정보 수집 및 이용 동의 (필수)" link="https://readyberry.notion.site/1ee0f5fd9c3f45778883f30119409c64"/>
+        <ConsentForm id="item3" title="사이트 이용약관 동의 (필수)" link="https://readyberry.notion.site/292eb070d30f4330a64ea3d52f67a62e"/>
+        <ConsentForm id="item4" title="전자금융거래 이용약관 동의 (필수)" link="https://readyberry.notion.site/4223ec2f072743088fec3f8e607b8d3b"/>
         <div className="terms-page-next-button">
           <RedButton onClick={handleSubmission}>확인</RedButton>
         </div>

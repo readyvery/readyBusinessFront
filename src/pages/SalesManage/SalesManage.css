@@ -22,7 +22,7 @@
 
 .sales__amount__title {
   color: #d82356;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -31,7 +31,7 @@
 
 .sales__amount__price {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -40,7 +40,7 @@
 
 .sales__standard {
   color: #4f4f4f;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
@@ -67,7 +67,7 @@
 
 .sales__graph__title {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -76,7 +76,7 @@
 .sales__graph__date {
   display: flex;
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   font-style: normal;
   font-weight: 700;
@@ -99,7 +99,7 @@
 
 .sales__notice {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;

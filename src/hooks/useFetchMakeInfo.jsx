@@ -1,34 +1,21 @@
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { loginState } from "../Atom/status";
+import { useQuery } from "react-query";
 import commonApis from "../util/commonApis";
 
-const useFetchMakeInfo = () => {
-    const [makeInfo, setMakeInfo] = useState([]);
-    const token = useRecoilValue(loginState);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            commonApis.get("/order?status=MAKE", {
-                headers: {
-                    Authorization: `Bearer ${token.accessToken}`
-                }
-            })
-                .then((res) => {
-                    console.log(res);
-                    setMakeInfo(res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    if (err.status === 404 && err.message === "Not found order.") {
-                        setMakeInfo([]);
-                    };
-                });
+export const useFetchMakeInfo = () => {
+    const token = localStorage.getItem("accessToken");
+    const { data, error, isLoading, refetch } = useQuery(["get-make"], () => {
+    return commonApis.get("/order?status=MAKE", {
+        headers: {
+            Authorization: `Bearer ${token}`
         }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return makeInfo;
-}
+    });
+    }, {
+        // refetchInterval: 3000,
+    })
 
-export default useFetchMakeInfo;
+    const refreshData = () => {
+        refetch();
+    };
+
+    return { data, isLoading, error, refreshData };
+}

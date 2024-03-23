@@ -30,14 +30,27 @@ const SideMenu = ({ isOpen, toggleSidebar }) => {
       </div>
       <div className="side-menu__customer">고객관리(준비중)</div>
 
-      <div className="side-menu__notice">공지사항</div>
+      <Link
+        to="https://readyberry.notion.site/b62a5c9f93974a1281052c37c8b3756c"
+        style={{ textDecoration: "none" }}
+      >
+        <div className="side-menu__cs-center">공지사항</div>
+      </Link>
+
       <Link
         to="http://pf.kakao.com/_ZxiEjG/chat"
         style={{ textDecoration: "none" }}
       >
         <div className="side-menu__cs-center">고객센터</div>
       </Link>
-      <div className="side-menu__guide">레디베리 가이드</div>
+      
+      <Link
+        to="https://readyberry.notion.site/b62a5c9f93974a1281052c37c8b3756c"
+        style={{ textDecoration: "none" }}
+      >
+        <div className="side-menu__cs-center">레디베리 가이드</div>
+      </Link>
+
       <div className="side-menu__mypage" onClick={() => navigate(`/mypage`)}>
         마이페이지
       </div>

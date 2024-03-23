@@ -91,34 +91,34 @@ const ApplicationForm = () => {
           <span>아래의 문서들을 미리 준비해 주시면</span>
           <span>입점 신청이 더욱 수월하게 진행됩니다.</span>
           <div className="application-form-content-sub-text-style">
-            <span>
+            <div className="application-form-content-sub-text-style-in-check">
               <img
                 src={IMAGES.store_application_form_check_gray}
                 alt="checkicon"
               />
-              사업자등록증 (jpg 또는 jpeg 형식)
-            </span>
-            <span>
+              <span>사업자등록증 (jpg 또는 jpeg 형식)</span>
+            </div>
+            <div className="application-form-content-sub-text-style-in-check">
               <img
                 src={IMAGES.store_application_form_check_gray}
                 alt="checkicon"
               />
-              영업신고증 (jpg 또는 jpeg 형식)
-            </span>
-            <span>
+              <span>영업신고증 (jpg 또는 jpeg 형식)</span>
+            </div>
+            <div className="application-form-content-sub-text-style-in-check">
               <img
                 src={IMAGES.store_application_form_check_gray}
                 alt="checkicon"
               />
-              신분증 (jpg 또는 jpeg 형식)
-            </span>
-            <span>
+              <span>신분증 (jpg 또는 jpeg 형식)</span>
+            </div>
+            <div className="application-form-content-sub-text-style-in-check">
               <img
                 src={IMAGES.store_application_form_check_gray}
                 alt="checkicon"
               />
-              통장사본 (jpg 또는 jpeg 형식)
-            </span>
+              <span>통장사본 (jpg 또는 jpeg 형식) </span>
+            </div>
           </div>
           <span className="application-form-content-main-text-tab">
             작성 중 어려움이 있으시면 아래 카카오톡 채팅방으로 연락 주세요.
@@ -126,7 +126,11 @@ const ApplicationForm = () => {
         </div>
 
         <div className="application-form-redyvery-linked-message-for-kakao">
-          <img src={IMAGES.logo_open_chat} alt="redyveryicon" className="application-form-redyvery-linked-message-for-kakao-readyvery-img"/>
+          <img
+            src={IMAGES.logo_open_chat}
+            alt="redyveryicon"
+            className="application-form-redyvery-linked-message-for-kakao-readyvery-img"
+          />
           <div className="application-form-redyvery-linked-message-for-kakao-font">
             <div className="application-form-redyvery-linked-message-for-kakao-title">
               레디베이 상담

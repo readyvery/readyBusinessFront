@@ -1,76 +1,76 @@
-.mainInven-title__wrapper{
-    display: flex;
-    background-color: #838383;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    border-bottom: 0.25rem solid #d82356;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    /* 1024기준 */
-    height: 2.94rem;
-    margin-top: 2.5rem;
+.mainInven-title__wrapper {
+  display: flex;
+  background-color: #838383;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+  border-bottom: 0.25rem solid #d82356;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  /* 1024기준 */
+  height: 2.94rem;
+  margin-top: 2.5rem;
 }
 
-.mainInven-title__wrapper span{
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    font-family: "Pretendard";
-    font-weight: 600;
-    font-size: 1rem; 
+.mainInven-title__wrapper span {
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "Pretendard Variable";
+  font-weight: 600;
+  font-size: 1rem;
 }
-.mainInven-title__span1{
-    width: 15%;
+.mainInven-title__span1 {
+  width: 15%;
 }
-.mainInven-title__span2__wrapper{
-    width: 25%;
-    display: flex;
-    justify-content: space-between;
-    overflow-x: hidden;
-    position: relative;
+.mainInven-title__span2__wrapper {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: hidden;
+  position: relative;
 }
-.mainInven-title__span2{
-    overflow-x: hidden;
-    cursor: pointer;
+.mainInven-title__span2 {
+  overflow-x: hidden;
+  cursor: pointer;
 }
-.mainInven-title__span3{
-    width: 60%;
-    white-space: nowrap;
+.mainInven-title__span3 {
+  width: 60%;
+  white-space: nowrap;
 }
 
-@media screen and (min-width: 768px){
-    /* 아래는 확인하면서 */
-    .mainInven-title__wrapper span{
-        font-size: 0.9rem;
-    }
-    .mainInven-title__wrapper img {
-        width: 1.125rem;
-        height: 0.75rem;
-    }
+@media screen and (min-width: 768px) {
+  /* 아래는 확인하면서 */
+  .mainInven-title__wrapper span {
+    font-size: 0.9rem;
+  }
+  .mainInven-title__wrapper img {
+    width: 1.125rem;
+    height: 0.75rem;
+  }
 }
 /* w:768, h:1024일 때 */
-@media screen and (min-width: 480px) and (max-width: 768px){
-    /* 밑에는 수정해야함 */
-    .mainInven-title__wrapper{
-        height: 2.19rem;
-        margin-top: 1.75rem;
-    }
-    .mainInven-title__wrapper img {
-        width: 0.84781rem;
-        height: 0.56519rem;
-    }
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  /* 밑에는 수정해야함 */
+  .mainInven-title__wrapper {
+    height: 2.19rem;
+    margin-top: 1.75rem;
+  }
+  .mainInven-title__wrapper img {
+    width: 0.84781rem;
+    height: 0.56519rem;
+  }
 }
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-    /* 모바일의 경우 %로 */
-    /* 수정해야할 부분 */
-    .mainInven-title__wrapper{
-        height: 2.19rem;
-        margin-top: 6.56rem;
-    }
-    .mainInven-title__wrapper img {
-        width: 0.84781rem;
-        height: 0.56519rem;
-    }
+  /* 모바일의 경우 %로 */
+  /* 수정해야할 부분 */
+  .mainInven-title__wrapper {
+    height: 2.19rem;
+    margin-top: 6.56rem;
+  }
+  .mainInven-title__wrapper img {
+    width: 0.84781rem;
+    height: 0.56519rem;
+  }
 }

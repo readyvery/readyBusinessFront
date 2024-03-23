@@ -2,7 +2,7 @@
 import { IMAGES } from "../../../constants/images";
 import "../../../pages/OrderManage/Receipt.css";
 
-export default function ReciptModal ({ children, handleOrder, closeModal, title }) {
+export default function ReciptModal ({ children, closeModal, title }) {
     return (
         <div className="modal-wrapper">
             <div className="modal-box">

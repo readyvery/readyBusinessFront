@@ -1,33 +1,41 @@
 .loginpage-user-num-input-style {
-  font-family: "Pretendard";
-}
-.loginpage-user-auth-num {
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard Variable";
   border: 0.05rem solid rgba(131, 131, 131, 1);
   border-radius: 0.3125rem;
-  font-size: 1rem;
-  margin: 0.44rem 0;
+
+  margin-top: 0.31rem;
+  margin-bottom: 0.31rem;
   width: 21.3rem;
   height: 3.13rem;
-  padding-left: 1.25rem;
+  padding-left: 1.06rem;
+}
+.loginpage-user-num-input-style:focus-within {
+  outline: 1px solid var(--title, #2E2D2D);
+}
+.loginpage-user-num-input-style input{
+  border: none;
+  font-size: 1rem;
+}
+.loginpage-user-num-input-style input:focus{
+  border: none;
+  outline: none; 
 }
 
 .timer {
   display: flex;
-  justify-content: flex-end;
-  margin-top: -3rem;
-  margin-bottom: 2rem;
-  margin-right: 0.94rem;
-  font-family: "Pretendard";
+  margin-right: 1.29rem;
+  margin-left: auto;
+  font-family: "Pretendard Variable";
   font-size: 1rem;
   color: #838383;
 }
 
 /* w:480, h:800일 때 */
 @media screen and (max-width: 480px) {
-  .loginpage-user-auth-num {
-    margin: 0.5rem 0;
+  .loginpage-user-num-input-style {
     width: 18.75rem;
     height: 3.125rem;
-    padding-left: 1.25rem;
   }
 }

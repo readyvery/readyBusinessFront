@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import "./UserFindIdPage.css";
 
 function UserFindIdPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state?.message?.slice(4); // 아이디 ...이렇게와서,,.
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.13rem", "1.06rem"]
@@ -21,8 +23,6 @@ function UserFindIdPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const idText = "kjwoo0121@naver.com"; //서버에서 값 가져오기
   return (
     <Container
       title={"아이디 찾기"}
@@ -36,7 +36,7 @@ function UserFindIdPage() {
           <span>가입하신 아이디는 아래와 같습니다.</span>
           <input
             type="text"
-            defaultValue={"아이디: " + idText}
+            defaultValue={"아이디: " + userId}
             className="user-find-id-page-text-output"
             readOnly
           />

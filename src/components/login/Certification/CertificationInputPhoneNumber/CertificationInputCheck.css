@@ -1,0 +1,41 @@
+.loginpage-user-num-input-style {
+  display: flex;
+  align-items: center;
+  font-family: "Pretendard Variable";
+  border: 0.05rem solid rgba(131, 131, 131, 1);
+  border-radius: 0.3125rem;
+
+  margin-top: 0.31rem;
+  margin-bottom: 0.31rem;
+  width: 21.3rem;
+  height: 3.13rem;
+  padding-left: 1.06rem;
+}
+.loginpage-user-num-input-style:focus-within {
+  outline: 1px solid var(--title, #2e2d2d);
+}
+.loginpage-user-num-input-style input {
+  border: none;
+  font-size: 1rem;
+}
+.loginpage-user-num-input-style input:focus {
+  border: none;
+  outline: none;
+}
+
+.timer {
+  display: flex;
+  margin-right: 1.29rem;
+  margin-left: auto;
+  font-family: "Pretendard Variable";
+  font-size: 1rem;
+  color: #838383;
+}
+
+/* w:480, h:800일 때 */
+@media screen and (max-width: 480px) {
+  .loginpage-user-num-input-style {
+    width: 18.75rem;
+    height: 3.125rem;
+  }
+}

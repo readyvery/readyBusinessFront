@@ -5,7 +5,7 @@
 
 .store__notice {
   color: var(--title, #2e2d2d);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
@@ -28,7 +28,7 @@
 
 .store__management__title {
   color: #4f4f4f;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -37,7 +37,7 @@
 
 .store__management__explanation {
   color: var(--frame-text, #838383);
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;

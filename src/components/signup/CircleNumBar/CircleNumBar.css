@@ -13,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 800;
 }
 /* 원 색상 */
@@ -51,7 +51,7 @@
 .circle-num-bar-text-content {
   color: rgba(217, 217, 217, 1);
   text-align: center;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
   font-weight: 800;
 }
 /* 글자 색 */

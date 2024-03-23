@@ -11,8 +11,9 @@ const Timer = ({ minutes, seconds }) => (
     {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
   </div>
 );
-
-function CertificationNumInput({ phoneNumber }) {
+// 아이디 찾기 및 회원가입 번호인증
+// 추후 비밀번호 인증과 통합예정
+function CertificationNumInput({ phoneNumber, onAuthSuccess  }) {
   const [chkNum, setChkNum] = useState("");
   const [timer, setTimer] = useState(TIMER_DURATION);
   const [isAuth, setIsAuth] = useState();
@@ -29,25 +30,20 @@ function CertificationNumInput({ phoneNumber }) {
   const handleInputText = async (e) => {
     const newChkNum = e.target.value;
     setChkNum(newChkNum);
-    // equlChknum(newChkNum, AUTH_CODE);
-    // console.log(newChkNum)
-
     if (newChkNum.length === 6) {
       try {
-        const response = await axios.post(
-          `${apiUrl}/api/v1/sms/verify`,
-          {
-            phoneNumber: phoneNumber,
-            verifyNumber: newChkNum,
-          },
-          { withCredentials: true }
-        );
+        const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
+          phoneNumber: phoneNumber,
+          verifyNumber: newChkNum,
+        });
 
         if (response.data.success) {
           console.log("인증성공", response.data);
           setIsAuth(true);
+          onAuthSuccess(true);
         } else {
           console.log("인증실패", response.data);
+          onAuthSuccess(false);
           setIsAuth(false);
         }
       } catch (error) {
@@ -81,21 +77,17 @@ function CertificationNumInput({ phoneNumber }) {
   return (
     <>
       <div className="loginpage-user-num-input-style">
-        <div>
-          <input
-            id="username"
-            type="text"
-            placeholder="인증번호"
-            required
-            name="username"
-            value={chkNum}
-            onChange={handleInputText}
-            className="loginpage-user-auth-num"
-          />
-          {timer > 0 && (
-            <Timer minutes={Math.floor(timer / 60)} seconds={timer % 60} />
-          )}
-        </div>
+        <input
+          id="username"
+          type="text"
+          placeholder="인증번호"
+          value={chkNum}
+          autocomplete="off" //자동완성 없애기
+          onChange={handleInputText}
+        />
+        {timer > 0 && (
+          <Timer minutes={Math.floor(timer / 60)} seconds={timer % 60} />
+        )}
       </div>
       <div>{renderMessage()}</div>
     </>

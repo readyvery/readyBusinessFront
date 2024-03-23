@@ -6,7 +6,7 @@
   align-items: space-between;
   border-bottom: 0.01rem solid rgba(217, 217, 217, 1);
   white-space: nowrap;
-  font-family: "Pretendard";
+  font-family: "Pretendard Variable";
 }
 .header-css ul {
   display: flex;
@@ -102,7 +102,7 @@
     font-size: 1.125rem;
   }
 }
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .headerTop-wrapper-css {
     height: 7.31rem;
   }
