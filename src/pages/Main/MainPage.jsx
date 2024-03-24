@@ -1,32 +1,38 @@
 import moment from "moment/moment";
+import { createContext, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { storeContextState } from "../../Atom/status";
 import right from "../../assets/icons/icon_right-line.png";
 import MainButton from "../../components/views/Button/mainButton";
 import Footer from "../../components/views/Footer/Footer";
 import ResponsiveHeader from "../../components/views/Header/ResponsiveHeader";
 import { IMAGES } from "../../constants/images";
+import useFetchStoreName from "../../hooks/Main/useFetchStoreName";
 import useFatchWeekAndMonthOrderCount from "../../hooks/Sales/useFatchWeekAndMonthOrderCount";
 import useFetchWeekTotalSales from "../../hooks/Sales/useFetchWeekTotalSales";
 import "./MainPage.css";
 
+export const StatusContext = createContext();
+
 const MainPage = () => {
   const notices = [
-    // {
-    //   id: 1,
-    //   title: "2024년 4월 넷째 주(4/21~4/27) 입금 안내",
-    //   date: "24-04-21",
-    // },
-    // {
-    //   id: 2,
-    //   title: "2024년 4월 셋째 주(4/14~4/20) 입금 안내",
-    //   date: "24-04-14",
-    // },
-    // {
-    //   id: 3,
-    //   title: "2024년 4월 둘째 주(4/7~4/13) 입금 안내",
-    //   date: "24-04-07",
-    // },
-    // { id: 4, title: "2024년 4월 첫째 주(4/1~4/6) 입금 안내", date: "24-04-01" },
+    {
+      id: 1,
+      title: "2024년 4월 넷째 주(4/21~4/27) 입금 안내",
+      date: "24-04-21",
+    },
+    {
+      id: 2,
+      title: "2024년 4월 셋째 주(4/14~4/20) 입금 안내",
+      date: "24-04-14",
+    },
+    {
+      id: 3,
+      title: "2024년 4월 둘째 주(4/7~4/13) 입금 안내",
+      date: "24-04-07",
+    },
+    { id: 4, title: "2024년 4월 첫째 주(4/1~4/6) 입금 안내", date: "24-04-01" },
   ];
   // 현 날짜
   const currentDate = {
@@ -36,7 +42,12 @@ const MainPage = () => {
   const weekStart = currentDate.monday.format("YYYY-MM-DD");
   const weekTotalSales = useFetchWeekTotalSales(weekStart);
   const weekAndMonthOrderCount = useFatchWeekAndMonthOrderCount(weekStart);
+  const name = useFetchStoreName();
+  const storeStatus = useRecoilValue(storeContextState);
   //객체 구성{totalWeekOrder, totalMonthOrder}
+
+  useEffect(() => {}, [storeStatus]);
+
   return (
     <div className="main">
       <ResponsiveHeader />
@@ -56,7 +67,7 @@ const MainPage = () => {
         <span className="main__president">
           <span className="main__box2">
             <span className="main__president__ready">오늘도 준비된</span>
-            <span className="main__president__name">오르다커피 사장님</span>
+            <span className="main__president__name">{name} 사장님</span>
           </span>
 
           <span className="main__box3">
