@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Container from "../../../../components/login/Container/Container";
 import RedButton from "../../../../components/login/redButton/RedButton";
 import { IMAGES } from "../../../../constants/images";
+import useRejectEntry from "../../../../hooks/useRejectEntry";
 import "./JudgeResultsRejectPage.css";
 function JudgeResultsRejectPage() {
   const navigate = useNavigate();
@@ -23,6 +24,15 @@ function JudgeResultsRejectPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const rejectEntry = useRejectEntry();
+
+  const handleReject = () => {
+    // 심사 반려 -> 재신청
+    rejectEntry();
+    navigate("/signup/auth/results");
+  };
+
   return (
     <Container
       title="심사반려"
@@ -49,7 +59,7 @@ function JudgeResultsRejectPage() {
         </div>
 
         <div className="judge-results-reject-page-next-button">
-          <RedButton onClick={() => navigate("/signup/auth/results")}>
+          <RedButton onClick={handleReject}>
             재신청하기
           </RedButton>
         </div>
