@@ -1,10 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useTimer from "../../../../hooks/useTimer";
 import LoginChkAlrm from "../../LoginChkAlrm/LoginChkAlrm";
 import "./CertificationInputCheck.css";
-
-// const AUTH_CODE = "1234";//서버에서 받아오는 값
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
 
 const Timer = ({ minutes, seconds }) => (
   <div className="timer">
@@ -13,21 +11,13 @@ const Timer = ({ minutes, seconds }) => (
 );
 // 비밀번호 변경 번호 인증_인증번호 확인
 // 추후 아이디 찾기 및 회원가입 번호인증과 비교 후 수정 필요
-function CertificationInputCheck({ phoneNumber, onAuthSuccess  }) {
+function CertificationInputCheck({ phoneNumber, onAuthSuccess, initialTimer }) {
   const [chkNum, setChkNum] = useState("");
-  const [timer, setTimer] = useState(TIMER_DURATION);
+  const { timer } = useTimer(initialTimer);
   const [isAuth, setIsAuth] = useState();
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [setTimer]);
 
   const handleInputText = async (e) => {
+    const apiUrl = process.env.REACT_APP_API_ROOT;
     const newChkNum = e.target.value;
     setChkNum(newChkNum);
     if (newChkNum.length === 6) {
@@ -46,12 +36,15 @@ function CertificationInputCheck({ phoneNumber, onAuthSuccess  }) {
           onAuthSuccess(true);
         } else {
           console.log("인증실패", response.data);
-          onAuthSuccess(true);
+          onAuthSuccess(false);
           setIsAuth(false);
         }
       } catch (error) {
         console.log("통신에러", error);
       }
+    } else {
+      onAuthSuccess(false);
+      setIsAuth(false);
     }
   };
 
@@ -85,6 +78,7 @@ function CertificationInputCheck({ phoneNumber, onAuthSuccess  }) {
           type="text"
           placeholder="인증번호"
           value={chkNum}
+          maxLength="6"
           autocomplete="off" //자동완성 없애기
           onChange={handleInputText}
         />

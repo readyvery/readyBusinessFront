@@ -107,7 +107,7 @@ function ChangeNewPasswordPage() {
         <div className="password-changepage-form">
           <input
             id="password"
-            type="text"
+            type="password"
             placeholder="새로운 비밀번호"
             required
             name="usernamepassword"
@@ -117,7 +117,7 @@ function ChangeNewPasswordPage() {
           />
           <input
             id="passwordCheck"
-            type="text"
+            type="password"
             placeholder="비밀번호 확인"
             value={passwordCheck}
             onChange={handlePasswordCheckChange}
