@@ -202,3 +202,11 @@ export const getPhoneNumber = atom({
     phoneNumber: "",
   },
 });
+
+// 영업 상태
+export const storeContextState = atom({
+  key: "storeContextState",
+  default: {
+    storeStatus: false
+  }
+})
