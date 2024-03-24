@@ -32,11 +32,8 @@ function NoneFindIdPage() {
         <div className="none-find-id-page-text">
           존재하지 않는 아이디입니다.
         </div>
-        <div
-          className="none-find-id-page-wrapper"
-          onClick={() => navigate(`/signup`)}
-        >
-          <RedButton>회원가입</RedButton>
+        <div className="none-find-id-page-wrapper">
+          <RedButton onClick={() => navigate(`/signup`)}>회원가입</RedButton>
           <button
             className="none-find-id-page-button"
             onClick={() => navigate(`/`)}
