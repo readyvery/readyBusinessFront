@@ -1,10 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useTimer from "../../../../hooks/useTimer";
 import LoginChkAlrm from "../../LoginChkAlrm/LoginChkAlrm";
 import "./CertificationNumInput.css";
-
-// const AUTH_CODE = "1234";//서버에서 받아오는 값
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
 
 const Timer = ({ minutes, seconds }) => (
   <div className="timer">
@@ -13,19 +11,11 @@ const Timer = ({ minutes, seconds }) => (
 );
 // 아이디 찾기 및 회원가입 번호인증
 // 추후 비밀번호 인증과 통합예정
-function CertificationNumInput({ phoneNumber, onAuthSuccess  }) {
+function CertificationNumInput({ phoneNumber, onAuthSuccess, initialTimer }) {
   const [chkNum, setChkNum] = useState("");
-  const [timer, setTimer] = useState(TIMER_DURATION);
+  const { timer } = useTimer(initialTimer);
   const [isAuth, setIsAuth] = useState();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [setTimer]);
 
   const handleInputText = async (e) => {
     const newChkNum = e.target.value;
@@ -49,6 +39,9 @@ function CertificationNumInput({ phoneNumber, onAuthSuccess  }) {
       } catch (error) {
         console.log("통신에러", error);
       }
+    } else {
+      onAuthSuccess(false);
+      setIsAuth(false);
     }
   };
 
@@ -82,6 +75,7 @@ function CertificationNumInput({ phoneNumber, onAuthSuccess  }) {
           type="text"
           placeholder="인증번호"
           value={chkNum}
+          maxLength="6"
           autocomplete="off" //자동완성 없애기
           onChange={handleInputText}
         />

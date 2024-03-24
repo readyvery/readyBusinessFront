@@ -1,102 +1,64 @@
 import { message } from "antd";
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import {
-  userConfirmPasswordState,
-  userIdState,
-  userNameState,
-  userPasswordState,
-} from "../../../../Atom/status";
+import usePhoneNumberVerificationForSignup from "../../../../hooks/usePhoneNumberVerificationForSignup";
+import useSendVerifySms from "../../../../hooks/useSendVerifySms";
 import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
+const TIMER_DURATION = 600; //타이머 시간 설정(600초)
 
 function PhoneCertificationInput() {
-  const navigate = useNavigate();
-  const userId = useRecoilValue(userIdState);
-  const userPassword = useRecoilValue(userPasswordState);
-  const userConfirmPassword = useRecoilValue(userConfirmPasswordState);
-  const userName = useRecoilValue(userNameState);
-
-  const [inputNum, setInputNum] = useState(false);
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
-  const [hyphenPhonenumber, setHyphenPhonenumber] = useState(""); // 전화번호 상태
+  const [phonenumber, setPhonenumber] = useState(""); // 전화번호 상태
+  const [postmessage, setPostmessage] = useState(false); // 인증 번호 발송 성공 여부
   const [verifyState, setVerifyState] = useState(false); //전화번호 인증 상태
-  const apiUrl = process.env.REACT_APP_API_ROOT;
-
+  const { handleJoinClick } = usePhoneNumberVerificationForSignup();
+  const { handleSendVerifySms } = useSendVerifySms();
   const handleButtonClick = () => {
-    const PhoneNumber = hyphenPhonenumber.replace(/\D/g, "");
-    if (/^\d+$/.test(PhoneNumber) && PhoneNumber.length === 11) {
-      setInputNum(true);
-      handlePostmessage();
+    // 전체가 숫자인지, 000-0000-0000 총 11자리인지 확인
+    if (/^\d+$/.test(phonenumber) && phonenumber.length === 11) {
+      // 11자리 입력 후에
+      if (!postmessage) {
+        handlePostmessage();
+      } else { //타이머 초기화용
+        setPostmessage(false);
+        handlePostmessage();
+      }
     } else {
-      setInputNum(false);
-      setHyphenPhonenumber("");
+      setPhonenumber("");
       message.info("전화번호를 올바르게 입력해주세요.");
     }
   };
-
-  const handlePostmessage = async () => {
-    const apiRoot = process.env.REACT_APP_API_ROOT;
-    const apiVer = "api/v1";
-    const apiUrl = `${apiRoot}/${apiVer}/sms/send`;
-    const PhoneNumber = hyphenPhonenumber.replace(/\D/g, "");
-    try {
-      const response = await axios.post(`${apiUrl}`, {
-        phoneNumber: PhoneNumber,
-      });
-      if (response.data.success) {
-        setChkButton(true);
-        message.success("인증 번호를 발송했습니다.");
-      } else {
-        console.log("인증번호 발송 실패:", response.data);
-      }
-    } catch (error) {
-      console.error(error);
-      message.error("인증 번호를 발송에 실패했습니다.");
-    }
+  // 인증 문자 발신 성공 여부 확인
+  const handlePostSuccess = (success) => {
+    setPostmessage(success);
   };
-
-  const handleJoinClick = async () => {
-    const PhoneNumber = hyphenPhonenumber.replace(/\D/g, "");
-    if (verifyState) {
-      try {
-        const response = await axios.post(`${apiUrl}/api/v1/user/join`, {
-          email: userId,
-          password: userPassword,
-          confirmPassword: userConfirmPassword,
-          name: userName,
-          phone: PhoneNumber,
-        });
-        console.log(response);
-
-        if (response.data.success) {
-          console.log("회원가입 성공: ", response.data);
-          message.info("회원가입이 완료되었습니다.");
-          navigate("/login");
-        } else {
-          message.error(response.data.message);
-          console.log("회원가입 실패: ", response.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      message.error("번호인증을 진행해주세요!");
-    }
+  // 번호 인증
+  const handlePostmessage = () => {
+    setChkButton(true);
+    handleSendVerifySms({
+      userPhonenumber: phonenumber,
+      onPostSuccess: handlePostSuccess,
+    });
+  };
+  // 회원가입 정보 전송
+  const handleSignupFormClick = () => {
+    handleJoinClick({
+      verifyState: verifyState,
+      userPhonenumber: phonenumber,
+    });
   };
 
   const handleAuthSuccess = (success) => {
     setVerifyState(success);
   };
   const renderUserInputNumberMessage = () => {
-    if (chkButton && inputNum) {
+    if (postmessage) {
       return (
         <UserInputNumberMessage
-          phoneNumber={hyphenPhonenumber.replace(/\D/g, "")}
+          phoneNumber={phonenumber}
           onAuthSuccess={handleAuthSuccess}
+          initialTimer={TIMER_DURATION}
         />
       );
     }
@@ -104,12 +66,21 @@ function PhoneCertificationInput() {
   };
 
   const handlePhoneChange = (event) => {
-    const HyphenNumber = event.target.value
-      .replace(/[^0-9]/g, "")
-      .replace(/(\d{3})(\d{1,4})(\d{1,4})/, "$1-$2-$3");
-    setHyphenPhonenumber(HyphenNumber);
+    const HyphenNumber = event.target.value.replace(/[^0-9]/g, "");
+    setPhonenumber(HyphenNumber);
   };
-
+  // 전화번호 입력에 '-' 넣는 함수
+  const displayFormattedPhoneNumber = (numbers) => {
+    if (numbers.length <= 3) {
+      return numbers;
+    } else if (numbers.length <= 7) {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+    } else {
+      return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(
+        7
+      )}`;
+    }
+  };
   return (
     <>
       <div className="user-input-phone-number-wrapper">
@@ -118,7 +89,7 @@ function PhoneCertificationInput() {
           inputmode="numeric"
           pattern="[0-9]*"
           placeholder="전화번호"
-          value={hyphenPhonenumber}
+          value={displayFormattedPhoneNumber(phonenumber)}
           onChange={handlePhoneChange}
           maxLength="13"
           className="user-input-phone-number-input"
@@ -136,7 +107,7 @@ function PhoneCertificationInput() {
       {renderUserInputNumberMessage()}
       <RedButton
         type="submit"
-        onClick={handleJoinClick}
+        onClick={handleSignupFormClick}
         className="user-input-phone-number-auth-button"
       >
         완료
