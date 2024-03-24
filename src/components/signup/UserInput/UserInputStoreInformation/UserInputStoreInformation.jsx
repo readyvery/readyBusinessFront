@@ -68,12 +68,7 @@ const UserInputStoreInformation = () => {
 
     if (isComplete) {
       message.success("입력이 완료되었습니다.");
-      // 여기서 try..
       try {
-        // const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
-        //   phoneNumber: phoneNumber,
-        //   verifyNumber: newChkNum,
-        // });
         const formData = new FormData();
         const accessToken = localStorage.getItem('accessToken');
 

@@ -42,10 +42,10 @@ function UserFindIdPage() {
           />
         </div>
         <div className="user-find-id-page-wrapper">
-          <RedButton onClick={() => navigate(`/signup`)}>로그인</RedButton>
+          <RedButton onClick={() => navigate(`/login`)}>로그인</RedButton>
           <button
             className="user-find-id-page-login-button"
-            onClick={() => navigate(`/login`)}
+            onClick={() => navigate(`/find/password`)}
           >
             비밀번호 찾기
           </button>
