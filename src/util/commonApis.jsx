@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 const commonApis = axios.create({
     baseURL: process.env.REACT_APP_API_ROOT + "/api/v1",
@@ -42,6 +43,7 @@ commonApis.interceptors.response.use(
                     console.log("access token 재설정!");
                     console.log(accessToken);
                     localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss"))
                     axios.defaults.headers.common.Authorization = "Bearer " + accessToken;
                     config.headers.common["Authorization"] = "Bearer " + accessToken;
                 }
