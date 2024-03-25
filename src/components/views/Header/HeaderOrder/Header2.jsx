@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { storeContextState } from "../../../../Atom/status";
 import BackIcon from "../../../../assets/icons/Header/backIcon.png";
 import LOGO from "../../../../assets/icons/Header/header_logo.png"; //로고
 import { IMAGES } from "../../../../constants/images";
@@ -10,6 +12,7 @@ import "./Header.css";
 const Header = () => {
   const navigate = useNavigate();
   const context = useContext(HomeContext);
+  const storeStatus = useRecoilValue(storeContextState);
 
   const onBackHandler = () => {
     context.setSelectedMenu({});
@@ -37,14 +40,14 @@ const Header = () => {
           />
         </div>
         <div className="head-container2">
-          {/* {storeValue ? (
+          {storeStatus ? (
             <div className="store-group">
               <div className="store-img__wrapper">
-                <img src={StoreOn} alt="Open" className="store_img"/>
+                <img src={IMAGES.store_on} alt="Open" className="store_img"/>
               </div>
               <div className="header-font">영업중</div>
             </div>
-          ) : ( */}
+          ) : (
             <div className="store-group">
               <div className="store-img__wrapper">
                 <img src={IMAGES.store_off} alt="Close" className="store_img"/>
@@ -53,6 +56,7 @@ const Header = () => {
                 <div className="header-font">영업종료</div>
               </div>
             </div>
+          )}
           <SoundComponent />
         </div>
       </div>

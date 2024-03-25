@@ -1,10 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import useTimer from "../../../../../hooks/useTimer";
 import LoginChkAlrm from "../../../../login/LoginChkAlrm/LoginChkAlrm";
 import "./UserInputNumberMessage.css";
-
-// const AUTH_CODE = "1234";//서버에서 받아오는 값
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
 
 const Timer = ({ minutes, seconds }) => (
   <div className="timer">
@@ -12,24 +10,15 @@ const Timer = ({ minutes, seconds }) => (
   </div>
 );
 
-function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
+function UserInputNumberMessage({ phoneNumber, onAuthSuccess, initialTimer }) {
   const [chkNum, setChkNum] = useState("");
-  const [timer, setTimer] = useState(TIMER_DURATION);
+  const { timer } = useTimer(initialTimer);
   const [isAuth, setIsAuth] = useState();
   const apiUrl = process.env.REACT_APP_API_ROOT;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [setTimer]);
 
   const handleInputText = async (e) => {
     const newChkNum = e.target.value;
     setChkNum(newChkNum);
-    // equlChknum(newChkNum, AUTH_CODE);
     if (newChkNum.length === 6) {
       try {
         const response = await axios.post(`${apiUrl}/api/v1/sms/verify`, {
@@ -49,6 +38,9 @@ function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
       } catch (error) {
         console.log("통신에러", error);
       }
+    } else {
+      onAuthSuccess(false);
+      setIsAuth(false);
     }
   };
 
@@ -81,9 +73,9 @@ function UserInputNumberMessage({ phoneNumber, onAuthSuccess }) {
           id="usermessage"
           type="text"
           placeholder="인증번호"
-          required
-          name="usermessage"
+          autocomplete="off" //자동완성 없애기
           value={chkNum}
+          maxLength="6"
           onChange={handleInputText}
         />
         {timer > 0 && (

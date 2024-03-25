@@ -77,7 +77,7 @@ function LoginPage() {
       if (success) {
         // 로그인 성공: Recoil에 AT와 만료시간 저장
         localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("expiredTime", moment().add(1, "minutes").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+        localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
         console.log("로그인 성공:", response.data);
         message.success("로그인에 성공하셨습니다!");
 
