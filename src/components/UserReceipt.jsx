@@ -7,7 +7,7 @@ function UserReceipt(props) {
   const { foodies, idx, pickUp, time } = props;
   return (
     <Printer type="epson" width={42} characterSet="korea">
-      <Row left={`[${pickUp}]`} right="ReadyVery" />
+      <Row left={`[${pickUp === 1 ? '픽업' : '매장'}]`} right="ReadyVery" />
       <Br />
       <Text size={{ width: 3, height: 3 }} align="center" bold={true}>
         {idx} {/*idx*/}
