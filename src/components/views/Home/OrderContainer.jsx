@@ -18,7 +18,7 @@ export default function OrderContainer () {
     // console.log(completeData);
 
     const handleOrderMenu = (dummyInfo, e) => {
-        const selectedMenu = dummyInfo.orders.filter((order) => order.orderNum === e);
+        const selectedMenu = dummyInfo.orders.filter((order) => order.idx === e);
         context.setSelectedMenu(e !== context.selectedIdx ? selectedMenu : {});
         context.setSelectedIdx(e !== context.selectedIdx ? e : 0);
     }
@@ -36,12 +36,12 @@ export default function OrderContainer () {
                     <OrderBoxWrapper>
                         {
                             waitData && waitData?.data?.orders?.map((item) => (
-                                <span onClick={() => handleWaitOrderMenu(item.orderNum)}>
+                                <span onClick={() => handleWaitOrderMenu(item.idx)}>
                                     <OrderBox 
                                         id={item.orderNum}
                                         category={item.pickUp}
                                         menu={item.foodies}
-                                        clicked={item.orderNum === context.selectedIdx}
+                                        clicked={item.idx === context.selectedIdx}
                                     />
                                 </span>
                             ))
@@ -53,12 +53,12 @@ export default function OrderContainer () {
                     <OrderBoxWrapper>
                     {
                         makeData && makeData?.data?.orders?.map((item) => (
-                            <span onClick={() => handleMakeOrderMenu(item.orderNum)}>
+                            <span onClick={() => handleMakeOrderMenu(item.idx)}>
                                 <OrderBox 
                                     id={item.orderNum}
                                     category={item.pickUp}
                                     menu={item.foodies}
-                                    clicked={item.orderNum === context.selectedIdx}
+                                    clicked={item.idx=== context.selectedIdx}
                                 />
                             </span>
                         ))
@@ -70,12 +70,12 @@ export default function OrderContainer () {
                 <>
                     {
                         completeData && completeData?.data?.orders?.map((item) => (
-                            <span onClick={() => handleCompleteOrderMenu(item.orderNum)}>
+                            <span onClick={() => handleCompleteOrderMenu(item.idx)}>
                                 <OrderBox 
                                     id={item.orderNum}
                                     category={item.pickUp}
                                     menu={item.foodies}
-                                    clicked={item.orderNum === context.selectedIdx}
+                                    clicked={item.idx === context.selectedIdx}
                                 />
                             </span>
                         ))
@@ -90,6 +90,13 @@ const Container = styled.div`
   width: 100%;
   height: calc(100% - 60px);
   overflow-y: auto;
+
+//   -ms-overflow-style: none; /* 인터넷 익스플로러 */
+//     scrollbar-width: none; /* 파이어폭스 */
+
+//     &::-webkit-scrollbar {
+//         display: none;
+//     }
 `;
 
 const OrderBoxContainer = styled.div`
@@ -118,10 +125,10 @@ const OrderBoxWrapper = styled.div`
     overflow-y: auto;
     padding-bottom: 50px;
 
-    -ms-overflow-style: none; /* 인터넷 익스플로러 */
-    scrollbar-width: none; /* 파이어폭스 */
+    // -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    // scrollbar-width: none; /* 파이어폭스 */
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
 `;

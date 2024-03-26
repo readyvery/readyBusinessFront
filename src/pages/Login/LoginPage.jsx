@@ -2,6 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/login/Container/Container";
 import RedButton from "../../components/login/redButton/RedButton";
@@ -21,6 +22,7 @@ const LoginFindUserIdAndPassword = () => {
 };
 
 function LoginPage() {
+  const [, , removeCookie] = useCookies(["accessToken"]);
   const [is480, setIs480] = useState(window.innerWidth <= 480);
   const containerSize = is480
     ? ["25rem", "37.5rem", "4.12rem", "3.63rem"]
@@ -78,6 +80,7 @@ function LoginPage() {
         // 로그인 성공: Recoil에 AT와 만료시간 저장
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("expiredTime", moment().add(1, "days").format("yyyy-MM-DD HH:mm:ss")); // 만료시간 저장
+        removeCookie("accessToken");
         console.log("로그인 성공:", response.data);
         message.success("로그인에 성공하셨습니다!");
 
