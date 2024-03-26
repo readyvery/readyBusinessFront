@@ -17,7 +17,6 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
   
     // 주문 거부
     const handleCancel = async (e) => {
-      // setLoading(1);
       console.log(e);
       message.loading("로딩 중...");
 
@@ -26,12 +25,12 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
       );
     
       setModalIdx(0);
-      // setLoading(0);
+      context.setSelectedMenu({});
+      context.setSelectedIdx(0);
     };
   
     // 주문 접수
     const handleMake = async (e) => {
-      // setLoading(2);
       console.log(context?.selectedMenu);
       message.loading("로딩 중...");
 
@@ -39,7 +38,8 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
         `${context?.selectedMenu[0]?.orderId}@${e}`, 
       );
       setModalIdx(0);
-      // setLoading(0);
+      context.setSelectedMenu({});
+      context.setSelectedIdx(0);
     };
 
     const selectedInfo = context.selectedMenu;
