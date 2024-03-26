@@ -5,7 +5,7 @@ import useSendVerifySms from "../../../../hooks/useSendVerifySms";
 import RedButton from "../../../login/redButton/RedButton";
 import "./UserInputNumber.css";
 import UserInputNumberMessage from "./UserInputNumberMessage/UserInputNumberMessage";
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
+const TIMER_DURATION = 180; //타이머 시간 설정(600초)
 
 function PhoneCertificationInput() {
   const [chkButton, setChkButton] = useState(false); // 인증버튼 클릭 여부
