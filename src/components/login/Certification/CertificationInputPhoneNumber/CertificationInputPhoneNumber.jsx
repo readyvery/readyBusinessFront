@@ -22,6 +22,7 @@ function CertificationInputPhoneNumber(userInfo) {
     if (/^\d+$/.test(phonenumber) && phonenumber.length === 11) {
       // 11자리 입력 후에
       if (!postmessage) {
+        alert("인증번호를 발송했습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해 주세요.")
         handlePostmessage();
       } else { //타이머 초기화용
         setPostmessage(false);
