@@ -1,8 +1,9 @@
 import { message } from "antd";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { isAuthenticatedState, loginState } from "../../Atom/status";
+import { isAuthenticatedState } from "../../Atom/status";
 
 // 수정필요! 백에서 로그아웃이 구현되면 ㄱㄱ
 const apiRoot = process.env.REACT_APP_API_ROOT;
@@ -11,9 +12,9 @@ const apiUrl = `${apiRoot}/${apiVer}/user/logout`;
 
 const useMypageLogout = () => {
   const navigate = useNavigate();
-  const setIsLoggedIn = useSetRecoilState(loginState);
   const token = localStorage.getItem("accessToken");
   const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+  const [, , removeCookie] = useCookies(["accessToken", "refreshToken", "JSESSIONID"]);
   // 반환된 함수가 실제로 호출되면 로그아웃을 수행
   const isTokenLogout = async () => {
     //   로컬스토리지에 엑세스토큰 저장시에.
@@ -24,14 +25,15 @@ const useMypageLogout = () => {
     };
     try {
       const response = await axios.get(apiUrl, config);
-      console.log(response);
-      setIsAuthenticated(false);
-      setIsLoggedIn({
-        accessToken: null,
-        expiredTime: null,
-      });
-      localStorage.removeItem("accessToken", "");
-      message.success("로그아웃에 성공하셨습니다.");
+      if(response.status === 200){
+        console.log(response);
+        setIsAuthenticated(false);
+        localStorage.clear();
+        removeCookie("JSESSIONID");
+        removeCookie("accessToken");
+        removeCookie("refreshToken");
+        message.success("로그아웃에 성공하셨습니다.");
+      }
       navigate("/");
     } catch (error) {
       message.info("관리자에게 문의하세요.");

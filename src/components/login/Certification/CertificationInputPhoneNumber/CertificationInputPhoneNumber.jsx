@@ -6,7 +6,7 @@ import RedButton from "../../redButton/RedButton";
 import "../CertificationInput/CertificationInput.css";
 import CertificationInputCheck from "./CertificationInputCheck";
 
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
+const TIMER_DURATION = 180; //타이머 시간 설정(600초)
 
 // 비밀번호 변경 번호 인증_번호입력
 // 추후 아이디 찾기 및 회원가입 번호인증과 비교 후 수정 필요
@@ -22,6 +22,7 @@ function CertificationInputPhoneNumber(userInfo) {
     if (/^\d+$/.test(phonenumber) && phonenumber.length === 11) {
       // 11자리 입력 후에
       if (!postmessage) {
+        alert("인증번호를 발송했습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해 주세요.")
         handlePostmessage();
       } else { //타이머 초기화용
         setPostmessage(false);
