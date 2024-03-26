@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { render } from "react-thermal-printer";
+// import { useContext } from "react";
 // import { useRecoilState } from "recoil";
 // import { portState } from "../Atom/status";
 import UserReceipt from "../components/UserReceipt";
@@ -11,6 +12,7 @@ const usePrintHandler = () => {
     console.log(selectedInfo);
     // const [savePort, setSavePort] = useRecoilState(portState);
     const [savePort, setSavePort] = useState(null);
+    console.log(savePort);
 
     const onClickPrintHandler = async () => {
     const data = await render(UserReceipt(selectedInfo[0]));
@@ -19,13 +21,14 @@ const usePrintHandler = () => {
     if (savePort === null) {
       port = await window.navigator?.serial?.requestPort();
       setSavePort(port);
-    } else if (savePort !== null) {
+    } else if (savePort !== null ) {
       port = savePort;
     }
 
     console.log(port);
     if (port.writable === null) {
-        await port.open({ baudRate: 38400 });
+        // await port.open({ baudRate: 38400 });
+        await port.open({ baudRate: 9600 });
     }
     const writer = port.writable?.getWriter();
     if (writer !== null) {
