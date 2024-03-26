@@ -6,7 +6,7 @@ import RedButton from "../../redButton/RedButton";
 import "../CertificationInput/CertificationInput.css";
 import CertificationInputCheck from "./CertificationInputCheck";
 
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
+const TIMER_DURATION = 180; //타이머 시간 설정(600초)
 
 // 비밀번호 변경 번호 인증_번호입력
 // 추후 아이디 찾기 및 회원가입 번호인증과 비교 후 수정 필요
