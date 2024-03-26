@@ -5,7 +5,7 @@ import useSendVerifySms from "../../../../hooks/useSendVerifySms";
 import RedButton from "../../redButton/RedButton";
 import CertificationNumInput from "../CertificationNumInput/CertificationNumInput";
 import "./CertificationInput.css";
-const TIMER_DURATION = 600; //타이머 시간 설정(600초)
+const TIMER_DURATION = 180; //타이머 시간 설정(600초)
 
 // 아이디찾기 및 회원가입 번호인증에 사용
 function CertificationInput({ type, buttonText }) {
