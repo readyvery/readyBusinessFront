@@ -109,13 +109,14 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
             <div className="receiptTextBox">
               <span className="receipt-text">할인금액</span>
               <span className="receipt-text">
-                {selectedInfo[0]?.couponUsed ? "(-) 500원" : "0원"}
+                {/* {selectedInfo[0]?.couponUsed ? "(-) 500원" : "0원"} */}
+                {(selectedInfo[0]?.price - selectedInfo[0]?.salePrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </span>
             </div>
             <div className="receiptTextBox">
               <span className="receipt-text bold">총 결제금액</span>
               <span className="receipt-text bold red">
-                {selectedInfo[0]?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                {selectedInfo[0]?.salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </span>
             </div>
 

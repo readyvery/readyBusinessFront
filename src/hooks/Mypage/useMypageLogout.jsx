@@ -25,7 +25,7 @@ const useMypageLogout = () => {
     };
     try {
       const response = await axios.get(apiUrl, config);
-      if(response.status === 200){
+      if(response.status === 200 && response.data.success){
         console.log(response);
         setIsAuthenticated(false);
         localStorage.clear();
@@ -33,8 +33,8 @@ const useMypageLogout = () => {
         removeCookie("accessToken");
         removeCookie("refreshToken");
         message.success("로그아웃에 성공하셨습니다.");
+        navigate("/login");
       }
-      navigate("/");
     } catch (error) {
       message.info("관리자에게 문의하세요.");
       // navigate("/");
