@@ -70,7 +70,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
             <div className="receiptTextBox">
                 <span className="receipt-text">수령방식</span>
                 <span className="receipt-text">
-                    {selectedInfo[0]?.pickUp === 1 ? "픽업" : "매장"}
+                    {selectedInfo[0]?.pickUp === 1 ? "매장" : "픽업"}
                 </span>
             </div>
             <div className="receipt-divider" />
