@@ -10,7 +10,8 @@ export const useFetchMakeInfo = () => {
         }
     });
     }, {
-        // refetchInterval: 3000,
+        refetchInterval: 10000, // 10초
+        refetchOnWindowFocus: true
     })
 
     const refreshData = () => {
