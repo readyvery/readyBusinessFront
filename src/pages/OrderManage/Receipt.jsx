@@ -2,7 +2,9 @@ import { message } from "antd";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useContext, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { storeIdxState } from "../../Atom/status";
 import ReceiptBox from "../../components/views/Home/ReciptBox";
 import useCompleteOrder from "../../hooks/useCompleteOrder";
 import theme from "../../style/theme/theme";
@@ -13,6 +15,7 @@ import "./Receipt.css";
 const Receipt = () => {
 
   const context = useContext(HomeContext);
+  const storeIdx = useRecoilValue(storeIdxState);
 
   const [modalIdx, setModalIdx] = useState(0);
 
@@ -69,7 +72,7 @@ const Receipt = () => {
             context?.selectedMenu[0]?.progress === "COMPLETE" && 
           (
             <BtnWrapper>
-              <ReceiptTest></ReceiptTest>
+              {storeIdx < 10 && <ReceiptTest></ReceiptTest>}
             </BtnWrapper>
           )}
         </ReceiptBox>
@@ -93,6 +96,7 @@ const RefuseBtn = styled.div`
   font-size: 1.2rem;
   font-family: "Pretendard Variable";
   font-weight: 800;
+  min-width: 50px;
   width: 45%;
   height: 3rem;
   line-height: 2.75rem;
@@ -109,6 +113,7 @@ const AcceptBtn = styled.div`
   font-family: "Pretendard Variable";
   font-weight: 800;
   width: 45%;
+  min-width: 50px;
   height: 3rem;
   line-height: 2.75rem;
   border-radius: 20px;

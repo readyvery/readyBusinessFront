@@ -1,12 +1,26 @@
+import { useRecoilValue } from "recoil";
 import styled, { css } from "styled-components";
+import { storeIdxState } from "../../../Atom/status";
 import theme from "../../../style/theme/theme";
 
 export default function OrderBox ({ id, category, menu, clicked }) {
     const menuLen = menu.length;
+    const method = menu[0]?.options.filter((m) => m.category === "포장/매장");
+    const storeIdx = useRecoilValue(storeIdxState);
     return(
         <OrderBoxContainer clicked={clicked}>
             <OrderBoxSpan width={"15%"} size="big" align="right">{id}</OrderBoxSpan>
-            <OrderBoxSpan width={"20%"} size="big" align="center">{category === 1 ? "매장" : "픽업"}</OrderBoxSpan>
+            <OrderBoxSpan width={"20%"} size="big" align="center">{storeIdx >= 10 ? (
+                method && (
+                    method.length > 0 ? (
+                        method[0]?.name?.includes("매장") 
+                        ? method[0]?.name?.split(" ")[3] 
+                        : method[0]?.name
+                    ) : "포장"
+                )
+            ) : (
+                category === 1 ? "매장" : "픽업"
+            )}</OrderBoxSpan>
             <OrderBoxSpan width={"65%"} size="small" align="left">
                 {menuLen > 1 ? `${menu[0].name} 외 ${menuLen - 1}건` : menu[0].name}
             </OrderBoxSpan>

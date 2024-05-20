@@ -71,6 +71,7 @@
   font-weight: 800;
   font-size: 1.75rem;
   letter-spacing: -0.0175rem;
+  white-space: nowrap;
 
   display: flex;
   align-items: center;

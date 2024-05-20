@@ -22,11 +22,11 @@ const useCancelOrder = () => {
                 if (data.status === 200 && data.data.success === true) {
                     message.destroy();
                     message.success("주문 취소되었습니다.");
-                    queryClient.invalidateQueries({queryKey: ["get-wait"]});
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 신규 주문 건 쿼리 무효화
                 } else {
                     message.destroy();
                     message.error("주문 취소 실패. 다시 시도해주세요.");
-                    queryClient.invalidateQueries({queryKey: ["get-wait"]});
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 신규 주문 건 쿼리 무효화
                 }
             },
             onError: (err) => {

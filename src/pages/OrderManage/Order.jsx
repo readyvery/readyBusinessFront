@@ -4,7 +4,7 @@ import Home from "./Home";
 const Order = () => {
   return (
     <>
-      <Home defaultStatus={1} defaultValue={0} setSelectedMenu={{}}>
+      <Home defaultStatus={1} defaultReceiveMethod={""} defaultValue={0} setSelectedMenu={{}}>
         <Home.Header />
         {/* 주문 목록 */}
         <Home.MainHome>
