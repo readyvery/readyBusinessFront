@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { useFetchCompleteInfo } from "../../../hooks/useFetchCompleteInfo";
-import { useFetchMakeInfo } from "../../../hooks/useFetchMakeInfo";
-import { useFetchWaitInfo } from "../../../hooks/useFetchWaitInfo";
+import { useFetchIntegrationInfo } from "../../../hooks/useFetchIntegrationInfo";
 import { HomeContext } from "../../../pages/OrderManage/Home";
 import theme from "../../../style/theme/theme";
 import OrderBox from "./OrderBox";
@@ -10,32 +9,36 @@ import OrderBox from "./OrderBox";
 export default function OrderContainer () {
     const context = useContext(HomeContext);
     
-    const {data: waitData} = useFetchWaitInfo();
-    const {data: makeData} = useFetchMakeInfo();
-    const {data: completeData} = useFetchCompleteInfo();
-    // console.log(waitData);
-    // console.log(makeData);
-    // console.log(completeData);
+    // const {data: waitData} = useFetchWaitInfo();
+    // const {data: makeData} = useFetchMakeInfo();
+    const {
+        orders: waitData, 
+        integrationMakeOrders: makeData
+    } = 
+        useFetchIntegrationInfo(); // 신규 + 진행
+    const {
+        orders: completeData
+    } = useFetchCompleteInfo(); // 완료
 
     const handleOrderMenu = (dummyInfo, e) => {
-        const selectedMenu = dummyInfo.orders.filter((order) => order.idx === e);
+        const selectedMenu = dummyInfo.filter((order) => order.idx === e);
         context.setSelectedMenu(e !== context.selectedIdx ? selectedMenu : {});
         context.setSelectedIdx(e !== context.selectedIdx ? e : 0);
     }
     
-    const handleWaitOrderMenu = (e) => handleOrderMenu(waitData.data, e); // 신규 주문
-    const handleMakeOrderMenu = (e) => handleOrderMenu(makeData.data, e); // 진행 주문
-    const handleCompleteOrderMenu = (e) => handleOrderMenu(completeData.data, e); // 완료 주문
+    const handleWaitOrderMenu = (e) => handleOrderMenu(waitData, e); // 신규 주문
+    const handleMakeOrderMenu = (e) => handleOrderMenu(makeData, e); // 진행 주문
+    const handleCompleteOrderMenu = (e) => handleOrderMenu(completeData, e); // 완료 주문
     
     return(
         <Container>
             {context.status === 1 ? (
                 <>
                 <OrderBoxContainer>
-                    <OrderTitleBox>신규 {waitData?.data?.orders?.length}건</OrderTitleBox>
+                    <OrderTitleBox>신규 {waitData?.length}건</OrderTitleBox>
                     <OrderBoxWrapper>
                         {
-                            waitData && waitData?.data?.orders?.map((item) => (
+                            waitData && waitData?.map((item) => (
                                 <span onClick={() => handleWaitOrderMenu(item.idx)}>
                                     <OrderBox 
                                         id={item.orderNum}
@@ -49,10 +52,10 @@ export default function OrderContainer () {
                     </OrderBoxWrapper>
                 </OrderBoxContainer>
                 <OrderBoxContainer>
-                    <OrderTitleBox>진행 {makeData?.data?.orders?.length}건</OrderTitleBox>
+                    <OrderTitleBox>진행 {makeData?.length}건</OrderTitleBox>
                     <OrderBoxWrapper>
                     {
-                        makeData && makeData?.data?.orders?.map((item) => (
+                        makeData && makeData?.map((item) => (
                             <span onClick={() => handleMakeOrderMenu(item.idx)}>
                                 <OrderBox 
                                     id={item.orderNum}
@@ -69,7 +72,7 @@ export default function OrderContainer () {
             ) : (
                 <>
                     {
-                        completeData && completeData?.data?.orders?.map((item) => (
+                        completeData && completeData?.map((item) => (
                             <span onClick={() => handleCompleteOrderMenu(item.idx)}>
                                 <OrderBox 
                                     id={item.orderNum}

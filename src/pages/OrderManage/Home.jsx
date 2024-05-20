@@ -12,12 +12,13 @@ import Receipt from "./Receipt";
 
 // Context API 적용
 export const HomeContext = createContext(null);
-function Home({ defaultValue, defaultStatus, defaultMenu, children }) { 
+function Home({ defaultValue, defaultReceiveMethod, defaultStatus, defaultMenu, children }) { 
   
   // Context API 적용 (status 관리)
   const [status, setStatus] = useState(defaultStatus);
-  const [selectedIdx, setSelectedIdx] = useState(defaultValue);
-  const [selectedMenu, setSelectedMenu] = useState(defaultMenu);
+  const [selectedIdx, setSelectedIdx] = useState(defaultValue); // 선택한 영수증 idx
+  const [selectedMenu, setSelectedMenu] = useState(defaultMenu); // 선택한 메뉴
+  // const [receiveMethod, setReceiveMethod] = useState(defaultReceiveMethod); // 수령방식
   const providerValue = { selectedIdx, setSelectedIdx, status, setStatus, selectedMenu, setSelectedMenu };
 
 

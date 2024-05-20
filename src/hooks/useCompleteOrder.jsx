@@ -22,19 +22,20 @@ const useCompleteOrder = () => {
                 if (data.status === 200 && data.data.success === true) {
                     message.destroy();
                     message.success("완료 처리되었습니다.");
-                    queryClient.invalidateQueries({queryKey: ["get-make"]});
-                    queryClient.invalidateQueries({queryKey: ["get-complete"]});
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 진행 주문 건 쿼리 무효화
+                    //queryClient.invalidateQueries({queryKey: ["get-complete"]}); // 완료 주문 건 쿼리 무효화
                 } else {
                     message.destroy();
                     message.error("완료 처리 실패. 다시 시도해주세요.");
-                    queryClient.invalidateQueries({queryKey: ["get-make"]});
-                    queryClient.invalidateQueries({queryKey: ["get-complete"]});
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 진행 주문 건 쿼리 무효화
+                    //queryClient.invalidateQueries({queryKey: ["get-complete"]}); // 완료 주문 건 쿼리 무효화
                 }
             },
             onError: (err) => {
                 console.error(err);
                 message.destroy();
                 message.error("완료 처리 중 오류가 발생하였습니다.");
+                queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 진행 주문 건 쿼리 무효화
             },
         }
     );

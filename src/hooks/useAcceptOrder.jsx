@@ -1,11 +1,14 @@
 import { message } from "antd";
 import { useMutation, useQueryClient } from "react-query";
+import { useRecoilValue } from "recoil";
+import { storeIdxState } from "../Atom/status";
 import commonApis from "../util/commonApis";
 import usePrintHandler from "./usePrintHandler";
 
 const useAcceptOrder = () => {
     const queryClient = useQueryClient();
     const token = localStorage.getItem("accessToken");
+    const storeIdx = useRecoilValue(storeIdxState);
 
     const onClickPrintHandler = usePrintHandler();
 
@@ -25,14 +28,12 @@ const useAcceptOrder = () => {
                 if (data.status === 200 && data.data.success === true) {
                     message.destroy();
                     message.success("주문 접수되었습니다.");
-                    queryClient.invalidateQueries({queryKey: ["get-wait"]}); // 쿼리 무효화
-                    queryClient.invalidateQueries({queryKey: ["get-make"]}); // 쿼리 무효화
-                    onClickPrintHandler();
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 쿼리 무효화
+                    storeIdx < 10 && onClickPrintHandler();
                 } else {
                     message.destroy();
                     message.error("주문 접수 실패. 다시 시도해주세요.");
-                    queryClient.invalidateQueries({queryKey: ["get-wait"]}); // 쿼리 무효화
-                    queryClient.invalidateQueries({queryKey: ["get-make"]}); // 쿼리 무효화
+                    queryClient.invalidateQueries({queryKey: ["get-integration"]}); // 쿼리 무효화
                 }
             },
             onError: (err) => {

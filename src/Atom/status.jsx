@@ -5,6 +5,14 @@ import { Refresh } from "../util/handleRefresh";
 
 const { persistAtom } = recoilPersist();
 
+
+// storeIdx
+export const storeIdxState = atom({
+  key: "storeIdxState",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
+
 export const storeState = atom({
   key: "storeState", // 전역적으로 고유한 값
   default: false, // 초깃값

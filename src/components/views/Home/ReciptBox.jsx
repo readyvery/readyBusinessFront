@@ -1,5 +1,7 @@
 import { message } from "antd";
 import React, { useContext } from "react";
+import { useRecoilValue } from "recoil";
+import { storeIdxState } from "../../../Atom/status";
 import { config } from "../../../config/index";
 import { IMAGES } from "../../../constants/images";
 import useAcceptOrder from "../../../hooks/useAcceptOrder";
@@ -11,6 +13,7 @@ import ReciptModal from "./ReciptModal";
 
 export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     const context = useContext(HomeContext);
+    const storeIdx = useRecoilValue(storeIdxState);
 
     const { cancelOrder } = useCancelOrder();
     const { acceptOrder } = useAcceptOrder();
@@ -43,11 +46,19 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
     };
 
     const selectedInfo = context.selectedMenu;
+    console.log(selectedInfo);
+    const method = 
+      selectedInfo && 
+      selectedInfo?.length > 0 && 
+      selectedInfo[0]?.foodies && 
+      selectedInfo[0]?.foodies.length > 0 && 
+      selectedInfo[0]?.foodies[0]?.options?.filter((m) => m.category === "포장/매장"); // 축제 전용 수령 방식
 
     return(
       <div className="receiptWrapper">
         {
-          selectedInfo?.length ? (
+          (selectedInfo && 
+          selectedInfo?.length) > 0 ? (
             <>
               <div className="receiptHeader">
                 <span className="receipt-header"> 주문번호 {selectedInfo[0]?.orderNum}</span>
@@ -70,7 +81,17 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
             <div className="receiptTextBox">
                 <span className="receipt-text">수령방식</span>
                 <span className="receipt-text">
-                    {selectedInfo[0]?.pickUp === 1 ? "매장" : "픽업"}
+                  {
+                    method.length > 0 ? (
+                      method[0].name
+                    ) : (
+                      storeIdx < 10 ? (
+                        selectedInfo[0]?.pickUp === 1 ? "매장" : "픽업"
+                      ) : (
+                        "포장"
+                      )
+                    )
+                  }
                 </span>
             </div>
             <div className="receipt-divider" />
@@ -84,7 +105,9 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
                   <span className="receipt-FoodName count">{food?.count}</span>
                 </div>
                 <div className="receiptOption">
-                  {food?.options?.map((option) => (
+                  {food?.options
+                    .filter((m) => m.category !== "포장")
+                    ?.map((option) => (
                     <span
                       className="receipt-optiontext"
                       style={{
@@ -93,7 +116,10 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
                         fontWeight: "500",
                       }}
                     >
-                      └ ({option.category}) {option.name}
+                      └ {
+                          option?.category !== "포장/매장" && 
+                          `(${option.category})`
+                        } {option.name}
                     </span>
                   ))}
                 </div>
@@ -125,6 +151,7 @@ export default function ReceiptBox ({children, modalIdx, setModalIdx}) {
               context?.selectedMenu.length > 0 &&
               context?.selectedMenu[0]?.progress &&
               context?.selectedMenu[0]?.progress === "MAKE" && 
+              storeIdx < 10 && 
               <ReceiptTest color="white"/>
             }
 
